@@ -9,7 +9,7 @@ Most of the functions here are mostly wrappers around some PTB functions to faci
 
 ## Code guidestyle
 
-We use the `pascalCase` to more easily differentiates our functions from the ones from PTB that use a `CamelCase`.
+We use the `camelCase` to more easily differentiates our functions from the ones from PTB that use a `CamelCase`.
 
 ## Structure and function details
 
