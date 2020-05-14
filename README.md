@@ -27,24 +27,57 @@ The exact version required for this to work but it is known to work with:
 
 We use the `camelCase` to more easily differentiates our functions from the ones from PTB that use a `PascalCase`.
 
+We keep the McCabe complexity as reported by the [check_my_code function](https://github.com/Remi-Gau/matlab_checkcode) below 15.
+
+## How to install
+
+
+
+
 ## Structure and function details
 
-### setParameters
+<!-- ### setParameters -->
 
 ### initPTB
 
+This will initialize PsychToolBox
+-   screen
+  - the windon opened takes the whole screen by default
+  - set in debug mode with window transparency if necessary
+  - can skip synch test if you ask for it (nicely)
+  - gets the flip interval
+  - computes the pixel per degree of visual angle
+  - set font details
+-   keyboard
+-   sound
+
+### testKeyboards
+Checks that the keyboards asked for properly connected.
+
+If no key is pressed on the correct keyboard after the timeOut time this exits with an error.
+
+### cleanUp
+A wrapper function to close all windows, ports, show mouse cursor, close keyboard queues
+and give access back to the keyboards.
+
 ### getResponse
-It is wrapper function to use KbQueue which is definitely what you should used to collect responses.
+
+It is wrapper function to use `KbQueue` which is definitely what you should used to collect responses.
 
 You can easily collect responses while running some other code at the same time.
 
-It will only take responses from the `response box` which can simply be the "main keyboard" or another keyboard connected to the computer or the response box that the participant is using.
+It will only take responses from the `response box` which can simply be the "main keyboard" or
+another keyboard connected to the computer or the response box that the participant is using.
 
-You can use it in a way so that it only takes responses from certain keys.
+You can use it in a way so that it only takes responses from certain keys and ignore others (like
+the triggers from an MRI scanner).
 
 If you want to know more on how to use it check its help section and the `CPP_getResponseDemo.m`.
 
-To select a specific keyboard to be used by experimenter/participant, you need to know the assigned MATLAB value. To copy-paste this on the command wuindow:
+To select a specific keyboard to be used by the experimenter or the participant, you need to know
+the value assigned by PTB to each keyboard device.
+
+To know this copy-paste this on the command window:
 
 ```
 [keyboardNumbers, keyboardNames] = GetKeyboardIndices;
@@ -53,8 +86,28 @@ keyboardNumbers
 keyboardNames
 ```
 
+### deg2Pix
 
-### cleanUp
+For a given field value in degrees of visual angle in the input `structure`,
+this computes its value in pixel using the pixel per degree value of the `cfg` structure
+and returns a structure with an additional field with Pix suffix holding that new value.
+
+### drawFixationCross
+
+Define the parameters of the fixation cross in `cfg` and `expParameters` and this does the rest.
+
+### pressSpace4me
+
+Use that to stop your script and only restart when the space bar is pressed.
+
+
+
+
+
+
+
+
+
 
 ## Contributors ✨
 
