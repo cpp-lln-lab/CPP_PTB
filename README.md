@@ -31,7 +31,46 @@ We keep the McCabe complexity as reported by the [check_my_code function](https:
 
 ## How to install
 
+### Use the matlab package manager
 
+This repository can be added as a dependencies by listing it in a [mpm-requirements.txt file](.mpm-requirements.txt)
+as follows:
+
+```
+CPP_PTB -u https://github.com/cpp-lln-lab/CPP_PTB.git
+```
+
+You can then use the [matlab package manager](https://github.com/mobeets/mpm), to simply download the appropriate version of those dependencies and add them to your path by running a `getDependencies` function like the one below where you just need to replace `YOUR_EXPERIMENT_NAME` by the name of your experiment.
+
+
+```matlab
+function getDependencies(action)
+% Will install on your computer the matlab dependencies specified in the mpm-requirements.txt
+%  and add them to the matlab path. The path is never saved so you need to run getDependencies() when
+%  you start matlab.
+%
+% getDependencies('update') will force the update and overwrite previous version of the dependencies.
+%
+% getDependencies() If you only already have the appropriate version but just want to add them to the matlab path.
+
+experimentName = YOUR_EXPERIMENT_NAME;
+
+if nargin<1
+    action = '';
+end
+
+switch action
+    case 'update'
+        % install dependencies
+        mpm install -i mpm-requirements.txt -f -c YOUR_EXPERIMENT_NAME
+end
+
+% adds them to the path
+mpm_folder = fileparts(which('mpm'));
+addpath(genpath(fullfile(mpm_folder, 'mpm-packages', 'mpm-collections', experimentName)));
+
+end
+```
 
 
 ## Structure and function details
