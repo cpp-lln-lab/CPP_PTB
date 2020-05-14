@@ -4,6 +4,7 @@ function [cfg] = initPTB(cfg)
 % We might want to add a couple of IF in case the experiment does not use
 % audio for example.
 
+checkDependencies()
 
 
 % For octave: to avoid displaying messenging one screen at a time
