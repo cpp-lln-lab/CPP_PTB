@@ -1,5 +1,5 @@
 function checkDependencies()
-% Checks that that the right dependencies are installed.
+% Checks that the right dependencies are installed.
 
 printCredits()
 
