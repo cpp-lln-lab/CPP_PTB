@@ -1,4 +1,6 @@
 function cleanUp
+% A wrapper function to close all windows, ports, show mouse cursor, close keyboard queues
+% and give access back to the keyboards.
 
 WaitSecs(0.5);
 
@@ -24,5 +26,5 @@ end
 
 close all
 
- 
+
 end
