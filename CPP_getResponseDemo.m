@@ -1,4 +1,4 @@
-  jk%% Demo showing how to use the getResponse function
+ %% Demo showing how to use the getResponse function
 
 % This small script shows how to use the getReponse function 
 %  (a wrapper around the KbQueue function from PTB)
