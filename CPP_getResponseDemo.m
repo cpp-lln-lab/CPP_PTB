@@ -1,20 +1,20 @@
-  jk%% Demo showing how to use the getResponse function
+%% Demo showing how to use the getResponse function
 
-% This small script shows how to use the getReponse function 
+% This small script shows how to use the getReponse function
 %  (a wrapper around the KbQueue function from PTB)
 
 % start with a clean slate
-clear; clc; 
+clear; clc;
 if IsOctave
     more off % for a better display experience
 end
 
 %% set parameters
 
-% cfg.responseBox would be the device number of the device used by the participant to give his/her 
+% cfg.responseBox would be the device number of the device used by the participant to give his/her
 % response: like the button box in the scanner or a separate keyboard for a behavioral experiment
 %
-% cfg.keyboard would be the device number of the keyboard on which the experimenter will type or 
+% cfg.keyboard would be the device number of the keyboard on which the experimenter will type or
 % press the keys necessary to start or abort the experiment.
 
 %  cfg.responseBox and cfg.keyboard can be different or the same.
@@ -57,10 +57,10 @@ WaitSecs(1);
 
 fprintf('\nDuring the next 5 seconds we will collect responses on the following keys: \n\n');
 if isempty(expParameters.responseKey)
-    fprintf('\nALL KEYS\n\n');    
+    fprintf('\nALL KEYS\n\n');
 else
     for iKey=1:numel(expParameters.responseKey)
-        fprintf('\n%s', expParameters.responseKey{iKey});  
+        fprintf('\n%s', expParameters.responseKey{iKey});
     end
     fprintf('\n\n');
 end

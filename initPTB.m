@@ -1,8 +1,20 @@
 function [cfg] = initPTB(cfg)
-% This seems a good candidate function to have as a common function across
-% experiments
-% We might want to add a couple of IF in case the experiment does not use
-% audio for example.
+% This will initialize PsychToolBox
+% - screen
+%   - the windon opened takes the whole screen by default
+%   - set in debug mode with window transparency if necessary
+%   - can skip synch test if you ask for it (nicely)
+%   - gets the flip interval
+%   - computes the pixel per degree of visual angle
+%   - set font details
+% - keyboard
+% - sound
+
+
+% TO DO
+% - We might want to add a couple of IF in case the experiment does not use audio for example.
+% - the computation for ppd assumes the windows takes the whole screenDistance
+% - refactor the window opening section (pass the window size as argument)
 
 checkDependencies()
 
@@ -57,12 +69,12 @@ PsychImaging('PrepareConfiguration');
 
 % init PTB with different options in concordance to the Debug Parameters
 if cfg.debug
-    
+
     % set to one because we don not care about time
     Screen('Preference', 'SkipSyncTests', 2);
     Screen('Preference', 'Verbosity', 0);
     Screen('Preferences', 'SuppressAllWarnings', 2);
-    
+
     if cfg.testingSmallScreen
         [cfg.win, cfg.winRect] = PsychImaging('OpenWindow', cfg.screen, cfg.backgroundColor,  [0,0, 480, 270]);
     else
@@ -71,11 +83,11 @@ if cfg.debug
         end
         [cfg.win, cfg.winRect] = PsychImaging('OpenWindow', cfg.screen, cfg.backgroundColor);
     end
-    
+
 else
     Screen('Preference','SkipSyncTests', 0);
     [cfg.win, cfg.winRect] = PsychImaging('OpenWindow', cfg.screen, cfg.backgroundColor);
-    
+
 end
 
 
