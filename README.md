@@ -6,7 +6,7 @@
 
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-This is List of Crossmodal Perpeption and Plasticity lab (CPP) PsychToolBox (PTB) toolbox.
+This is List of Crossmodal Perception and Plasticity lab (CPP) PsychToolBox (PTB) toolbox.
 
 Those functions are mostly wrappers around some PTB functions to facilitate their use and to have a codebase to facilitate their reuse.
 
@@ -19,7 +19,7 @@ For instructions see the following links:
 
 | Requirements                                             | Used version |
 |----------------------------------------------------------|--------------|
-| [PsychToolBox](http://psychtoolbox.org/)  Duuuuhh        | >=3.0.14      |
+| [PsychToolBox](http://psychtoolbox.org/)  Duuuuhh        | >=3.0.14     |
 | [Matlab](https://www.mathworks.com/products/matlab.html) | 201??        |
 | or [octave](https://www.gnu.org/software/octave/)        | 4.?          |
 
