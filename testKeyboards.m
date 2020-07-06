@@ -1,4 +1,6 @@
 function testKeyboards(cfg)
+% Checks that the keyboards asked for properly connected.
+% If no key is pressed on the correct keyboard after the timeOut time this exits with an error.
 
 timeOut = 5;
 
@@ -40,24 +42,24 @@ errorText = 'No key was pressed. Did you configure the keyboards properly? See m
 
 
 if all(keyCode==0)
-    
+
     % Give me my keyboard back... Pretty please.
     ListenChar();
-    
+
     fprintf(text1);
-    
+
     if isempty(deviceNumber)
         disp(' - no keyboard selected, default is the main keyboard')
     else
         disp(deviceNumber)
     end
-    
+
     fprintf(text2);
-    
+
     [keyboardNumbers, keyboardNames] = GetKeyboardIndices  %#ok<*NOPRT,*ASGLU>
-    
+
     error(errorText)
-    
+
 end
 
 
