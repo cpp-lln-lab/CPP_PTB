@@ -76,17 +76,17 @@ if cfg.debug
     Screen('Preferences', 'SuppressAllWarnings', 2);
 
     if cfg.testingSmallScreen
-        [cfg.win, cfg.winRect] = PsychImaging('OpenWindow', cfg.screen, cfg.backgroundColor,  [0,0, 480, 270]);
+        [cfg.win, cfg.winRect] = Screen('OpenWindow', cfg.screen, cfg.backgroundColor,  [0,0, 480, 270]);
     else
         if cfg.testingTranspScreen
         PsychDebugWindowConfiguration
         end
-        [cfg.win, cfg.winRect] = PsychImaging('OpenWindow', cfg.screen, cfg.backgroundColor);
+        [cfg.win, cfg.winRect] = Screen('OpenWindow', cfg.screen, cfg.backgroundColor);
     end
 
 else
     Screen('Preference','SkipSyncTests', 0);
-    [cfg.win, cfg.winRect] = PsychImaging('OpenWindow', cfg.screen, cfg.backgroundColor);
+    [cfg.win, cfg.winRect] = Screen('OpenWindow', cfg.screen, cfg.backgroundColor);
 
 end
 
