@@ -1,12 +1,33 @@
 function devSandbox
 
+% This script is a stand-alone function that can be useful as a sandbox to
+%  develop the PTB audio/visual stimulation of your experiment. No input/output
+%  recquired.
+%
+% Here, a tutorial from https://peterscarfe.com/contrastgratingdemo.html is
+%  provided for illustrative purpose (notice that some vars' name are updated
+%  to our code style).
+%
+% It is composed of two parts:
+%  - a fixed structure that will initialize and close PTB in 'debug mode'
+%    (`PsychDebugWindowConfiguration`, `SkipSyncTests`)
+%  - the actual sandbox where to set your dynamic vars (the stimualtion
+%    parameters) and the 'playground' where to develop the stimulation code
+%
+% When you are happy with it, ideally you will move the vars in `setParameters.m`
+%  and the stimulation code in a separate function in `my-experiment-folder/subfun`.
+%  The code style and vars name is the same used in `cpp-lln-lab/CPP_PTB`
+%  github repo, therefore it should be easy to move everything in your experiment
+%  scripts (see the template that is annexed in `cpp-lln-lab/CPP_PTB`)
+
+
 cfg = struct;
 
 cfg.backgroundColor = [ 127 127 127 ];
 
 cfg = devSandbox_initPTB(cfg);
 
-
+%%
 % -------------------------------------------------------------------------
 % -------------------------- SET YOUR VARS HERE ---------------------------
 % -------------------------------------------------------------------------
@@ -35,9 +56,11 @@ contrast = 0.8;
 waitframes = 1;
 
 % -------------------------------------------------------------------------
+%%
 
 try
-    
+
+%%
 % -------------------------------------------------------------------------
 % ------------------------------ PLAYGROUND -------------------------------
 % -------------------------------------------------------------------------
@@ -60,7 +83,7 @@ grating = grey * cos(freqRad*x) + inc;
 
 % Make a two layer mask filled with the background colour
 mask = ones(1, numel(x), 2) * grey;
-    
+
 % Place the grating in the 'alpha' channel of the mask
 mask(:, :, 2)= grating .* contrast;
 
@@ -123,17 +146,17 @@ while ~KbCheck
 end
 
 
-    
+
 % -------------------------------------------------------------------------
-    
+%%
 
 devSandbox_cleanUp
-    
+
 catch
-    
+
     devSandbox_cleanUp
     psychrethrow(psychlasterror);
-    
+
 end
 
 
@@ -156,7 +179,7 @@ cfg.screens = Screen('Screens');
 cfg.screenNumber = max(cfg.screens);
 
 % Open an on screen window
-[cfg.window, cfg.windowRect] = PsychImaging('OpenWindow', cfg.screenNumber, cfg.backgroundColor);
+[cfg.window, cfg.windowRect] = Screen('OpenWindow', cfg.screenNumber, cfg.backgroundColor);
 
 % Get the size of the on screen window
 [cfg.screenXpixels, cfg.screenYpixels] = Screen('WindowSize', cfg.window);
