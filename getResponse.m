@@ -78,7 +78,7 @@ switch action
         responseEvents = getAllKeyEvents(responseEvents, responseBox, getOnlyPress);
         
         checkAbort(cfg)
-        
+          
     case 'flush'
         
         KbQueueFlush(responseBox);

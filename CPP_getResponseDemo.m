@@ -29,7 +29,7 @@ end
 cfg.keyboard = [];
 cfg.responseBox = [];
 
-cfg.escapeKey = 'Escape';
+cfg.escapeKey = 'ESCAPE';
 
 % We set which keys are "valid", any keys other than those will be ignored
 expParameters.responseKey = {};
@@ -68,7 +68,6 @@ else
 end
 
 
-
 %% Run demo
 
 % Create the keyboard queue to collect responses.
@@ -79,14 +78,10 @@ getResponse('init', cfg, expParameters, 1);
 startSecs = GetSecs();
 getResponse('start', cfg, expParameters, 1);
 
-
-
 % Here we wait for 5 seconds but are still collecting responses.
 %  So you could still be doing something else (presenting audio and visual stim) and
 %  still collect responses.
 WaitSecs(5);
-
-
 
 % Check what keys were pressed (all of them)
 responseEvents = getResponse('check', cfg, expParameters, 0);
@@ -99,8 +94,6 @@ getResponse('flush', cfg, expParameters, 1);
 
 % If you wan to stop listening to key presses.
 getResponse('stop', cfg, expParameters, 1);
-
-
 
 
 %% Now we look what keys were pressed and when

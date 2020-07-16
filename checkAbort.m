@@ -10,7 +10,7 @@ if keyIsDown && keyCode(KbName(cfg.escapeKey))
     
     cleanUp();
     
-    warning('\nEscape key press detected: aborting experiment.\n')
+    error('Escape key press detected: aborting experiment.')
     
 end
 
