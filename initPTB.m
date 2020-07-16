@@ -14,10 +14,9 @@ function [cfg] = initPTB(cfg)
 % TO DO
 % - We might want to add a couple of IF in case the experiment does not use audio for example.
 % - the computation for ppd assumes the windows takes the whole screenDistance
-% - refactor the window opening section (pass the window size as argument)
+
 
 checkDependencies()
-
 
 % For octave: to avoid displaying messenging one screen at a time
 more off
@@ -25,18 +24,18 @@ more off
 % check for OpenGL compatibility, abort otherwise:
 AssertOpenGL;
 
+initDebug(cfg);
+
 
 %% Keyboard
 initKeyboard(cfg)
 
 
 %% Mouse
-% Hide the mouse cursor:
 HideCursor;
 
 
 %% Audio
-% Intialize PsychPortAudio
 InitializePsychSound(1);
 
 
@@ -73,8 +72,6 @@ cfg.ppd = cfg.winRect(3)/FOV;
 
 
 %% Select specific text font, style and size:
-%% Text and Font
-% Select specific text font, style and size:
 Screen('TextFont',cfg.win, cfg.textFont );
 Screen('TextSize',cfg.win, cfg.textSize);
 Screen('TextStyle', cfg.win, cfg.textStyle);
