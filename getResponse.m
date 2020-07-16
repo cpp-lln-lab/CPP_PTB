@@ -80,27 +80,7 @@ switch action
         
     case 'check'
         
-        iEvent = 1;
-        
-        while KbEventAvail(responseBox)
-            
-            event = KbEventGet(responseBox);
-            
-            % we only return the pressed keys by default
-            if getOnlyPress && event.Pressed==0
-            else
-                
-                responseEvents(iEvent,1).onset = event.Time;
-                responseEvents(iEvent,1).trial_type = 'response';
-                responseEvents(iEvent,1).duration = 0;
-                responseEvents(iEvent,1).key_name = KbName(event.Keycode);
-                responseEvents(iEvent,1).pressed =  event.Pressed;
-                
-            end
-            
-            iEvent = iEvent + 1;
-            
-        end
+        responseEvents = getAllKeyEvents(responseEvents, responseBox, getOnlyPress);
         
         
     case 'flush'
@@ -185,4 +165,32 @@ else
 end
 
 fprintf('\n\n')
+end
+
+
+
+function responseEvents = getAllKeyEvents(responseEvents, responseBox, getOnlyPress)
+
+iEvent = 1;
+
+while KbEventAvail(responseBox)
+    
+    event = KbEventGet(responseBox);
+    
+    % we only return the pressed keys by default
+    if getOnlyPress==true && event.Pressed==0
+    else
+        
+        responseEvents(iEvent,1).onset = event.Time;
+        responseEvents(iEvent,1).trial_type = 'response';
+        responseEvents(iEvent,1).duration = 0;
+        responseEvents(iEvent,1).key_name = KbName(event.Keycode);
+        responseEvents(iEvent,1).pressed =  event.Pressed;
+        
+        iEvent = iEvent + 1;
+        
+    end
+    
+end
+
 end
