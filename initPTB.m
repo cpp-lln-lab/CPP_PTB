@@ -1,19 +1,21 @@
 function [cfg] = initPTB(cfg)
 % This will initialize PsychToolBox
 % - screen
-%   - the windon opened takes the whole screen by default
-%   - set in debug mode with window transparency if necessary
-%   - can skip synch test if you ask for it (nicely)
+%   - the windon opened takes the whole screen unless
+%       cfg.testingSmallScreen is set to true 
+%   - debug mode : skips synch test and warnings
+%   - window transparency enabled by cfg.testingTranspScreen set to true
 %   - gets the flip interval
-%   - computes the pixel per degree of visual angle
+%   - computes the pixel per degree of visual angle:
+%       the computation for ppd assumes the windows takes the whole screenDistance
 %   - set font details
 % - keyboard
+% - hides cursor
 % - sound
 
 
 % TO DO
 % - We might want to add a couple of IF in case the experiment does not use audio for example.
-% - the computation for ppd assumes the windows takes the whole screenDistance
 
 
 checkDependencies()
@@ -120,6 +122,7 @@ end
 end
 
 function initKeyboard(cfg)
+
 % Make sure keyboard mapping is the same on all supported operating systems
 % Apple MacOS/X, MS-Windows and GNU/Linux:
 KbName('UnifyKeyNames');
@@ -138,6 +141,7 @@ testKeyboards(cfg)
 
 % Don't echo keypresses to Matlab window
 ListenChar(-1);
+
 end
 
 function cfg = openWindow(cfg)
@@ -157,6 +161,8 @@ Screen('BlendFunction', cfg.win, GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 end
 
 function FOV = computeFOV(cfg)
+
 % computes the number of degrees of visual angle in the whole field of view
 FOV = 2 *( 180 * ( atan( cfg.monitorWidth / (2*cfg.screenDistance) ) / pi));
+
 end
