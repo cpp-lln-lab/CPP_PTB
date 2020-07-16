@@ -35,8 +35,8 @@ cfg = devSandbox_initPTB(cfg);
 % -------------------------------------------------------------------------
 
 % Define black and white
-white = WhiteIndex(cfg.screenNumber);
-black = BlackIndex(cfg.screenNumber);
+white = WhiteIndex(cfg.screen);
+black = BlackIndex(cfg.screen);
 grey = white / 2;
 inc = white - grey;
 
@@ -91,7 +91,7 @@ mask = ones(1, numel(x), 2) * grey;
 mask(:, :, 2)= grating .* contrast;
 
 % Make our grating mask texture
-gratingMaskTex = Screen('MakeTexture', cfg.window, mask);
+gratingMaskTex = Screen('MakeTexture', cfg.win, mask);
 
 % Make a black and white noise mask half the size of our grating. This will
 % be scaled upon drawing to make a "chunky" noise texture which our grating
@@ -100,12 +100,12 @@ gratingMaskTex = Screen('MakeTexture', cfg.window, mask);
 noise = rand(round(visibleSize / 2)) .* white;
 
 % Make our noise texture
-noiseTex = Screen('MakeTexture', cfg.window, noise);
+noiseTex = Screen('MakeTexture', cfg.win, noise);
 
 % Make a destination rectangle for our textures and center this on the
 % screen
 dstRect = [0 0 visibleSize visibleSize];
-dstRect = CenterRect(dstRect, cfg.windowRect);
+dstRect = CenterRect(dstRect, cfg.winRect);
 
 % Calculate the wait duration
 waitDuration = waitframes * cfg.ifi;
@@ -119,7 +119,7 @@ pixPerCycle = 1 / freqCyclesPerPix;
 shiftPerFrame = cyclesPerSecond * pixPerCycle * waitDuration;
 
 % Sync us to the vertical retrace
-vbl = Screen('Flip', cfg.window);
+vbl = Screen('Flip', cfg.win);
 
 % Set the frame counter to zero, we need this to 'drift' our grating
 frameCounter = 0;
@@ -138,13 +138,13 @@ while ~KbCheck
     srcRect = [xoffset 0 xoffset + visibleSize visibleSize];
 
     % Draw noise texture to the screen
-    Screen('DrawTexture', cfg.window, noiseTex, [], dstRect, []);
+    Screen('DrawTexture', cfg.win, noiseTex, [], dstRect, []);
 
     % Draw grating mask
-    Screen('DrawTexture', cfg.window, gratingMaskTex, srcRect, dstRect, []);
+    Screen('DrawTexture', cfg.win, gratingMaskTex, srcRect, dstRect, []);
 
     % Flip to the screen on the next vertical retrace
-    vbl = Screen('Flip', cfg.window, vbl + (waitframes - 0.5) * cfg.ifi);
+    vbl = Screen('Flip', cfg.win, vbl + (waitframes - 0.5) * cfg.ifi);
 
 end
 
@@ -180,26 +180,23 @@ PsychDebugWindowConfiguration
 % Here we call some default settings for setting up Psychtoolbox
 PsychDefaultSetup(2);
 
-% Get the screen numbers
-cfg.screens = Screen('Screens');
-
-% Draw to the external screen if avaliable
-cfg.screenNumber = max(cfg.screens);
+% Get the screen numbers and draw to the external screen if avaliable
+cfg.screen = max(Screen('Screens'));
 
 % Open an on screen window
-[cfg.window, cfg.windowRect] = Screen('OpenWindow', cfg.screenNumber, cfg.backgroundColor);
+[cfg.win, cfg.winRect] = Screen('OpenWindow', cfg.screen, cfg.backgroundColor);
 
 % Get the size of the on screen window
-[cfg.screenXpixels, cfg.screenYpixels] = Screen('WindowSize', cfg.window);
+[cfg.winWidth, cfg.winHeight] = WindowSize(cfg.win);
 
 % Query the frame duration
-cfg.ifi = Screen('GetFlipInterval', cfg.window);
+cfg.ifi = Screen('GetFlipInterval', cfg.win);
 
-% Get the centre coordinate of the window
-[cfg.xCenter, cfg.yCenter] = RectCenter(cfg.windowRect);
+% Get the Center of the Screen
+cfg.center = [cfg.winRect(3), cfg.winRect(4)]/2;
 
 % Set up alpha-blending for smooth (anti-aliased) lines
-Screen('BlendFunction', cfg.window, 'GL_SRC_ALPHA', 'GL_ONE_MINUS_SRC_ALPHA');
+Screen('BlendFunction', cfg.win, 'GL_SRC_ALPHA', 'GL_ONE_MINUS_SRC_ALPHA');
 
 end
 
