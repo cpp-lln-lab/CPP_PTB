@@ -62,16 +62,14 @@ end
 
 
 
-
 % Get the Center of the Screen
 cfg.center = [cfg.winRect(3), cfg.winRect(4)]/2;
 
 % Computes the number of pixels per degree given the distance to screen and
 % monitor width
-
 % This assumes that the window fills the whole screen
-V = 2*(180*(atan(cfg.monitorWidth/(2*cfg.screenDistance))/pi));
-cfg.ppd = cfg.winRect(3)/V;
+FOV = computeFOV(cfg);
+cfg.ppd = cfg.winRect(3)/FOV;
 
 
 %% Select specific text font, style and size:
@@ -159,4 +157,9 @@ end
 % superposition with alpha-weighted source.
 Screen('BlendFunction', cfg.win, GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
+end
+
+function FOV = computeFOV(cfg)
+% computes the number of degrees of visual angle in the whole field of view
+FOV = 2 *( 180 * ( atan( cfg.monitorWidth / (2*cfg.screenDistance) ) / pi));
 end
