@@ -102,6 +102,25 @@ cfg.vbl = Screen('Flip', cfg.win);
 
 end
 
+function cfg = setDefaults(cfg)
+
+cfg.keyboard = [];
+cfg.responseBox = [];
+
+cfg.debug = true;
+cfg.testingTranspScreen = true;
+cfg.testingSmallScreen = true;
+
+cfg.backgroundColor = [0 0 0];
+
+cfg.textFont = 'Courier New';
+cfg.textSize = 18;
+cfg.textStyle = 1;
+
+cfg.monitorWidth = 42;
+cfg.screenDistance = 134;
+end
+
 
 function initDebug(cfg)
 
