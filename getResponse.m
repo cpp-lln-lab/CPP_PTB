@@ -67,33 +67,7 @@ switch action
         % Clean and realease any queue that might be opened
         KbQueueRelease(responseBox);
         
-        %% Defines keys
-        % list all the response keys we want KbQueue to listen to
-        
-        % by default we listen to all keys
-        % but if responseKey is set in the parameters we override this
-        keysOfInterest = ones(1,256);
-        
-        fprintf('\n Will be listening for key presses on : ')
-        
-        if isfield(expParameters, 'responseKey') && ~isempty(expParameters.responseKey)
-            
-            keysOfInterest = zeros(1,256);
-            
-            for iKey = 1:numel(expParameters.responseKey)
-                fprintf('\n  - %s ', expParameters.responseKey{iKey})
-                responseTargetKeys(iKey) = KbName(expParameters.responseKey(iKey)); %#ok<*SAGROW>
-            end
-            
-            keysOfInterest(responseTargetKeys) = 1;
-            
-        else
-            
-            fprintf('ALL KEYS.')
-            
-        end
-        
-        fprintf('\n\n')
+        keysOfInterest = setKeysOfInterest(expParameters);
         
         % Create the keyboard queue to collect responses.
         KbQueueCreate(responseBox, keysOfInterest);
@@ -182,4 +156,33 @@ switch action
         
 end
 
+end
+
+function keysOfInterest = setKeysOfInterest(expParameters)
+% list all the response keys we want KbQueue to listen to
+% by default we listen to all keys
+% but if responseKey is set in the parameters we override this
+
+keysOfInterest = ones(1,256);
+
+fprintf('\n Will be listening for key presses on : ')
+
+if isfield(expParameters, 'responseKey') && ~isempty(expParameters.responseKey)
+    
+    responseTargetKeys = nan(1,numel(expParameters.responseKey));
+    
+    for iKey = 1:numel(expParameters.responseKey)
+        fprintf('\n  - %s ', expParameters.responseKey{iKey})
+        responseTargetKeys(iKey) = KbName(expParameters.responseKey(iKey));
+    end
+    
+    keysOfInterest(responseTargetKeys) = 1;
+    
+else
+    
+    fprintf('ALL KEYS.')
+    
+end
+
+fprintf('\n\n')
 end
