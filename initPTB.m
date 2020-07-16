@@ -27,26 +27,7 @@ AssertOpenGL;
 
 
 %% Keyboard
-% Make sure keyboard mapping is the same on all supported operating systems
-% Apple MacOS/X, MS-Windows and GNU/Linux:
-KbName('UnifyKeyNames');
-
-
-
-
-% ---------- FIX LATER ---------- %
-% might be over agressive to test this at every PTB init maybe make it
-% dependent on a debug "flag"
-
-testKeyboards(cfg)
-
-% ---------- FIX LATER ---------- %
-
-
-
-
-% Don't echo keypresses to Matlab window
-ListenChar(-1);
+initKeyboard(cfg)
 
 
 %% Mouse
@@ -151,4 +132,25 @@ GetSecs;
 cfg.vbl = Screen('Flip', cfg.win);
 
 
+end
+
+function initKeyboard(cfg)
+% Make sure keyboard mapping is the same on all supported operating systems
+% Apple MacOS/X, MS-Windows and GNU/Linux:
+KbName('UnifyKeyNames');
+
+
+
+% ---------- FIX LATER ---------- %
+% might be over agressive to test this at every PTB init maybe make it
+% dependent on a debug "flag"
+
+testKeyboards(cfg)
+
+% ---------- FIX LATER ---------- %
+
+
+
+% Don't echo keypresses to Matlab window
+ListenChar(-1);
 end
