@@ -29,6 +29,8 @@ end
 cfg.keyboard = [];
 cfg.responseBox = [];
 
+cfg.escapeKey = 'Escape';
+
 % We set which keys are "valid", any keys other than those will be ignored
 expParameters.responseKey = {};
 
