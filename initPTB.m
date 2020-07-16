@@ -45,33 +45,10 @@ InitializePsychSound(1);
 % Get the screen numbers and draw to the external screen if avaliable
 cfg.screen = max(Screen('Screens'));
 
-% init PTB with different options in concordance to the Debug Parameters
-if cfg.debug
-
-    % set to one because we don not care about time
-    Screen('Preference', 'SkipSyncTests', 2);
-    Screen('Preference', 'Verbosity', 0);
-    Screen('Preferences', 'SuppressAllWarnings', 2);
-
-    if cfg.testingSmallScreen
-        [cfg.win, cfg.winRect] = Screen('OpenWindow', cfg.screen, cfg.backgroundColor,  [0,0, 480, 270]);
-    else
-        if cfg.testingTranspScreen
-        PsychDebugWindowConfiguration
-        end
-        [cfg.win, cfg.winRect] = Screen('OpenWindow', cfg.screen, cfg.backgroundColor);
-    end
-
-else
-    Screen('Preference','SkipSyncTests', 0);
-    [cfg.win, cfg.winRect] = Screen('OpenWindow', cfg.screen, cfg.backgroundColor);
-
-end
-
+cfg = openWindow(cfg);
 
 % window size info
 [cfg.winWidth, cfg.winHeight] = WindowSize(cfg.win);
-
 
 
 
@@ -97,11 +74,7 @@ V = 2*(180*(atan(cfg.monitorWidth/(2*cfg.screenDistance))/pi));
 cfg.ppd = cfg.winRect(3)/V;
 
 
-% Enable alpha-blending, set it to a blend equation useable for linear
-% superposition with alpha-weighted source.
-Screen('BlendFunction', cfg.win, GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-
+%% Select specific text font, style and size:
 %% Text and Font
 % Select specific text font, style and size:
 Screen('TextFont',cfg.win, cfg.textFont );
@@ -134,6 +107,23 @@ cfg.vbl = Screen('Flip', cfg.win);
 
 end
 
+
+function initDebug(cfg)
+
+% init PTB with different options in concordance to the debug Parameters
+Screen('Preference','SkipSyncTests', 0);
+if cfg.debug
+    Screen('Preference', 'SkipSyncTests', 2);
+    Screen('Preference', 'Verbosity', 0);
+    Screen('Preferences', 'SuppressAllWarnings', 2);
+end
+
+if cfg.testingTranspScreen
+    PsychDebugWindowConfiguration
+end
+
+end
+
 function initKeyboard(cfg)
 % Make sure keyboard mapping is the same on all supported operating systems
 % Apple MacOS/X, MS-Windows and GNU/Linux:
@@ -153,4 +143,20 @@ testKeyboards(cfg)
 
 % Don't echo keypresses to Matlab window
 ListenChar(-1);
+end
+
+function cfg = openWindow(cfg)
+
+if cfg.testingSmallScreen
+    [cfg.win, cfg.winRect] = Screen('OpenWindow', cfg.screen, cfg.backgroundColor,  [0,0, 480, 270]);
+else
+    [cfg.win, cfg.winRect] = Screen('OpenWindow', cfg.screen, cfg.backgroundColor);
+end
+
+%TODO make this optional
+
+% Enable alpha-blending, set it to a blend equation useable for linear
+% superposition with alpha-weighted source.
+Screen('BlendFunction', cfg.win, GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 end
