@@ -41,7 +41,6 @@ cfg = devSandbox_initPTB(cfg);
 
 % Define black and white
 white = WhiteIndex(cfg.screen);
-black = BlackIndex(cfg.screen);
 grey = white / 2;
 inc = white - grey;
 
@@ -73,7 +72,7 @@ try
 % ------------------------------ PLAYGROUND -------------------------------
 % -------------------------------------------------------------------------
 % Define Half-Size of the grating image.
-texsize = gratingSizePix / 2;
+textureSize = gratingSizePix / 2;
 
 % First we compute pixels per cycle rounded to the nearest pixel
 pixPerCycle = ceil(1 / freqCyclesPerPix);
@@ -82,12 +81,14 @@ pixPerCycle = ceil(1 / freqCyclesPerPix);
 freqRad = freqCyclesPerPix * 2 * pi;
 
 % This is the visible size of the grating
-visibleSize = 2 * texsize + 1;
+visibleSize = 2 * textureSize + 1;
+
 
 % Define our grating. Note it is only 1 pixel high. PTB will make it a full
 % grating upon drawing
-x = meshgrid(-texsize:texsize + pixPerCycle, 1);
+x = meshgrid(-textureSize:textureSize + pixPerCycle, 1);
 grating = grey * cos(freqRad*x) + inc;
+
 
 % Make a two layer mask filled with the background colour
 mask = ones(1, numel(x), 2) * grey;
@@ -98,6 +99,7 @@ mask(:, :, 2)= grating .* contrast;
 % Make our grating mask texture
 gratingMaskTex = Screen('MakeTexture', cfg.win, mask);
 
+
 % Make a black and white noise mask half the size of our grating. This will
 % be scaled upon drawing to make a "chunky" noise texture which our grating
 % will mask. Note the round function in here. For this demo we are simply
@@ -105,7 +107,8 @@ gratingMaskTex = Screen('MakeTexture', cfg.win, mask);
 noise = rand(round(visibleSize / 2)) .* white;
 
 % Make our noise texture
-noiseTex = Screen('MakeTexture', cfg.win, noise);
+noiseTexture = Screen('MakeTexture', cfg.win, noise);
+
 
 % Make a destination rectangle for our textures and center this on the
 % screen
@@ -143,7 +146,7 @@ while ~KbCheck
     srcRect = [xoffset 0 xoffset + visibleSize visibleSize];
 
     % Draw noise texture to the screen
-    Screen('DrawTexture', cfg.win, noiseTex, [], dstRect, []);
+    Screen('DrawTexture', cfg.win, noiseTexture, [], dstRect, []);
 
     % Draw grating mask
     Screen('DrawTexture', cfg.win, gratingMaskTex, srcRect, dstRect, []);
