@@ -1,14 +1,14 @@
 function [cfg] = initPTB(cfg)
 % This will initialize PsychToolBox
 % - screen
-%   - the windon opened takes the whole screen unless
-%       cfg.testingSmallScreen is set to true 
-%   - debug mode : skips synch test and warnings
-%   - window transparency enabled by cfg.testingTranspScreen set to true
-%   - gets the flip interval
-%   - computes the pixel per degree of visual angle:
-%       the computation for ppd assumes the windows takes the whole screenDistance
-%   - set font details
+% - the windon opened takes the whole screen unless
+% cfg.testingSmallScreen is set to true
+% - debug mode : skips synch test and warnings
+% - window transparency enabled by cfg.testingTranspScreen set to true
+% - gets the flip interval
+% - computes the pixel per degree of visual angle:
+% the computation for ppd assumes the windows takes the whole screenDistance
+% - set font details
 % - keyboard
 % - hides cursor
 % - sound
@@ -25,6 +25,8 @@ more off
 
 % check for OpenGL compatibility, abort otherwise:
 AssertOpenGL;
+
+cfg = setDefaults(cfg);
 
 initDebug(cfg);
 
@@ -104,21 +106,40 @@ end
 
 function cfg = setDefaults(cfg)
 
-cfg.keyboard = [];
-cfg.responseBox = [];
+% list the default values
+fieldsToSet.keyboard = [];
+fieldsToSet.responseBox = [];
 
-cfg.debug = true;
-cfg.testingTranspScreen = true;
-cfg.testingSmallScreen = true;
+fieldsToSet.debug = true;
+fieldsToSet.testingTranspScreen = true;
+fieldsToSet.testingSmallScreen = true;
 
-cfg.backgroundColor = [0 0 0];
+fieldsToSet.backgroundColor = [0 0 0];
 
-cfg.textFont = 'Courier New';
-cfg.textSize = 18;
-cfg.textStyle = 1;
+fieldsToSet.textFont = 'Courier New';
+fieldsToSet.textSize = 18;
+fieldsToSet.textStyle = 1;
 
-cfg.monitorWidth = 42;
-cfg.screenDistance = 134;
+fieldsToSet.monitorWidth = 42;
+fieldsToSet.screenDistance = 134;
+
+% loop through the defaults and set them in cfg if they don't exist
+names = fieldnames(fieldsToSet);
+
+for i = 1:numel(names)
+    cfg = setFieldToIfNotPresent(...
+        cfg, ...
+        names{i}, ...
+        getfield(fieldsToSet, names{i})); %#ok<GFLD>
+end
+
+
+end
+
+function struct = setFieldToIfNotPresent(struct, fieldName, value)
+    if ~isfield(struct, fieldName)
+        struct = setfield(struct, fieldName, value); %#ok<SFLD>
+    end
 end
 
 
@@ -164,7 +185,7 @@ end
 function cfg = openWindow(cfg)
 
 if cfg.testingSmallScreen
-    [cfg.win, cfg.winRect] = Screen('OpenWindow', cfg.screen, cfg.backgroundColor,  [0,0, 480, 270]);
+    [cfg.win, cfg.winRect] = Screen('OpenWindow', cfg.screen, cfg.backgroundColor, [0,0, 480, 270]);
 else
     [cfg.win, cfg.winRect] = Screen('OpenWindow', cfg.screen, cfg.backgroundColor);
 end

@@ -5,7 +5,6 @@ function testKeyboards(cfg)
 timeOut = 5;
 
 
-
 % Main keyboard used by the experimenter to quit the experiment if it is necessary
 % cfg.keyboard
 fprintf('\n This is a test: press any key on the experimenter keyboard\n');
