@@ -16,7 +16,7 @@ function devSandbox
 %
 % When you are happy with it, ideally you will move the vars in `setParameters.m`
 %  and the stimulation code in a separate function in `my-experiment-folder/subfun`.
-%  The code style and vars name is the same used in `cpp-lln-lab/CPP_PTB`
+%  The code style and variable names are the same used in `cpp-lln-lab/CPP_PTB`
 %  github repo, therefore it should be easy to move everything in your experiment
 %  scripts (see the template that is annexed in `cpp-lln-lab/CPP_PTB`)
 
