@@ -23,8 +23,13 @@ function devSandbox
 % Init the structure that will contain PTB setup
 cfg = struct;
 
+% Set some colors to be choosen as background
+cfg.white = [255 255 255];
+cfg.black = [ 0   0   0 ];
+cfg.grey  = mean([cfg.black; cfg.white]);
+
 % Set the PTB window background manually
-cfg.backgroundColor = [ 127 127 127 ];
+cfg.backgroundColor = cfg.grey;
 
 % Init PTB, see the Sub-Functions below
 cfg = devSandbox_initPTB(cfg);
