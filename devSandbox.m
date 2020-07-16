@@ -5,7 +5,7 @@ function devSandbox
 %  required.
 %
 % Here, a tutorial from https://peterscarfe.com/contrastgratingdemo.html is
-%  provided for illustrative purpose (notice that some vars' name are updated
+%  provided for illustrative purpose (notice that some variable names are updated
 %  to our code style). For your use, you will delete that part.
 %
 % It is composed of two parts:
