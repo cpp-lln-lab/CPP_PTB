@@ -73,10 +73,8 @@ FOV = computeFOV(cfg);
 cfg.ppd = cfg.winRect(3)/FOV;
 
 
-%% Select specific text font, style and size:
-Screen('TextFont',cfg.win, cfg.textFont );
-Screen('TextSize',cfg.win, cfg.textSize);
-Screen('TextStyle', cfg.win, cfg.textStyle);
+%% Select specific text font, style and size
+initText(cfg)
 
 
 %% Timing
@@ -164,5 +162,14 @@ function FOV = computeFOV(cfg)
 
 % computes the number of degrees of visual angle in the whole field of view
 FOV = 2 *( 180 * ( atan( cfg.monitorWidth / (2*cfg.screenDistance) ) / pi));
+
+end
+
+
+function initText(cfg)
+
+Screen('TextFont', cfg.win, cfg.textFont);
+Screen('TextSize', cfg.win, cfg.textSize);
+Screen('TextStyle', cfg.win, cfg.textStyle);
 
 end
