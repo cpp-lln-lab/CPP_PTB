@@ -6,7 +6,7 @@ function devSandbox
 %
 % Here, a tutorial from https://peterscarfe.com/contrastgratingdemo.html is
 %  provided for illustrative purpose (notice that some vars' name are updated
-%  to our code style).
+%  to our code style). For your use, you will delete that part.
 %
 % It is composed of two parts:
 %  - a fixed structure that will initialize and close PTB in 'debug mode'
@@ -20,11 +20,13 @@ function devSandbox
 %  github repo, therefore it should be easy to move everything in your experiment
 %  scripts (see the template that is annexed in `cpp-lln-lab/CPP_PTB`)
 
-
+% Init the structure that will contain PTB setup
 cfg = struct;
 
+% Set the PTB window background manually
 cfg.backgroundColor = [ 127 127 127 ];
 
+% Init PTB, see the Sub-Functions below
 cfg = devSandbox_initPTB(cfg);
 
 %%
@@ -58,13 +60,14 @@ waitframes = 1;
 % -------------------------------------------------------------------------
 %%
 
+% Catch the error and restore your computer for debugging
 try
 
 %%
 % -------------------------------------------------------------------------
 % ------------------------------ PLAYGROUND -------------------------------
 % -------------------------------------------------------------------------
-    % Define Half-Size of the grating image.
+% Define Half-Size of the grating image.
 texsize = gratingSizePix / 2;
 
 % First we compute pixels per cycle rounded to the nearest pixel
@@ -150,6 +153,7 @@ end
 % -------------------------------------------------------------------------
 %%
 
+% Close PTB, see the Sub-Functions below
 devSandbox_cleanUp
 
 catch
@@ -162,11 +166,15 @@ end
 
 end
 
-
+%% Sub-Functions
 function cfg = devSandbox_initPTB(cfg)
 
+% Shorter version of `initPTB.m`
+
+% Skip the PTB sync test
 Screen('Preference', 'SkipSyncTests', 2);
 
+% Open a transparent window
 PsychDebugWindowConfiguration
 
 % Here we call some default settings for setting up Psychtoolbox
