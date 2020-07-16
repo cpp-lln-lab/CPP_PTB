@@ -63,10 +63,10 @@ InitializePsychSound(1);
 
 cfg.screen = max(Screen('Screens')); % Main screen
 
-% init PTB with different options in concordance to the Debug Parameters
+% Init PTB with different options in concordance to the Debug Parameters
 if cfg.debug
 
-    % set to one because we don not care about time
+    % Set to one because we don not care about time
     Screen('Preference', 'SkipSyncTests', 2);
     Screen('Preference', 'Verbosity', 0);
     Screen('Preferences', 'SuppressAllWarnings', 2);
@@ -87,7 +87,7 @@ else
 end
 
 
-% window size info
+% Get the size of the on screen window
 [cfg.winWidth, cfg.winHeight] = WindowSize(cfg.win);
 
 
