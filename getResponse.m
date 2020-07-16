@@ -16,8 +16,8 @@ function responseEvents = getResponse(action, cfg, expParameters, getOnlyPress)
 %  - flush:
 %  - stop:
 %
-% - getOnlyPress: if set to 1 the function will only return the key presses and
-%    will not return when the keys were released (default=1)
+% - getOnlyPress: if set to true the function will only return the key presses and
+%    will not return when the keys were released (default=true)
 %    See the section on OUTPUT below for more info
 %
 %
@@ -44,15 +44,10 @@ function responseEvents = getResponse(action, cfg, expParameters, getOnlyPress)
 
 
 if nargin < 4
-    getOnlyPress = 1;
+    getOnlyPress = true;
 end
 
 responseEvents = struct;
-responseEvents.onset = [];
-responseEvents.trial_type = [];
-responseEvents.duration = [];
-responseEvents.key_name = [];
-responseEvents.pressed = [];
 
 responseBox = cfg.responseBox;
 
@@ -60,8 +55,8 @@ switch action
     
     case 'init'
         
-        % Prevent spilling of keystrokes into console. If you use ListenChar(2)
-        % this will prevent you from using KbQueue.
+        % Prevent spilling of keystrokes into console. 
+        % If you use ListenChar(2), this will prevent you from using KbQueue.
         ListenChar(-1);
         
         % Clean and realease any queue that might be opened
@@ -137,6 +132,7 @@ switch action
 end
 
 end
+
 
 function keysOfInterest = setKeysOfInterest(expParameters)
 % list all the response keys we want KbQueue to listen to
