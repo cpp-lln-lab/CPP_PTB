@@ -6,3 +6,4 @@
 # exclude content of logfiles folders
 *.tsv
 *.mat
+check_my_code_report.txt
