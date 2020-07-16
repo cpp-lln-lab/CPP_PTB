@@ -140,6 +140,24 @@ Define the parameters of the fixation cross in `cfg` and `expParameters` and thi
 
 Use that to stop your script and only restart when the space bar is pressed.
 
+## Annexes
+
+### Experiment template [ WIP ]
+
+### `devSandobox.m` stand-alone
+
+This script is a stand-alone function that can be useful as a sandbox to develop the PTB audio/visual stimulation of your experiment. No input/output required.
+
+Here, a tutorial from https://peterscarfe.com/contrastgratingdemo.html is provided for illustrative purpose (notice that some vars' name are updated to our code style). For your use, you will delete that part.
+
+It is composed of two parts:
+ - a fixed structure that will initialize and close PTB in 'debug mode'
+    (`PsychDebugWindowConfiguration`, `SkipSyncTests`)
+ - the actual sandbox where to set your dynamic vars (the stimualtion
+   parameters) and the 'playground' where to develop the stimulation code
+
+ When you are happy with it, ideally you will move the vars in `setParameters.m` and the stimulation code in a separate function in `my-experiment-folder/subfun`. The code style and vars name is the same used in `cpp-lln-lab/CPP_PTB` github repo, therefore it should be easy to move everything in your experiment scripts (see the template that is annexed in `cpp-lln-lab/CPP_PTB`).
+
 ## Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):

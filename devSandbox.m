@@ -2,7 +2,7 @@ function devSandbox
 
 % This script is a stand-alone function that can be useful as a sandbox to
 %  develop the PTB audio/visual stimulation of your experiment. No input/output
-%  recquired.
+%  required.
 %
 % Here, a tutorial from https://peterscarfe.com/contrastgratingdemo.html is
 %  provided for illustrative purpose (notice that some vars' name are updated
