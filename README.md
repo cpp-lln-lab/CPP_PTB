@@ -134,6 +134,10 @@ and returns a structure with an additional field with Pix suffix holding that ne
 
 Define the parameters of the fixation cross in `cfg` and `expParameters` and this does the rest.
 
+### eyeTracker
+
+This will handle the Eye Tracker (EyeLink set up) and can be called to initialize the connection and start the calibration, start/stop eye(s) movement recordings and save the `*.edf` file (named with BIDS specification from cpp-lln-lab/CPP_BIDS).  
+
 ### pressSpace4me
 
 Use that to stop your script and only restart when the space bar is pressed.
