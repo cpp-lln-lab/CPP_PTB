@@ -4,6 +4,7 @@
 %  (a wrapper around the KbQueue function from PTB)
 
 % start with a clean slate
+cd ..
 clear; clc;
 if IsOctave
     more off % for a better display experience
