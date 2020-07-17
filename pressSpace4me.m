@@ -11,7 +11,7 @@ while 1
 
     responseKey = KbName(find(keyCode));
 
-    if strcmp(responseKey,'space')
+    if strcmp(responseKey, 'space')
         fprintf('starting the experiment....\n');
         break
     end
