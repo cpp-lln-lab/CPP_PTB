@@ -110,9 +110,17 @@ function initDebug(cfg)
 % init PTB with different options in concordance to the debug Parameters
 Screen('Preference','SkipSyncTests', 0);
 if cfg.debug
+    
     Screen('Preference', 'SkipSyncTests', 2);
     Screen('Preference', 'Verbosity', 0);
     Screen('Preferences', 'SuppressAllWarnings', 2);
+    
+    fprintf('\n\n\n\n')
+    fprintf('########################################\n')
+    fprintf('##   DEBUG MODE. TIMING WILL BE OFF.  ##\n')
+    fprintf('########################################')
+    fprintf('\n\n\n\n')
+    
 end
 
 if cfg.testingTranspScreen
