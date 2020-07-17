@@ -61,11 +61,8 @@ InitializePsychSound(1);
 
 %% Visual
 
-cfg.screen = max(Screen('Screens')); % Main screen
-
-% Open a fullscreen, onscreen window with gray background. Enable 32bpc
-% floating point framebuffer via imaging pipeline on it.
-PsychImaging('PrepareConfiguration');
+% Get the screen numbers and draw to the external screen if avaliable
+cfg.screen = max(Screen('Screens'));
 
 % init PTB with different options in concordance to the Debug Parameters
 if cfg.debug
@@ -76,17 +73,17 @@ if cfg.debug
     Screen('Preferences', 'SuppressAllWarnings', 2);
 
     if cfg.testingSmallScreen
-        [cfg.win, cfg.winRect] = PsychImaging('OpenWindow', cfg.screen, cfg.backgroundColor,  [0,0, 480, 270]);
+        [cfg.win, cfg.winRect] = Screen('OpenWindow', cfg.screen, cfg.backgroundColor,  [0,0, 480, 270]);
     else
         if cfg.testingTranspScreen
         PsychDebugWindowConfiguration
         end
-        [cfg.win, cfg.winRect] = PsychImaging('OpenWindow', cfg.screen, cfg.backgroundColor);
+        [cfg.win, cfg.winRect] = Screen('OpenWindow', cfg.screen, cfg.backgroundColor);
     end
 
 else
     Screen('Preference','SkipSyncTests', 0);
-    [cfg.win, cfg.winRect] = PsychImaging('OpenWindow', cfg.screen, cfg.backgroundColor);
+    [cfg.win, cfg.winRect] = Screen('OpenWindow', cfg.screen, cfg.backgroundColor);
 
 end
 
