@@ -170,16 +170,16 @@ function cfg = initAudio(cfg)
         cfg.audio.devIdx= [];
         cfg.audio.playbackMode = 1;
             
-        if IsWin
+        if isfield(cfg.audio, 'useDevice')
             
             % get audio device list
             audioDev = PsychPortAudio('GetDevices');
             
-            % find output device using WASAPI driver
+            % find output device to use
             idx = find(...
-                audioDev.NrInputChannels == 0 && ...
-                audioDev.NrOutputChannels == 2 && ...
-                ~cellfun(@isempty, regexp({audioDev.HostAudioAPIName}, 'WASAPI')));
+                audioDev.NrInputChannels == cfg.audio.inputChannels && ...
+                audioDev.NrOutputChannels == cfg.audio.channels && ...
+                ~cellfun(@isempty, regexp({audioDev.HostAudioAPIName}, cfg.audio.deviceName)));
             
             % save device ID
             cfg.audio.devIdx = audioDev(idx).DeviceIndex;
@@ -215,8 +215,6 @@ if cfg.testingSmallScreen
 else
     [cfg.win, cfg.winRect] = Screen('OpenWindow', cfg.screen, cfg.backgroundColor);
 end
-
-%TODO make this optional
 
 % Enable alpha-blending, set it to a blend equation useable for linear
 % superposition with alpha-weighted source.
