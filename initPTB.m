@@ -12,7 +12,31 @@ function [cfg] = initPTB(cfg)
 % - keyboard
 % - hides cursor
 % - sound
-
+%
+% OUTPUT:
+% cfg.keyboard = [];
+% cfg.responseBox = [];
+% 
+% cfg.debug = true;
+% cfg.testingTranspScreen = true;
+% cfg.testingSmallScreen = true;
+% 
+% cfg.screen : screen numbers where drawing the stimulation (external screen if available)
+% cfg.win : window opened by PTB
+% cfg.winRect : window rectangule positiona and dimensions in pixel coordinates
+% cfg.winWidth : window width in pixels
+% cfg.winHeight : window height in pixels
+% cfg.center : coordinate of the window center
+% cfg.ppd : pixels per degree assuming the window fills the whole screen
+% cfg.ifi : estimate of the monitor flip interval
+% cfg.monRefresh : monitor refresh rate
+% cfg.vbl : (I don't think this output is useful)
+% cfg.textFont = 'Courier New';
+% cfg.textSize = 18;
+% cfg.textStyle = 1;
+% cfg.backgroundColor = [0 0 0];
+% cfg.monitorWidth = 42;
+% cfg.screenDistance = 134;
 
 % TO DO
 % - We might want to add a couple of IF in case the experiment does not use audio for example.
