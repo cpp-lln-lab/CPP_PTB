@@ -22,6 +22,7 @@ if isfield(cfg, 'initAudio') && cfg.initAudio
     fieldsToSet.audio.fs = 44800;
     fieldsToSet.audio.channels = 2;
     fieldsToSet.audio.initVolume = 1;
+    fieldsToSet.audio.requestedLatency = 3;
     
     % playing parameters
     % sound repetition

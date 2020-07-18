@@ -162,9 +162,7 @@ end
 function cfg = initAudio(cfg)
     
     if cfg.initAudio
-        
-        requestedLatency = 3;
-        
+
         InitializePsychSound(1);
 
         cfg.audio.devIdx= [];
@@ -192,7 +190,7 @@ function cfg = initAudio(cfg)
         cfg.audio.pahandle = PsychPortAudio('Open', ...
             cfg.audio.devIdx, ...
             cfg.audio.playbackMode, ...
-            requestedLatency, ...
+            cfg.audio.requestedLatency, ...
             cfg.audio.fs, ...
             cfg.audio.channels);
         
