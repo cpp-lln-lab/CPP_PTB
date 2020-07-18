@@ -56,7 +56,7 @@ initDebug(cfg);
 
 
 %% Keyboard
-initKeyboard(cfg)
+initKeyboard
 
 
 %% Mouse
@@ -192,6 +192,8 @@ if cfg.debug
     fprintf('########################################')
     fprintf('\n\n\n\n')
     
+    testKeyboards(cfg)
+    
 end
 
 if cfg.testingTranspScreen
@@ -200,13 +202,11 @@ end
 
 end
 
-function initKeyboard(cfg)
+function initKeyboard
 
 % Make sure keyboard mapping is the same on all supported operating systems
 % Apple MacOS/X, MS-Windows and GNU/Linux:
 KbName('UnifyKeyNames');
-
-testKeyboards(cfg)
 
 % Don't echo keypresses to Matlab window
 ListenChar(-1);
