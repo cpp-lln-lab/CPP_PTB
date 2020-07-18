@@ -200,10 +200,10 @@ function cfg = initAudio(cfg)
         % at the begining of the experiment)
         PsychPortAudio('Volume', cfg.audio.pahandle, cfg.audio.initVolume);
         
-        cfg.audio.pushSize  = cfg.fs*0.010; %! push N ms only
+        cfg.audio.pushSize  = cfg.audio.fs * 0.010; %! push N ms only
         
         cfg.audio.requestOffsetTime = 1; % offset 1 sec
-        cfg.audio.reqsSampleOffset = cfg.audio.requestOffsetTime*cfg.audio.fs;
+        cfg.audio.reqsSampleOffset = cfg.audio.requestOffsetTime * cfg.audio.fs;
 
     end
 end
