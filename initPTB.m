@@ -53,17 +53,9 @@ cfg = openWindow(cfg);
 % window size info
 [cfg.winWidth, cfg.winHeight] = WindowSize(cfg.win);
 
-
-
-% ---------- FIX LATER ---------- %
-% I don't think we want to hard code the 2/3 here. We might just add it to
-% the Cfg structure
 if strcmpi(cfg.stimPosition,'scanner')
     cfg.winRect(1,4) = cfg.winRect(1,4)*2/3;
 end
-% ---------- FIX LATER ---------- %
-
-
 
 % Get the Center of the Screen
 cfg.center = [cfg.winRect(3), cfg.winRect(4)]/2;
@@ -135,17 +127,7 @@ function initKeyboard(cfg)
 % Apple MacOS/X, MS-Windows and GNU/Linux:
 KbName('UnifyKeyNames');
 
-
-
-% ---------- FIX LATER ---------- %
-% might be over agressive to test this at every PTB init maybe make it
-% dependent on a debug "flag"
-
 testKeyboards(cfg)
-
-% ---------- FIX LATER ---------- %
-
-
 
 % Don't echo keypresses to Matlab window
 ListenChar(-1);
