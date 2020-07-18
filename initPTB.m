@@ -40,7 +40,62 @@ HideCursor;
 
 
 %% Audio
+% Intialize PsychPortAudio
+% in setParameters, one needs to define 
+% cfg.audio.channels
+% cfg.fs
+% cfg.PTBInitVolume 
+
+
 InitializePsychSound(1);
+
+if any(strcmp(cfg.stimComp,{'mac','linux'}))
+    
+    % pahandle = PsychPortAudio('Open' [, deviceid][, mode][, reqlatencyclass][, freq] ...
+    %       [, channels][, buffersize][, suggestedLatency][, selectchannels][, specialFlags=0]);
+    % Try to get the lowest latency that is possible under the constraint of reliable playback
+    cfg.pahandle = PsychPortAudio('Open', [], [], 3, cfg.fs, cfg.audio.channels);
+     
+else
+    
+    % get audio device list
+    audio_dev       = PsychPortAudio('GetDevices');
+    
+    % find output device using WASAPI deiver
+    idx             = find([audio_dev.NrInputChannels] == 0 & ...
+        [audio_dev.NrOutputChannels] == 2 & ...
+        ~cellfun(@isempty, regexp({audio_dev.HostAudioAPIName},'WASAPI')));
+    
+    % save device ID
+    cfg.audio.i     = audio_dev(idx).DeviceIndex;
+    
+    % get device's sampling rate
+    cfg.fs          = audio_dev(idx).DefaultSampleRate;
+    
+    % the latency is not important - but consistent latency is! Let's try with WASAPI driver.
+    cfg.pahandle    = PsychPortAudio('Open', cfg.audio.i, 1, 3, cfg.fs, cfg.audio.channels);
+    % cfg.pahandle = PsychPortAudio('Open', [], [], 0, cfg.fs, cfg.audio.channels);
+    
+end
+
+% set initial PTB volume for safety (participants can adjust this manually
+% at the begining of the experiment)
+PsychPortAudio('Volume', cfg.pahandle, cfg.PTBInitVolume);
+
+cfg.audio.pushsize  = cfg.fs*0.010; %! push N ms only
+cfg.requestoffsettime = 1; % offset 1 sec
+cfg.reqsampleoffset = cfg.requestoffsettime*cfg.fs; %
+
+
+% playing parameters
+% sound repetition
+cfg.PTBrepet = 1;
+
+% Start immediately (0 = immediately)
+cfg.PTBstartCue = 0;
+
+% Should we wait for the device to really start (1 = yes)
+cfg.PTBwaitForDevice = 1;
 
 
 %% Visual
