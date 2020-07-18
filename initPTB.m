@@ -63,63 +63,9 @@ initKeyboard
 HideCursor;
 
 
-%% Audio
-% Intialize PsychPortAudio
-% in setParameters, one needs to define 
-% cfg.audio.channels
-% cfg.fs
-% cfg.PTBInitVolume 
-
-
-InitializePsychSound(1);
-
-if any(strcmp(cfg.stimComp,{'mac','linux'}))
+    %% Audio
+    cfg = initAudio(cfg);
     
-    % pahandle = PsychPortAudio('Open' [, deviceid][, mode][, reqlatencyclass][, freq] ...
-    %       [, channels][, buffersize][, suggestedLatency][, selectchannels][, specialFlags=0]);
-    % Try to get the lowest latency that is possible under the constraint of reliable playback
-    cfg.pahandle = PsychPortAudio('Open', [], [], 3, cfg.fs, cfg.audio.channels);
-     
-else
-    
-    % get audio device list
-    audio_dev       = PsychPortAudio('GetDevices');
-    
-    % find output device using WASAPI deiver
-    idx             = find([audio_dev.NrInputChannels] == 0 & ...
-        [audio_dev.NrOutputChannels] == 2 & ...
-        ~cellfun(@isempty, regexp({audio_dev.HostAudioAPIName},'WASAPI')));
-    
-    % save device ID
-    cfg.audio.i     = audio_dev(idx).DeviceIndex;
-    
-    % get device's sampling rate
-    cfg.fs          = audio_dev(idx).DefaultSampleRate;
-    
-    % the latency is not important - but consistent latency is! Let's try with WASAPI driver.
-    cfg.pahandle    = PsychPortAudio('Open', cfg.audio.i, 1, 3, cfg.fs, cfg.audio.channels);
-    % cfg.pahandle = PsychPortAudio('Open', [], [], 0, cfg.fs, cfg.audio.channels);
-    
-end
-
-% set initial PTB volume for safety (participants can adjust this manually
-% at the begining of the experiment)
-PsychPortAudio('Volume', cfg.pahandle, cfg.PTBInitVolume);
-
-cfg.audio.pushsize  = cfg.fs*0.010; %! push N ms only
-cfg.requestoffsettime = 1; % offset 1 sec
-cfg.reqsampleoffset = cfg.requestoffsettime*cfg.fs; %
-
-
-% playing parameters
-% sound repetition
-cfg.PTBrepet = 1;
-
-% Start immediately (0 = immediately)
-cfg.PTBstartCue = 0;
-
-% Should we wait for the device to really start (1 = yes)
-cfg.PTBwaitForDevice = 1;
 
 
 %% Visual
@@ -211,6 +157,55 @@ KbName('UnifyKeyNames');
 % Don't echo keypresses to Matlab window
 ListenChar(-1);
 
+end
+
+function cfg = initAudio(cfg)
+    
+    if cfg.initAudio
+        
+        requestedLatency = 3;
+        
+        InitializePsychSound(1);
+
+        cfg.audio.devIdx= [];
+        cfg.audio.playbackMode = 1;
+            
+        if IsWin
+            
+            % get audio device list
+            audioDev = PsychPortAudio('GetDevices');
+            
+            % find output device using WASAPI driver
+            idx = find(...
+                audioDev.NrInputChannels == 0 && ...
+                audioDev.NrOutputChannels == 2 && ...
+                ~cellfun(@isempty, regexp({audioDev.HostAudioAPIName}, 'WASAPI')));
+            
+            % save device ID
+            cfg.audio.devIdx = audioDev(idx).DeviceIndex;
+            
+            % get device's sampling rate
+            cfg.audio.fs = audioDev(idx).DefaultSampleRate;
+
+        end
+        
+        cfg.audio.pahandle = PsychPortAudio('Open', ...
+            cfg.audio.devIdx, ...
+            cfg.audio.playbackMode, ...
+            requestedLatency, ...
+            cfg.audio.fs, ...
+            cfg.audio.channels);
+        
+        % set initial PTB volume for safety (participants can adjust this manually
+        % at the begining of the experiment)
+        PsychPortAudio('Volume', cfg.audio.pahandle, cfg.audio.initVolume);
+        
+        cfg.audio.pushSize  = cfg.fs*0.010; %! push N ms only
+        
+        cfg.audio.requestOffsetTime = 1; % offset 1 sec
+        cfg.audio.reqsSampleOffset = cfg.audio.requestOffsetTime*cfg.audio.fs;
+
+    end
 end
 
 function cfg = openWindow(cfg)

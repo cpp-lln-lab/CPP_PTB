@@ -17,6 +17,24 @@ fieldsToSet.textStyle = 1;
 fieldsToSet.monitorWidth = 42;
 fieldsToSet.screenDistance = 134;
 
+if isfield(cfg, 'initAudio') && cfg.initAudio
+    
+    fieldsToSet.audio.fs = 44800;
+    fieldsToSet.audio.channels = 2;
+    fieldsToSet.audio.initVolume = 1;
+    
+    % playing parameters
+    % sound repetition
+    fieldsToSet.audio.repeat = 1;
+    
+    % Start immediately (0 = immediately)
+    fieldsToSet.audio.startCue = 0;
+    
+    % Should we wait for the device to really start?
+    fieldsToSet.audio.waitForDevice = 1;
+
+end
+
 % loop through the defaults and set them in cfg if they don't exist
 names = fieldnames(fieldsToSet);
 
