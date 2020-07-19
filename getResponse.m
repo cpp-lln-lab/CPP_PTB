@@ -1,4 +1,4 @@
-function responseEvents = getResponse(action, cfg, expParameters, getOnlyPress)
+function responseEvents = getResponse(action, deviceNumber, cfg, getOnlyPress)
 % wrapper function to use KbQueue
 % The queue will be listening to key presses on the response box as defined
 %  in the cfg structure : see setParameters for more details.
@@ -43,13 +43,21 @@ function responseEvents = getResponse(action, cfg, expParameters, getOnlyPress)
 %   pressed == 0  --> the key was released
 
 
+if nargin < 2 || isempty(deviceNumber)
+    deviceNumber = -1;
+end
+
+if nargin < 3
+    cfg = struct(...
+        'keyboard', struct('responseKey', {})...
+        );
+end
+
 if nargin < 4
     getOnlyPress = true;
 end
 
 responseEvents = struct;
-
-responseBox = cfg.responseBox;
 
 switch action
     
@@ -60,82 +68,81 @@ switch action
         ListenChar(-1);
         
         % Clean and realease any queue that might be opened
-        KbQueueRelease(responseBox);
+        KbQueueRelease(deviceNumber);
         
-        keysOfInterest = setKeysOfInterest(expParameters);
+        keysOfInterest = setKeysOfInterest(cfg.keyboard);
         
         % Create the keyboard queue to collect responses.
-        KbQueueCreate(responseBox, keysOfInterest);
+        KbQueueCreate(deviceNumber, keysOfInterest);
         
-        
-    case 'start'
-        
-        KbQueueStart(responseBox);
-        
+    case 'start'        
+        KbQueueStart(deviceNumber);
         
     case 'check'
+        responseEvents = getAllKeyEvents(responseEvents, deviceNumber, getOnlyPress);
         
         responseEvents = getAllKeyEvents(responseEvents, responseBox, getOnlyPress);
         
         checkAbort(cfg)
           
-    case 'flush'
+    case 'flush'        
+        KbQueueFlush(deviceNumber);
+   
+    case 'stop'        
+        KbQueueStop(deviceNumber)
         
-        KbQueueFlush(responseBox);
-        
-        
-    case 'stop'
-        
-        KbQueueRelease(responseBox);
+    case 'release'        
+        KbQueueRelease(deviceNumber);
         
         % Give me my keyboard back... Pretty please.
         ListenChar(0);
-        
-        
+          
 end
 
-talkToMe(action, expParameters);
+talkToMe(action);
 
 end
 
 
-function keysOfInterest = setKeysOfInterest(expParameters)
+function keysOfInterest = setKeysOfInterest(keyboard)
 % list all the response keys we want KbQueue to listen to
 % by default we listen to all keys
 % but if responseKey is set in the parameters we override this
 
-keysOfInterest = ones(1,256);
+keysOfInterest = zeros(1,256);
 
-fprintf('\n Will be listening for key presses on : ')
+fprintf('\n Will be listening for key presses on : ');
 
-if isfield(expParameters, 'responseKey') && ~isempty(expParameters.responseKey)
+if ~isempty(keyboard.responseKey)
 
-    responseTargetKeys = nan(1,numel(expParameters.responseKey));
+    responseTargetKeys = nan(1,numel(keyboard.responseKey));
     
-    for iKey = 1:numel(expParameters.responseKey)
-        fprintf('\n  - %s ', expParameters.responseKey{iKey})
-        responseTargetKeys(iKey) = KbName(expParameters.responseKey(iKey));
+    for iKey = 1:numel(keyboard.responseKey)
+        fprintf('\n - %s ', keyboard.responseKey{iKey});
+        responseTargetKeys(iKey) = KbName(keyboard.responseKey(iKey));
     end
     
     keysOfInterest(responseTargetKeys) = 1;
     
 else
     
-    fprintf('ALL KEYS.')
+    keysOfInterest = ones(1,256);
+    
+    fprintf('ALL KEYS.');
     
 end
 
-fprintf('\n\n')
+fprintf('\n\n');
 end
 
 
-function responseEvents = getAllKeyEvents(responseEvents, responseBox, getOnlyPress)
+function responseEvents = getAllKeyEvents(responseEvents, deviceNumber, getOnlyPress)
 
 iEvent = 1;
 
-while KbEventAvail(responseBox)
+while KbEventAvail(deviceNumber)
     
-    event = KbEventGet(responseBox);
+    event = KbEventGet(deviceNumber);
     
     % we only return the pressed keys by default
     if getOnlyPress==true && event.Pressed==0
