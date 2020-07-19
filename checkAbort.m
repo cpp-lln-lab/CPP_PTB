@@ -29,10 +29,7 @@ end
 
 if keyIsDown && keyCode(KbName(cfg.keyboard.escapeKey))
     
-    errorStruct.message = 'Escape key press detected: aborting experiment.';
-    errorStruct.identifier = 'checkAbort:abortRequested';
-    
-    error(errorStruct)
+    errorAbort();
     
 end
 
