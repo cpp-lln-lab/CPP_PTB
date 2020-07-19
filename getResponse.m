@@ -81,10 +81,8 @@ switch action
     case 'check'
         responseEvents = getAllKeyEvents(responseEvents, deviceNumber, getOnlyPress);
         
-        responseEvents = getAllKeyEvents(responseEvents, responseBox, getOnlyPress);
-        
-        checkAbort(cfg)
-          
+        checkAbortGetResponse(responseEvents, cfg);
+             
     case 'flush'        
         KbQueueFlush(deviceNumber);
    
@@ -160,6 +158,16 @@ while KbEventAvail(deviceNumber)
     
 end
 
+end
+
+function checkAbortGetResponse(responseEvents, cfg)
+    
+    if isfield(responseEvents, 'keyName') > 0 && ...
+       any( ...
+            strcmpi({responseEvents(:).keyName}, cfg.keyboard.escapeKey)...
+            )
+        errorAbortGetReponse(responseEvents)
+    end
 end
 
 
