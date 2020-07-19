@@ -1,0 +1,25 @@
+# Travis CI (https://travis-ci.org/)
+
+language: c
+dist: bionic
+cache:
+  apt: true # only works with Pro version
+
+env:
+  global:
+    - OCTFLAGS="--no-gui --no-window-system --silent"
+
+before_install:
+  - travis_retry sudo apt-get -y -qq update
+  - travis_retry sudo apt-get -y install octave
+  - travis_retry sudo apt-get -y install liboctave-dev
+
+install:
+  - octave $OCTFLAGS --eval "addpath (pwd); savepath ();"
+
+before_script:
+  # Change current directory
+  - cd tests
+
+script:
+  - octave $OCTFLAGS --eval "results = runtests; assert(all(~[results.Failed]))"

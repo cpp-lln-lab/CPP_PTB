@@ -1,8 +1,13 @@
 function cfg = setDefaultsPTB(cfg)
+    
+    if nargin<1
+        cfg = struct;
+    end
 
 % list the default values
-fieldsToSet.keyboard = [];
-fieldsToSet.responseBox = [];
+fieldsToSet.keyboard.keyboard = [];
+fieldsToSet.keyboard.responseBox = [];
+fieldsToSet.keyboard.responseKey = {};
 
 fieldsToSet.debug = true;
 fieldsToSet.testingTranspScreen = true;
@@ -10,9 +15,9 @@ fieldsToSet.testingSmallScreen = true;
 
 fieldsToSet.backgroundColor = [0 0 0];
 
-fieldsToSet.textFont = 'Courier New';
-fieldsToSet.textSize = 18;
-fieldsToSet.textStyle = 1;
+fieldsToSet.text.font = 'Courier New';
+fieldsToSet.text.size = 18;
+fieldsToSet.text.style = 1;
 
 fieldsToSet.monitorWidth = 42;
 fieldsToSet.screenDistance = 134;
@@ -45,6 +50,9 @@ for i = 1:numel(names)
         names{i}, ...
         getfield(fieldsToSet, names{i})); %#ok<GFLD>
 end
+
+% sort fields alphabetically
+cfg = orderfields(cfg);
 
 
 end
