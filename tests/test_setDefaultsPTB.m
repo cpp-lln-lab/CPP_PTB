@@ -14,6 +14,8 @@ cfgToTest =  struct(...
 cfgToTest.keyboard.keyboard = [];
 cfgToTest.keyboard.responseBox = [];
 cfgToTest.keyboard.responseKey = {};
+cfgToTest.keyboard.escapeKey = 'ESCAPE';
+
 
 cfgToTest = orderfields(cfgToTest);
 

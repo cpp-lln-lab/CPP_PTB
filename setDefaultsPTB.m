@@ -11,6 +11,7 @@ fieldsToSet.testingDevice = 'pc';
 fieldsToSet.keyboard.keyboard = [];
 fieldsToSet.keyboard.responseBox = [];
 fieldsToSet.keyboard.responseKey = {};
+fieldsToSet.keyboard.escapeKey = 'ESCAPE';
 
 fieldsToSet.debug = true;
 fieldsToSet.testingTranspScreen = true;
