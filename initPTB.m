@@ -230,8 +230,8 @@ end
 
 function initText(cfg)
 
-Screen('TextFont', cfg.win, cfg.textFont);
-Screen('TextSize', cfg.win, cfg.textSize);
-Screen('TextStyle', cfg.win, cfg.textStyle);
+Screen('TextFont', cfg.win, cfg.text.Font);
+Screen('TextSize', cfg.win, cfg.text.Size);
+Screen('TextStyle', cfg.win, cfg.text.Style);
 
 end
