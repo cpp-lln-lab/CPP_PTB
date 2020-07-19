@@ -1,9 +1,8 @@
 cd ..
 
-cfg.device = 'Scanner';
-
+cfg.device = 'scanner';
+cfg.MRI.repetitionTime = 3;
 cfg.numTriggers = 4; 
-
 cfg.triggerKey = 'space';
 
 KbName('UnifyKeyNames');

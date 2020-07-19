@@ -5,6 +5,8 @@ function cfg = setDefaultsPTB(cfg)
     end
 
 % list the default values
+fieldsToSet.testingDevice = 'pc';
+
 fieldsToSet.keyboard.keyboard = [];
 fieldsToSet.keyboard.responseBox = [];
 fieldsToSet.keyboard.responseKey = {};
@@ -39,6 +41,10 @@ if isfield(cfg, 'initAudio') && cfg.initAudio
     % Should we wait for the device to really start?
     fieldsToSet.audio.waitForDevice = 1;
 
+end
+
+if isfield(cfg, 'testingDevice') && strcmpi(cfg.testingDevice, 'scanner')
+    fieldsToSet.MRI.repetitionTime = [];
 end
 
 % loop through the defaults and set them in cfg if they don't exist
