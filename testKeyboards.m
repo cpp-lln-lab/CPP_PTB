@@ -7,18 +7,21 @@ timeOut = 5;
 
 % Main keyboard used by the experimenter to quit the experiment if it is necessary
 % cfg.keyboard
-fprintf('\n This is a test: press any key on the experimenter keyboard\n');
+fprintf('\n This is a test: press any key on the main keyboard\n');
 t = GetSecs;
-[~, keyCode, ~] = KbPressWait(cfg.keyboard, t+timeOut);
-throwError(keyCode, cfg.keyboard, 1)
+[~, keyCode, ~] = KbPressWait(cfg.keyboard.keyboard, t+timeOut);
+throwError(keyCode, cfg.keyboard.keyboard, 1)
 
-
-% For key presses for the subject
-% cfg.responseBox
-fprintf('\n This is a test: press any key on the participant response box\n');
-t = GetSecs;
-[~, keyCode, ~] = KbPressWait(cfg.responseBox, t+timeOut);
-throwError(keyCode, cfg.responseBox, 2)
+if ~isequal(cfg.keyboard.keyboard, cfg.keyboard.responseBox)
+    
+    % For key presses for the subject
+    % cfg.keyboard.responseBox
+    fprintf('\n Thiscfg.keyboard is a test: press any key on the participant response box\n');
+    t = GetSecs;
+    [~, keyCode, ~] = KbPressWait(cfg.keyboard.responseBox, t+timeOut);
+    throwError(keyCode, cfg.keyboard.responseBox, 2)
+    
+end
 
 end
 
@@ -27,7 +30,7 @@ function throwError(keyCode, deviceNumber, keyboardType)
 
 switch keyboardType
     case 1
-        keyboardType = 'experimenter keyboard';
+        keyboardType = 'main keyboard';
     case 2
         keyboardType = 'response box';
 end
@@ -48,7 +51,7 @@ if all(keyCode==0)
     fprintf(text1);
 
     if isempty(deviceNumber)
-        disp(' - no keyboard selected, default is the main keyboard')
+        disp('No keyboard selected, default is the main keyboard')
     else
         disp(deviceNumber)
     end
