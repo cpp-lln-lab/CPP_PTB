@@ -70,6 +70,30 @@ You can then use the [matlab package manager](https://github.com/mobeets/mpm), t
   end
 ```
 
+## Setting up keyboards
+
+To select a specific keyboard to be used by the experimenter or the participant, you need to know
+the value assigned by PTB to each keyboard device.
+
+To know this copy-paste this on the command window:
+
+``` matlab
+[keyboardNumbers, keyboardNames] = GetKeyboardIndices;
+
+disp(keyboardNumbers);
+disp(keyboardNames);
+```
+
+You can then assign a specific device number to the main keyboard or the response box in the `cfg` structure
+
+-   `cfg.keyboard.responseBox` would be the device number of the device used by the participant to give his/her
+response: like the button box in the scanner or a separate keyboard for a behavioral experiment
+-   `cfg.keyboard.keyboard` would be the device number of the keyboard on which the experimenter will type or
+press the keys necessary to start or abort the experiment.
+
+`cfg.keyboard.responseBox` and `cfg.keyboard.keyboard` can be different or the same.
+
+Using empty vectors (ie `[]`) or a negative value for those means that you will let PTB find and use the default device.
 
 ## Structure and function details
 
