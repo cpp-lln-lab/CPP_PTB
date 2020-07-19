@@ -40,7 +40,7 @@ function responseEvents = getResponse(action, deviceNumber, cfg, getOnlyPress)
 %
 % responseEvents.duration = 0;
 %
-% responseEvents.key_name : the name of the key pressed
+% responseEvents.keyName : the name of the key pressed
 %
 % responseEvents(iEvent,1).pressed : if
 %   pressed == 1  --> the key was pressed
