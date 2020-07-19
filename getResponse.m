@@ -156,36 +156,34 @@ end
 end
 
 
-function talkToMe(action, expParameters)
+function talkToMe(action)
 
-if ~isfield(expParameters, 'verbose') || isempty(expParameters.verbose)
-    expParameters.verbose = false;
-end
 
 switch action
-    
+
     case 'init'
-        
-    case 'start'
-        
-        fprintf('\n starting to listen to keypresses\n')
+        msg = 'Initialising KbQueue.';
+                
+    case 'start'        
+        msg = 'Starting to listen to keypresses.';
         
     case 'check'
-        
-        if expParameters.verbose
-            fprintf('\n checking recent keypresses\n')
-        end
+        msg = 'Checking recent keypresses.';
         
     case 'flush'
+        msg = 'Reinitialising keyboard queue.';
         
-        if expParameters.verbose
-            fprintf('\n reinitialising keyboard queue\n')
-        end
+    case 'stop'       
+        msg = 'Stopping to listen to keypresses.';
+
+    case 'release'  
+        msg = 'Releasing KbQueue.';
         
-    case 'stop'
-        
-        fprintf('\n stopping to listen to keypresses\n\n')
+    otherwise        
+        msg = '';
         
 end
+
+fprintf('\n %s\n\n', msg);
 
 end
