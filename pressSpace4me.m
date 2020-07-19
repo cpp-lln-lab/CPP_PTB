@@ -1,5 +1,7 @@
 function pressSpace4me(deviceNumber)
 % Use that to stop your script and only restart when the space bar is pressed.
+% This is a good way to have a final checkpoint before starting and letting the
+% user or the experimenter press the space bar to start.
 % When no deviceNumber is set then it will check the default device
    
 if nargin < 1 || isempty(deviceNumber)
@@ -14,9 +16,8 @@ while 1
     WaitSecs(0.1);
 
     [~, keyCode, ~] = KbWait(deviceNumber);
-
     if strcmp(KbName(find(keyCode)), 'space')
-        fprintf('starting the experiment...\n');
+        fprintf('Starting the experiment...\n');
         break
     end
 

@@ -41,7 +41,10 @@ if strcmpi(cfg.testingDevice, 'scanner')
             msg = sprintf(' Trigger %i', triggerCounter);
             talkToMe(cfg, msg)
             
-            pauseBetweenTriggers(cfg)
+            % we only wait if this is not the last trigger
+            if triggerCounter < cfg.numTriggers
+                pauseBetweenTriggers(cfg)
+            end
             
         end
     end
