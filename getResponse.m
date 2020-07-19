@@ -1,10 +1,12 @@
 function responseEvents = getResponse(action, deviceNumber, cfg, getOnlyPress)
-% wrapper function to use KbQueue
-% The queue will be listening to key presses on the response box as defined
-%  in the cfg structure : see setParameters for more details.
+% Wrapper function to use KbQueue
+%
+% The queue will be listening to key presses on a keyboard device:
+% cfg.keyboard.responseBox or cfg.keyboard.keyboard are 2 main examples.
+%
+% When no deviceNumber is set then it will listen to the default device.
 %
 % Check the CPP_getResponseDemo for a quick script on how to use it.
-%
 %
 %
 % INPUT
@@ -12,9 +14,11 @@ function responseEvents = getResponse(action, deviceNumber, cfg, getOnlyPress)
 % - action: Defines what we want the function to do
 %  - init: to initialise the queue
 %  - start: to start listening to keypresses
-%  - check:
-%  - flush:
-%  - stop:
+%  - check: checks all the key presses events since 'start', or since last
+%  'check' or 'flush' (whichever was the most recent)
+%  - flush: empties the queue of events in case you want to restart from a clean
+%  queue
+%  - stop: stops listening to key presses
 %
 % - getOnlyPress: if set to true the function will only return the key presses and
 %    will not return when the keys were released (default=true)
@@ -149,7 +153,7 @@ while KbEventAvail(deviceNumber)
         responseEvents(iEvent,1).onset = event.Time;
         responseEvents(iEvent,1).trial_type = 'response';
         responseEvents(iEvent,1).duration = 0;
-        responseEvents(iEvent,1).key_name = KbName(event.Keycode);
+        responseEvents(iEvent,1).keyName = KbName(event.Keycode);
         responseEvents(iEvent,1).pressed =  event.Pressed;
         
         iEvent = iEvent + 1;
