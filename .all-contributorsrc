@@ -26,6 +26,18 @@
         "design",
         "doc"
       ]
+    },
+    {
+      "login": "CerenB",
+      "name": "CerenB",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/10451654?v=4",
+      "profile": "https://github.com/CerenB",
+      "contributions": [
+        "code",
+        "design",
+        "doc",
+        "review"
+      ]
     }
   ],
   "contributorsPerLine": 7,
