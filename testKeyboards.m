@@ -37,7 +37,7 @@ function throwError(keyCode, deviceNumber, keyboardType)
 
     text2 = '\nThese are the devices currently connected.\n\n';
 
-    errorText = 'No key was pressed. Did you configure the keyboards properly? See message above for more info.';
+    errorText = 'No key was pressed. Did you configure the keyboards properly? See above for info.';
 
     if all(keyCode == 0)
 

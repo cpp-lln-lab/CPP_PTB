@@ -197,7 +197,8 @@ end
 function cfg = openWindow(cfg)
 
     if cfg.testingSmallScreen
-        [cfg.win, cfg.winRect] = Screen('OpenWindow', cfg.screen, cfg.backgroundColor, [0, 0, 480, 270]);
+        [cfg.win, cfg.winRect] = Screen('OpenWindow', cfg.screen, cfg.backgroundColor, ...
+            [0, 0, 480, 270]);
     else
         [cfg.win, cfg.winRect] = Screen('OpenWindow', cfg.screen, cfg.backgroundColor);
     end

@@ -1,5 +1,5 @@
 function drawFixationCross(cfg, expParameters, color)
-    % Define the parameters of the fixation cross in `cfg` and `expParameters` and this does the rest.
+    % Define the parameters of the fixation cross in `cfg` and `expParameters`
 
     Screen('DrawLines', ...
         cfg.win, ...

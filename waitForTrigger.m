@@ -1,4 +1,4 @@
-function wait4Trigger(cfg, deviceNumber)
+function waitForTrigger(cfg, deviceNumber)
     % Counts a certain number of triggers coming from the scanner before returning.
     %
     % Will print the count down in the command line and on the PTB window if one is

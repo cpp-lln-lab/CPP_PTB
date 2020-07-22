@@ -6,4 +6,4 @@ addpath(fullfile(pwd, '..'));
 KbName('UnifyKeyNames');
 
 % press the key "space" to "start" the experiment
-pressSpace4me;
+pressSpaceForMe;
