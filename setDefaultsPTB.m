@@ -46,28 +46,36 @@ function cfg = setDefaultsPTB(cfg)
 
     end
 
-    if isfield(cfg, 'testingDevice') && strcmpi(cfg.testingDevice, 'scanner')
+    if isfield(cfg, 'testingDevice') && strcmpi(cfg.testingDevice, 'mri')
         fieldsToSet.MRI.repetitionTime = [];
     end
 
-    %% set the defaults
-    % loop through the defaults and set them in cfg if they don't exist
-    names = fieldnames(fieldsToSet);
+    cfg = setDefaults(cfg, fieldsToSet);
 
-    for i = 1:numel(names)
-        cfg = setFieldToIfNotPresent( ...
-            cfg, ...
-            names{i}, ...
-            getfield(fieldsToSet, names{i})); %#ok<GFLD>
-    end
-
-    %% sort fields alphabetically
+    % sort fields alphabetically
     cfg = orderfields(cfg);
 
 end
 
-function struct = setFieldToIfNotPresent(struct, fieldName, value)
-    if ~isfield(struct, fieldName)
-        struct = setfield(struct, fieldName, value); %#ok<SFLD>
+function structure = setDefaults(structure, fieldsToSet)
+    % loop through the defaults fiels to set and update if they don't exist
+
+    names = fieldnames(fieldsToSet);
+
+    for i = 1:numel(names)
+
+        thisField = fieldsToSet.(names{i});
+        structure = setFieldToIfNotPresent( ...
+            structure, ...
+            names{i}, ...
+            thisField);
+
+    end
+
+end
+
+function structure = setFieldToIfNotPresent(structure, fieldName, value)
+    if ~isfield(structure, fieldName)
+        structure.(fieldName) = value;
     end
 end

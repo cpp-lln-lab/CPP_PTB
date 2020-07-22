@@ -72,7 +72,7 @@ function [cfg] = initPTB(cfg)
     % window size info
     [cfg.winWidth, cfg.winHeight] = WindowSize(cfg.win);
 
-    if strcmpi(cfg.stimPosition, 'scanner')
+    if strcmpi(cfg.stimPosition, 'mri')
         cfg.winRect(1, 4) = cfg.winRect(1, 4) * 2 / 3;
     end
 
