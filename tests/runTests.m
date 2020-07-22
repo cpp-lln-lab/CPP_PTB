@@ -1,4 +1,4 @@
-function results = runtests(pth)
+function results = runTests(pth)
     % Run tests
     % List all the 'test_*.m' files located in the same directory as this
     % function, run them and keep track of how many passed, failed or are
