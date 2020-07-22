@@ -27,8 +27,11 @@ The exact version required for this to work but it is known to work with:
 ## Code guidestyle
 
 We use the `camelCase` to more easily differentiates our functions from the ones from PTB that use a `PascalCase`.
+We use the following regular expression for function names: `[a-z]+(([A-Z]|[0-9]){1}[a-z]+)*`.
 
-We keep the McCabe complexity as reported by the [check_my_code function](https://github.com/Remi-Gau/matlab_checkcode) below 15.
+We keep the McCabe complexity as reported by the [check_my_code function](https://github.com/Remi-Gau/check_my_code) below 15.
+
+We use the [MISS_HIT linter](https://florianschanda.github.io/miss_hit/style_checker.html) to automatically fix some linting issues.
 
 ## How to install
 
