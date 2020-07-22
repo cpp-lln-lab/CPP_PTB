@@ -1,7 +1,7 @@
 %% test basic cfg creation
 
 % set up
-cfgToTest =  struct(...
+cfgToTest =  struct( ...
     'testingDevice', 'pc', ...
     'debug',  true, ...
     'testingTranspScreen',  true, ...
@@ -16,22 +16,20 @@ cfgToTest.keyboard.responseBox = [];
 cfgToTest.keyboard.responseKey = {};
 cfgToTest.keyboard.escapeKey = 'ESCAPE';
 
-
 cfgToTest = orderfields(cfgToTest);
 
 % test
 cfg = setDefaultsPTB;
-assert(isequal(cfg, cfgToTest))
-
+assert(isequal(cfg, cfgToTest));
 
 %% test that values are not overwritten
-clear cfg
+clear cfg;
 cfg = struct('monitorWidth', 36);
 
 cfgToTest.monitorWidth = 36;
 
 cfg = setDefaultsPTB(cfg);
-assert(isequal(cfg, cfgToTest))
+assert(isequal(cfg, cfgToTest));
 
 cfgToTest.monitorWidth = 42;
 
@@ -39,7 +37,7 @@ cfgToTest.monitorWidth = 42;
 
 % set up
 cfgToTest.initAudio = 1;
-cfgToTest.audio = struct(...
+cfgToTest.audio = struct( ...
     'fs', 44800, ...
     'channels', 2, ...
     'initVolume', 1, ...
@@ -50,9 +48,9 @@ cfgToTest.audio = struct(...
 
 cfgToTest = orderfields(cfgToTest);
 
-clear cfg
+clear cfg;
 cfg.initAudio = 1;
 
 % test
 cfg = setDefaultsPTB(cfg);
-assert(isequal(cfg, cfgToTest))
+assert(isequal(cfg, cfgToTest));
