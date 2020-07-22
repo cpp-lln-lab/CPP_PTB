@@ -4,9 +4,10 @@
 %  (a wrapper around the KbQueue function from PTB)
 
 % start with a clean slate
-clear; clc;
+clear;
+clc;
 if IsOctave
-    more off % for a better display experience
+    more off; % for a better display experience
 end
 
 %% set parameters
@@ -32,7 +33,6 @@ cfg.responseBox = [];
 % We set which keys are "valid", any keys other than those will be ignored
 expParameters.responseKey = {};
 
-
 %% init
 
 % Keyboard
@@ -40,13 +40,11 @@ expParameters.responseKey = {};
 %  Apple MacOS/X, MS-Windows and GNU/Linux:
 KbName('UnifyKeyNames');
 
-
 % we ask PTB to tell us which keyboard devices are connected to the computer
 [cfg.keyboardNumbers, cfg.keyboardNames] = GetKeyboardIndices;
 
-cfg.keyboardNumbers
-cfg.keyboardNames
-
+cfg.keyboardNumbers;
+cfg.keyboardNames;
 
 % Test that the keyboards are correctly configured
 testKeyboards(cfg);
@@ -54,18 +52,15 @@ testKeyboards(cfg);
 % Give the time to the test key to be released and not listened
 WaitSecs(1);
 
-
 fprintf('\nDuring the next 5 seconds we will collect responses on the following keys: \n\n');
 if isempty(expParameters.responseKey)
     fprintf('\nALL KEYS\n\n');
 else
-    for iKey=1:numel(expParameters.responseKey)
+    for iKey = 1:numel(expParameters.responseKey)
         fprintf('\n%s', expParameters.responseKey{iKey});
     end
     fprintf('\n\n');
 end
-
-
 
 %% Run demo
 
@@ -77,14 +72,10 @@ getResponse('init', cfg, expParameters, 1);
 startSecs = GetSecs();
 getResponse('start', cfg, expParameters, 1);
 
-
-
 % Here we wait for 5 seconds but are still collecting responses.
 %  So you could still be doing something else (presenting audio and visual stim) and
 %  still collect responses.
 WaitSecs(5);
-
-
 
 % Check what keys were pressed (all of them)
 responseEvents = getResponse('check', cfg, expParameters, 0);
@@ -97,9 +88,6 @@ getResponse('flush', cfg, expParameters, 1);
 
 % If you wan to stop listening to key presses.
 getResponse('stop', cfg, expParameters, 1);
-
-
-
 
 %% Now we look what keys were pressed and when
 for iEvent = 1:size(responseEvents, 1)
