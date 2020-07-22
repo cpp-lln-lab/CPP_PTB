@@ -70,6 +70,30 @@ You can then use the [matlab package manager](https://github.com/mobeets/mpm), t
   end
 ```
 
+## Setting up keyboards
+
+To select a specific keyboard to be used by the experimenter or the participant, you need to know
+the value assigned by PTB to each keyboard device.
+
+To know this copy-paste this on the command window:
+
+``` matlab
+[keyboardNumbers, keyboardNames] = GetKeyboardIndices;
+
+disp(keyboardNumbers);
+disp(keyboardNames);
+```
+
+You can then assign a specific device number to the main keyboard or the response box in the `cfg` structure
+
+-   `cfg.keyboard.responseBox` would be the device number of the device used by the participant to give his/her
+response: like the button box in the scanner or a separate keyboard for a behavioral experiment
+-   `cfg.keyboard.keyboard` would be the device number of the keyboard on which the experimenter will type or
+press the keys necessary to start or abort the experiment.
+
+`cfg.keyboard.responseBox` and `cfg.keyboard.keyboard` can be different or the same.
+
+Using empty vectors (ie `[]`) or a negative value for those means that you will let PTB find and use the default device.
 
 ## Structure and function details
 
@@ -106,23 +130,27 @@ It is wrapper function to use `KbQueue` which is definitely what you should used
 
 You can easily collect responses while running some other code at the same time.
 
-It will only take responses from the `response box` which can simply be the "main keyboard" or
-another keyboard connected to the computer or the response box that the participant is using.
+It will only take responses from one device which can simply be the "main keyboard" 
+(the default device that PTB will find) or another keyboard connected to the computer 
+or the response box that the participant is using.
 
 You can use it in a way so that it only takes responses from certain keys and ignore others (like
 the triggers from an MRI scanner).
 
 If you want to know more on how to use it check its help section and the `CPP_getResponseDemo.m`.
 
-To select a specific keyboard to be used by the experimenter or the participant, you need to know
-the value assigned by PTB to each keyboard device.
+In brief, there are several actions you can execute with this function.
 
-To know this copy-paste this on the command window:
+-   init: initialize the buffer for key presses on a given device (you can also specify the keys of interest that should be listened to).
+-   start: start listening to the key presses (carefully insert into your script - where do you want to start buffering the responses).
+-   check: till that point, it will check the buffer for all key presses. 
+    -   It only reports presses on the keys of interest mentioned at initialization.
+    -   It **can** also check for presses on the escape key and abort if the escape key is part of the keys of interest.
+-   flush: Empties the buffer of key presses in case you want to discard any previous key presses.
+-   stop: Stops buffering key presses. You can still restart by calling "start" again.
+-   release: Closes the buffer for good.
 
-    [keyboardNumbers, keyboardNames] = GetKeyboardIndices;
 
-    keyboardNumbers
-    keyboardNames
 
 ### deg2Pix
 
