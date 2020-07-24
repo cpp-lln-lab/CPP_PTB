@@ -1,30 +1,29 @@
 function cleanUp
-% A wrapper function to close all windows, ports, show mouse cursor, close keyboard queues
-% and give access back to the keyboards.
+    % A wrapper function to close all windows, ports, show mouse cursor, close keyboard queues
+    % and give access back to the keyboards.
 
-WaitSecs(0.5);
+    WaitSecs(0.5);
 
-Priority(0);
+    Priority(0);
 
-ListenChar(0);
-KbQueueRelease();
+    ListenChar(0);
+    KbQueueRelease();
 
-ShowCursor
+    ShowCursor;
 
-% Screen Close All
-sca;
+    % Screen Close All
+    sca;
 
-% Close Psychportaudio if open 
-if PsychPortAudio('GetOpenDeviceCount') ~= 0
-	PsychPortAudio('Close');
-end
+    % Close Psychportaudio if open
+    if PsychPortAudio('GetOpenDeviceCount') ~= 0
+        PsychPortAudio('Close');
+    end
 
-if ~ismac
-    % remove PsychDebugWindowConfiguration
-    clear Screen
-end
+    if ~ismac
+        % remove PsychDebugWindowConfiguration
+        clear Screen;
+    end
 
-close all
-
+    close all;
 
 end
