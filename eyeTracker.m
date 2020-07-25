@@ -72,7 +72,8 @@ function [el, edfFile] = eyeTracker(input, cfg, expParameters, varargin)
                 % SET UP TRACKER CONFIGURATION
                 % Setting the proper recording resolution, proper calibration type,
                 %   as well as the data file content;
-                %            Eyelink('command', 'add_file_preamble_text ''Recorded by EyelinkToolbox demo-experiment''');
+                %            Eyelink('command', 'add_file_preamble_text ''Recorded by 
+                %EyelinkToolbox demo-experiment''');
 
                 % This command is crucial to map the gaze positions from the tracker to
                 %  screen pixel positions to determine fixation
@@ -89,7 +90,7 @@ function [el, edfFile] = eyeTracker(input, cfg, expParameters, varargin)
                 Eyelink('command', 'generate_default_targets = YES');
                 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 
-                %         % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+                %         % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
                 %         % CUSTOM CALIBRATION
                 %         % (SET MANUALLY THE DOTS COORDINATES, HERE FOR 6 DOTS)
                 %         Eyelink('command', 'calibration_type = HV5');
@@ -101,7 +102,8 @@ function [el, edfFile] = eyeTracker(input, cfg, expParameters, varargin)
                 %         [width, height]=Screen('WindowSize', screenNumber);
                 %         Eyelink('command','calibration_samples = 6');
                 %         Eyelink('command','calibration_sequence = 0,1,2,3,4,5');
-                %         Eyelink('command','calibration_targets = %d,%d %d,%d %d,%d %d,%d %d,%d',...
+                %         Eyelink('command','calibration_targets = ...
+                %             %d,%d %d,%d %d,%d %d,%d %d,%d',...
                 %             640,512, ... %width/2,height/2
                 %             640,102, ... %width/2,height*0.1
                 %             640,614, ... %width/2,height*0.6
@@ -110,13 +112,14 @@ function [el, edfFile] = eyeTracker(input, cfg, expParameters, varargin)
                 %
                 %         Eyelink('command','validation_samples = 5');
                 %         Eyelink('command','validation_sequence = 0,1,2,3,4,5');
-                %         Eyelink('command','validation_targets = %d,%d %d,%d %d,%d %d,%d %d,%d',...
+                %         Eyelink('command','validation_targets = ...
+                %             %d,%d %d,%d %d,%d %d,%d %d,%d',...
                 %             640,512, ... %width/2,height/2
                 %             640,102, ... %width/2,height*0.1
                 %             640,614, ... %width/2,height*0.6
                 %             128,341, ... %width*0.1,height*1/3
                 %             1152,341 );  %width-width*0.1,height*1/3
-                %         % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+                %         % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 
                 %             % set parser (conservative saccade thresholds)
                 %             Eyelink('command', 'saccade_velocity_threshold = 35');
@@ -199,12 +202,15 @@ function [el, edfFile] = eyeTracker(input, cfg, expParameters, varargin)
                 % download data file
                 try
                     fprintf('Receiving data file ''%s''\n', edfFileName);
-                    status = Eyelink('ReceiveFile', '', [expParameters.outputDir, filesep, 'eyetracker', filesep, edfFileName]);
+                    status = Eyelink('ReceiveFile', '', ...
+                        [expParameters.outputDir, filesep, 'eyetracker', filesep, edfFileName]);
                     if status > 0
                         fprintf('ReceiveFile status %d\n', status);
                     end
-                    if 2 == exist([expParameters.outputDir, filesep, 'eyetracker', filesep, edfFileName], 'file')
-                        fprintf('Data file ''%s'' can be found in ''%s''\n', edfFileName, [expParameters.outputDir, filesep, 'eyetracker', filesep]);
+                    if 2 == exist([expParameters.outputDir, filesep, 'eyetracker', ...
+                            filesep, edfFileName], 'file')
+                        fprintf('Data file ''%s'' can be found in ''%s''\n', edfFileName, ...
+                            [expParameters.outputDir, filesep, 'eyetracker', filesep]);
                     end
                 catch
                     fprintf('Problem receiving data file ''%s''\n', edfFileName);

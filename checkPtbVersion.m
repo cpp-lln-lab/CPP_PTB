@@ -1,4 +1,4 @@
-function checkDependencies()
+function checkPtbVersion()
     % Checks that the right dependencies are installed.
 
     printCredits();
