@@ -41,7 +41,7 @@ function [cfg] = initPTB(cfg)
     % TO DO
     % - We might want to add a couple of IF in case the experiment does not use audio for example.
 
-    checkDependencies();
+    checkPtbVersion();
 
     % For octave: to avoid displaying messenging one screen at a time
     more off;
