@@ -27,5 +27,5 @@ jobs:
     - stage: "Tests and linter"
       name: "Unit Tests" # names the first job
       script: octave $OCTFLAGS --eval "results = runTests; assert(all(~[results.Failed]))"
-    - script: cd .. && mh_style.py `pwd`
+    - script: cd .. && mh_style `pwd`
       name: "miss_hit linter" # names the second job
