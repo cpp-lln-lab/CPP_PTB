@@ -80,8 +80,8 @@ function [cfg] = initPTB(cfg)
     % Computes the number of pixels per degree given the distance to screen and
     % monitor width
     % This assumes that the window fills the whole screen
-    FOV = computeFOV(cfg);
-    cfg.ppd = cfg.winRect(3) / FOV;
+    cfg.FOV = computeFOV(cfg);
+    cfg.ppd = cfg.winRect(3) / cfg.FOV;
 
     %% Select specific text font, style and size
     initText(cfg);
