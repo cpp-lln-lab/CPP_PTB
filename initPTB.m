@@ -41,7 +41,7 @@ function [cfg] = initPTB(cfg)
     % TO DO
     % - We might want to add a couple of IF in case the experiment does not use audio for example.
 
-    checkDependencies();
+    checkPtbVersion();
 
     % For octave: to avoid displaying messenging one screen at a time
     more off;
@@ -51,12 +51,10 @@ function [cfg] = initPTB(cfg)
 
     cfg = setDefaultsPTB(cfg);
 
+    initKeyboard;
     initDebug(cfg);
 
-    %% Keyboard
-    initKeyboard;
-
-    %% Mouse
+    % Mouse
     HideCursor;
 
     %% Audio
@@ -72,9 +70,9 @@ function [cfg] = initPTB(cfg)
     % window size info
     [cfg.winWidth, cfg.winHeight] = WindowSize(cfg.win);
 
-    if strcmpi(cfg.stimPosition, 'mri')
-        cfg.winRect(1, 4) = cfg.winRect(1, 4) * 2 / 3;
-    end
+%     if strcmpi(cfg.stimPosition, 'mri')
+%         cfg.winRect(1, 4) = cfg.winRect(1, 4) * 2 / 3;
+%     end
 
     % Get the Center of the Screen
     cfg.center = [cfg.winRect(3), cfg.winRect(4)] / 2;
@@ -82,8 +80,8 @@ function [cfg] = initPTB(cfg)
     % Computes the number of pixels per degree given the distance to screen and
     % monitor width
     % This assumes that the window fills the whole screen
-    FOV = computeFOV(cfg);
-    cfg.ppd = cfg.winRect(3) / FOV;
+    cfg.FOV = computeFOV(cfg);
+    cfg.ppd = cfg.winRect(3) / cfg.FOV;
 
     %% Select specific text font, style and size
     initText(cfg);
@@ -118,7 +116,7 @@ function initDebug(cfg)
 
         Screen('Preference', 'SkipSyncTests', 2);
         Screen('Preference', 'Verbosity', 0);
-        Screen('Preferences', 'SuppressAllWarnings', 2);
+        Screen('Preference', 'SuppressAllWarnings', 1); 
 
         fprintf('\n\n\n\n');
         fprintf('########################################\n');
@@ -218,8 +216,8 @@ end
 
 function initText(cfg)
 
-    Screen('TextFont', cfg.win, cfg.text.Font);
-    Screen('TextSize', cfg.win, cfg.text.Size);
-    Screen('TextStyle', cfg.win, cfg.text.Style);
+    Screen('TextFont', cfg.win, cfg.text.font);
+    Screen('TextSize', cfg.win, cfg.text.size);
+    Screen('TextStyle', cfg.win, cfg.text.style);
 
 end
