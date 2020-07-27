@@ -1,6 +1,6 @@
 cd ..;
 
-cfg.device = 'Scanner';
+cfg.device = 'mri';
 
 cfg.numTriggers = 4;
 

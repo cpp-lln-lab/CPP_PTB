@@ -15,9 +15,15 @@ function responseEvents = getResponse(action, deviceNumber, cfg, getOnlyPress)
     %  - init: to initialise the queue
     %  - start: to start listening to keypresses
     %  - check: checks all the key presses events since 'start', or since last
-    %  'check' or 'flush' (whichever was the most recent)
+    %    'check' or 'flush' (whichever was the most recent)
+    %    -- can check for demand to abort if the escapeKey is listed in the 
+    %       Keys of interest.
+    %    -- can only check for demands to abort when getResponse('check') is called: 
+    %       so there will be a delay between the key press and the experiment stopping
+    %    -- abort errors send specific signals that allow the catch to get 
+    %       them and allows us to "close" nicely     
     %  - flush: empties the queue of events in case you want to restart from a clean
-    %  queue
+    %    queue
     %  - stop: stops listening to key presses
     %
     % - getOnlyPress: if set to true the function will only return the key presses and

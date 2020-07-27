@@ -129,7 +129,7 @@ and give access back to the keyboards.
 
 ### getResponse
 
-It is wrapper function to use `KbQueue` which is definitely what you should used to collect responses.
+It is wrapper function to use `KbQueue` which is definitely what you should use to collect responses.
 
 You can easily collect responses while running some other code at the same time.
 
@@ -173,11 +173,18 @@ This will handle the Eye Tracker (EyeLink set up) and can be called to initializ
 
 Use that to stop your script and only restart when the space bar is pressed.
 
+
+### waitForTrigger
+
+Counts a certain number of triggers coming from the mri/scanner before returning.
+Requires number of triggers to wait for.
+
+
 ## Annexes
 
 ### Experiment template [ WIP ]
 
-### `devSandobox.m` stand-alone
+### `devSandbox.m` stand-alone
 
 This script is a stand-alone function that can be useful as a sandbox to develop the PTB audio/visual stimulation of your experiment. No input/output required.
 
