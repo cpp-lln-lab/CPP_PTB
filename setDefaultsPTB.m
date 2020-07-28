@@ -47,7 +47,7 @@ function cfg = setDefaultsPTB(cfg)
     end
 
     if isfield(cfg, 'testingDevice') && strcmpi(cfg.testingDevice, 'mri')
-        fieldsToSet.MRI.repetitionTime = [];
+        fieldsToSet.bids.MRI.RepetitionTime = [];
     end
 
     cfg = setDefaults(cfg, fieldsToSet);

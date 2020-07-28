@@ -70,9 +70,9 @@ function [cfg] = initPTB(cfg)
     % window size info
     [cfg.winWidth, cfg.winHeight] = WindowSize(cfg.win);
 
-%     if strcmpi(cfg.stimPosition, 'mri')
-%         cfg.winRect(1, 4) = cfg.winRect(1, 4) * 2 / 3;
-%     end
+    %     if strcmpi(cfg.stimPosition, 'mri')
+    %         cfg.winRect(1, 4) = cfg.winRect(1, 4) * 2 / 3;
+    %     end
 
     % Get the Center of the Screen
     cfg.center = [cfg.winRect(3), cfg.winRect(4)] / 2;
@@ -116,7 +116,7 @@ function initDebug(cfg)
 
         Screen('Preference', 'SkipSyncTests', 2);
         Screen('Preference', 'Verbosity', 0);
-        Screen('Preference', 'SuppressAllWarnings', 1); 
+        Screen('Preference', 'SuppressAllWarnings', 1);
 
         fprintf('\n\n\n\n');
         fprintf('########################################\n');
