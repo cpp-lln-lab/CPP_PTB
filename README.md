@@ -184,7 +184,7 @@ Requires number of triggers to wait for.
 
 ### Experiment template [ WIP ]
 
-### `devSandbox.m` stand-alone
+### devSandbox (stand-alone)
 
 This script is a stand-alone function that can be useful as a sandbox to develop the PTB audio/visual stimulation of your experiment. No input/output required.
 
