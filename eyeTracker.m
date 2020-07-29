@@ -1,6 +1,6 @@
 function [el, edfFile] = eyeTracker(input, cfg, varargin)
 
-    if ~cfg.eyeTracker
+    if ~cfg.eyeTracker.do
 
         el = [];
 

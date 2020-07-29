@@ -28,7 +28,7 @@ function waitForTrigger(cfg, deviceNumber)
         msg = 'Waiting for trigger';
         talkToMe(cfg, msg);
 
-        while triggerCounter < cfg.numTriggers
+        while triggerCounter < cfg.triggerNb
 
             keyCode = []; %#ok<NASGU>
 
@@ -42,7 +42,7 @@ function waitForTrigger(cfg, deviceNumber)
                 talkToMe(cfg, msg);
 
                 % we only wait if this is not the last trigger
-                if triggerCounter < cfg.numTriggers
+                if triggerCounter < cfg.triggerNb
                     pauseBetweenTriggers(cfg);
                 end
 
@@ -55,12 +55,12 @@ function talkToMe(cfg, msg)
 
     fprintf([msg, ' \n']);
 
-    if isfield(cfg, 'win')
+    if isfield(cfg, 'screen') && isfield(cfg.screen, 'win')
 
-        DrawFormattedText(cfg.win, msg, ...
+        DrawFormattedText(cfg.screen.win, msg, ...
             'center', 'center', cfg.text.color);
 
-        Screen('Flip', cfg.win);
+        Screen('Flip', cfg.screen.win);
 
     end
 
@@ -71,8 +71,8 @@ function pauseBetweenTriggers(cfg)
     % catch several triggers in one go.
 
     waitTime = 0.5;
-    if ~isempty(cfg.bids.MRI.repetitionTime)
-        waitTime = cfg.bids.MRI.repetitionTime / 2;
+    if ~isempty(cfg.mri.repetitionTime)
+        waitTime = cfg.mri.repetitionTime / 2;
     end
 
     WaitSecs(waitTime);
