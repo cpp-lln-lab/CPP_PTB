@@ -59,15 +59,15 @@ function [cfg] = initPTB(cfg)
     % monitor width
     % This assumes that the window fills the whole screen
     cfg.screen.FOV = computeFOV(cfg);
-    cfg.screen.ppd = cfg.winRect(3) / cfg.FOV;
+    cfg.screen.ppd = cfg.screen.winRect(3) / cfg.screen.FOV;
 
     %% Select specific text font, style and size
     initText(cfg);
 
     %% Timing
     % Query frame duration
-    cfg.screen.ifi = Screen('GetFlipInterval', cfg.win);
-    cfg.screen.monRefresh = 1 / cfg.ifi;
+    cfg.screen.ifi = Screen('GetFlipInterval', cfg.screen.win);
+    cfg.screen.monitorRefresh = 1 / cfg.screen.ifi;
 
     % Set priority for script execution to realtime priority:
     Priority(MaxPriority(cfg.screen.win));
