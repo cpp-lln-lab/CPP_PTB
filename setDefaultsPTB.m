@@ -1,5 +1,8 @@
 function cfg = setDefaultsPTB(cfg)
-
+    % cfg = setDefaultsPTB(cfg)
+    %  
+    % Set some defaults values if none have been set before.
+    
     if nargin < 1
         cfg = struct;
     end
@@ -13,21 +16,21 @@ function cfg = setDefaultsPTB(cfg)
     fieldsToSet.keyboard.responseKey = {};
     fieldsToSet.keyboard.escapeKey = 'ESCAPE';
 
-    fieldsToSet.debug = true;
-    fieldsToSet.testingTranspScreen = true;
-    fieldsToSet.testingSmallScreen = true;
+    fieldsToSet.debug.do = true;
+    fieldsToSet.debug.transpWin = true;
+    fieldsToSet.debug.smallWin = true;
 
-    fieldsToSet.backgroundColor = [0 0 0];
+    fieldsToSet.color.background = [0 0 0];
 
     % text defaults
     fieldsToSet.text.font = 'Courier New';
     fieldsToSet.text.size = 18;
     fieldsToSet.text.style = 1;
 
-    fieldsToSet.monitorWidth = 42;
-    fieldsToSet.screenDistance = 134;
+    fieldsToSet.screen.monitorWidth = 42;
+    fieldsToSet.screen.monitorDistance = 134;
 
-    if isfield(cfg, 'initAudio') && cfg.initAudio
+    if isfield(cfg, 'audio') && cfg.audio.do
 
         fieldsToSet.audio.fs = 44800;
         fieldsToSet.audio.channels = 2;
@@ -47,7 +50,7 @@ function cfg = setDefaultsPTB(cfg)
     end
 
     if isfield(cfg, 'testingDevice') && strcmpi(cfg.testingDevice, 'mri')
-        fieldsToSet.bids.MRI.RepetitionTime = [];
+        fieldsToSet.bids.mri.RepetitionTime = [];
     end
 
     cfg = setDefaults(cfg, fieldsToSet);
@@ -58,19 +61,35 @@ function cfg = setDefaultsPTB(cfg)
 end
 
 function structure = setDefaults(structure, fieldsToSet)
-    % loop through the defaults fiels to set and update if they don't exist
+    % structure = setDefaultFields(structure, fieldsToSet)
+    %
+    % recursively loop through the fields of a structure and sets a value if they don't exist
+    %
+
+    fieldsToSet = orderfields(fieldsToSet);
 
     names = fieldnames(fieldsToSet);
 
     for i = 1:numel(names)
 
         thisField = fieldsToSet.(names{i});
-        structure = setFieldToIfNotPresent( ...
-            structure, ...
-            names{i}, ...
-            thisField);
+
+        if isfield(structure, names{i}) && isstruct(structure.(names{i}))
+
+            structure.(names{i}) = ...
+                setDefaultFields(structure.(names{i}), fieldsToSet.(names{i}));
+
+        else
+
+            structure = setFieldToIfNotPresent( ...
+                structure, ...
+                names{i}, ...
+                thisField);
+        end
 
     end
+
+    structure = orderfields(structure);
 
 end
 

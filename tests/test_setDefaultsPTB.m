@@ -1,56 +1,101 @@
-%% test basic cfg creation
+function test_setDefaultsPTB()
+    
+    %% test basic cfg creation
+    
+    % test data
+    expectedCFG = returnExpectedCFG();
+    
+    % test
+    cfg = setDefaultsPTB;
+    testSubFields(expectedCFG, cfg)
+    
+    %% test that values are not overwritten
+    
+    clear cfg
+    
+    % test data
+    expectedCFG = returnExpectedCFG();
+    expectedCFG.screen.monitorWidth = 36;
+    
+    % set up
+    cfg.screen.monitorWidth = 36;
+    
+    % test
+    cfg = setDefaultsPTB(cfg);
+    testSubFields(expectedCFG, cfg)
+    
+    %% test with audio init
+    
+    clear cfg
+    
+    % test data
+    expectedCFG = returnExpectedCFG();
+    expectedCFG.audio = struct( ...
+        'do', true, ...
+        'fs', 44800, ...
+        'channels', 2, ...
+        'initVolume', 1, ...
+        'requestedLatency', 3, ...
+        'repeat', 1, ...
+        'startCue', 0, ...
+        'waitForDevice', 1);
+    
+    % set up
+    cfg.audio.do = 1;
+    
+    % test
+    cfg = setDefaultsPTB(cfg);
+    testSubFields(expectedCFG, cfg)
+    
+    
+end
 
-% set up
-cfgToTest =  struct( ...
-    'testingDevice', 'pc', ...
-    'debug',  true, ...
-    'testingTranspScreen',  true, ...
-    'testingSmallScreen',  true, ...
-    'backgroundColor',  [0 0 0], ...
-    'text', struct('font', 'Courier New', 'size', 18, 'style', 1),  ...
-    'monitorWidth', 42, ...
-    'screenDistance', 134);
 
-cfgToTest.keyboard.keyboard = [];
-cfgToTest.keyboard.responseBox = [];
-cfgToTest.keyboard.responseKey = {};
-cfgToTest.keyboard.escapeKey = 'ESCAPE';
+function expectedCFG = returnExpectedCFG()
+    
+    expectedCFG =  struct( ...
+        'testingDevice', 'pc', ...
+        'debug',  struct('do', true, 'transpWin',  true, 'smallWin',  true), ...
+        'color',  struct( ...
+        'background', [0 0 0]), ...
+        'text', struct('font', 'Courier New', 'size', 18, 'style', 1),  ...
+        'screen', struct( ...
+        'monitorWidth', 42, ...
+        'monitorDistance', 134));
+    
+    expectedCFG.keyboard.keyboard = [];
+    expectedCFG.keyboard.responseBox = [];
+    expectedCFG.keyboard.responseKey = {};
+    expectedCFG.keyboard.escapeKey = 'ESCAPE';
+    
+end
 
-cfgToTest = orderfields(cfgToTest);
+function testSubFields(expectedStructure, cfg)
+    % check that that the structures match
+    % if it fails it check from which subfield the error comes from
 
-% test
-cfg = setDefaultsPTB;
-assert(isequal(cfg, cfgToTest));
+    try
 
-%% test that values are not overwritten
-clear cfg;
-cfg = struct('monitorWidth', 36);
+        assert(isequal(expectedStructure, cfg));
 
-cfgToTest.monitorWidth = 36;
+    catch ME
 
-cfg = setDefaultsPTB(cfg);
-assert(isequal(cfg, cfgToTest));
+        if isstruct(expectedStructure)
 
-cfgToTest.monitorWidth = 42;
+            names = fieldnames(expectedStructure);
 
-%% test with audio init
+            for i = 1:numel(names)
 
-% set up
-cfgToTest.initAudio = 1;
-cfgToTest.audio = struct( ...
-    'fs', 44800, ...
-    'channels', 2, ...
-    'initVolume', 1, ...
-    'requestedLatency', 3, ...
-    'repeat', 1, ...
-    'startCue', 0, ...
-    'waitForDevice', 1);
+                disp(names{i});
+                testSubFields(expectedStructure.(names{i}), cfg.(names{i}));
 
-cfgToTest = orderfields(cfgToTest);
+            end
 
-clear cfg;
-cfg.initAudio = 1;
+        end
 
-% test
-cfg = setDefaultsPTB(cfg);
-assert(isequal(cfg, cfgToTest));
+        expectedStructure;
+        cfg;
+
+        rethrow(ME);
+    end
+end
