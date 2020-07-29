@@ -1,8 +1,8 @@
 function cfg = setDefaultsPTB(cfg)
     % cfg = setDefaultsPTB(cfg)
-    %  
+    %
     % Set some defaults values if none have been set before.
-    
+
     if nargin < 1
         cfg = struct;
     end

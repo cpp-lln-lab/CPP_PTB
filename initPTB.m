@@ -18,7 +18,7 @@ function [cfg] = initPTB(cfg)
     %
 
     checkPtbVersion();
-    
+
     pth = fileparts(mfilename('fullpath'));
     addpath(fullfile(pth, 'subfun'));
 
@@ -76,7 +76,6 @@ function [cfg] = initPTB(cfg)
     KbCheck;
     WaitSecs(0.1);
     GetSecs;
-
 
 end
 
@@ -167,10 +166,12 @@ end
 function cfg = openWindow(cfg)
 
     if cfg.debug.smallWin
-        [cfg.screen.win, cfg.screen.winRect] = Screen('OpenWindow', cfg.screen.idx, cfg.color.background, ...
+        [cfg.screen.win, cfg.screen.winRect] = ...
+            Screen('OpenWindow', cfg.screen.idx, cfg.color.background, ...
             [0, 0, 480, 270]);
     else
-        [cfg.screen.win, cfg.screen.winRect] = Screen('OpenWindow', cfg.screen.idx, cfg.color.background);
+        [cfg.screen.win, cfg.screen.winRect] = ...
+            Screen('OpenWindow', cfg.screen.idx, cfg.color.background);
     end
 
     % Enable alpha-blending, set it to a blend equation useable for linear
