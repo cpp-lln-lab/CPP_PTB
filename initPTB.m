@@ -182,8 +182,8 @@ end
 
 function initText(cfg)
 
-    Screen('TextFont', cfg.win, cfg.text.font);
-    Screen('TextSize', cfg.win, cfg.text.size);
-    Screen('TextStyle', cfg.win, cfg.text.style);
+    Screen('TextFont', cfg.screen.win, cfg.text.font);
+    Screen('TextSize', cfg.screen.win, cfg.text.size);
+    Screen('TextStyle', cfg.screen.win, cfg.text.style);
 
 end
