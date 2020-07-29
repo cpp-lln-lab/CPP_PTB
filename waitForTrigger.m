@@ -28,13 +28,13 @@ function waitForTrigger(cfg, deviceNumber)
         msg = 'Waiting for trigger';
         talkToMe(cfg, msg);
 
-        while triggerCounter < cfg.triggerNb
+        while triggerCounter < cfg.mri.triggerNb
 
             keyCode = []; %#ok<NASGU>
 
             [~, keyCode] = KbPressWait(deviceNumber);
 
-            if strcmp(KbName(keyCode), cfg.triggerKey)
+            if strcmp(KbName(keyCode), cfg.mri.triggerKey)
 
                 triggerCounter = triggerCounter + 1 ;
 
@@ -42,7 +42,7 @@ function waitForTrigger(cfg, deviceNumber)
                 talkToMe(cfg, msg);
 
                 % we only wait if this is not the last trigger
-                if triggerCounter < cfg.triggerNb
+                if triggerCounter < cfg.mri.triggerNb
                     pauseBetweenTriggers(cfg);
                 end
 
@@ -71,7 +71,7 @@ function pauseBetweenTriggers(cfg)
     % catch several triggers in one go.
 
     waitTime = 0.5;
-    if ~isempty(cfg.mri.repetitionTime)
+    if isfield(cfg, 'mri') && isfield(cfg.mri, 'repetitionTime') && ~isempty(cfg.mri.repetitionTime)
         waitTime = cfg.mri.repetitionTime / 2;
     end
 

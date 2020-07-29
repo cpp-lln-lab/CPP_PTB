@@ -2,7 +2,7 @@ function [cfg] = initPTB(cfg)
     % This will initialize PsychToolBox
     % - screen
     % - the windon opened takes the whole screen unless
-    % cfg.testingSmallScreen is set to true
+    % cfg.screen.smallWin is set to true
     % - debug mode : skips synch test and warnings
     % - window transparency enabled by cfg.testingTranspScreen set to true
     % - gets the flip interval

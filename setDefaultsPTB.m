@@ -77,7 +77,7 @@ function structure = setDefaults(structure, fieldsToSet)
         if isfield(structure, names{i}) && isstruct(structure.(names{i}))
 
             structure.(names{i}) = ...
-                setDefaultFields(structure.(names{i}), fieldsToSet.(names{i}));
+                setDefaults(structure.(names{i}), fieldsToSet.(names{i}));
 
         else
 
