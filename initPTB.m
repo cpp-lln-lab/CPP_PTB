@@ -1,4 +1,6 @@
 function [cfg] = initPTB(cfg)
+    % [cfg] = initPTB(cfg)
+    %
     % This will initialize PsychToolBox
     % - screen
     % - the windon opened takes the whole screen unless
@@ -13,7 +15,8 @@ function [cfg] = initPTB(cfg)
     % - hides cursor
     % - sound
     %
-    % OUTPUT:
+    % See the Readme for more details on the content of cfg
+    %
     %
     %
 

@@ -1,4 +1,6 @@
-function cleanUp
+function cleanUp()
+    % cleanUp()
+    %
     % A wrapper function to close all windows, ports, show mouse cursor, close keyboard queues
     % and give access back to the keyboards.
 

@@ -1,4 +1,6 @@
 function responseEvents = getResponse(action, deviceNumber, cfg, getOnlyPress)
+    % responseEvents = getResponse(action, deviceNumber, cfg, getOnlyPress)
+    %
     % Wrapper function to use KbQueue
     %
     % The queue will be listening to key presses on a keyboard device:
