@@ -23,13 +23,8 @@ function devSandbox
     % Init the structure that will contain PTB setup
     cfg = struct;
 
-    % Set some colors to be choosen as background
-    cfg.white = [255 255 255];
-    cfg.black = [0   0   0];
-    cfg.grey  = mean([cfg.black; cfg.white]);
-
     % Set the PTB window background manually
-    cfg.backgroundColor = cfg.grey;
+    cfg.color.background = [127 127 27];
 
     % Init PTB, see the Sub-Functions below
     cfg = devSandbox_initPTB(cfg);
@@ -40,7 +35,7 @@ function devSandbox
     % -------------------------------------------------------------------------
 
     % Define black and white
-    white = WhiteIndex(cfg.screen);
+    white = WhiteIndex(cfg.screen.idx);
     grey = white / 2;
     inc = white - grey;
 
@@ -95,7 +90,7 @@ function devSandbox
         mask(:, :, 2) = grating .* contrast;
 
         % Make our grating mask texture
-        gratingMaskTex = Screen('MakeTexture', cfg.win, mask);
+        gratingMaskTex = Screen('MakeTexture', cfg.screen.win, mask);
 
         % Make a black and white noise mask half the size of our grating. This will
         % be scaled upon drawing to make a "chunky" noise texture which our grating
@@ -104,15 +99,15 @@ function devSandbox
         noise = rand(round(visibleSize / 2)) .* white;
 
         % Make our noise texture
-        noiseTexture = Screen('MakeTexture', cfg.win, noise);
+        noiseTexture = Screen('MakeTexture', cfg.screen.win, noise);
 
         % Make a destination rectangle for our textures and center this on the
         % screen
         dstRect = [0 0 visibleSize visibleSize];
-        dstRect = CenterRect(dstRect, cfg.winRect);
+        dstRect = CenterRect(dstRect, cfg.screen.winRect);
 
         % Calculate the wait duration
-        waitDuration = waitframes * cfg.ifi;
+        waitDuration = waitframes * cfg.screen.ifi;
 
         % Recompute pixPerCycle, this time without the ceil() operation from above.
         % Otherwise we will get wrong drift speed due to rounding errors
@@ -123,7 +118,7 @@ function devSandbox
         shiftPerFrame = cyclesPerSecond * pixPerCycle * waitDuration;
 
         % Sync us to the vertical retrace
-        vbl = Screen('Flip', cfg.win);
+        vbl = Screen('Flip', cfg.screen.win);
 
         % Set the frame counter to zero, we need this to 'drift' our grating
         frameCounter = 0;
@@ -142,13 +137,13 @@ function devSandbox
             srcRect = [xoffset 0 xoffset + visibleSize visibleSize];
 
             % Draw noise texture to the screen
-            Screen('DrawTexture', cfg.win, noiseTexture, [], dstRect, []);
+            Screen('DrawTexture', cfg.screen.win, noiseTexture, [], dstRect, []);
 
             % Draw grating mask
-            Screen('DrawTexture', cfg.win, gratingMaskTex, srcRect, dstRect, []);
+            Screen('DrawTexture', cfg.screen.win, gratingMaskTex, srcRect, dstRect, []);
 
             % Flip to the screen on the next vertical retrace
-            vbl = Screen('Flip', cfg.win, vbl + (waitframes - 0.5) * cfg.ifi);
+            vbl = Screen('Flip', cfg.screen.win, vbl + (waitframes - 0.5) * cfg.screen.ifi);
 
         end
 
@@ -182,22 +177,19 @@ function cfg = devSandbox_initPTB(cfg)
     PsychDefaultSetup(2);
 
     % Get the screen numbers and draw to the external screen if avaliable
-    cfg.screen = max(Screen('Screens'));
+    cfg.screen.idx = max(Screen('Screens'));
 
     % Open an on screen window
-    [cfg.win, cfg.winRect] = Screen('OpenWindow', cfg.screen, cfg.backgroundColor);
+    [cfg.screen.win, cfg.screen.winRect] = Screen('OpenWindow', cfg.screen.idx, cfg.color.background);
 
     % Get the size of the on screen window
-    [cfg.winWidth, cfg.winHeight] = WindowSize(cfg.win);
+    [cfg.screen.winWidth, cfg.screen.winHeight] = WindowSize(cfg.screen.win);
 
     % Query the frame duration
-    cfg.ifi = Screen('GetFlipInterval', cfg.win);
-
-    % Get the Center of the Screen
-    cfg.center = [cfg.winRect(3), cfg.winRect(4)] / 2;
+    cfg.screen.ifi = Screen('GetFlipInterval', cfg.screen.win);
 
     % Set up alpha-blending for smooth (anti-aliased) lines
-    Screen('BlendFunction', cfg.win, 'GL_SRC_ALPHA', 'GL_ONE_MINUS_SRC_ALPHA');
+    Screen('BlendFunction', cfg.screen.win, 'GL_SRC_ALPHA', 'GL_ONE_MINUS_SRC_ALPHA');
 
 end
 

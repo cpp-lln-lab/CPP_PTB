@@ -98,9 +98,66 @@ press the keys necessary to start or abort the experiment.
 
 Using empty vectors (ie `[]`) or a negative value for those means that you will let PTB find and use the default device.
 
-## Structure and function details
+## Structure
 
-<!-- ### setParameters -->
+```matlab
+
+cfg.testingDevice = 'pc';
+
+% cfg.color
+cfg.keyboard.keyboard = [];
+cfg.keyboard.responseBox = [];
+cfg.keyboard.responseKey = {};
+cfg.keyboard.escapeKey = 'ESCAPE';
+
+% cfg.debug
+cfg.debug.do = true;
+cfg.debug.transpWin = true;
+cfg.debug.smallWin = true;
+
+% cfg.text
+cfg.text.font 
+cfg.text.size 
+cfg.text.style 
+
+% cfg.color
+cfg.color.background
+
+% cfg.screen
+cfg.screen.monitorWidth
+cfg.screen.monitorDistance
+cfg.screen.idx
+cfg.screen.win 
+cfg.screen.winRect 
+cfg.screen.winWidth 
+cfg.screen.winHeight 
+cfg.screen.center 
+cfg.screen.FOV
+cfg.screen.ppd 
+cfg.screen.ifi 
+cfg.screen.monRefresh 
+
+% cfg.audio
+cfg.audio.do
+cfg.audio.pahandle
+cfg.audio.devIdx
+cfg.audio.playbackMode
+cfg.audio.requestedLatency
+cfg.audio.fs
+cfg.audio.channels
+cfg.audio.initVolume
+cfg.audio.pushSize  
+cfg.audio.requestOffsetTime 
+cfg.audio.reqsSampleOffset
+
+% cfg.mri
+cfg.mri.repetitionTime
+cfg.mri.triggerNb
+cfg.mri.triggerKey
+```
+
+## function details
+
 
 ### initPTB
 

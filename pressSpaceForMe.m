@@ -1,5 +1,8 @@
-function pressSpaceForMe
+function pressSpaceForMe()
+    % pressSpaceForMe()
+    %
     % Use that to stop your script and only restart when the space bar is pressed.
+    %
 
     fprintf('\nPress space to continue.\n');
 
