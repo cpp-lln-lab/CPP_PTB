@@ -1,4 +1,4 @@
-function [el, edfFile] = eyeTracker(input, cfg, expParameters, varargin)
+function [el, edfFile] = eyeTracker(input, cfg, varargin)
 
     if ~cfg.eyeTracker
 
@@ -188,7 +188,7 @@ function [el, edfFile] = eyeTracker(input, cfg, expParameters, varargin)
 
             case 'Shutdown'
 
-                edfFileName = expParameters.fileName.eyetracker;
+                edfFileName = cfg.fileName.eyetracker;
                 edfFile = 'demo.edf';
 
                 % STEP 6
@@ -203,14 +203,14 @@ function [el, edfFile] = eyeTracker(input, cfg, expParameters, varargin)
                 try
                     fprintf('Receiving data file ''%s''\n', edfFileName);
                     status = Eyelink('ReceiveFile', '', ...
-                        [expParameters.outputDir, filesep, 'eyetracker', filesep, edfFileName]);
+                        [cfg.outputDir, filesep, 'eyetracker', filesep, edfFileName]);
                     if status > 0
                         fprintf('ReceiveFile status %d\n', status);
                     end
-                    if 2 == exist([expParameters.outputDir, filesep, 'eyetracker', ...
+                    if 2 == exist([cfg.outputDir, filesep, 'eyetracker', ...
                             filesep, edfFileName], 'file')
                         fprintf('Data file ''%s'' can be found in ''%s''\n', edfFileName, ...
-                            [expParameters.outputDir, filesep, 'eyetracker', filesep]);
+                            [cfg.outputDir, filesep, 'eyetracker', filesep]);
                     end
                 catch
                     fprintf('Problem receiving data file ''%s''\n', edfFileName);
@@ -226,16 +226,16 @@ end
 
 %% subfunctions for iView
 
-function ivx = eyeTrackInit(expParameters)
+function ivx = eyeTrackInit(cfg)
     % initialize iView eye tracker
 
     ivx = [];
 
     if cfg.eyeTracker
 
-        host = expParameters.Eyetracker.Host;
-        port = expParameters.Eyetracker.Port;
-        window = expParameters.Eyetracker.Window;
+        host = cfg.eyetracker.Host;
+        port = cfg.eyetracker.Port;
+        window = cfg.eyetracker.Window;
 
         % original: ivx=iviewxinitdefaults(window, 9 , host, port);
         ivx = iviewxinitdefaults2(window, 9, [], host, port);
@@ -248,7 +248,7 @@ function ivx = eyeTrackInit(expParameters)
     end
 end
 
-function eyeTrackStart(ivx, expParameters)
+function eyeTrackStart(ivx, cfg)
     % start iView eye tracker
     if cfg.eyeTracker
         % to clear data buffer
@@ -258,15 +258,15 @@ function eyeTrackStart(ivx, expParameters)
         iViewX('message', ivx, ...
             [ ...
             'Start_Ret_', ...
-            'Subj_', expParameters.Subj, '_', ...
-            'Run', num2str(expParameters.Session(end)),  '_', ...
-            expParameters.Apperture, '_', ...
-            expParameters.Direction]);
+            'Subj_', cfg.Subj, '_', ...
+            'Run', num2str(cfg.Session(end)),  '_', ...
+            cfg.Apperture, '_', ...
+            cfg.Direction]);
         iViewX('incrementsetnumber', ivx, 0);
     end
 end
 
-function eyeTrackStop(ivx, expParameters)
+function eyeTrackStop(ivx, cfg)
     % stop iView eye tracker
 
     if cfg.eyeTracker
@@ -277,10 +277,10 @@ function eyeTrackStop(ivx, expParameters)
         % save data file
         thedatestr = datestr(now, 'yyyy-mm-dd_HH.MM');
         strFile = fullfile(OutputDir, ...
-            [expParameters.Subj, ...
-            '_run', num2str(expParameters.Session(end)), '_', ...
-            expParameters.Apperture, '_', ...
-            expParameters.Direction, '_', ...
+            [cfg.Subj, ...
+            '_run', num2str(cfg.Session(end)), '_', ...
+            cfg.Apperture, '_', ...
+            cfg.Direction, '_', ...
             thedatestr, '.idf"']);
         iViewX('datafile', ivx, strFile);
 

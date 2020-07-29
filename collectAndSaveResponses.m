@@ -1,4 +1,4 @@
-function responseEvents = collectAndSaveResponses(cfg, expParameters, logFile, experimentStart)
+function responseEvents = collectAndSaveResponses(cfg, logFile, experimentStart)
 
     responseEvents = getResponse('check', cfg.keyboard.responseBox, cfg);
 
@@ -11,7 +11,7 @@ function responseEvents = collectAndSaveResponses(cfg, expParameters, logFile, e
 
         responseEvents.fileID = logFile.fileID;
         responseEvents.extraColumns = logFile.extraColumns;
-        saveEventsFile('save', expParameters, responseEvents);
+        saveEventsFile('save', cfg, responseEvents);
 
     end
 end
