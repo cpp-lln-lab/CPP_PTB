@@ -1,4 +1,4 @@
-function [dots] = initializeDots(cfg, thisEvent)
+function [dots] = initDots(cfg, thisEvent)
 
     direction = thisEvent.direction(1);
 
@@ -12,8 +12,8 @@ function [dots] = initializeDots(cfg, thisEvent)
     % for static dots
     if direction == -1
         speedPixPerFrame = 0;
-        dots.lifeTime = cfg.eventDuration;
-        dots.isSignal = ones(cfg.dot.number, 1);
+        dots.lifeTime = Inf;
+        dots.isSignal = true(cfg.dot.number, 1);
     end
 
     % Convert from seconds to frames
@@ -33,17 +33,20 @@ function [dots] = initializeDots(cfg, thisEvent)
     dots.speeds(dots.isSignal, :) = ...
         repmat([horVector, vertVector], sum(dots.isSignal), 1);
 
-    % If not 100% coherence, we get new random direction for the other dots
-    direction = rand(sum(~dots.isSignal), 1) * 360;
-    [horVector, vertVector] = decompMotion(direction);
-    dots.speeds(~dots.isSignal, :) = [horVector, vertVector];
+    % Random direction for the non coherent dots
+    if any(~dots.isSignal)
+        randomDirection = rand(sum(~dots.isSignal), 1) * 360;
+        [horVector, vertVector] = decompMotion(randomDirection);
+        dots.speeds(~dots.isSignal, :) = [horVector, vertVector];
+    end
 
     % So far we were working wiht unit vectors convert that speed in pixels per
     % frame
     dots.speeds = dots.speeds * speedPixPerFrame;
 
     % Create a vector to update to dotlife time of each dot
-    % Not all set to one so the dots will die at different times
+    % Not all set to 1 so the dots will die at different times
+    % The maximum value is the duraion of the event in frames
     dots.time = floor(rand(cfg.dot.number, 1) * cfg.eventDuration / cfg.screen.ifi);
 
 end
