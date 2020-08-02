@@ -29,7 +29,15 @@ function cfg = setDefaultsPTB(cfg)
 
     fieldsToSet.screen.monitorWidth = 42;
     fieldsToSet.screen.monitorDistance = 134;
-
+    
+    % fixation cross or dot
+    fieldsToSet.fixation.type = 'cross';
+    fieldsToSet.fixation.xDisplacement = 0; 
+    fieldsToSet.fixation.yDisplacement = 0;    
+    fieldsToSet.fixation.color = [255 255 255];
+    fieldsToSet.fixation.width = 1;
+    fieldsToSet.fixation.lineWidthPix = 5;
+    
     if isfield(cfg, 'audio') && cfg.audio.do
 
         fieldsToSet.audio.fs = 44800;
