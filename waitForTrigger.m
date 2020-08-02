@@ -27,7 +27,7 @@ function waitForTrigger(cfg, deviceNumber)
 
     if strcmpi(cfg.testingDevice, 'mri')
 
-        msg = 'Waiting for trigger';
+        msg = 'Waiting for trigger...';
         talkToMe(cfg, msg);
 
         while triggerCounter < cfg.mri.triggerNb

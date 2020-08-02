@@ -59,7 +59,10 @@ function [cfg] = initPTB(cfg)
     % monitor width
     % This assumes that the window fills the whole screen
     cfg.screen.FOV = computeFOV(cfg);
-    cfg.screen.ppd = cfg.screen.winRect(3) / cfg.screen.FOV;
+    cfg.screen.ppd = cfg.screen.winWidth / cfg.screen.FOV;
+
+    % Initialize visual parmaters for fixation cross or dot
+    cfg = initFixation(cfg);
 
     %% Select specific text font, style and size
     initText(cfg);
@@ -179,6 +182,7 @@ function cfg = openWindow(cfg)
 
     % Enable alpha-blending, set it to a blend equation useable for linear
     % superposition with alpha-weighted source.
+    % Required for drwing smooth lines and screen('DrawDots')
     Screen('BlendFunction', cfg.screen.win, GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 end
