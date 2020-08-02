@@ -61,6 +61,18 @@ function expectedCFG = returnExpectedCFG()
         'monitorWidth', 42, ...
         'monitorDistance', 134));
 
+
+    % fixation cross or dot
+    expectedCFG.fixation.type = 'cross';
+    expectedCFG.fixation.xDisplacement = 0;
+    expectedCFG.fixation.yDisplacement = 0;
+    expectedCFG.fixation.color = [255 255 255];
+    expectedCFG.fixation.width = 1;
+    expectedCFG.fixation.lineWidthPix = 5;
+
+    % define visual apperture field
+    expectedCFG.aperture.type = 'none';
+
     expectedCFG.keyboard.keyboard = [];
     expectedCFG.keyboard.responseBox = [];
     expectedCFG.keyboard.responseKey = {};
