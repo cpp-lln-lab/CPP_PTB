@@ -38,6 +38,9 @@ function cfg = setDefaultsPTB(cfg)
     fieldsToSet.fixation.width = 1;
     fieldsToSet.fixation.lineWidthPix = 5;
     
+    % define visual apperture field
+    fieldsToSet.aperture.type = 'none';
+
     if isfield(cfg, 'audio') && cfg.audio.do
 
         fieldsToSet.audio.fs = 44800;
