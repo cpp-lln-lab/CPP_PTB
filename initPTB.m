@@ -59,7 +59,7 @@ function [cfg] = initPTB(cfg)
     % monitor width
     % This assumes that the window fills the whole screen
     cfg.screen.FOV = computeFOV(cfg);
-    cfg.screen.ppd = cfg.screen.winRect(3) / cfg.screen.FOV;
+    cfg.screen.ppd = cfg.screen.winWidth / cfg.screen.FOV;
 
     % Initialize visual parmaters for fixation cross or dot
     cfg = initFixation(cfg);
@@ -182,25 +182,8 @@ function cfg = openWindow(cfg)
 
     % Enable alpha-blending, set it to a blend equation useable for linear
     % superposition with alpha-weighted source.
+    % Required for drwing smooth lines and screen('DrawDots')
     Screen('BlendFunction', cfg.screen.win, GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-end
-
-function cfg = initFixation(cfg)
-
-    if strcmp(cfg.fixation.type, 'cross')
-
-        % Convert some values from degrees to pixels
-        cfg.fixation = degToPix('width', cfg.fixation, cfg);
-
-        % Prepare fixation cross
-        cfg.fixation.xCoords = [-cfg.fixation.widthPix cfg.fixation.widthPix 0 0] + ...
-            cfg.fixation.xDisplacement;
-        cfg.fixation.yCoords = [0 0 -cfg.fixation.widthPix cfg.fixation.widthPix] + ...
-            cfg.fixation.yDisplacement;
-        cfg.fixation.allCoords = [cfg.fixation.xCoords; cfg.fixation.yCoords];
-
-    end
 
 end
 

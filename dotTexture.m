@@ -7,6 +7,8 @@ function cfg = dotTexture(action, cfg, thisEvent)
                 cfg.color.background(1) * ones(cfg.screen.winRect([4 3])));
 
         case 'make'
+            
+            dotType = 2;
 
             Screen('FillRect', cfg.dot.texture, cfg.color.background);
             Screen('DrawDots', cfg.dot.texture, ...
@@ -14,7 +16,7 @@ function cfg = dotTexture(action, cfg, thisEvent)
                 cfg.dot.sizePix, ...
                 cfg.dot.color, ...
                 cfg.screen.center, ...
-                1);
+                dotType);
 
         case 'draw'
 
