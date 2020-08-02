@@ -9,5 +9,5 @@ function drawFixation(cfg)
             cfg.fixation.color, ...
             [cfg.screen.center(1) cfg.screen.center(2)], 1);
     end
-    
+
 end

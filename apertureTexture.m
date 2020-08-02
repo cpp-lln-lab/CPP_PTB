@@ -1,11 +1,11 @@
 function cfg = apertureTexture(action, cfg, thisEvent)
-    
+
     transparent = [0 0 0 0];
-    
+
     switch action
-        
+
         case 'init'
-            
+
             % we take the screen height as maximum aperture width if not
             % specified.
             if ~isfield(cfg.aperture, 'width') || isempty(cfg.aperture.width)
@@ -15,15 +15,15 @@ function cfg = apertureTexture(action, cfg, thisEvent)
 
             cfg.aperture.texture = Screen('MakeTexture', cfg.screen.win, ...
                 cfg.color.background(1) * ones(cfg.screen.winRect([4 3])));
-            
+
         case 'make'
-            
+
             switch cfg.aperture.type
-                
+
                 case 'none'
-                    
+
                     Screen('Fillrect', cfg.aperture.texture, transparent);
-                      
+
                 case 'circle'
 
                     diameter = cfg.aperture.widthPix;
@@ -33,14 +33,14 @@ function cfg = apertureTexture(action, cfg, thisEvent)
                         cfg.screen.winRect(3) / 2, cfg.screen.winRect(4) / 2));
 
             end
-            
+
         case 'draw'
-            
+
             Screen('DrawTexture', cfg.screen.win, cfg.aperture.texture);
-            
+
             % Screen('DrawTexture', cfg.screen.win, apertureTexture, ...
             % cfg.screen.winRect, cfg.screen.winRect, current.apertureAngle - 90);
-                        
+
     end
 
 end
