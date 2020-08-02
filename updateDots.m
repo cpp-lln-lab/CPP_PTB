@@ -5,9 +5,9 @@ function [dots] = updateDots(dots, cfg)
 
     % Create a logical vector to detect any dot that has:
     % - an xy position inferior to 0
-    % - an x position superior to winWidth
-    % - an x position superior to winHeight
+    % - an xy position superior to winWidth
     % - has exceeded its liftime
+    % - has been been picked to be killed
     N = any([ ...
         dots.positions > cfg.screen.winWidth, ...
         dots.positions < 0, ...
