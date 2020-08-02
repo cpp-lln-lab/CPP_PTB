@@ -5,13 +5,13 @@ function FOV = computeFOV(cfg)
     %
     % δ = 2 arctan ( d / 2D )
     %
-    %  δ is the angular diameter, and d is the actual diameter of the object, 
-    %  and D is the distance to the object. 
-    %  The result obtained is in radians. 
+    %  δ is the angular diameter, and d is the actual diameter of the object,
+    %  and D is the distance to the object.
+    %  The result obtained is in radians.
     %
 
     FOV =  ...
         180 / pi * ...
-        2 * atan( cfg.screen.monitorWidth / (2 * cfg.screen.monitorDistance) );
+        2 * atan(cfg.screen.monitorWidth / (2 * cfg.screen.monitorDistance));
 
 end

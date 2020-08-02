@@ -7,7 +7,7 @@ function cfg = dotTexture(action, cfg, thisEvent)
                 cfg.color.background(1) * ones(cfg.screen.winRect([4 3])));
 
         case 'make'
-            
+
             dotType = 2;
 
             Screen('FillRect', cfg.dot.texture, cfg.color.background);

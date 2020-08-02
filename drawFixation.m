@@ -2,9 +2,9 @@ function drawFixation(cfg)
     % Define the parameters of the fixation cross in `cfg` and `expParameters`
 
     if strcmp(cfg.fixation.type, 'cross')
-        
+
         smooth = 1;
-        
+
         Screen('DrawLines', ...
             cfg.screen.win, ...
             cfg.fixation.allCoords, ...

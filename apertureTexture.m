@@ -27,7 +27,7 @@ function cfg = apertureTexture(action, cfg, thisEvent)
                 case 'circle'
 
                     diameter = cfg.aperture.widthPix;
-                    
+
                     xPos = cfg.screen.center(1);
                     yPos = cfg.screen.center(2);
                     if isfield(cfg.aperture, 'xPosPix')
@@ -40,7 +40,7 @@ function cfg = apertureTexture(action, cfg, thisEvent)
                     Screen('FillOval', cfg.aperture.texture, transparent, ...
                         CenterRectOnPoint([0 0 repmat(diameter, 1, 2)], ...
                         xPos, yPos));
-                        
+
             end
 
         case 'draw'

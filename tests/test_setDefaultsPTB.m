@@ -61,7 +61,6 @@ function expectedCFG = returnExpectedCFG()
         'monitorWidth', 42, ...
         'monitorDistance', 134));
 
-
     % fixation cross or dot
     expectedCFG.fixation.type = 'cross';
     expectedCFG.fixation.xDisplacement = 0;
