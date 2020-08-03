@@ -85,16 +85,16 @@ Remember that updates to submodules need to be committed as well.
 
 So say you want to clone a repo that has some nested submodules, then you would type this to get the content of all the submodules at once (here with my experiment repo):
 ``` bash
-git clone --recurse-submodules https://github.com/Repo-Folder/yourExperiment.git
+git clone --recurse-submodules https://github.com/user_name/yourExperiment.git
 ```
 This would be the way to do it "by hand"
 
 ```bash
 # clone the repo
-git clone https://github.com/Repo-Folder/yourExperiment.git
+git clone https://github.com/user_name/yourExperiment.git
 
 # go into the directory
-cd Repo-Folder/yourExperiment
+cd yourExperiment
 
 # initialize and get the content of the first level of submodules  (CPP_PTB and CPP_BIDS)
 git submodule init
