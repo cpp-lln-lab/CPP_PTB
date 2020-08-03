@@ -40,6 +40,10 @@ function cfg = apertureTexture(action, cfg, thisEvent)
                     Screen('FillOval', cfg.aperture.texture, transparent, ...
                         CenterRectOnPoint([0 0 repmat(diameter, 1, 2)], ...
                         xPos, yPos));
+                    
+                otherwise
+                    
+                    error('unknown aperture type: %s.', cfg.aperture.type);
 
             end
 

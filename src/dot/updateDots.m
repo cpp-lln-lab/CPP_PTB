@@ -9,10 +9,10 @@ function [dots] = updateDots(dots, cfg)
 
         error(errorStruct);
     end
-
-    dots = reseedDots(dots, cfg);
-
+    
     % Add one frame to the dot lifetime to each dot
     dots.time = dots.time + 1;
+
+    dots = reseedDots(dots, cfg);
 
 end
