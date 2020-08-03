@@ -1,36 +1,48 @@
-function test_setDefaultsPTB()
+function test_suite = test_setDefaultsPTB %#ok<*STOUT>
+    try % assignment of 'localfunctions' is necessary in Matlab >= 2016
+        test_functions = localfunctions(); %#ok<*NASGU>
+    catch % no problem; early Matlab versions can use initTestSuite fine
+    end
+    initTestSuite;
+end
 
-    %% test basic cfg creation
-
+function test_setDefaultsPtbBasic()
+    
+    % set up
+    cfg = setDefaultsPTB;
+    
     % test data
-    expectedCFG = returnExpectedCFG();
+    expectedCfg = returnExpectedCFG();
 
     % test
-    cfg = setDefaultsPTB;
-    testSubFields(expectedCFG, cfg);
+    assertEqual(expectedCfg, cfg);
+    
+end
 
-    %% test that values are not overwritten
-
-    clear cfg;
-
-    % test data
-    expectedCFG = returnExpectedCFG();
-    expectedCFG.screen.monitorWidth = 36;
+function test_setDefaultsPtbOverwrite()
 
     % set up
     cfg.screen.monitorWidth = 36;
+    cfg = setDefaultsPTB(cfg);
+    
+    % test data
+    expectedCfg = returnExpectedCFG();
+    expectedCfg.screen.monitorWidth = 36;
 
     % test
+    assertEqual(expectedCfg, cfg);
+    
+end
+
+function test_setDefaultsPtbAudio()
+
+    % set up
+    cfg.audio.do = 1;
     cfg = setDefaultsPTB(cfg);
-    testSubFields(expectedCFG, cfg);
-
-    %% test with audio init
-
-    clear cfg;
-
+    
     % test data
-    expectedCFG = returnExpectedCFG();
-    expectedCFG.audio = struct( ...
+    expectedCfg = returnExpectedCFG();
+    expectedCfg.audio = struct( ...
         'do', true, ...
         'fs', 44800, ...
         'channels', 2, ...
@@ -40,17 +52,13 @@ function test_setDefaultsPTB()
         'startCue', 0, ...
         'waitForDevice', 1);
 
-    % set up
-    cfg.audio.do = 1;
-
     % test
-    cfg = setDefaultsPTB(cfg);
-    testSubFields(expectedCFG, cfg);
-
+    assertEqual(expectedCfg, cfg);
+    
 end
 
 function expectedCFG = returnExpectedCFG()
-
+    
     expectedCFG =  struct( ...
         'testingDevice', 'pc', ...
         'debug',  struct('do', true, 'transpWin',  true, 'smallWin',  true), ...
@@ -60,7 +68,7 @@ function expectedCFG = returnExpectedCFG()
         'screen', struct( ...
         'monitorWidth', 42, ...
         'monitorDistance', 134));
-
+    
     % fixation cross or dot
     expectedCFG.fixation.type = 'cross';
     expectedCFG.fixation.xDisplacement = 0;
@@ -68,43 +76,13 @@ function expectedCFG = returnExpectedCFG()
     expectedCFG.fixation.color = [255 255 255];
     expectedCFG.fixation.width = 1;
     expectedCFG.fixation.lineWidthPix = 5;
-
+    
     % define visual apperture field
     expectedCFG.aperture.type = 'none';
-
+    
     expectedCFG.keyboard.keyboard = [];
     expectedCFG.keyboard.responseBox = [];
     expectedCFG.keyboard.responseKey = {};
     expectedCFG.keyboard.escapeKey = 'ESCAPE';
-
-end
-
-function testSubFields(expectedStructure, cfg)
-    % check that that the structures match
-    % if it fails it check from which subfield the error comes from
-
-    try
-
-        assert(isequal(expectedStructure, cfg));
-
-    catch ME
-
-        if isstruct(expectedStructure)
-
-            names = fieldnames(expectedStructure);
-
-            for i = 1:numel(names)
-
-                disp(names{i});
-                testSubFields(expectedStructure.(names{i}), cfg.(names{i}));
-
-            end
-
-        end
-
-        expectedStructure;
-        cfg;
-
-        rethrow(ME);
-    end
+    
 end
