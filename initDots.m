@@ -1,52 +1,82 @@
 function [dots] = initDots(cfg, thisEvent)
-
+    % [dots] = initDots(cfg, thisEvent)
+    %
+    % % Dot life time in seconds
+    % cfg.dot.lifeTime
+    % % Number of dots
+    % cfg.dot.number
+    % Proportion of coherent dots.
+    % cfg.dot.coherence
+    %
+    % % Direction (an angle in degrees)
+    % thisEvent.direction
+    % % Speed expressed in pixels per frame
+    % thisEvent.speed
+    %
+    %
+    
+    % TODO
+    % bound direction between 0 and 360 ??
+    
     direction = thisEvent.direction(1);
-
-    dots.lifeTime = cfg.dot.lifeTime;
-
+    
     speedPixPerFrame = thisEvent.speed(1);
 
+    lifeTime = cfg.dot.lifeTime;
+
     % decide which dots are signal dots (1) and those are noise dots (0)
-    dots.isSignal = rand(cfg.dot.number, 1) < cfg.dot.coherence;
+    isSignal = rand(cfg.dot.number, 1) < cfg.dot.coherence;
 
     % for static dots
     if direction == -1
         speedPixPerFrame = 0;
-        dots.lifeTime = Inf;
-        dots.isSignal = true(cfg.dot.number, 1);
+        lifeTime = Inf;
+        isSignal = true(cfg.dot.number, 1);
     end
-
-    % Convert from seconds to frames
-    dots.lifeTime = ceil(dots.lifeTime / cfg.screen.ifi);
-
-    % Set an array of dot positions [xposition, yposition]
+    
+    %% Set an array of dot positions [xposition, yposition]
     % These can never be bigger than 1 or lower than 0
     % [0,0] is the top / left of the square
     % [1,1] is the bottom / right of the square
-    dots.positions = rand(cfg.dot.number, 2) * cfg.screen.winWidth;
+    positions = rand(cfg.dot.number, 2) * cfg.screen.winWidth;
 
-    % Set a N x 2 matrix that speed in X and Y
-    dots.speeds = nan(cfg.dot.number, 2);
+    %% Set vertical and horizontal speed for all dots 
+    directionAllDots = setDotDirection(cfg, positions, direction, isSignal);
+    
+    [horVector, vertVector] = decomposeMotion(directionAllDots);
+    speeds = [horVector, vertVector];
+    
+    % we were working with unit vectors. we now switch to pixels
+    speeds = speeds * speedPixPerFrame;
 
-    % Coherent dots
-    [horVector, vertVector] = decompMotion(direction);
-    dots.speeds(dots.isSignal, :) = ...
-        repmat([horVector, vertVector], sum(dots.isSignal), 1);
-
-    % Random direction for the non coherent dots
-    if any(~dots.isSignal)
-        randomDirection = rand(sum(~dots.isSignal), 1) * 360;
-        [horVector, vertVector] = decompMotion(randomDirection);
-        dots.speeds(~dots.isSignal, :) = [horVector, vertVector];
-    end
-
-    % So far we were working wiht unit vectors convert that speed in pixels per
-    % frame
-    dots.speeds = dots.speeds * speedPixPerFrame;
-
-    % Create a vector to update to dotlife time of each dot
+    %% Create a vector to update to dotlife time of each dot
     % Not all set to 1 so the dots will die at different times
     % The maximum value is the duraion of the event in frames
-    dots.time = floor(rand(cfg.dot.number, 1) * cfg.eventDuration / cfg.screen.ifi);
-
+    time = floor(rand(cfg.dot.number, 1) * cfg.eventDuration / cfg.screen.ifi);
+    
+    %% Convert from seconds to frames
+    lifeTime = ceil(lifeTime / cfg.screen.ifi);
+    
+    %%
+    dots.lifeTime = lifeTime;
+    dots.time = time;
+    dots.speeds = speeds;
+    dots.isSignal = isSignal;
+    dots.positions = positions;
 end
+
+function directionAllDots = setDotDirection(cfg, positions, direction, isSignal)
+    
+    directionAllDots = nan(cfg.dot.number, 1);
+    
+    direction = computeRadialMotionDirection(cfg, positions, direction);
+    
+    % Coherent dots
+    directionAllDots(isSignal) = direction;
+    % Random direction for the non coherent dots
+    directionAllDots(~isSignal) = rand(sum(~isSignal), 1) * 360;
+    directionAllDots = rem(directionAllDots,360);
+    
+end
+
+
