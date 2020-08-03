@@ -2,9 +2,9 @@ cd ..;
 
 cfg.testingDevice = 'mri';
 
-cfg.numTriggers = 4;
+cfg.mri.triggerNb = 4;
 
-cfg.triggerKey = 'space';
+cfg.mri.triggerKey = 'space';
 
 KbName('UnifyKeyNames');
 

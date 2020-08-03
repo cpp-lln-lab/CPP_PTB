@@ -1,0 +1,16 @@
+function drawFixation(cfg)
+    % Define the parameters of the fixation cross in `cfg` and `expParameters`
+
+    if strcmp(cfg.fixation.type, 'cross')
+
+        smooth = 1;
+
+        Screen('DrawLines', ...
+            cfg.screen.win, ...
+            cfg.fixation.allCoords, ...
+            cfg.fixation.lineWidthPix, ...
+            cfg.fixation.color, ...
+            [cfg.screen.center(1) cfg.screen.center(2)], smooth);
+    end
+
+end

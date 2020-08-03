@@ -1,8 +1,10 @@
 function [cfg] = initPTB(cfg)
+    % [cfg] = initPTB(cfg)
+    %
     % This will initialize PsychToolBox
     % - screen
     % - the windon opened takes the whole screen unless
-    % cfg.testingSmallScreen is set to true
+    % cfg.screen.smallWin is set to true
     % - debug mode : skips synch test and warnings
     % - window transparency enabled by cfg.testingTranspScreen set to true
     % - gets the flip interval
@@ -13,35 +15,15 @@ function [cfg] = initPTB(cfg)
     % - hides cursor
     % - sound
     %
-    % OUTPUT:
-    % cfg.keyboard = [];
-    % cfg.responseBox = [];
+    % See the Readme for more details on the content of cfg
     %
-    % cfg.debug = true;
-    % cfg.testingTranspScreen = true;
-    % cfg.testingSmallScreen = true;
     %
-    % cfg.screen : screen numbers where drawing the stimulation (external screen if available)
-    % cfg.win : window opened by PTB
-    % cfg.winRect : window rectangule positiona and dimensions in pixel coordinates
-    % cfg.winWidth : window width in pixels
-    % cfg.winHeight : window height in pixels
-    % cfg.center : coordinate of the window center
-    % cfg.ppd : pixels per degree assuming the window fills the whole screen
-    % cfg.ifi : estimate of the monitor flip interval
-    % cfg.monRefresh : monitor refresh rate
-    % cfg.vbl : (I don't think this output is useful)
-    % cfg.textFont = 'Courier New';
-    % cfg.textSize = 18;
-    % cfg.textStyle = 1;
-    % cfg.backgroundColor = [0 0 0];
-    % cfg.monitorWidth = 42;
-    % cfg.screenDistance = 134;
-
-    % TO DO
-    % - We might want to add a couple of IF in case the experiment does not use audio for example.
+    %
 
     checkPtbVersion();
+
+    pth = fileparts(mfilename('fullpath'));
+    addpath(fullfile(pth, 'subfun'));
 
     % For octave: to avoid displaying messenging one screen at a time
     more off;
@@ -63,36 +45,35 @@ function [cfg] = initPTB(cfg)
     %% Visual
 
     % Get the screen numbers and draw to the external screen if avaliable
-    cfg.screen = max(Screen('Screens'));
+    cfg.screen.idx = max(Screen('Screens'));
 
     cfg = openWindow(cfg);
 
     % window size info
-    [cfg.winWidth, cfg.winHeight] = WindowSize(cfg.win);
-
-%     if strcmpi(cfg.stimPosition, 'mri')
-%         cfg.winRect(1, 4) = cfg.winRect(1, 4) * 2 / 3;
-%     end
+    [cfg.screen.winWidth, cfg.screen.winHeight] = WindowSize(cfg.screen.win);
 
     % Get the Center of the Screen
-    cfg.center = [cfg.winRect(3), cfg.winRect(4)] / 2;
+    cfg.screen.center = [cfg.screen.winRect(3), cfg.screen.winRect(4)] / 2;
 
     % Computes the number of pixels per degree given the distance to screen and
     % monitor width
     % This assumes that the window fills the whole screen
-    cfg.FOV = computeFOV(cfg);
-    cfg.ppd = cfg.winRect(3) / cfg.FOV;
+    cfg.screen.FOV = computeFOV(cfg);
+    cfg.screen.ppd = cfg.screen.winWidth / cfg.screen.FOV;
+
+    % Initialize visual parmaters for fixation cross or dot
+    cfg = initFixation(cfg);
 
     %% Select specific text font, style and size
     initText(cfg);
 
     %% Timing
     % Query frame duration
-    cfg.ifi = Screen('GetFlipInterval', cfg.win);
-    cfg.monRefresh = 1 / cfg.ifi;
+    cfg.screen.ifi = Screen('GetFlipInterval', cfg.screen.win);
+    cfg.screen.monitorRefresh = 1 / cfg.screen.ifi;
 
     % Set priority for script execution to realtime priority:
-    Priority(MaxPriority(cfg.win));
+    Priority(MaxPriority(cfg.screen.win));
 
     %% Warm up some functions
     % Do dummy calls to GetSecs, WaitSecs, KbCheck to make sure
@@ -102,21 +83,17 @@ function [cfg] = initPTB(cfg)
     WaitSecs(0.1);
     GetSecs;
 
-    %% Initial flip to get a first time stamp
-    % Initially sync us to VBL at start of animation loop.
-    cfg.vbl = Screen('Flip', cfg.win);
-
 end
 
 function initDebug(cfg)
 
     % init PTB with different options in concordance to the debug Parameters
     Screen('Preference', 'SkipSyncTests', 0);
-    if cfg.debug
+    if cfg.debug.do
 
         Screen('Preference', 'SkipSyncTests', 2);
         Screen('Preference', 'Verbosity', 0);
-        Screen('Preference', 'SuppressAllWarnings', 1); 
+        Screen('Preference', 'SuppressAllWarnings', 1);
 
         fprintf('\n\n\n\n');
         fprintf('########################################\n');
@@ -128,7 +105,7 @@ function initDebug(cfg)
 
     end
 
-    if cfg.testingTranspScreen
+    if cfg.debug.transpWin
         PsychDebugWindowConfiguration;
     end
 
@@ -147,7 +124,7 @@ end
 
 function cfg = initAudio(cfg)
 
-    if cfg.initAudio
+    if cfg.audio.do
 
         InitializePsychSound(1);
 
@@ -194,30 +171,26 @@ end
 
 function cfg = openWindow(cfg)
 
-    if cfg.testingSmallScreen
-        [cfg.win, cfg.winRect] = Screen('OpenWindow', cfg.screen, cfg.backgroundColor, ...
+    if cfg.debug.smallWin
+        [cfg.screen.win, cfg.screen.winRect] = ...
+            Screen('OpenWindow', cfg.screen.idx, cfg.color.background, ...
             [0, 0, 480, 270]);
     else
-        [cfg.win, cfg.winRect] = Screen('OpenWindow', cfg.screen, cfg.backgroundColor);
+        [cfg.screen.win, cfg.screen.winRect] = ...
+            Screen('OpenWindow', cfg.screen.idx, cfg.color.background);
     end
 
     % Enable alpha-blending, set it to a blend equation useable for linear
     % superposition with alpha-weighted source.
-    Screen('BlendFunction', cfg.win, GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-end
-
-function FOV = computeFOV(cfg)
-
-    % computes the number of degrees of visual angle in the whole field of view
-    FOV = 2 * (180 * (atan(cfg.monitorWidth / (2 * cfg.screenDistance)) / pi));
+    % Required for drwing smooth lines and screen('DrawDots')
+    Screen('BlendFunction', cfg.screen.win, GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 end
 
 function initText(cfg)
 
-    Screen('TextFont', cfg.win, cfg.text.font);
-    Screen('TextSize', cfg.win, cfg.text.size);
-    Screen('TextStyle', cfg.win, cfg.text.style);
+    Screen('TextFont', cfg.screen.win, cfg.text.font);
+    Screen('TextSize', cfg.screen.win, cfg.text.size);
+    Screen('TextStyle', cfg.screen.win, cfg.text.style);
 
 end
