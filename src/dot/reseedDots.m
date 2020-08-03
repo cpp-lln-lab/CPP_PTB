@@ -1,5 +1,5 @@
 function dots = reseedDots(dots, cfg)
-    
+
     % Create a logical vector to detect any dot that has:
     % - an xy position inferior to 0
     % - an xy position superior to winWidth
@@ -17,5 +17,5 @@ function dots = reseedDots(dots, cfg)
         dots.positions(N, :) = rand(sum(N), 2) * cfg.screen.winWidth;
         dots.time(N, 1) = 1;
     end
-    
+
 end
