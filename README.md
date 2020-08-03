@@ -73,14 +73,37 @@ cd CPP_PTB
 matlab -nojvm -nosplash -r "addpath(fullfile(pwd))"
 ```
 
-To get the latest commit you then need to update the submodule with the information 
+To get the latest commit you then need to update the submodule with the information
 on its remote repository and then merge those locally.
 ```bash
 git submodule update --remote --merge
 ```
 
-Remember that updates to submodules need to be commited as well. 
+Remember that updates to submodules need to be committed as well.
 
+#### Example for submodule usage
+
+So say you want to clone a repo that has some nested submodules, then you would type this to get the content of all the submodules at once (here with my experiment repo):
+``` bash
+git clone --recurse-submodules https://github.com/user_name/yourExperiment.git
+```
+This would be the way to do it "by hand"
+
+```bash
+# clone the repo
+git clone https://github.com/user_name/yourExperiment.git
+
+# go into the directory
+cd yourExperiment
+
+# initialize and get the content of the first level of submodules  (CPP_PTB and CPP_BIDS)
+git submodule init
+git submodule update
+
+# get the nested submodules JSONio and BIDS-matlab for CPP_BIDS
+git submodule foreach --recursive 'git submodule init'
+git submodule foreach --recursive 'git submodule update'
+```
 **TO DO**
 <!-- Submodules
 pros: in principle, downloading the experiment you have the whole package plus the benefit to stay updated and use version control of this dependency. Can probably handle a use case in which one uses different version on different projects (e.g. older and newer projects).
@@ -146,9 +169,9 @@ cfg.debug.transpWin = true;
 cfg.debug.smallWin = true;
 
 % cfg.text
-cfg.text.font 
-cfg.text.size 
-cfg.text.style 
+cfg.text.font
+cfg.text.size
+cfg.text.style
 
 % cfg.color
 cfg.color.background
@@ -157,15 +180,15 @@ cfg.color.background
 cfg.screen.monitorWidth
 cfg.screen.monitorDistance
 cfg.screen.idx
-cfg.screen.win 
-cfg.screen.winRect 
-cfg.screen.winWidth 
-cfg.screen.winHeight 
-cfg.screen.center 
+cfg.screen.win
+cfg.screen.winRect
+cfg.screen.winWidth
+cfg.screen.winHeight
+cfg.screen.center
 cfg.screen.FOV
-cfg.screen.ppd 
-cfg.screen.ifi 
-cfg.screen.monRefresh 
+cfg.screen.ppd
+cfg.screen.ifi
+cfg.screen.monRefresh
 
 % cfg.audio
 cfg.audio.do
@@ -177,7 +200,7 @@ cfg.audio.fs
 cfg.audio.channels
 cfg.audio.initVolume
 cfg.audio.pushSize  
-cfg.audio.requestOffsetTime 
+cfg.audio.requestOffsetTime
 cfg.audio.reqsSampleOffset
 
 % cfg.mri
@@ -220,8 +243,8 @@ It is wrapper function to use `KbQueue` which is definitely what you should use 
 
 You can easily collect responses while running some other code at the same time.
 
-It will only take responses from one device which can simply be the "main keyboard" 
-(the default device that PTB will find) or another keyboard connected to the computer 
+It will only take responses from one device which can simply be the "main keyboard"
+(the default device that PTB will find) or another keyboard connected to the computer
 or the response box that the participant is using.
 
 You can use it in a way so that it only takes responses from certain keys and ignore others (like
@@ -233,7 +256,7 @@ In brief, there are several actions you can execute with this function.
 
 -   init: initialize the buffer for key presses on a given device (you can also specify the keys of interest that should be listened to).
 -   start: start listening to the key presses (carefully insert into your script - where do you want to start buffering the responses).
--   check: till that point, it will check the buffer for all key presses. 
+-   check: till that point, it will check the buffer for all key presses.
     -   It only reports presses on the keys of interest mentioned at initialization.
     -   It **can** also check for presses on the escape key and abort if the escape key is part of the keys of interest.
 -   flush: Empties the buffer of key presses in case you want to discard any previous key presses.
