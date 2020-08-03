@@ -38,7 +38,7 @@ function [dots] = initDots(cfg, thisEvent)
     % These can never be bigger than 1 or lower than 0
     % [0,0] is the top / left of the square
     % [1,1] is the bottom / right of the square
-    dots.positions = rand(cfg.dot.number, 2) * cfg.screen.winWidth;
+    dots.positions = generateNewDotPositions(cfg, cfg.dot.number);
 
     %% Set vertical and horizontal speed for all dots
     dots = setDotDirection(cfg, dots);
