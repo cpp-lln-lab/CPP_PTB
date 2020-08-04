@@ -8,16 +8,24 @@ end
 
 function test_reseedDotsBasic()
 
-    dots.lifeTime = 100;
     cfg.screen.winWidth = 2000;
+    
+    cfg.design.motionType = 'radial';
+    
+    cfg.dot.matrixWidth = 50; % in pixels
     cfg.dot.number = 5;
     cfg.dot.sizePix = 20;
     cfg.dot.proportionKilledPerFrame = 0;
 
     cfg.fixation.widthPix = 20;
+    
+    dots.lifeTime = 100;
+    dots.speedPixPerFrame = 3;
+    dots.direction = 90;
+    dots.isSignal = true(5, 1);
 
     dots.positions = [ ...
-        694, 100; % OK
+        49, 1; % OK
         490, 2043; % out of frame
         -104, 392; % out of frame
         492, 402; % OK
