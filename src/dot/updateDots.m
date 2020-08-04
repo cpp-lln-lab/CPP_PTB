@@ -9,7 +9,7 @@ function [dots] = updateDots(dots, cfg)
 
         error(errorStruct);
     end
-    
+
     % Add one frame to the dot lifetime to each dot
     dots.time = dots.time + 1;
 

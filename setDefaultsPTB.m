@@ -35,7 +35,7 @@ function cfg = setDefaultsPTB(cfg)
     fieldsToSet.fixation.xDisplacement = 0;
     fieldsToSet.fixation.yDisplacement = 0;
     fieldsToSet.fixation.color = [255 255 255];
-    fieldsToSet.fixation.width = 1;
+    fieldsToSet.fixation.width = 1; % degrees of visual angle
     fieldsToSet.fixation.lineWidthPix = 5;
 
     % define visual apperture field

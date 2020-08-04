@@ -64,5 +64,3 @@ function [dots] = initDots(cfg, thisEvent)
     dots.speedPixPerFrame = speedPixPerFrame;
 
 end
-
-

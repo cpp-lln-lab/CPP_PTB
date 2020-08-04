@@ -4,7 +4,7 @@ function dots = setDotDirection(cfg, dots)
 
     % Coherent dots
     directionAllDots(dots.isSignal) = dots.direction;
-    
+
     if strcmp(cfg.design.motionType, 'radial')
         angleMotion = computeRadialMotionDirection(cfg, dots);
         directionAllDots(dots.isSignal) = angleMotion;
@@ -13,7 +13,7 @@ function dots = setDotDirection(cfg, dots)
     % Random direction for the non coherent dots
     directionAllDots(~dots.isSignal) = rand(sum(~dots.isSignal), 1) * 360;
     directionAllDots = rem(directionAllDots, 360);
-    
+
     dots.directionAllDots = directionAllDots;
 
 end
