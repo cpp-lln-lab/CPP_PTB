@@ -16,7 +16,7 @@ function [cfg] = eccenLogSpeed(cfg, time)
             case '+'
                 % current visual angle linear in time
                 outerRimVA = 0 + mod(time, cycleDuration) / cycleDuration * maxEcc;
-                % ensure some foveal stimulation at beginning (which is hidden by 
+                % ensure some foveal stimulation at beginning (which is hidden by
                 % fixation cross otherwise)
                 if outerRimVA < cfg.fixation.size
                     outerRimVA = cfg.fixation.size + .1;
@@ -47,7 +47,7 @@ function [cfg] = eccenLogSpeed(cfg, time)
             innerRimVA = 0;
         end
 
-         % in pixel
+        % in pixel
         innerRimPix =  innerRimVA * cfg.screen.ppd;
 
         % update cfg that we are about to return
