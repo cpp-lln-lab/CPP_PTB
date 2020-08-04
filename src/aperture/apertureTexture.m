@@ -1,4 +1,4 @@
-function cfg = apertureTexture(action, cfg, thisEvent)
+function [cfg, thisEvent] = apertureTexture(action, cfg, thisEvent)
     
     transparent = [0 0 0 0];
     
@@ -15,6 +15,25 @@ function cfg = apertureTexture(action, cfg, thisEvent)
                         cfg.aperture.width = cfg.screen.winRect(4) / cfg.screen.ppd;
                     end
                     cfg.aperture = degToPix('width', cfg.aperture, cfg);
+                    
+                case 'ring'
+                    
+                    % Set parameters for rings
+                    if strcmp(cfg.aperture.type ,'ring')
+                        % scale of outer ring (exceeding screen until
+                        % inner ring reaches window boarder)
+                        cfg.ring.maxEcc = ...
+                            cfg.screen.FOV / 2 + ...
+                            cfg.aperture.width + ...
+                            log(cfg.screen.FOV / 2 + 1) ;
+                        % ring.CsFuncFact is used to expand with log increasing speed so
+                        % that ring is at ring.maxEcc at end of cycle
+                        cfg.ring.csFuncFact = ...
+                            1 / ...
+                            ((cfg.ring.maxEcc + exp(1)) * ...
+                            log(cfg.ring.maxEcc + exp(1)) - ...
+                            (cfg.ring.maxEcc + exp(1))) ;
+                    end
             end
             
             cfg.aperture.texture = Screen('MakeTexture', cfg.screen.win, ...
@@ -48,6 +67,9 @@ function cfg = apertureTexture(action, cfg, thisEvent)
                     
                 case 'ring'
                     
+                    % expansion speed is log over eccentricity
+                    [cfg] = eccenLogSpeed(cfg, thisEvent.time);
+                    
                     Screen('Fillrect', cfg.aperture.texture, cfg.color.background);
                     
                     Screen('FillOval', cfg.aperture.texture, transparent, ...
@@ -61,6 +83,22 @@ function cfg = apertureTexture(action, cfg, thisEvent)
                         xCenter, yCenter));
                     
                 case 'wedge'
+                    
+                    cycleDuration = cfg.mri.repetitionTime * cfg.volsPerCycle;
+                    
+                    % Update angle for rotation of background and for apperture for wedge
+                    switch cfg.direction
+                        
+                        case '+'
+                            thisEvent.angle = 90 - ...
+                                cfg.aperture.width / 2 + ...
+                                (thisEvent.time / cycleDuration) * 360;
+                        case '-'
+                            thisEvent.angle = 90 - ...
+                                cfg.aperture.width / 2 - ...
+                                (thisEvent.time / cycleDuration) * 360;
+                            
+                    end
                     
                     Screen('Fillrect', cfg.aperture.texture, cfg.color.background);
                     
