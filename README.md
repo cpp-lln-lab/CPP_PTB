@@ -35,43 +35,96 @@ We use the [MISS_HIT linter](https://florianschanda.github.io/miss_hit/style_che
 
 ## How to install
 
-### Use the matlab package manager
+### Download with git
 
-This repository can be added as a dependencies by listing it in a [mpm-requirements.txt file](.mpm-requirements.txt)
-as follows:
-
-    CPP_PTB -u https://github.com/cpp-lln-lab/CPP_PTB.git
-
-You can then use the [matlab package manager](https://github.com/mobeets/mpm), to simply download the appropriate version of those dependencies and add them to your path by running a `getDependencies` function like the one below where you just need to replace `YOUR_EXPERIMENT_NAME` by the name of your experiment.
-
-```matlab
-  function getDependencies(action)
-  % Will install on your computer the matlab dependencies specified in the mpm-requirements.txt
-  %  and add them to the matlab path. The path is never saved so you need to run getDependencies() when
-  %  you start matlab.
-  %
-  % getDependencies('update') will force the update and overwrite previous version of the dependencies.
-  %
-  % getDependencies() If you only already have the appropriate version but just want to add them to the matlab path.
-
-  experimentName = YOUR_EXPERIMENT_NAME;
-
-  if nargin<1
-      action = '';
-  end
-
-  switch action
-      case 'update'
-          % install dependencies
-          mpm install -i mpm-requirements.txt -f -c YOUR_EXPERIMENT_NAME
-  end
-
-  % adds them to the path
-  mpm_folder = fileparts(which('mpm'));
-  addpath(genpath(fullfile(mpm_folder, 'mpm-packages', 'mpm-collections', experimentName)));
-
-  end
+``` bash
+cd fullpath_to_directory_where_to_install
+# use git to download the code
+git clone https://github.com/cpp-lln-lab/CPP_PTB.git
+# move into the folder you have just created
+cd CPP_PTB
+# add the src folder to the matlab path and save the path
+matlab -nojvm -nosplash -r "addpath(fullfile(pwd)); savepath ();"
 ```
+
+Then get the latest commit:
+```bash
+# from the directory where you downloaded the code
+git pull origin master
+```
+
+To work with a specific version, create a branch at a specific version tag number
+```bash
+# creating and checking out a branch that will be calle version1 at the version tag v0.0.1
+git checkout -b version1 v0.0.1
+```
+
+### Add as a submodule
+
+Add it as a submodule in the repo you are working on.
+
+``` bash
+cd fullpath_to_directory_where_to_install
+# use git to download the code
+git submodule add https://github.com/cpp-lln-lab/CPP_PTB.git
+# move into the folder you have just created
+cd CPP_PTB
+# add the src folder to the matlab path and save the path
+matlab -nojvm -nosplash -r "addpath(fullfile(pwd))"
+```
+
+To get the latest commit you then need to update the submodule with the information
+on its remote repository and then merge those locally.
+```bash
+git submodule update --remote --merge
+```
+
+Remember that updates to submodules need to be committed as well.
+
+#### Example for submodule usage
+
+So say you want to clone a repo that has some nested submodules, then you would type this to get the content of all the submodules at once (here with my experiment repo):
+``` bash
+git clone --recurse-submodules https://github.com/user_name/yourExperiment.git
+```
+This would be the way to do it "by hand"
+
+```bash
+# clone the repo
+git clone https://github.com/user_name/yourExperiment.git
+
+# go into the directory
+cd yourExperiment
+
+# initialize and get the content of the first level of submodules  (CPP_PTB and CPP_BIDS)
+git submodule init
+git submodule update
+
+# get the nested submodules JSONio and BIDS-matlab for CPP_BIDS
+git submodule foreach --recursive 'git submodule init'
+git submodule foreach --recursive 'git submodule update'
+```
+**TO DO**
+<!-- Submodules
+pros: in principle, downloading the experiment you have the whole package plus the benefit to stay updated and use version control of this dependency. Can probably handle a use case in which one uses different version on different projects (e.g. older and newer projects).
+cons: for pro users and not super clear how to use it at the moment. -->
+
+### Direct download
+
+Download the code. Unzip. And add to the matlab path.
+
+Pick a specific version:
+
+https://github.com/cpp-lln-lab/CPP_PTB/releases
+
+Or take the latest commit (NOT RECOMMENDED):
+
+https://github.com/cpp-lln-lab/CPP_PTB/archive/master.zip
+
+**TO DO**
+<!-- Download a specific version and c/p it in a subfun folder
+pros: the easiest solution to share the code and 'installing' it on the stimulation computer (usually not the one used to develop the code).
+cons: extreme solution useful only at the very latest stage (i.e. one minute before acquiring your data); prone to be customized/modified (is it what we want?) -->
 
 ## Setting up keyboards
 
@@ -98,9 +151,66 @@ press the keys necessary to start or abort the experiment.
 
 Using empty vectors (ie `[]`) or a negative value for those means that you will let PTB find and use the default device.
 
-## Structure and function details
+## Structure
 
-<!-- ### setParameters -->
+```matlab
+
+cfg.testingDevice = 'pc';
+
+% cfg.color
+cfg.keyboard.keyboard = [];
+cfg.keyboard.responseBox = [];
+cfg.keyboard.responseKey = {};
+cfg.keyboard.escapeKey = 'ESCAPE';
+
+% cfg.debug
+cfg.debug.do = true;
+cfg.debug.transpWin = true;
+cfg.debug.smallWin = true;
+
+% cfg.text
+cfg.text.font
+cfg.text.size
+cfg.text.style
+
+% cfg.color
+cfg.color.background
+
+% cfg.screen
+cfg.screen.monitorWidth
+cfg.screen.monitorDistance
+cfg.screen.idx
+cfg.screen.win
+cfg.screen.winRect
+cfg.screen.winWidth
+cfg.screen.winHeight
+cfg.screen.center
+cfg.screen.FOV
+cfg.screen.ppd
+cfg.screen.ifi
+cfg.screen.monRefresh
+
+% cfg.audio
+cfg.audio.do
+cfg.audio.pahandle
+cfg.audio.devIdx
+cfg.audio.playbackMode
+cfg.audio.requestedLatency
+cfg.audio.fs
+cfg.audio.channels
+cfg.audio.initVolume
+cfg.audio.pushSize  
+cfg.audio.requestOffsetTime
+cfg.audio.reqsSampleOffset
+
+% cfg.mri
+cfg.mri.repetitionTime
+cfg.mri.triggerNb
+cfg.mri.triggerKey
+```
+
+## function details
+
 
 ### initPTB
 
@@ -129,12 +239,12 @@ and give access back to the keyboards.
 
 ### getResponse
 
-It is wrapper function to use `KbQueue` which is definitely what you should used to collect responses.
+It is wrapper function to use `KbQueue` which is definitely what you should use to collect responses.
 
 You can easily collect responses while running some other code at the same time.
 
-It will only take responses from one device which can simply be the "main keyboard" 
-(the default device that PTB will find) or another keyboard connected to the computer 
+It will only take responses from one device which can simply be the "main keyboard"
+(the default device that PTB will find) or another keyboard connected to the computer
 or the response box that the participant is using.
 
 You can use it in a way so that it only takes responses from certain keys and ignore others (like
@@ -146,7 +256,7 @@ In brief, there are several actions you can execute with this function.
 
 -   init: initialize the buffer for key presses on a given device (you can also specify the keys of interest that should be listened to).
 -   start: start listening to the key presses (carefully insert into your script - where do you want to start buffering the responses).
--   check: till that point, it will check the buffer for all key presses. 
+-   check: till that point, it will check the buffer for all key presses.
     -   It only reports presses on the keys of interest mentioned at initialization.
     -   It **can** also check for presses on the escape key and abort if the escape key is part of the keys of interest.
 -   flush: Empties the buffer of key presses in case you want to discard any previous key presses.
@@ -173,11 +283,18 @@ This will handle the Eye Tracker (EyeLink set up) and can be called to initializ
 
 Use that to stop your script and only restart when the space bar is pressed.
 
+
+### waitForTrigger
+
+Counts a certain number of triggers coming from the mri/scanner before returning.
+Requires number of triggers to wait for.
+
+
 ## Annexes
 
 ### Experiment template [ WIP ]
 
-### `devSandobox.m` stand-alone
+### devSandbox (stand-alone)
 
 This script is a stand-alone function that can be useful as a sandbox to develop the PTB audio/visual stimulation of your experiment. No input/output required.
 

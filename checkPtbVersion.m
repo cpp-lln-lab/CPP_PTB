@@ -1,7 +1,7 @@
 function checkPtbVersion()
     % Checks that the right dependencies are installed.
 
-    printCredits();
+    printCreditsCppPtb();
 
     PTB.major =  3;
     PTB.minor = 0;

@@ -5,27 +5,10 @@ dist: bionic
 cache:
   apt: true # only works with Pro version
 
-env:
-  global:
-    - OCTFLAGS="--no-gui --no-window-system --silent"
-
 before_install:
-  - travis_retry sudo apt-get -y -qq update
-  - travis_retry sudo apt-get -y install octave
-  - travis_retry sudo apt-get -y install liboctave-dev
   - cd .. && git clone https://github.com/florianschanda/miss_hit.git && export PATH=$PATH:`pwd`/miss_hit && cd CPP_PTB
-
-install:
-  - octave $OCTFLAGS --eval "addpath (pwd); savepath ();"
-
-before_script:
-  # Change current directory
-  - cd tests
 
 jobs:
   include:
-    - stage: "Tests and linter"
-      name: "Unit Tests" # names the first job
-      script: octave $OCTFLAGS --eval "results = runTests; assert(all(~[results.Failed]))"
-    - script: cd .. && mh_style `pwd`
+    - script: mh_style `pwd`
       name: "miss_hit linter" # names the second job

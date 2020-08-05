@@ -1,4 +1,6 @@
 function responseEvents = getResponse(action, deviceNumber, cfg, getOnlyPress)
+    % responseEvents = getResponse(action, deviceNumber, cfg, getOnlyPress)
+    %
     % Wrapper function to use KbQueue
     %
     % The queue will be listening to key presses on a keyboard device:
@@ -15,9 +17,15 @@ function responseEvents = getResponse(action, deviceNumber, cfg, getOnlyPress)
     %  - init: to initialise the queue
     %  - start: to start listening to keypresses
     %  - check: checks all the key presses events since 'start', or since last
-    %  'check' or 'flush' (whichever was the most recent)
+    %    'check' or 'flush' (whichever was the most recent)
+    %    -- can check for demand to abort if the escapeKey is listed in the
+    %       Keys of interest.
+    %    -- can only check for demands to abort when getResponse('check') is called:
+    %       so there will be a delay between the key press and the experiment stopping
+    %    -- abort errors send specific signals that allow the catch to get
+    %       them and allows us to "close" nicely
     %  - flush: empties the queue of events in case you want to restart from a clean
-    %  queue
+    %    queue
     %  - stop: stops listening to key presses
     %
     % - getOnlyPress: if set to true the function will only return the key presses and
@@ -100,7 +108,7 @@ function responseEvents = getResponse(action, deviceNumber, cfg, getOnlyPress)
 
     end
 
-    talkToMe(action);
+    talkToMe(action, cfg);
 
 end
 
@@ -164,14 +172,19 @@ end
 function checkAbortGetResponse(responseEvents, cfg)
 
     if isfield(responseEvents, 'keyName') > 0 && ...
-       any( ...
+            any( ...
             strcmpi({responseEvents(:).keyName}, cfg.keyboard.escapeKey) ...
             )
         errorAbortGetReponse(responseEvents);
     end
 end
 
-function talkToMe(action)
+function talkToMe(action, cfg)
+
+    verbose = false;
+    if isfield(cfg, 'verbose')
+        verbose = cfg.verbose;
+    end
 
     switch action
 
@@ -198,6 +211,9 @@ function talkToMe(action)
 
     end
 
-    fprintf('\n %s\n\n', msg);
+    if verbose
+        fprintf('\n %s\n\n', msg);
+
+    end
 
 end

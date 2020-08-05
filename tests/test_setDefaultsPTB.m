@@ -1,56 +1,88 @@
-%% test basic cfg creation
+function test_suite = test_setDefaultsPTB %#ok<*STOUT>
+    try % assignment of 'localfunctions' is necessary in Matlab >= 2016
+        test_functions = localfunctions(); %#ok<*NASGU>
+    catch % no problem; early Matlab versions can use initTestSuite fine
+    end
+    initTestSuite;
+end
 
-% set up
-cfgToTest =  struct( ...
-    'testingDevice', 'pc', ...
-    'debug',  true, ...
-    'testingTranspScreen',  true, ...
-    'testingSmallScreen',  true, ...
-    'backgroundColor',  [0 0 0], ...
-    'text', struct('font', 'Courier New', 'size', 18, 'style', 1),  ...
-    'monitorWidth', 42, ...
-    'screenDistance', 134);
+function test_setDefaultsPtbBasic()
 
-cfgToTest.keyboard.keyboard = [];
-cfgToTest.keyboard.responseBox = [];
-cfgToTest.keyboard.responseKey = {};
-cfgToTest.keyboard.escapeKey = 'ESCAPE';
+    % set up
+    cfg = setDefaultsPTB;
 
-cfgToTest = orderfields(cfgToTest);
+    % test data
+    expectedCfg = returnExpectedCFG();
 
-% test
-cfg = setDefaultsPTB;
-assert(isequal(cfg, cfgToTest));
+    % test
+    assertEqual(expectedCfg, cfg);
 
-%% test that values are not overwritten
-clear cfg;
-cfg = struct('monitorWidth', 36);
+end
 
-cfgToTest.monitorWidth = 36;
+function test_setDefaultsPtbOverwrite()
 
-cfg = setDefaultsPTB(cfg);
-assert(isequal(cfg, cfgToTest));
+    % set up
+    cfg.screen.monitorWidth = 36;
+    cfg = setDefaultsPTB(cfg);
 
-cfgToTest.monitorWidth = 42;
+    % test data
+    expectedCfg = returnExpectedCFG();
+    expectedCfg.screen.monitorWidth = 36;
 
-%% test with audio init
+    % test
+    assertEqual(expectedCfg, cfg);
 
-% set up
-cfgToTest.initAudio = 1;
-cfgToTest.audio = struct( ...
-    'fs', 44800, ...
-    'channels', 2, ...
-    'initVolume', 1, ...
-    'requestedLatency', 3, ...
-    'repeat', 1, ...
-    'startCue', 0, ...
-    'waitForDevice', 1);
+end
 
-cfgToTest = orderfields(cfgToTest);
+function test_setDefaultsPtbAudio()
 
-clear cfg;
-cfg.initAudio = 1;
+    % set up
+    cfg.audio.do = 1;
+    cfg = setDefaultsPTB(cfg);
 
-% test
-cfg = setDefaultsPTB(cfg);
-assert(isequal(cfg, cfgToTest));
+    % test data
+    expectedCfg = returnExpectedCFG();
+    expectedCfg.audio = struct( ...
+        'do', true, ...
+        'fs', 44800, ...
+        'channels', 2, ...
+        'initVolume', 1, ...
+        'requestedLatency', 3, ...
+        'repeat', 1, ...
+        'startCue', 0, ...
+        'waitForDevice', 1);
+
+    % test
+    assertEqual(expectedCfg, cfg);
+
+end
+
+function expectedCFG = returnExpectedCFG()
+
+    expectedCFG =  struct( ...
+        'testingDevice', 'pc', ...
+        'debug',  struct('do', true, 'transpWin',  true, 'smallWin',  true), ...
+        'color',  struct( ...
+        'background', [0 0 0]), ...
+        'text', struct('font', 'Courier New', 'size', 18, 'style', 1),  ...
+        'screen', struct( ...
+        'monitorWidth', 42, ...
+        'monitorDistance', 134));
+
+    % fixation cross or dot
+    expectedCFG.fixation.type = 'cross';
+    expectedCFG.fixation.xDisplacement = 0;
+    expectedCFG.fixation.yDisplacement = 0;
+    expectedCFG.fixation.color = [255 255 255];
+    expectedCFG.fixation.width = 1;
+    expectedCFG.fixation.lineWidthPix = 5;
+
+    % define visual apperture field
+    expectedCFG.aperture.type = 'none';
+
+    expectedCFG.keyboard.keyboard = [];
+    expectedCFG.keyboard.responseBox = [];
+    expectedCFG.keyboard.responseKey = {};
+    expectedCFG.keyboard.escapeKey = 'ESCAPE';
+
+end
