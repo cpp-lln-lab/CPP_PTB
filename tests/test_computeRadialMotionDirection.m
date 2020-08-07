@@ -11,6 +11,7 @@ function test_computeRadialMotionDirectionBasic()
     %% set up
 
     cfg.design.motionType = 'radial';
+    cfg.dot.matrixWidth = 50; % in pixels
     cfg.screen.winWidth = 100; % in pixels
     direction = 666;
 

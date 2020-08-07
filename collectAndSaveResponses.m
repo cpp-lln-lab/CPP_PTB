@@ -9,8 +9,8 @@ function responseEvents = collectAndSaveResponses(cfg, logFile, experimentStart)
                 responseEvents(iResp).onset - experimentStart;
         end
 
-        responseEvents.fileID = logFile.fileID;
-        responseEvents.extraColumns = logFile.extraColumns;
+        responseEvents(1).fileID = logFile.fileID;
+        responseEvents(1).extraColumns = logFile.extraColumns;
         saveEventsFile('save', cfg, responseEvents);
 
     end
