@@ -52,7 +52,7 @@ function [dots] = initDots(cfg, thisEvent)
     %% Create a vector to update to dotlife time of each dot
     % Not all set to 1 so the dots will die at different times
     % The maximum value is the duraion of the event in frames
-    time = floor(rand(cfg.dot.number, 1) * cfg.eventDuration / cfg.screen.ifi);
+    time = floor(rand(cfg.dot.number, 1) * cfg.timing.eventDuration / cfg.screen.ifi);
 
     %% Convert from seconds to frames
     lifeTime = ceil(lifeTime / cfg.screen.ifi);
