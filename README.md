@@ -237,6 +237,14 @@ If no key is pressed on the correct keyboard after the timeOut time this exits w
 A wrapper function to close all windows, ports, show mouse cursor, close keyboard queues
 and give access back to the keyboards.
 
+### getExperimentStart
+
+Wrapper function that will show a fixation cross and collect a start timestamp in `cfg.experimentStart`
+
+### getExperimentEnd
+
+Wrapper function that will show a fixation cross and display in the console the whole experiment's duration in minutes and seconds  
+
 ### getResponse
 
 It is wrapper function to use `KbQueue` which is definitely what you should use to collect responses.
@@ -263,8 +271,6 @@ In brief, there are several actions you can execute with this function.
 -   stop: Stops buffering key presses. You can still restart by calling "start" again.
 -   release: Closes the buffer for good.
 
-
-
 ### deg2Pix
 
 For a given field value in degrees of visual angle in the input `structure`,
@@ -283,6 +289,9 @@ This will handle the Eye Tracker (EyeLink set up) and can be called to initializ
 
 Use that to stop your script and only restart when the space bar is pressed.
 
+### standByScreen
+
+It shows a basic one-page instruction stored in `cfg.task.instruction` and wait for `space` stroke.
 
 ### waitForTrigger
 
