@@ -1,8 +1,8 @@
 % Eyelink already initialized!
 % Running experiment on a 'EYELINK CL 4.56  ' tracker.
-% Error in function Open: 	Usage error
+% Error in function Open:   Usage error
 % Could not find *any* audio hardware on your system - or at least not with the provided deviceid, if any!
-% Error in function FillRect: 	Invalid Window (or Texture) Index provided: It doesn't correspond to an open window or texture.
+% Error in function FillRect:   Invalid Window (or Texture) Index provided: It doesn't correspond to an open window or texture.
 % Did you close it accidentally via Screen('Close') or Screen('CloseAll') ?
 % EYELINK: WARNING! PsychEyelinkCallRuntime() Failed to call eyelink runtime callback function PsychEyelinkDispatchCallback [rc = 1]!
 % EYELINK: WARNING! Make sure that function is on your Matlab/Octave path and properly initialized.
@@ -11,19 +11,18 @@
 % Eyelink: In PsychEyelink_get_input_key(): Error condition detected: Trying to send TERMINATE_KEY abort keycode!
 
 % Eyelink: In PsychEyelink_get_input_key(): Error condition detected: Trying to send TERMINATE_KEY abort keycode!
-% Error in function FillRect: 	Invalid Window (or Texture) Index provided: It doesn't correspond to an open window or texture.
+% Error in function FillRect:   Invalid Window (or Texture) Index provided: It doesn't correspond to an open window or texture.
 % Did you close it accidentally via Screen('Close') or Screen('CloseAll') ?
 % Error using Screen
 % Usage:
-% 
+%
 % Screen('FillRect', windowPtr [,color] [,rect] )
-% 
+%
 % Error in eyeTracker (line 150)
 %                 Screen('FillRect', cfg.screen.win, [0 0 0]);
-% 
+%
 % Error in visualLocTanslational (line 52)
 %     [el] = eyeTracker('Calibration', cfg);
-
 
 function [el, edfFile] = eyeTracker(input, cfg, varargin)
     % [el, edfFile] = eyeTracker(input, cfg, varargin)
@@ -118,7 +117,7 @@ function [el, edfFile] = eyeTracker(input, cfg, varargin)
                 % you must send this command with value NO for custom calibration
                 %   you must also reset it to YES for subsequent experiments
                 Eyelink('command', 'generate_default_targets = YES');
-                
+
                 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 
                 %         % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
@@ -158,14 +157,14 @@ function [el, edfFile] = eyeTracker(input, cfg, varargin)
 
                 % set EDF file contents (not clear what this lines are used for)
                 el.vsn = regexp(el.vs, '\d', 'match'); % wont work on EL
-      
+
                 % enter Eyetracker camera setup mode, calibration and validation
                 EyelinkDoTrackerSetup(el);
 
                 %         % do a final check of calibration using driftcorrection
                 %         % You have to hit esc before return.
                 %         EyelinkDoDriftCorrection(el);
-                
+
                 %         % do a final check of calibration using driftcorrection
                 %         success=EyelinkDoDriftCorrection(el);
                 %         if success~=1
@@ -173,7 +172,7 @@ function [el, edfFile] = eyeTracker(input, cfg, varargin)
                 %             cleanUp()
                 %             return;
                 %         end
-                
+
                 % Go back to black screen
                 Screen('FillRect', cfg.screen.win, [0 0 0]);
                 Screen('Flip', cfg.screen.win);
@@ -237,25 +236,25 @@ function [el, edfFile] = eyeTracker(input, cfg, varargin)
                 % download data file
                 try
                     fprintf('Receiving data file ''%s''\n', edfFileName);
-                    
+
                     status = Eyelink('ReceiveFile', '', edfFileName);
-                    
+
                     if status > 0
                         fprintf('ReceiveFile status %d\n', status);
                     end
-                    
+
                     if 2 == exist(edfFileName, 'file')
-                        
+
                         fprintf('Data file ''%s'' can be found in ''%s''\n', ...
                             cfg.fileName.eyetracker, ...
                             fullfile(cfg.dir.outputSubject, 'eyetracker'));
-                        
+
                     end
-                    
+
                 catch
-                    
+
                     fprintf('Problem receiving data file ''%s''\n', edfFileName);
-                    
+
                 end
 
                 Eyelink('shutdown');
@@ -270,15 +269,15 @@ end
 
 % function ivx = eyeTrackInit(cfg)
 %     % initialize iView eye tracker
-% 
+%
 %     ivx = [];
-% 
+%
 %     if cfg.eyeTracker
-% 
+%
 %         host = cfg.eyetracker.Host;
 %         port = cfg.eyetracker.Port;
 %         window = cfg.eyetracker.Window;
-% 
+%
 %         % original: ivx=iviewxinitdefaults(window, 9 , host, port);
 %         ivx = iviewxinitdefaults2(window, 9, [], host, port);
 %         ivx.backgroundColour = 0;
@@ -289,7 +288,7 @@ end
 %         end
 %     end
 % end
-% 
+%
 % function eyeTrackStart(ivx, cfg)
 %     % start iView eye tracker
 %     if cfg.eyeTracker
@@ -307,15 +306,15 @@ end
 %         iViewX('incrementsetnumber', ivx, 0);
 %     end
 % end
-% 
+%
 % function eyeTrackStop(ivx, cfg)
 %     % stop iView eye tracker
-% 
+%
 %     if cfg.eyeTracker
-% 
+%
 %         % stop tracker
 %         iViewX('stoprecording', ivx);
-% 
+%
 %         % save data file
 %         thedatestr = datestr(now, 'yyyy-mm-dd_HH.MM');
 %         strFile = fullfile(OutputDir, ...
@@ -325,7 +324,7 @@ end
 %             cfg.Direction, '_', ...
 %             thedatestr, '.idf"']);
 %         iViewX('datafile', ivx, strFile);
-% 
+%
 %         % close iView connection
 %         iViewX('closeconnection', ivx);
 %     end
