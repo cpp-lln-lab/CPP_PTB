@@ -285,7 +285,7 @@ Use that to stop your script and only restart when the space bar is pressed.
 
 ### standByScreen
 
-It shows a basic one-page instruction stored in `cfg.task.instruction`.
+It shows a basic one-page instruction stored in `cfg.task.instruction` and wait for `space` stroke.
 
 ### waitForTrigger
 
