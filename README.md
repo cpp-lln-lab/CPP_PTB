@@ -283,6 +283,9 @@ This will handle the Eye Tracker (EyeLink set up) and can be called to initializ
 
 Use that to stop your script and only restart when the space bar is pressed.
 
+### standByScreen
+
+It shows a basic one-page instruction stored in `cfg.task.instruction`.
 
 ### waitForTrigger
 
