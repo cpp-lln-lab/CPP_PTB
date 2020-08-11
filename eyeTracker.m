@@ -1,3 +1,30 @@
+% Eyelink already initialized!
+% Running experiment on a 'EYELINK CL 4.56  ' tracker.
+% Error in function Open: 	Usage error
+% Could not find *any* audio hardware on your system - or at least not with the provided deviceid, if any!
+% Error in function FillRect: 	Invalid Window (or Texture) Index provided: It doesn't correspond to an open window or texture.
+% Did you close it accidentally via Screen('Close') or Screen('CloseAll') ?
+% EYELINK: WARNING! PsychEyelinkCallRuntime() Failed to call eyelink runtime callback function PsychEyelinkDispatchCallback [rc = 1]!
+% EYELINK: WARNING! Make sure that function is on your Matlab/Octave path and properly initialized.
+% EYELINK: WARNING! May also be an error during execution of that function. Type ple at command prompt for error messages.
+% EYELINK: WARNING! Auto-Disabling all callbacks to the runtime environment for safety reasons.
+% Eyelink: In PsychEyelink_get_input_key(): Error condition detected: Trying to send TERMINATE_KEY abort keycode!
+
+% Eyelink: In PsychEyelink_get_input_key(): Error condition detected: Trying to send TERMINATE_KEY abort keycode!
+% Error in function FillRect: 	Invalid Window (or Texture) Index provided: It doesn't correspond to an open window or texture.
+% Did you close it accidentally via Screen('Close') or Screen('CloseAll') ?
+% Error using Screen
+% Usage:
+% 
+% Screen('FillRect', windowPtr [,color] [,rect] )
+% 
+% Error in eyeTracker (line 150)
+%                 Screen('FillRect', cfg.screen.win, [0 0 0]);
+% 
+% Error in visualLocTanslational (line 52)
+%     [el] = eyeTracker('Calibration', cfg);
+
+
 function [el, edfFile] = eyeTracker(input, cfg, varargin)
     % [el, edfFile] = eyeTracker(input, cfg, varargin)
     %
@@ -18,13 +45,13 @@ function [el, edfFile] = eyeTracker(input, cfg, varargin)
                 %  and perform some initializations. The information is returned
                 %  in a structure that also contains useful defaults
                 %  and control codes (e.g. tracker state bit and Eyelink key values).
-                el = EyelinkInitDefaults(cfg.win);
+                el = EyelinkInitDefaults(cfg.screen.win);
 
                 % calibration has silver background with black targets, sound and smaller
                 %  targets
-                el.backgroundcolour        = [192 192 192, (cfg.win)];
-                el.msgfontcolour           = BlackIndex(cfg.win);
-                el.calibrationtargetcolour = BlackIndex(cfg.win);
+                el.backgroundcolour        = [192 192 192, (cfg.screen.win)];
+                el.msgfontcolour           = BlackIndex(cfg.screen.win);
+                el.calibrationtargetcolour = BlackIndex(cfg.screen.win);
                 el.calibrationtargetsize   = 1;
                 el.calibrationtargetwidth  = 0.5;
                 el.displayCalResults       = 1;
@@ -131,24 +158,29 @@ function [el, edfFile] = eyeTracker(input, cfg, varargin)
                 % set EDF file contents (not clear what this lines are used for)
                 el.vsn = regexp(el.vs, '\d', 'match'); % wont work on EL
 
+                Screen('FillRect', cfg.screen.win, [0 0 0]);
+                Screen('Flip', cfg.screen.win);
+                
                 % enter Eyetracker camera setup mode, calibration and validation
                 EyelinkDoTrackerSetup(el);
 
-                %             %         % do a final check of calibration using driftcorrection
-                %             %         % You have to hit esc before return.
-                %             %         EyelinkDoDriftCorrection(el);
-                %
-                %             %         % do a final check of calibration using driftcorrection
-                %             %         success=EyelinkDoDriftCorrection(el);
-                %             %         if success~=1
-                %             %             Eyelink('shutdown');
-                %             %             Screen('CloseAll');
-                %             %             return;
-                %             %         end
+                %         % do a final check of calibration using driftcorrection
+                %         % You have to hit esc before return.
+                %         EyelinkDoDriftCorrection(el);
+                
+                %         % do a final check of calibration using driftcorrection
+                %         success=EyelinkDoDriftCorrection(el);
+                %         if success~=1
+                %             Eyelink('shutdown');
+                %             Screen('CloseAll');
+                %             return;
+                %         end
 
+                cfg
+                
                 % Go back to black screen
-                Screen('FillRect', cfg.win, [0 0 0]);
-                Screen('Flip', cfg.win);
+                Screen('FillRect', cfg.screen.win, [0 0 0]);
+                Screen('Flip', cfg.screen.win);
 
             case 'StartRecording'
 
@@ -206,14 +238,14 @@ function [el, edfFile] = eyeTracker(input, cfg, varargin)
                 try
                     fprintf('Receiving data file ''%s''\n', edfFileName);
                     status = Eyelink('ReceiveFile', '', ...
-                        [cfg.outputDir, filesep, 'eyetracker', filesep, edfFileName]);
+                        [cfg.dir.outputSubject, filesep, 'eyetracker', filesep, edfFileName]);
                     if status > 0
                         fprintf('ReceiveFile status %d\n', status);
                     end
-                    if 2 == exist([cfg.outputDir, filesep, 'eyetracker', ...
+                    if 2 == exist([cfg.dir.outputSubject, filesep, 'eyetracker', ...
                             filesep, edfFileName], 'file')
                         fprintf('Data file ''%s'' can be found in ''%s''\n', edfFileName, ...
-                            [cfg.outputDir, filesep, 'eyetracker', filesep]);
+                            [cfg.dir.outputSubject, filesep, 'eyetracker', filesep]);
                     end
                 catch
                     fprintf('Problem receiving data file ''%s''\n', edfFileName);
