@@ -239,6 +239,8 @@ and give access back to the keyboards.
 
 ### getExperimentStart
 
+Wrapper function that will show a fixation cross and collect a start timestamp in `cfg.experimentStart`
+
 ### getExperimentEnd
 
 Wrapper function that will show a fixation cross and display in the console the whole experiment's duration in minutes and seconds  
