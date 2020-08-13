@@ -119,37 +119,35 @@ function [el, edfFile] = eyeTracker(input, cfg, varargin)
                 Eyelink('command', 'generate_default_targets = YES');
 
                 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
-
-                %         % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
-                %         % CUSTOM CALIBRATION
-                %         % (SET MANUALLY THE DOTS COORDINATES, HERE FOR 6 DOTS)
-                %         Eyelink('command', 'calibration_type = HV5');
-                %         % you must send this command with value NO for custom calibration
-                %         % you must also reset it to YES for subsequent experiments
-                %         Eyelink('command', 'generate_default_targets = NO');
-                %
-                %         % calibration and validation target locations
-                %         [width, height]=Screen('WindowSize', screenNumber);
-                %         Eyelink('command','calibration_samples = 6');
-                %         Eyelink('command','calibration_sequence = 0,1,2,3,4,5');
-                %         Eyelink('command','calibration_targets = ...
-                %             %d,%d %d,%d %d,%d %d,%d %d,%d',...
-                %             640,512, ... %width/2,height/2
-                %             640,102, ... %width/2,height*0.1
-                %             640,614, ... %width/2,height*0.6
-                %             128,341, ... %width*0.1,height*1/3
-                %             1152,341 );  %width-width*0.1,height*1/3
-                %
-                %         Eyelink('command','validation_samples = 5');
-                %         Eyelink('command','validation_sequence = 0,1,2,3,4,5');
-                %         Eyelink('command','validation_targets = ...
-                %             %d,%d %d,%d %d,%d %d,%d %d,%d',...
-                %             640,512, ... %width/2,height/2
-                %             640,102, ... %width/2,height*0.1
-                %             640,614, ... %width/2,height*0.6
-                %             128,341, ... %width*0.1,height*1/3
-                %             1152,341 );  %width-width*0.1,height*1/3
-                %         % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+% 
+%                         % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+%                         % CUSTOM CALIBRATION
+%                         % (SET MANUALLY THE DOTS COORDINATES, HERE FOR 6 DOTS)
+%                         Eyelink('command', 'calibration_type = HV5');
+%                         % you must send this command with value NO for custom calibration
+%                         % you must also reset it to YES for subsequent experiments
+%                         Eyelink('command', 'generate_default_targets = NO');
+%                 
+%                         % calibration and validation target locations
+%                         [width, height]=Screen('WindowSize', screenNumber);
+%                         Eyelink('command','calibration_samples = 6');
+%                         Eyelink('command','calibration_sequence = 0,1,2,3,4,5');
+%                         Eyelink('command','calibration_targets = %d,%d %d,%d %d,%d %d,%d %d,%d',...
+%                             640,512, ... %width/2,height/2
+%                             640,102, ... %width/2,height*0.1
+%                             640,614, ... %width/2,height*0.6
+%                             128,341, ... %width*0.1,height*1/3
+%                             1152,341 );  %width-width*0.1,height*1/3
+%                 
+%                         Eyelink('command','validation_samples = 5');
+%                         Eyelink('command','validation_sequence = 0,1,2,3,4,5');
+%                         Eyelink('command','validation_targets = %d,%d %d,%d %d,%d %d,%d %d,%d',...
+%                             640,512, ... %width/2,height/2
+%                             640,102, ... %width/2,height*0.1
+%                             640,614, ... %width/2,height*0.6
+%                             128,341, ... %width*0.1,height*1/3
+%                             1152,341 );  %width-width*0.1,height*1/3
+%                         % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 
                 %             % set parser (conservative saccade thresholds)
                 %             Eyelink('command', 'saccade_velocity_threshold = 35');
