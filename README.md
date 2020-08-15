@@ -36,7 +36,7 @@ For instructions see the following links:
 
 | Requirements                                             | Used version |
 |----------------------------------------------------------|--------------|
-| [PsychToolBox](http://psychtoolbox.org/)  Duuuuhh        | >=3.0.14     |
+| [PsychToolBox](http://psychtoolbox.org/)                 | >=3.0.14     |
 | [Matlab](https://www.mathworks.com/products/matlab.html) | >=2015b      |
 | or [octave](https://www.gnu.org/software/octave/)        | 4.?          |
 

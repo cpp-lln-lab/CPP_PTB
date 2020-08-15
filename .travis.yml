@@ -1,14 +1,18 @@
 # Travis CI (https://travis-ci.org/)
-
-language: c
 dist: bionic
+language: python
+python:
+  - "3.6" # current default Python on Travis CI
 cache:
   apt: true # only works with Pro version
 
 before_install:
-  - cd .. && git clone https://github.com/florianschanda/miss_hit.git && export PATH=$PATH:`pwd`/miss_hit && cd CPP_PTB
+  - pip3 install --user miss_hit
+  #- cd .. && git clone https://github.com/florianschanda/miss_hit.git && export PATH=$PATH:`pwd`/miss_hit && cd CPP_PTB
 
 jobs:
   include:
     - script: mh_style `pwd`
       name: "miss_hit linter" # names the second job
+    - script: mh_metric `pwd`
+      name: "miss_hit static analysis" # names the second job
