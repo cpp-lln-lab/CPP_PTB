@@ -48,6 +48,23 @@ function [el, edfFile] = eyeTracker(input, cfg, varargin)
     %
     %   oldlevel = Eyelink(‘Verbosity’ [,level]);
     %
+    % - Sanity check that ET is set a specific eye that we want, we might forget to check :)
+    %
+    %   eye_used = Eyelink('EyeAvailable');
+    %   switch eye_used
+    %       case el.BINOCULAR
+    %           error('tracker indicates binocular')
+    %       case el.LEFT_EYE
+    %           error('tracker indicates left eye')
+    %       case el.RIGHT_EYE
+    %           disp('tracker indicates right eye')
+    %       case -1
+    %           error('eyeavailable returned -1')
+    %       otherwise
+    %           eye_used
+    %           error('unexpected result from eyeavailable')
+    %   end
+    %
     %  - Tag the ET data outout
     %
     %   Eyelink('command', 'add_file_preamble_text', 'Recorded by EyelinkToolbox demo-experiment');
@@ -57,10 +74,10 @@ function [el, edfFile] = eyeTracker(input, cfg, varargin)
     %   Eyelink('command', 'saccade_velocity_threshold = 35');
     %   Eyelink('command', 'saccade_acceleration_threshold = 9500');
     %
-    %  - Drift correction
+    %  - Drift correction, do a final check of calibration using driftcorrection. You have to hit
+    %    esc before return.
     %
     %   EyelinkDoDriftCorrection(el);
-    %
     %   success = EyelinkDoDriftCorrection(el);
     %   if success~=1
     %      Eyelink('shutdown');
@@ -68,9 +85,17 @@ function [el, edfFile] = eyeTracker(input, cfg, varargin)
     %      return;
     %   end
     %
+    %    or use [status = ] Eyelink(‘DriftCorrStart’, x, y [,dtype=0][, dodraw=1][, allow_setup=0]),
+    %    e.g.:
+    %
+    %     Perform drift correction: The special flags 1,1,1 request
+    %     interactive correction with video display:
+    %
+    %   result = Eyelink('DriftCorrStart',30,30,1,1,1);
+    %
     %  - Tag the recording, in the past caused delays during the presentation so I avoided to use it
     %
-    %   Eyelink('message', 'Trial 1');
+    %   Eyelink('message', 'Trial_1');
 
 
 
@@ -84,11 +109,13 @@ function [el, edfFile] = eyeTracker(input, cfg, varargin)
 
             case 'Calibration'
 
-                %% STEP 2
-                % Provide Eyelink with details about the graphics environment
-                %  and perform some initializations. The information is returned
-                %  in a structure that also contains useful defaults
-                %  and control codes (e.g. tracker state bit and Eyelink key values).
+                %% Initialization
+                % Provide Eyelink with details about the graphics environment and perform some
+                %  initializations. The information is returned in a structure that also contains
+                %  useful defaults and control codes (e.g. tracker state bit and Eyelink key
+                %  values).
+
+                % Provide Screen id where present the calibration
                 el = EyelinkInitDefaults(cfg.screen.win);
 
                 % Calibration has silver background with black targets, sound and smaller
@@ -101,52 +128,53 @@ function [el, edfFile] = eyeTracker(input, cfg, varargin)
                 el.displayCalResults       = 1;
 
                 % Call this function for changes to the calibration structure to take
-                %  affect
+                %  affect.
                 EyelinkUpdateDefaults(el);
 
-                %% STEP 3
-                % Initialization of the connection with the Eyelink Gazetracker.
-                %  exit program if this fails.
-
-                % Initialize EL and make sure it worked: returns: 0 if OK, -1 if error
-                ELinit  = Eyelink('Initialize');
+                % Initialize EL and make sure it worked: returns 0 if OK, -1 if error.
+                %  Exit program if this fails.
+                elInit  = Eyelink('Initialize');
                 if ELinit ~= 0
                     fprintf('Eyelink is not initialized, aborted.\n');
                     Eyelink('Shutdown');
                     CleanUp()
+                    return
                 end
 
                 % Make sure EL is still connected: returns 1 if connected, -1 if dummy-connected,
-                %  2 if broadcast-connected and 0 if not connected
-                ELconnection = Eyelink('IsConnected');
+                %  2 if broadcast-connected and 0 if not connected. Exit program if this fails.
+                elConnection = Eyelink('IsConnected');
                 if ELconnection ~= 1
                     fprintf('Eyelink is not connected, aborted.\n');
                     Eyelink('Shutdown');
                     CleanUp()
+                    return
                 end
 
-                % Last check that the EL is up to work
+                % Last check that the EL is up to work and exit program if this fails.
                 if ~EyelinkInit(0, 1)
                     fprintf('Eyelink Init aborted.\n');
                     CleanUp()
+                    return
                 end
 
-                % Open the edf file to write the data
+                % Open the edf file to write the data.
                 edfFile = 'demo.edf';
                 Eyelink('Openfile', edfFile);
 
+                % Get EyeLink setup information.
                 [el.v, el.vs] = Eyelink('GetTrackerVersion');
                 fprintf('Running experiment on a ''%s'' tracker.\n', el.vs);
 
-                % Make sure that we get gaze data from the Eyelink
+                % Make sure that we get gaze data from the Eyelink.
                 Eyelink('Command', 'link_sample_data = LEFT,RIGHT,GAZE,AREA');
+                Eyelink('command', 'link_event_data = GAZE,GAZERES,HREF,AREA,VELOCITY');
+                Eyelink('command', 'link_event_filter = LEFT,RIGHT,FIXATION,BLINK,SACCADE,BUTTON');
 
-                %% STEP 4
-                % Setting the proper recording resolution, proper calibration type,
-                %   as well as the data file content;
+                %% Calibration
 
                 % This command is crucial to map the gaze positions from the tracker to
-                %  screen pixel positions to determine fixation
+                %  screen pixel positions to determine fixation.
                 Eyelink('command', 'screen_pixel_coords = %ld %ld %ld %ld', 0, 0, 0, 0);
                 Eyelink('message', 'DISPLAY_COORDS %ld %ld %ld %ld', 0, 0, 0, 0);
 
@@ -155,16 +183,16 @@ function [el, edfFile] = eyeTracker(input, cfg, varargin)
 
                 if cfg.eyeTracker.defaultCalibration
 
-                    % Set default calibration parameters
+                    % Set default calibration parameters.
                     Eyelink('command', 'generate_default_targets = YES');
 
                 else
 
-                    % Set default calibration parameters
+                    % Set custom calibration parameters.
                     Eyelink('command', 'generate_default_targets = NO');
 
                     % Calibration target locations, set manually the dots
-                    %  coordinates, here for 6 dots
+                    %  coordinates, here for 6 dots.
 
                     % [width, height]=Screen('WindowSize', screenNumber);
 
@@ -189,25 +217,26 @@ function [el, edfFile] = eyeTracker(input, cfg, varargin)
 
                 end
 
-                % Set EDF file contents (not clear what this lines are used for)
+                % Set EDF file contents (not clear what this lines are used for).
                 el.vsn = regexp(el.vs, '\d', 'match'); % wont work on EL
 
-                % Enter Eyetracker camera setup mode, calibration and validation
+                % Enter Eyetracker camera setup mode, calibration and validation.
                 EyelinkDoTrackerSetup(el);
 
-                % Go back to default screen background color
+                % Go back to default screen background color.
                 Screen('FillRect', cfg.screen.win, cfg.color.background);
                 Screen('Flip', cfg.screen.win);
 
             case 'StartRecording'
 
-                % STEP 5
-                % EyeLink Start recording the block
+                %% Start recording of eye-movements
+
+                % EyeLink Start recording the block.
                 Eyelink('Command', 'set_idle_mode');
                 WaitSecs(0.05);
                 Eyelink('StartRecording');
 
-                % Check recording status, stop display if error
+                % Check recording status, stop display if error.
                 checkrec = Eyelink('checkrecording');
                 if checkrec ~= 0
                     fprintf('\nEyelink is not recording.\n\n');
@@ -216,34 +245,32 @@ function [el, edfFile] = eyeTracker(input, cfg, varargin)
                     return
                 end
 
-                % Record a few samples before we actually start displaying
-                %  otherwise you may lose a few msec of data
+                % Record a few samples before we actually start displaying otherwise you may lose
+                %  a few msec of data.
                 WaitSecs(0.1);
 
-                % Mark the beginning of the trial, here start the stimulation of the experiment
+                % Mark the beginning of the trial, here start the stimulation of the experiment.
                 Eyelink('Message', 'SYNCTIME');
 
             case 'StopRecordings'
 
-                % STEP 8
-                % Finish up: stop recording of eye-movements
+                %% Stop recording of eye-movements
 
-                % EyeLink Stop recording the block
+                % EyeLink Stop recording the block.
                 Eyelink('Message', 'BLANK_SCREEN');
 
-                % Add 100 msec of data to catch final events
+                % Add 100 msec of data to catch final events.
                 WaitSecs(0.1);
 
-                % Stop recoding
+                % Stop recoding.
                 Eyelink('StopRecording');
 
             case 'Shutdown'
 
-                % STEP 6
-                % At the end of the experiment, save the edf file and shut down connection
-                %  with Eyelink
+                %% End of the experiment
+                % Save the edf file and shut down connection with Eyelink.
 
-                # Set the edf file path + name
+                # Set the edf file path + name.
                 edfFileName = fullfile( ...
                     cfg.dir.outputSubject, ...
                     'eyetracker', ...
@@ -253,6 +280,7 @@ function [el, edfFile] = eyeTracker(input, cfg, varargin)
 
                 WaitSecs(0.5);
 
+                # Close the file to be ready to be exported and saved.
                 Eyelink('CloseFile');
 
                 % Download data file
@@ -260,11 +288,11 @@ function [el, edfFile] = eyeTracker(input, cfg, varargin)
                     fprintf('Receiving data file ''%s''\n', edfFileName);
 
                     % Download the file and check the status: returns file size if OK, 0 if file
-                    %  transfer was cancelled, negative = error
+                    %  transfer was cancelled, negative = error.
                     elReceiveFile = Eyelink('ReceiveFile', '', edfFileName);
 
                     if elReceiveFile > 0
-                        fprintf('Downloading eye tracker file of size %d\n', elReceiveFile);
+                        fprintf('Exporting eye tracker file of size %d\n', elReceiveFile);
                     end
 
                     if exist(edfFileName, 'file') == 2
@@ -281,7 +309,7 @@ function [el, edfFile] = eyeTracker(input, cfg, varargin)
 
                 end
 
-                % Close connection with EyeLink
+                % Close connection with EyeLink.
                 Eyelink('shutdown');
 
         end
