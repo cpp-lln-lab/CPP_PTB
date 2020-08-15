@@ -27,7 +27,16 @@
 function [el, edfFile] = eyeTracker(input, cfg, varargin)
     % [el, edfFile] = eyeTracker(input, cfg, varargin)
     %
+    % Optional useful functions to implement in future:
     %
+    %  - oldlevel = Eyelink(‘Verbosity’ [,level]);
+    %
+    %    Set level of verbosity for error/warning/status messages. ‘level’ optional, new
+    %    level of verbosity. ‘oldlevel’ is the old level of verbosity. The following
+    %    levels are supported: 0 = Shut up. 1 = Print errors, 2 = Print also warnings, 3
+    %    = Print also some info, 4 = Print more useful info (default), >5 = Be very
+    %    verbose (mostly for debugging the driver itself).
+
 
     if ~cfg.eyeTracker.do
 
@@ -63,7 +72,7 @@ function [el, edfFile] = eyeTracker(input, cfg, varargin)
                 % Initialization of the connection with the Eyelink Gazetracker.
                 %  exit program if this fails.
 
-                % make sure EL is initialized.
+                % Initialize EL and make sure it worked: returns: 0 if OK, -1 if error
                 ELinit  = Eyelink('Initialize');
                 if ELinit ~= 0
                     fprintf('Eyelink is not initialized, aborted.\n');
@@ -72,7 +81,8 @@ function [el, edfFile] = eyeTracker(input, cfg, varargin)
                     return
                 end
 
-                % make sure we're still connected.
+                % Make sure EL is still connected: returns 1 if connected, -1 if dummy-connected,
+                %  2 if broadcast-connected and 0 if not connected
                 ELconnection = Eyelink('IsConnected');
                 if ELconnection ~= 1
                     fprintf('Eyelink is not connected, aborted.\n');
@@ -111,7 +121,7 @@ function [el, edfFile] = eyeTracker(input, cfg, varargin)
                 Eyelink('message', 'DISPLAY_COORDS %ld %ld %ld %ld', 0, 0, 0, 0);
 
                 if cfg.eyeTracker.defaultCalibration
-                    
+
                 end
 
                 % Set default calibration parameters
@@ -175,8 +185,8 @@ function [el, edfFile] = eyeTracker(input, cfg, varargin)
                 %             return;
                 %         end
 
-                % Go back to black screen
-                Screen('FillRect', cfg.screen.win, [0 0 0]);
+                % Go back to default screen background color
+                Screen('FillRect', cfg.screen.win, cfg.color.background);
                 Screen('Flip', cfg.screen.win);
 
             case 'StartRecording'
@@ -239,13 +249,15 @@ function [el, edfFile] = eyeTracker(input, cfg, varargin)
                 try
                     fprintf('Receiving data file ''%s''\n', edfFileName);
 
-                    status = Eyelink('ReceiveFile', '', edfFileName);
+                    % Download the file and check the status: returns file size if OK, 0 if file
+                    %  transfer was cancelled, negative = error
+                    elReceiveFile = Eyelink('ReceiveFile', '', edfFileName);
 
-                    if status > 0
-                        fprintf('ReceiveFile status %d\n', status);
+                    if elReceiveFile > 0
+                        fprintf('Downloading eye tracker file of size %d\n', elReceiveFile);
                     end
 
-                    if 2 == exist(edfFileName, 'file')
+                    if exist(edfFileName, 'file') == 2
 
                         fprintf('Data file ''%s'' can be found in ''%s''\n', ...
                             cfg.fileName.eyetracker, ...
@@ -255,10 +267,11 @@ function [el, edfFile] = eyeTracker(input, cfg, varargin)
 
                 catch
 
-                    fprintf('Problem receiving data file ''%s''\n', edfFileName);
+                    fprintf('Problem receiving eye tracker data ''%s''\n', edfFileName);
 
                 end
 
+                % Close connection with EyeLink
                 Eyelink('shutdown');
 
         end
