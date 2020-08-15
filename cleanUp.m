@@ -16,9 +16,10 @@ function cleanUp()
     % Screen Close All
     sca;
 
-    % % Shut down connection with Eyelink
-    if cfg.eyeTracker.do
-      Eyelink('shutdown');
+    % Shut down connection with Eyelink
+    try
+        Eyelink('shutdown')
+    catch
     end
 
     % Close Psychportaudio if open
