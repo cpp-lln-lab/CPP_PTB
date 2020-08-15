@@ -81,7 +81,7 @@ function [el, edfFile] = eyeTracker(input, cfg, varargin)
                     return
                 end
 
-                %
+                % Last check that the EL is up to work
                 if ~EyelinkInit(0, 1)
                     fprintf('Eyelink Init aborted.\n');
                     return
@@ -97,20 +97,24 @@ function [el, edfFile] = eyeTracker(input, cfg, varargin)
                 % make sure that we get gaze data from the Eyelink
                 Eyelink('Command', 'link_sample_data = LEFT,RIGHT,GAZE,AREA');
 
-                % STEP 4
+                %% STEP 4
                 % SET UP TRACKER CONFIGURATION
+
                 % Setting the proper recording resolution, proper calibration type,
                 %   as well as the data file content;
-                %            Eyelink('command', 'add_file_preamble_text ''Recorded by
-                % EyelinkToolbox demo-experiment''');
+
+                Eyelink('command', 'add_file_preamble_text', 'Recorded by EyelinkToolbox demo-experiment');
 
                 % This command is crucial to map the gaze positions from the tracker to
                 %  screen pixel positions to determine fixation
                 Eyelink('command', 'screen_pixel_coords = %ld %ld %ld %ld', 0, 0, 0, 0);
                 Eyelink('message', 'DISPLAY_COORDS %ld %ld %ld %ld', 0, 0, 0, 0);
 
-                % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
-                % DEFAULT CALIBRATION
+                if cfg.eyeTracker.defaultCalibration
+                    
+                end
+
+                % Set default calibration parameters
                 % set calibration type.
                 Eyelink('command', 'calibration_type = HV5');
 
@@ -119,7 +123,7 @@ function [el, edfFile] = eyeTracker(input, cfg, varargin)
                 Eyelink('command', 'generate_default_targets = YES');
 
                 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
-% 
+%
 %                         % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 %                         % CUSTOM CALIBRATION
 %                         % (SET MANUALLY THE DOTS COORDINATES, HERE FOR 6 DOTS)
@@ -127,7 +131,7 @@ function [el, edfFile] = eyeTracker(input, cfg, varargin)
 %                         % you must send this command with value NO for custom calibration
 %                         % you must also reset it to YES for subsequent experiments
 %                         Eyelink('command', 'generate_default_targets = NO');
-%                 
+%
 %                         % calibration and validation target locations
 %                         [width, height]=Screen('WindowSize', screenNumber);
 %                         Eyelink('command','calibration_samples = 6');
@@ -138,7 +142,7 @@ function [el, edfFile] = eyeTracker(input, cfg, varargin)
 %                             640,614, ... %width/2,height*0.6
 %                             128,341, ... %width*0.1,height*1/3
 %                             1152,341 );  %width-width*0.1,height*1/3
-%                 
+%
 %                         Eyelink('command','validation_samples = 5');
 %                         Eyelink('command','validation_sequence = 0,1,2,3,4,5');
 %                         Eyelink('command','validation_targets = %d,%d %d,%d %d,%d %d,%d %d,%d',...
