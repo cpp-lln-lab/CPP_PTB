@@ -17,11 +17,9 @@ function cleanUp()
     sca;
 
     % Shut down connection with Eyelink
-try
-    Eyelink('shutdown')
-catch
-end
-      Eyelink('shutdown');
+    try
+        Eyelink('shutdown')
+    catch
     end
 
     % Close Psychportaudio if open
