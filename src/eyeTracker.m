@@ -40,13 +40,38 @@ function [el, edfFile] = eyeTracker(input, cfg, varargin)
     %
     % Optional useful functions to implement in future:
     %
-    %  - oldlevel = Eyelink(‘Verbosity’ [,level]);
-    %
-    %    Set level of verbosity for error/warning/status messages. ‘level’ optional, new
+    %  - Set level of verbosity for error/warning/status messages. ‘level’ optional, new
     %    level of verbosity. ‘oldlevel’ is the old level of verbosity. The following
     %    levels are supported: 0 = Shut up. 1 = Print errors, 2 = Print also warnings, 3
     %    = Print also some info, 4 = Print more useful info (default), >5 = Be very
     %    verbose (mostly for debugging the driver itself).
+    %
+    %   oldlevel = Eyelink(‘Verbosity’ [,level]);
+    %
+    %  - Tag the ET data outout
+    %
+    %   Eyelink('command', 'add_file_preamble_text', 'Recorded by EyelinkToolbox demo-experiment');
+    %
+    %  - Set parser (conservative saccade thresholds)
+    %
+    %   Eyelink('command', 'saccade_velocity_threshold = 35');
+    %   Eyelink('command', 'saccade_acceleration_threshold = 9500');
+    %
+    %  - Drift correction
+    %
+    %   EyelinkDoDriftCorrection(el);
+    %
+    %   success = EyelinkDoDriftCorrection(el);
+    %   if success~=1
+    %      Eyelink('shutdown');
+    %      cleanUp()
+    %      return;
+    %   end
+    %
+    %  - Tag the recording, in the past caused delays during the presentation so I avoided to use it
+    %
+    %   Eyelink('message', 'Trial 1');
+
 
 
     if ~cfg.eyeTracker.do
@@ -66,7 +91,7 @@ function [el, edfFile] = eyeTracker(input, cfg, varargin)
                 %  and control codes (e.g. tracker state bit and Eyelink key values).
                 el = EyelinkInitDefaults(cfg.screen.win);
 
-                % calibration has silver background with black targets, sound and smaller
+                % Calibration has silver background with black targets, sound and smaller
                 %  targets
                 el.backgroundcolour        = [192 192 192, (cfg.screen.win)];
                 el.msgfontcolour           = BlackIndex(cfg.screen.win);
@@ -75,7 +100,7 @@ function [el, edfFile] = eyeTracker(input, cfg, varargin)
                 el.calibrationtargetwidth  = 0.5;
                 el.displayCalResults       = 1;
 
-                % call this function for changes to the calibration structure to take
+                % Call this function for changes to the calibration structure to take
                 %  affect
                 EyelinkUpdateDefaults(el);
 
@@ -113,45 +138,36 @@ function [el, edfFile] = eyeTracker(input, cfg, varargin)
                 [el.v, el.vs] = Eyelink('GetTrackerVersion');
                 fprintf('Running experiment on a ''%s'' tracker.\n', el.vs);
 
-                % make sure that we get gaze data from the Eyelink
+                % Make sure that we get gaze data from the Eyelink
                 Eyelink('Command', 'link_sample_data = LEFT,RIGHT,GAZE,AREA');
 
                 %% STEP 4
-                % SET UP TRACKER CONFIGURATION
-
                 % Setting the proper recording resolution, proper calibration type,
                 %   as well as the data file content;
-
-                Eyelink('command', 'add_file_preamble_text', 'Recorded by EyelinkToolbox demo-experiment');
 
                 % This command is crucial to map the gaze positions from the tracker to
                 %  screen pixel positions to determine fixation
                 Eyelink('command', 'screen_pixel_coords = %ld %ld %ld %ld', 0, 0, 0, 0);
                 Eyelink('message', 'DISPLAY_COORDS %ld %ld %ld %ld', 0, 0, 0, 0);
 
-                % set calibration type.
+                % Set calibration type.
                 Eyelink('command', 'calibration_type = HV5');
 
                 if cfg.eyeTracker.defaultCalibration
 
                     % Set default calibration parameters
-
-
-                    % you must send this command with value NO for custom calibration
-                    %   you must also reset it to YES for subsequent experiments
                     Eyelink('command', 'generate_default_targets = YES');
 
                 else
-                    % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
-                    % CUSTOM CALIBRATION
-                    % (SET MANUALLY THE DOTS COORDINATES, HERE FOR 6 DOTS)
 
-                    % you must send this command with value NO for custom calibration
-                    % you must also reset it to YES for subsequent experiments
+                    % Set default calibration parameters
                     Eyelink('command', 'generate_default_targets = NO');
 
-                    % calibration and validation target locations
-                    [width, height]=Screen('WindowSize', screenNumber);
+                    % Calibration target locations, set manually the dots
+                    %  coordinates, here for 6 dots
+
+                    % [width, height]=Screen('WindowSize', screenNumber);
+
                     Eyelink('command','calibration_samples = 6');
                     Eyelink('command','calibration_sequence = 0,1,2,3,4,5');
                     Eyelink('command','calibration_targets = %d,%d %d,%d %d,%d %d,%d %d,%d',...
@@ -161,6 +177,7 @@ function [el, edfFile] = eyeTracker(input, cfg, varargin)
                         128,341, ... %width*0.1,height*1/3
                         1152,341 );  %width-width*0.1,height*1/3
 
+                    % Validation target locations
                     Eyelink('command','validation_samples = 5');
                     Eyelink('command','validation_sequence = 0,1,2,3,4,5');
                     Eyelink('command','validation_targets = %d,%d %d,%d %d,%d %d,%d %d,%d',...
@@ -169,31 +186,14 @@ function [el, edfFile] = eyeTracker(input, cfg, varargin)
                         640,614, ... %width/2,height*0.6
                         128,341, ... %width*0.1,height*1/3
                         1152,341 );  %width-width*0.1,height*1/3
-                    % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 
                 end
 
-                %             % set parser (conservative saccade thresholds)
-                %             Eyelink('command', 'saccade_velocity_threshold = 35');
-                %             Eyelink('command', 'saccade_acceleration_threshold = 9500');
-
-                % set EDF file contents (not clear what this lines are used for)
+                % Set EDF file contents (not clear what this lines are used for)
                 el.vsn = regexp(el.vs, '\d', 'match'); % wont work on EL
 
-                % enter Eyetracker camera setup mode, calibration and validation
+                % Enter Eyetracker camera setup mode, calibration and validation
                 EyelinkDoTrackerSetup(el);
-
-                %         % do a final check of calibration using driftcorrection
-                %         % You have to hit esc before return.
-                %         EyelinkDoDriftCorrection(el);
-
-                %         % do a final check of calibration using driftcorrection
-                %         success=EyelinkDoDriftCorrection(el);
-                %         if success~=1
-                %             Eyelink('shutdown');
-                %             cleanUp()
-                %             return;
-                %         end
 
                 % Go back to default screen background color
                 Screen('FillRect', cfg.screen.win, cfg.color.background);
@@ -206,11 +206,8 @@ function [el, edfFile] = eyeTracker(input, cfg, varargin)
                 Eyelink('Command', 'set_idle_mode');
                 WaitSecs(0.05);
                 Eyelink('StartRecording');
-                %         % here to tag the recording, in the past caused delays during the
-                %         %  presentation so I avoided to use it
-                %         Eyelink('message',['TRIALID ',num2str(blocks),'_startTrial']);
 
-                % check recording status, stop display if error
+                % Check recording status, stop display if error
                 checkrec = Eyelink('checkrecording');
                 if checkrec ~= 0
                     fprintf('\nEyelink is not recording.\n\n');
@@ -219,7 +216,7 @@ function [el, edfFile] = eyeTracker(input, cfg, varargin)
                     return
                 end
 
-                % record a few samples before we actually start displaying
+                % Record a few samples before we actually start displaying
                 %  otherwise you may lose a few msec of data
                 WaitSecs(0.1);
 
