@@ -2,7 +2,7 @@
 # This will only work on your repo if you have an account on travis and you
 # have set it up to run continuous integration on this this repo
 
-# Linux distribution
+# Linux distribution (bionic beaver)
 dist: bionic
 
 # Language and version

@@ -57,7 +57,7 @@ We use the following regular expression for function names: `[a-z]+(([A-Z]|[0-9]
 
 We keep the McCabe complexity as reported by the [check_my_code function](https://github.com/Remi-Gau/check_my_code) below 15.
 
-We use the [MISS_HIT linter](https://florianschanda.github.io/miss_hit/style_checker.html) to automatically fix some linting issues.
+We use the [MISS_HIT linter](https://florianschanda.github.io/miss_hit/style_checker.html) to automatically fix some linting issues. The code style and quality is also checked during the continuous integration.
 
 ##  3. <a name='Howtoinstall'></a>How to install
 
@@ -169,6 +169,10 @@ press the keys necessary to start or abort the experiment.
 Using empty vectors (ie `[]`) or a negative value for those means that you will let PTB find and use the default device.
 
 ##  5. <a name='Structure'></a>Structure
+
+The `cfg` structure is where most of the information about your experiment will be defined.
+
+Below we try to outline what it contains.
 
 ```matlab
 

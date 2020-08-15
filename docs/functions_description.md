@@ -32,7 +32,7 @@
 This will initialize PsychToolBox
 
 -   screen
--   the windon opened takes the whole screen by default
+-   the window opened takes the whole screen by default
 -   set in debug mode with window transparency if necessary
 -   can skip synch test if you ask for it (nicely)
 -   gets the flip interval
