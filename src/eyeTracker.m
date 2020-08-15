@@ -220,39 +220,42 @@ function [el, edfFile] = eyeTracker(input, cfg, varargin)
                 %  otherwise you may lose a few msec of data
                 WaitSecs(0.1);
 
-                % HERE START THE STIMULATION OF THE BLOCK
-                % to mark the beginning of the trial
+                % Mark the beginning of the trial, here start the stimulation of the experiment
                 Eyelink('Message', 'SYNCTIME');
 
             case 'StopRecordings'
 
                 % STEP 8
-                % finish up: stop recording eye-movements,
+                % Finish up: stop recording of eye-movements
+
                 % EyeLink Stop recording the block
                 Eyelink('Message', 'BLANK_SCREEN');
-                % adds 100 msec of data to catch final events
+
+                % Add 100 msec of data to catch final events
                 WaitSecs(0.1);
-                % close graphics window, close data file and shut down tracker
+
+                % Stop recoding
                 Eyelink('StopRecording');
 
             case 'Shutdown'
-
-                edfFileName = fullfile( ...
-                    cfg.dir.outputSubject, ...
-                    'eyetracker', ...
-                    cfg.fileName.eyetracker);
-
-                edfFile = 'demo.edf';
 
                 % STEP 6
                 % At the end of the experiment, save the edf file and shut down connection
                 %  with Eyelink
 
+                # Set the edf file path + name
+                edfFileName = fullfile( ...
+                    cfg.dir.outputSubject, ...
+                    'eyetracker', ...
+                    cfg.fileName.eyetracker);
+
                 Eyelink('Command', 'set_idle_mode');
+
                 WaitSecs(0.5);
+
                 Eyelink('CloseFile');
 
-                % download data file
+                % Download data file
                 try
                     fprintf('Receiving data file ''%s''\n', edfFileName);
 
