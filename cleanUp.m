@@ -16,13 +16,18 @@ function cleanUp()
     % Screen Close All
     sca;
 
+    % % Shut down connection with Eyelink
+    if cfg.eyeTracker.do
+      Eyelink('shutdown');
+    end
+
     % Close Psychportaudio if open
     if PsychPortAudio('GetOpenDeviceCount') ~= 0
         PsychPortAudio('Close');
     end
 
     if ~ismac
-        % remove PsychDebugWindowConfiguration
+        % Remove PsychDebugWindowConfiguration
         clear Screen;
     end
 
