@@ -1,4 +1,24 @@
-function [el, edfFile] = eyeTracker(input, cfg)
+function [el] = eyeTracker(input, cfg)
+    % [el] = eyeTracker(input, cfg)
+    %
+    % Wrapper function that deals with all the necessery actions to implement Eye Tracker recording.
+    %
+    % INPUT
+    %
+    % - action: Defines what we want the function to do
+    %  - Calibration: to initialize EyeLink and run calibration
+    %    -- 'default calibration' (default) will run a calibration with 6 points
+    %    -- 'custom calibration'  (cfg.eyeTracker.defaultCalibration = 'false') will run a
+    %        calibration with 6 points but the experimenter can choose their position on the screen
+    %  - StartRecording: to start eye movements recording
+    %  - StopRecordings: to stop eye movements recornding
+    %  - Shutdown: to save the `.edf` file with BIDS compliant name, from cpp-lln-lab/CPP_BIDS, in
+    %    the output folder and shut the connection between the stimulation computer and the EyeLink
+    %    computer
+    %
+    %  OUTPUT
+    %
+    % `el` is a structure where are stored EyeLink setup variables
 
     if ~cfg.eyeTracker.do
 
