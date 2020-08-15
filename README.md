@@ -1,3 +1,14 @@
+[![](https://img.shields.io/badge/Octave-CI-blue?logo=Octave&logoColor=white)](https://github.com/cpp-lln-lab/CPP_PTB/actions)
+![](https://github.com/cpp-lln-lab/CPP_PTB/workflows/CI/badge.svg) 
+
+[![Build Status](https://travis-ci.com/cpp-lln-lab/CPP_BIDS.svg?branch=master)](https://travis-ci.com/cpp-lln-lab/CPP_PTB)
+
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
+
+# CPP_PTB
+
 <!-- vscode-markdown-toc -->
 * 1. [Requirements](#Requirements)
 * 2. [Code guidestyle](#Codeguidestyle)
@@ -17,16 +28,12 @@
 	numbering=true
 	autoSave=true
 	/vscode-markdown-toc-config -->
-<!-- /vscode-markdown-toc --># CPP_PTB
+<!-- /vscode-markdown-toc -->
 
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-This is List of Crossmodal Perception and Plasticity lab (CPP) PsychToolBox (PTB) toolbox.
+This is the Crossmodal Perception and Plasticity lab (CPP) PsychToolBox (PTB) toolbox.
 
 Those functions are mostly wrappers around some PTB functions to facilitate their use and to have a codebase to facilitate their reuse.
-
 
 ##  1. <a name='Requirements'></a>Requirements
 
