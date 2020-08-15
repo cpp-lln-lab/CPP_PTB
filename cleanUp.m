@@ -17,7 +17,10 @@ function cleanUp()
     sca;
 
     % Shut down connection with Eyelink
-    if cfg.eyeTracker.do
+try
+    Eyelink('shutdown')
+catch
+end
       Eyelink('shutdown');
     end
 
