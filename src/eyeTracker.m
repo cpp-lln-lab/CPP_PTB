@@ -1,17 +1,25 @@
 % Eyelink already initialized!
-% Running experiment on a 'EYELINK CL 4.56  ' tracker.
-% Error in function Open:   Usage error
-% Could not find *any* audio hardware on your system - or at least not with the provided deviceid, if any!
-% Error in function FillRect:   Invalid Window (or Texture) Index provided: It doesn't correspond to an open window or texture.
+% Running experiment on a 'EYELINK CL 4.56 ' tracker.
+% Error in function Open: Usage error
+% Could not find *any* audio hardware on your system - or at least not with
+% the provided deviceid, if any!
+% Error in function FillRect: Invalid Window (or Texture) Index provided:
+% It doesn't correspond to an open window or texture.
 % Did you close it accidentally via Screen('Close') or Screen('CloseAll') ?
-% EYELINK: WARNING! PsychEyelinkCallRuntime() Failed to call eyelink runtime callback function PsychEyelinkDispatchCallback [rc = 1]!
-% EYELINK: WARNING! Make sure that function is on your Matlab/Octave path and properly initialized.
-% EYELINK: WARNING! May also be an error during execution of that function. Type ple at command prompt for error messages.
-% EYELINK: WARNING! Auto-Disabling all callbacks to the runtime environment for safety reasons.
-% Eyelink: In PsychEyelink_get_input_key(): Error condition detected: Trying to send TERMINATE_KEY abort keycode!
-
-% Eyelink: In PsychEyelink_get_input_key(): Error condition detected: Trying to send TERMINATE_KEY abort keycode!
-% Error in function FillRect:   Invalid Window (or Texture) Index provided: It doesn't correspond to an open window or texture.
+% EYELINK: WARNING! PsychEyelinkCallRuntime() Failed to call eyelink runtime
+% callback function PsychEyelinkDispatchCallback [rc = 1]!
+% EYELINK: WARNING! Make sure that function is on your Matlab/Octave path and
+% properly initialized.
+% EYELINK: WARNING! May also be an error during execution of that function.
+% Type ple at command prompt for error messages.
+% EYELINK: WARNING! Auto-Disabling all callbacks to the runtime environment
+% for safety reasons.
+% Eyelink: In PsychEyelink_get_input_key(): Error condition detected: Trying
+% to send TERMINATE_KEY abort keycode!
+% Eyelink: In PsychEyelink_get_input_key(): Error condition detected: Trying
+% to send TERMINATE_KEY abort keycode!
+% Error in function FillRect: Invalid Window (or Texture) Index provided:
+% It doesn't correspond to an open window or texture.
 % Did you close it accidentally via Screen('Close') or Screen('CloseAll') ?
 % Error using Screen
 % Usage:
@@ -19,13 +27,16 @@
 % Screen('FillRect', windowPtr [,color] [,rect] )
 %
 % Error in eyeTracker (line 150)
-%                 Screen('FillRect', cfg.screen.win, [0 0 0]);
+% Screen('FillRect', cfg.screen.win, [0 0 0]);
 %
 % Error in visualLocTanslational (line 52)
-%     [el] = eyeTracker('Calibration', cfg);
+% [el] = eyeTracker('Calibration', cfg);
+
 
 function [el, edfFile] = eyeTracker(input, cfg, varargin)
     % [el, edfFile] = eyeTracker(input, cfg, varargin)
+    %
+    % Mosto of the comments with explanation (e.g. 'STEP #') come from `EyelinkEventExample.m`
     %
     % Optional useful functions to implement in future:
     %
@@ -77,8 +88,7 @@ function [el, edfFile] = eyeTracker(input, cfg, varargin)
                 if ELinit ~= 0
                     fprintf('Eyelink is not initialized, aborted.\n');
                     Eyelink('Shutdown');
-                    Screen('CloseAll');
-                    return
+                    CleanUp()
                 end
 
                 % Make sure EL is still connected: returns 1 if connected, -1 if dummy-connected,
@@ -87,14 +97,13 @@ function [el, edfFile] = eyeTracker(input, cfg, varargin)
                 if ELconnection ~= 1
                     fprintf('Eyelink is not connected, aborted.\n');
                     Eyelink('Shutdown');
-                    Screen('CloseAll');
-                    return
+                    CleanUp()
                 end
 
                 % Last check that the EL is up to work
                 if ~EyelinkInit(0, 1)
                     fprintf('Eyelink Init aborted.\n');
-                    return
+                    CleanUp()
                 end
 
                 % Open the edf file to write the data
@@ -120,48 +129,49 @@ function [el, edfFile] = eyeTracker(input, cfg, varargin)
                 Eyelink('command', 'screen_pixel_coords = %ld %ld %ld %ld', 0, 0, 0, 0);
                 Eyelink('message', 'DISPLAY_COORDS %ld %ld %ld %ld', 0, 0, 0, 0);
 
-                if cfg.eyeTracker.defaultCalibration
-
-                end
-
-                % Set default calibration parameters
                 % set calibration type.
                 Eyelink('command', 'calibration_type = HV5');
 
-                % you must send this command with value NO for custom calibration
-                %   you must also reset it to YES for subsequent experiments
-                Eyelink('command', 'generate_default_targets = YES');
+                if cfg.eyeTracker.defaultCalibration
 
-                % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
-%
-%                         % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
-%                         % CUSTOM CALIBRATION
-%                         % (SET MANUALLY THE DOTS COORDINATES, HERE FOR 6 DOTS)
-%                         Eyelink('command', 'calibration_type = HV5');
-%                         % you must send this command with value NO for custom calibration
-%                         % you must also reset it to YES for subsequent experiments
-%                         Eyelink('command', 'generate_default_targets = NO');
-%
-%                         % calibration and validation target locations
-%                         [width, height]=Screen('WindowSize', screenNumber);
-%                         Eyelink('command','calibration_samples = 6');
-%                         Eyelink('command','calibration_sequence = 0,1,2,3,4,5');
-%                         Eyelink('command','calibration_targets = %d,%d %d,%d %d,%d %d,%d %d,%d',...
-%                             640,512, ... %width/2,height/2
-%                             640,102, ... %width/2,height*0.1
-%                             640,614, ... %width/2,height*0.6
-%                             128,341, ... %width*0.1,height*1/3
-%                             1152,341 );  %width-width*0.1,height*1/3
-%
-%                         Eyelink('command','validation_samples = 5');
-%                         Eyelink('command','validation_sequence = 0,1,2,3,4,5');
-%                         Eyelink('command','validation_targets = %d,%d %d,%d %d,%d %d,%d %d,%d',...
-%                             640,512, ... %width/2,height/2
-%                             640,102, ... %width/2,height*0.1
-%                             640,614, ... %width/2,height*0.6
-%                             128,341, ... %width*0.1,height*1/3
-%                             1152,341 );  %width-width*0.1,height*1/3
-%                         % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+                    % Set default calibration parameters
+
+
+                    % you must send this command with value NO for custom calibration
+                    %   you must also reset it to YES for subsequent experiments
+                    Eyelink('command', 'generate_default_targets = YES');
+
+                else
+                    % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+                    % CUSTOM CALIBRATION
+                    % (SET MANUALLY THE DOTS COORDINATES, HERE FOR 6 DOTS)
+
+                    % you must send this command with value NO for custom calibration
+                    % you must also reset it to YES for subsequent experiments
+                    Eyelink('command', 'generate_default_targets = NO');
+
+                    % calibration and validation target locations
+                    [width, height]=Screen('WindowSize', screenNumber);
+                    Eyelink('command','calibration_samples = 6');
+                    Eyelink('command','calibration_sequence = 0,1,2,3,4,5');
+                    Eyelink('command','calibration_targets = %d,%d %d,%d %d,%d %d,%d %d,%d',...
+                        640,512, ... %width/2,height/2
+                        640,102, ... %width/2,height*0.1
+                        640,614, ... %width/2,height*0.6
+                        128,341, ... %width*0.1,height*1/3
+                        1152,341 );  %width-width*0.1,height*1/3
+
+                    Eyelink('command','validation_samples = 5');
+                    Eyelink('command','validation_sequence = 0,1,2,3,4,5');
+                    Eyelink('command','validation_targets = %d,%d %d,%d %d,%d %d,%d %d,%d',...
+                        640,512, ... %width/2,height/2
+                        640,102, ... %width/2,height*0.1
+                        640,614, ... %width/2,height*0.6
+                        128,341, ... %width*0.1,height*1/3
+                        1152,341 );  %width-width*0.1,height*1/3
+                    % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+
+                end
 
                 %             % set parser (conservative saccade thresholds)
                 %             Eyelink('command', 'saccade_velocity_threshold = 35');
