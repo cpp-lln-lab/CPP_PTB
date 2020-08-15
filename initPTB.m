@@ -23,7 +23,7 @@ function [cfg] = initPTB(cfg)
     checkPtbVersion();
 
     pth = fileparts(mfilename('fullpath'));
-    addpath(fullfile(pth, 'subfun'));
+    addpath(genpath(fullfile(pth, 'src')));
 
     % For octave: to avoid displaying messenging one screen at a time
     more off;
