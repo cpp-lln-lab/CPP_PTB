@@ -1,3 +1,14 @@
+[![](https://img.shields.io/badge/Octave-CI-blue?logo=Octave&logoColor=white)](https://github.com/cpp-lln-lab/CPP_PTB/actions)
+![](https://github.com/cpp-lln-lab/CPP_PTB/workflows/CI/badge.svg) 
+
+[![Build Status](https://travis-ci.com/cpp-lln-lab/CPP_BIDS.svg?branch=master)](https://travis-ci.com/cpp-lln-lab/CPP_PTB)
+
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
+
+# CPP_PTB
+
 <!-- vscode-markdown-toc -->
 * 1. [Requirements](#Requirements)
 * 2. [Code guidestyle](#Codeguidestyle)
@@ -17,16 +28,12 @@
 	numbering=true
 	autoSave=true
 	/vscode-markdown-toc-config -->
-<!-- /vscode-markdown-toc --># CPP_PTB
+<!-- /vscode-markdown-toc -->
 
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-This is List of Crossmodal Perception and Plasticity lab (CPP) PsychToolBox (PTB) toolbox.
+This is the Crossmodal Perception and Plasticity lab (CPP) PsychToolBox (PTB) toolbox.
 
 Those functions are mostly wrappers around some PTB functions to facilitate their use and to have a codebase to facilitate their reuse.
-
 
 ##  1. <a name='Requirements'></a>Requirements
 
@@ -36,7 +43,7 @@ For instructions see the following links:
 
 | Requirements                                             | Used version |
 |----------------------------------------------------------|--------------|
-| [PsychToolBox](http://psychtoolbox.org/)  Duuuuhh        | >=3.0.14     |
+| [PsychToolBox](http://psychtoolbox.org/)                 | >=3.0.14     |
 | [Matlab](https://www.mathworks.com/products/matlab.html) | >=2015b      |
 | or [octave](https://www.gnu.org/software/octave/)        | 4.?          |
 
@@ -50,7 +57,7 @@ We use the following regular expression for function names: `[a-z]+(([A-Z]|[0-9]
 
 We keep the McCabe complexity as reported by the [check_my_code function](https://github.com/Remi-Gau/check_my_code) below 15.
 
-We use the [MISS_HIT linter](https://florianschanda.github.io/miss_hit/style_checker.html) to automatically fix some linting issues.
+We use the [MISS_HIT linter](https://florianschanda.github.io/miss_hit/style_checker.html) to automatically fix some linting issues. The code style and quality is also checked during the continuous integration.
 
 ##  3. <a name='Howtoinstall'></a>How to install
 
@@ -162,6 +169,10 @@ press the keys necessary to start or abort the experiment.
 Using empty vectors (ie `[]`) or a negative value for those means that you will let PTB find and use the default device.
 
 ##  5. <a name='Structure'></a>Structure
+
+The `cfg` structure is where most of the information about your experiment will be defined.
+
+Below we try to outline what it contains.
 
 ```matlab
 

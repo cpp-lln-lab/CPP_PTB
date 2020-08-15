@@ -1,14 +1,27 @@
 # Travis CI (https://travis-ci.org/)
+# This will only work on your repo if you have an account on travis and you
+# have set it up to run continuous integration on this this repo
 
-language: c
+# Linux distribution (bionic beaver)
 dist: bionic
+
+# Language and version
+language: python
+python:
+  - "3.6" # current default Python on Travis CI
+
 cache:
   apt: true # only works with Pro version
 
+# Install the miss_hit linter
 before_install:
-  - cd .. && git clone https://github.com/florianschanda/miss_hit.git && export PATH=$PATH:`pwd`/miss_hit && cd CPP_PTB
+  - pip3 install miss_hit
 
+# Lists all the tasks we will do 
 jobs:
   include:
-    - script: mh_style `pwd`
-      name: "miss_hit linter" # names the second job
+    - name: "miss_hit: checking code quality"
+      script: mh_metric . --ci
+    - name: "miss_hit: checking code style"
+      script: mh_style .
+      
