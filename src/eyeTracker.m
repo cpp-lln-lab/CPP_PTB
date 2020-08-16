@@ -58,7 +58,7 @@ function [el] = eyeTracker(input, cfg)
                 if ELinit ~= 0
                     fprintf('Eyelink is not initialized, aborted.\n');
                     Eyelink('Shutdown');
-                    CleanUp()
+                    CleanUp();
                     return
                 end
 
@@ -68,14 +68,14 @@ function [el] = eyeTracker(input, cfg)
                 if ELconnection ~= 1
                     fprintf('Eyelink is not connected, aborted.\n');
                     Eyelink('Shutdown');
-                    CleanUp()
+                    CleanUp();
                     return
                 end
 
                 % Last check that the EL is up to work and exit program if this fails.
                 if ~EyelinkInit(0, 1)
                     fprintf('Eyelink Init aborted.\n');
-                    CleanUp()
+                    CleanUp();
                     return
                 end
 
@@ -117,24 +117,24 @@ function [el] = eyeTracker(input, cfg)
 
                     % [width, height]=Screen('WindowSize', screenNumber);
 
-                    Eyelink('command','calibration_samples = 6');
-                    Eyelink('command','calibration_sequence = 0,1,2,3,4,5');
-                    Eyelink('command','calibration_targets = %d,%d %d,%d %d,%d %d,%d %d,%d',...
-                        640,512, ... %width/2,height/2
-                        640,102, ... %width/2,height*0.1
-                        640,614, ... %width/2,height*0.6
-                        128,341, ... %width*0.1,height*1/3
-                        1152,341 );  %width-width*0.1,height*1/3
+                    Eyelink('command', 'calibration_samples = 6');
+                    Eyelink('command', 'calibration_sequence = 0,1,2,3,4,5');
+                    Eyelink('command', 'calibration_targets = %d,%d %d,%d %d,%d %d,%d %d,%d', ...
+                        640, 512, ... % width/2,height/2
+                        640, 102, ... % width/2,height*0.1
+                        640, 614, ... % width/2,height*0.6
+                        128, 341, ... % width*0.1,height*1/3
+                        1152, 341);  % width-width*0.1,height*1/3
 
                     % Validation target locations
-                    Eyelink('command','validation_samples = 5');
-                    Eyelink('command','validation_sequence = 0,1,2,3,4,5');
-                    Eyelink('command','validation_targets = %d,%d %d,%d %d,%d %d,%d %d,%d',...
-                        640,512, ... %width/2,height/2
-                        640,102, ... %width/2,height*0.1
-                        640,614, ... %width/2,height*0.6
-                        128,341, ... %width*0.1,height*1/3
-                        1152,341 );  %width-width*0.1,height*1/3
+                    Eyelink('command', 'validation_samples = 5');
+                    Eyelink('command', 'validation_sequence = 0,1,2,3,4,5');
+                    Eyelink('command', 'validation_targets = %d,%d %d,%d %d,%d %d,%d %d,%d', ...
+                        640, 512, ... % width/2,height/2
+                        640, 102, ... % width/2,height*0.1
+                        640, 614, ... % width/2,height*0.6
+                        128, 341, ... % width*0.1,height*1/3
+                        1152, 341);  % width-width*0.1,height*1/3
 
                 end
 
