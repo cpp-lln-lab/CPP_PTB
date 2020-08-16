@@ -201,7 +201,7 @@ function [el] = eyeTracker(input, cfg)
 
                 WaitSecs(0.5);
 
-                # Close the file to be ready to be exported and saved.
+                % Close the file to be ready to be exported and saved.
                 Eyelink('CloseFile');
 
                 % Download data file
