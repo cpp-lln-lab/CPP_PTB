@@ -61,7 +61,7 @@ function cfg = setDefaultsPTB(cfg)
     end
 
     if isfield(cfg, 'eyeTracker') && ~isfield(cfg.eyeTracker, 'defaultCalibration')
-        fieldsToSet.eyeTracker.defaultCalibration = 'true'
+        fieldsToSet.eyeTracker.defaultCalibration = true;
     end
 
     if isfield(cfg, 'testingDevice') && strcmpi(cfg.testingDevice, 'mri')
