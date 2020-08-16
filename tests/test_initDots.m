@@ -52,7 +52,7 @@ function test_initDotsBasic()
     dots = rmfield(dots, 'positions');
 
     %% test
-%     assertEqual(expectedStructure, dots);
+    %     assertEqual(expectedStructure, dots);
 
 end
 
@@ -82,7 +82,7 @@ function test_initDotsStatic()
     expectedStructure.speeds = zeros(10, 2);
 
     %% test
-%     assertEqual(expectedStructure, dots);
+    %     assertEqual(expectedStructure, dots);
 
 end
 
@@ -110,6 +110,6 @@ function test_initDotsRadial()
     speeds = [horVector, vertVector] * 10;
 
     %% test
-%     assertEqual(speeds, dots.speeds);
+    %     assertEqual(speeds, dots.speeds);
 
 end
