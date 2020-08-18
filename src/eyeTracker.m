@@ -43,10 +43,10 @@ function [el, cfg] = eyeTracker(input, cfg)
                 %  targets
                 el.backgroundcolour = [cfg.eyeTracker.backgroundColor, (cfg.screen.win)];
                 el.msgfontcolour = cfg.eyeTracker.fontColor;
-                el.calibrationtargetcolour = cfg.eyeTracker.calibrationTargetColor
-                el.calibrationtargetsize = cfg.eyeTracker.calibrationTargetSize
-                el.calibrationtargetwidth = cfg.eyeTracker.calibrationTargetWidth
-                el.displayCalResults = cfg.eyeTracker.displayCalResults
+                el.calibrationtargetcolour = cfg.eyeTracker.calibrationTargetColor;
+                el.calibrationtargetsize = cfg.eyeTracker.calibrationTargetSize;
+                el.calibrationtargetwidth = cfg.eyeTracker.calibrationTargetWidth;
+                el.displayCalResults = cfg.eyeTracker.displayCalResults;
 
                 % Call this function for changes to the calibration structure to take
                 %  affect.
@@ -55,7 +55,7 @@ function [el, cfg] = eyeTracker(input, cfg)
                 % Initialize EL and make sure it worked: returns 0 if OK, -1 if error.
 
                 % Check that EL is initialzed and connected, otherwise abort experiment
-                eyetrackerCheckConnection
+                eyetrackerCheckConnection;
 
                 % Open the edf file to write the data.
                 edfFile = 'demo.edf';
@@ -71,8 +71,8 @@ function [el, cfg] = eyeTracker(input, cfg)
 
                 % Make sure that we get gaze data from the Eyelink.
                 Eyelink('Command', 'link_sample_data = LEFT,RIGHT,GAZE,AREA');
-                Eyelink('Command', 'link_event_data = GAZE,GAZERES,HREF,AREA,VELOCITY');
-                Eyelink('Command', 'link_event_filter = LEFT,RIGHT,FIXATION,BLINK,SACCADE,BUTTON');
+                Eyelink('command', 'link_event_data = GAZE,GAZERES,HREF,AREA,VELOCITY');
+                Eyelink('command', 'link_event_filter = LEFT,RIGHT,FIXATION,BLINK,SACCADE,BUTTON');
 
                 %% Calibration
 
@@ -223,19 +223,19 @@ end
 
 function eyetrackerCheckConnection
 
-  % Initialize EL and make sure it worked: returns 0 if OK, -1 if error.
-  %  Exit program if this fails.
-  elInit  = Eyelink('Initialize');
-  if ELinit ~= 0
-    error('Eyelink is not initialized, aborted.\n');
-  end
+    % Initialize EL and make sure it worked: returns 0 if OK, -1 if error.
+    %  Exit program if this fails.
+    elInit  = Eyelink('Initialize');
+    if ELinit ~= 0
+      error('Eyelink is not initialized, aborted.\n');
+    end
 
-  % Make sure EL is still connected: returns 1 if connected, -1 if dummy-connected,
-  %  2 if broadcast-connected and 0 if not connected. Exit program if this fails.
-  elConnection = Eyelink('IsConnected');
-  if ELconnection ~= 1
-    error('Eyelink is not connected, aborted.\n');
-  end
+    % Make sure EL is still connected: returns 1 if connected, -1 if dummy-connected,
+    %  2 if broadcast-connected and 0 if not connected. Exit program if this fails.
+    elConnection = Eyelink('IsConnected');
+    if ELconnection ~= 1
+      error('Eyelink is not connected, aborted.\n');
+    end
 
 end
 
