@@ -41,12 +41,12 @@ function [el] = eyeTracker(input, cfg)
 
                 % Calibration has silver background with black targets, sound and smaller
                 %  targets
-                el.backgroundcolour = [192 192 192, (cfg.screen.win)];
-                el.msgfontcolour = BlackIndex(cfg.screen.win);
-                el.calibrationtargetcolour = BlackIndex(cfg.screen.win);
-                el.calibrationtargetsize = 1;
-                el.calibrationtargetwidth = 0.5;
-                el.displayCalResults = 1;
+                el.backgroundcolour = [cfg.eyeTracker.backgroundColor, (cfg.screen.win)];
+                el.msgfontcolour = cfg.eyeTracker.fontColor;
+                el.calibrationtargetcolour = cfg.eyeTracker.calibrationTargetColor
+                el.calibrationtargetsize = cfg.eyeTracker.calibrationTargetSize
+                el.calibrationtargetwidth = cfg.eyeTracker.calibrationTargetWidth
+                el.displayCalResults = cfg.eyeTracker.displayCalResults
 
                 % Call this function for changes to the calibration structure to take
                 %  affect.
