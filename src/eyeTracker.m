@@ -1,4 +1,4 @@
-function [el] = eyeTracker(input, cfg)
+function [el, cfg] = eyeTracker(input, cfg)
     % [el] = eyeTracker(input, cfg)
     %
     % Wrapper function that deals with all the necessery actions to implement Eye Tracker recording.
@@ -63,6 +63,10 @@ function [el] = eyeTracker(input, cfg)
 
                 % Get EyeLink setup information.
                 [el.v, el.vs] = Eyelink('GetTrackerVersion');
+
+                % Save EL setup version in cfg
+                cfg.eyeTracker.eyeLinkVersionString = el.vs;
+
                 fprintf('Running experiment on a ''%s'' tracker.\n', el.vs);
 
                 % Make sure that we get gaze data from the Eyelink.
