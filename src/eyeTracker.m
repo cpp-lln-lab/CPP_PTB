@@ -53,31 +53,9 @@ function [el] = eyeTracker(input, cfg)
                 EyelinkUpdateDefaults(el);
 
                 % Initialize EL and make sure it worked: returns 0 if OK, -1 if error.
-                %  Exit program if this fails.
-                elInit  = Eyelink('Initialize');
-                if ELinit ~= 0
-                    fprintf('Eyelink is not initialized, aborted.\n');
-                    Eyelink('Shutdown');
-                    CleanUp();
-                    return
-                end
 
-                % Make sure EL is still connected: returns 1 if connected, -1 if dummy-connected,
-                %  2 if broadcast-connected and 0 if not connected. Exit program if this fails.
-                elConnection = Eyelink('IsConnected');
-                if ELconnection ~= 1
-                    fprintf('Eyelink is not connected, aborted.\n');
-                    Eyelink('Shutdown');
-                    CleanUp();
-                    return
-                end
-
-                % Last check that the EL is up to work and exit program if this fails.
-                if ~EyelinkInit(0, 1)
-                    fprintf('Eyelink Init aborted.\n');
-                    CleanUp();
-                    return
-                end
+                % Check that EL is initialzed and connected, otherwise abort experiment
+                eyetrackerCheckConnection
 
                 % Open the edf file to write the data.
                 edfFile = 'demo.edf';
@@ -139,7 +117,7 @@ function [el] = eyeTracker(input, cfg)
                 end
 
                 % Set EDF file contents (not clear what this lines are used for).
-                el.vsn = regexp(el.vs, '\d', 'match'); % wont work on EL
+                el.vsn = regexp(el.vs, '\d', 'match'); % won't work on EL
 
                 % Enter Eyetracker camera setup mode, calibration and validation.
                 EyelinkDoTrackerSetup(el);
@@ -238,6 +216,25 @@ function [el] = eyeTracker(input, cfg)
     end
 
 end
+
+function eyetrackerCheckConnection
+
+  % Initialize EL and make sure it worked: returns 0 if OK, -1 if error.
+  %  Exit program if this fails.
+  elInit  = Eyelink('Initialize');
+  if ELinit ~= 0
+    error('Eyelink is not initialized, aborted.\n');
+  end
+
+  % Make sure EL is still connected: returns 1 if connected, -1 if dummy-connected,
+  %  2 if broadcast-connected and 0 if not connected. Exit program if this fails.
+  elConnection = Eyelink('IsConnected');
+  if ELconnection ~= 1
+    error('Eyelink is not connected, aborted.\n');
+  end
+
+end
+
 
 %% subfunctions for iView
 
