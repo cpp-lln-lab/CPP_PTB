@@ -71,8 +71,8 @@ function [el, cfg] = eyeTracker(input, cfg)
 
                 % Make sure that we get gaze data from the Eyelink.
                 Eyelink('Command', 'link_sample_data = LEFT,RIGHT,GAZE,AREA');
-                Eyelink('command', 'link_event_data = GAZE,GAZERES,HREF,AREA,VELOCITY');
-                Eyelink('command', 'link_event_filter = LEFT,RIGHT,FIXATION,BLINK,SACCADE,BUTTON');
+                Eyelink('Command', 'link_event_data = GAZE,GAZERES,HREF,AREA,VELOCITY');
+                Eyelink('Command', 'link_event_filter = LEFT,RIGHT,FIXATION,BLINK,SACCADE,BUTTON');
 
                 %% Calibration
 
