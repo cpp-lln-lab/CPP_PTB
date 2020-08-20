@@ -16,6 +16,12 @@ function outputFiltered = readOutputFilter(cfg, filterHeader, filterContent)
     %  - filterContent: string, the content of the column you want to filter out. It can take just
     %    part of the content name (e.g., you want to display the triggers and you have 'trigger_motion'
     %    and 'trigger_static', 'trigger' as input will do)
+    %
+    % OUTPUT:
+    %
+    %  - outputFiltered: dataset with only the specified content, to see it in the command window
+    %  use display(outputFiltered)
+    
 
     % Get the outputfile path
     tsvFile = fullfile(cfg.dir.outputSubject, ...
@@ -35,4 +41,3 @@ function outputFiltered = readOutputFilter(cfg, filterHeader, filterContent)
     outputFiltered = outputDataset(filterIdx,:);
 
 end
-
