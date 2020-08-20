@@ -22,6 +22,8 @@ function [cfg] = initPTB(cfg)
 
     checkPtbVersion();
 
+    cfg = getOsInfo(cfg);
+
     pth = fileparts(mfilename('fullpath'));
     addpath(genpath(fullfile(pth, 'src')));
 
@@ -82,6 +84,27 @@ function [cfg] = initPTB(cfg)
     KbCheck;
     WaitSecs(0.1);
     GetSecs;
+
+end
+
+function cfg = getOsInfo(cfg)
+
+    cfg.software.os = computer();
+    cfg.software.name = 'Psychtoolbox';
+    cfg.software.RRID = 'SCR_002881';
+
+    [~, versionStruc] = PsychtoolboxVersion;
+
+    cfg.software.version = sprintf('%i.%i.%i', ...
+            versionStruc.major, ...
+            versionStruc.minor, ...
+            versionStruc.point);
+
+    runsOn = 'Matlab - ';
+    if IsOctave
+        runsOn = 'Octave - ';
+    end
+    cfg.software.runsOn = [runsOn version()];
 
 end
 
