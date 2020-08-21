@@ -19,7 +19,7 @@ function outputFiltered = readAndFilterLogfile(columnName, filterBy, varargin)
     % OUTPUT:
     %
     %  - outputFiltered: dataset with only the specified content, to see it in the command window
-    %  use display(outputFiltered)
+    %    use display(outputFiltered)
 
     % Checke if input is cfg or the file path
     if ischar(varargin{1})
