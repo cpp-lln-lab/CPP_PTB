@@ -1,4 +1,4 @@
-function outputFiltered = readOutputFilter(filterHeader, filterContent, varargin)
+function outputFiltered = readAndFilterLogfile(filterHeader, filterContent, varargin)
     % outputFiltered = readOutputFilter(filterHeader, filterContent, varargin)
     %
     % It will display in the command window the content of the `output.tsv' filtered by one element
@@ -9,8 +9,8 @@ function outputFiltered = readOutputFilter(filterHeader, filterContent, varargin
     %
     % INPUT:
     %
-    %  - filterHeader: string, the column header where the ctarget content is stored (e.g., for
-    %    'condition name' will be 'trial type')
+    %  - filterHeader: string, the header of the column where the content of insterest is stored 
+    %    (e.g., for 'trigger' will be 'trial type')
     %  - filterContent: string, the content of the column you want to filter out. It can take just
     %    part of the content name (e.g., you want to display the triggers and you have
     %    'trigger_motion' and 'trigger_static', 'trigger' as input will do)
