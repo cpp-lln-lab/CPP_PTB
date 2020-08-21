@@ -1,4 +1,4 @@
-function outputFiltered = readOutputFilter(varargin, filterHeader, filterContent)
+function outputFiltered = readOutputFilter(filterHeader, filterContent, varargin)
     % outputFiltered = readOutputFilter(cfg, filterHeader, filterContent)
     %
     % It will display in the command window the content of the `output.tsv' filtered by one element
@@ -21,13 +21,18 @@ function outputFiltered = readOutputFilter(varargin, filterHeader, filterContent
     %
     %  - outputFiltered: dataset with only the specified content, to see it in the command window
     %  use display(outputFiltered)
-
-    if isstring(varargin{1})
-       tsvFile = varargin{1}
+    
+    % Che 
+    if ischar(varargin{1})
+       tsvFile = varargin{1};
     elseif isstruct(varargin{1})
        tsvFile = fullfile(varargin{1}.dir.outputSubject, ...
             varargin{1}.fileName.modality, ...
             varargin{1}.fileName.events);
+    end
+
+    if ~exist(tsvFile, 'file')==2
+      error('input file does not exist')
     end
 
     % % Get the outputfile path
