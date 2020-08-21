@@ -5,7 +5,7 @@ function outputFiltered = readAndFilterLogfile(columnName, filterBy, varargin)
     % of a target column.
     %
     % DEPENDENCIES:
-    % - bids_matlab (from CPP_BIDS)
+    %  - bids_matlab (from CPP_BIDS)
     %
     % INPUT:
     %
