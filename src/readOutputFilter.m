@@ -1,28 +1,27 @@
 function outputFiltered = readOutputFilter(filterHeader, filterContent, varargin)
-    % outputFiltered = readOutputFilter(cfg, filterHeader, filterContent)
+    % outputFiltered = readOutputFilter(filterHeader, filterContent, varargin)
     %
     % It will display in the command window the content of the `output.tsv' filtered by one element
-    % of a target column. At the moment it works only for string content and can retrieve the tsv
-    % path form `cfg`.
+    % of a target column.
     %
     % DEPENDENCIES:
     % - bids_matlab (from CPP_BIDS)
     %
     % INPUT:
     %
-    %  - cfg: the main experiment structure
     %  - filterHeader: string, the column header where the ctarget content is stored (e.g., for
     %    'condition name' will be 'trial type')
     %  - filterContent: string, the content of the column you want to filter out. It can take just
     %    part of the content name (e.g., you want to display the triggers and you have
     %    'trigger_motion' and 'trigger_static', 'trigger' as input will do)
+    %  - varargin: either cfg (to display the last run output) or the file path as string   
     %
     % OUTPUT:
     %
     %  - outputFiltered: dataset with only the specified content, to see it in the command window
     %  use display(outputFiltered)
     
-    % Che 
+    % Checke if input is cfg or the file path
     if ischar(varargin{1})
        tsvFile = varargin{1};
     elseif isstruct(varargin{1})
@@ -31,14 +30,10 @@ function outputFiltered = readOutputFilter(filterHeader, filterContent, varargin
             varargin{1}.fileName.events);
     end
 
-    if ~exist(tsvFile, 'file')==2
-      error('input file does not exist')
+    % Check if the file exists
+    if ~exist(tsvFile, 'file')
+      error([newline 'Input file does not exist'])
     end
-
-    % % Get the outputfile path
-    % tsvFile = fullfile(cfg.dir.outputSubject, ...
-    %     cfg.fileName.modality, ...
-    %     cfg.fileName.events);
 
     % Read the the tsv file and store each column in a field of `output` structure
     output = bids.util.tsvread(tsvFile);
