@@ -1,4 +1,4 @@
-function outputFiltered = readAndFilterLogfile(filterHeader, filterContent, varargin)
+function outputFiltered = readAndFilterLogfile(columnName, filterBy, varargin)
     % outputFiltered = readOutputFilter(filterHeader, filterContent, varargin)
     %
     % It will display in the command window the content of the `output.tsv' filtered by one element
@@ -9,9 +9,9 @@ function outputFiltered = readAndFilterLogfile(filterHeader, filterContent, vara
     %
     % INPUT:
     %
-    %  - filterHeader: string, the header of the column where the content of insterest is stored 
+    %  - columnName: string, the header of the column where the content of insterest is stored 
     %    (e.g., for 'trigger' will be 'trial type')
-    %  - filterContent: string, the content of the column you want to filter out. It can take just
+    %  - filterBy: string, the content of the column you want to filter out. It can take just
     %    part of the content name (e.g., you want to display the triggers and you have
     %    'trigger_motion' and 'trigger_static', 'trigger' as input will do)
     %  - varargin: either cfg (to display the last run output) or the file path as string   
@@ -39,7 +39,7 @@ function outputFiltered = readAndFilterLogfile(filterHeader, filterContent, vara
     output = bids.util.tsvread(tsvFile);
 
     % Get the index of the target contentent to filter and display
-    filterIdx = find(strncmp(output.(filterHeader), filterContent, length(filterContent)));
+    filterIdx = find(strncmp(output.(columnName), filterBy, length(filterBy)));
 
     % Convert the structure to dataset
     outputDataset = struct2dataset(output);
