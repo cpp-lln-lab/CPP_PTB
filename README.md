@@ -1,15 +1,41 @@
-# CPP_PTB
+[![](https://img.shields.io/badge/Octave-CI-blue?logo=Octave&logoColor=white)](https://github.com/cpp-lln-lab/CPP_PTB/actions)
+![](https://github.com/cpp-lln-lab/CPP_PTB/workflows/CI/badge.svg) 
+
+[![Build Status](https://travis-ci.com/cpp-lln-lab/CPP_BIDS.svg?branch=master)](https://travis-ci.com/cpp-lln-lab/CPP_PTB)
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-This is List of Crossmodal Perception and Plasticity lab (CPP) PsychToolBox (PTB) toolbox.
+# CPP_PTB
+
+<!-- vscode-markdown-toc -->
+* 1. [Requirements](#Requirements)
+* 2. [Code guidestyle](#Codeguidestyle)
+* 3. [How to install](#Howtoinstall)
+	* 3.1. [Download with git](#Downloadwithgit)
+	* 3.2. [Add as a submodule](#Addasasubmodule)
+		* 3.2.1. [Example for submodule usage](#Exampleforsubmoduleusage)
+	* 3.3. [Direct download](#Directdownload)
+* 4. [Setting up keyboards](#Settingupkeyboards)
+* 5. [Structure](#Structure)
+* 6. [Annexes](#Annexes)
+	* 6.1. [Experiment template [ WIP ]](#ExperimenttemplateWIP)
+	* 6.2. [devSandbox (stand-alone)](#devSandboxstand-alone)
+* 7. [Contributors ✨](#Contributors)
+
+<!-- vscode-markdown-toc-config
+	numbering=true
+	autoSave=true
+	/vscode-markdown-toc-config -->
+<!-- /vscode-markdown-toc -->
+
+
+This is the Crossmodal Perception and Plasticity lab (CPP) PsychToolBox (PTB) toolbox.
 
 Those functions are mostly wrappers around some PTB functions to facilitate their use and to have a codebase to facilitate their reuse.
 
-
-## Requirements
+##  1. <a name='Requirements'></a>Requirements
 
 Make sure that the following toolboxes are installed and added to the matlab / octave path.
 
@@ -17,25 +43,25 @@ For instructions see the following links:
 
 | Requirements                                             | Used version |
 |----------------------------------------------------------|--------------|
-| [PsychToolBox](http://psychtoolbox.org/)  Duuuuhh        | >=3.0.14     |
-| [Matlab](https://www.mathworks.com/products/matlab.html) | 201??        |
+| [PsychToolBox](http://psychtoolbox.org/)                 | >=3.0.14     |
+| [Matlab](https://www.mathworks.com/products/matlab.html) | >=2015b      |
 | or [octave](https://www.gnu.org/software/octave/)        | 4.?          |
 
 The exact version required for this to work but it is known to work with:
--   matlab 2017a or octave 4.2.2 and PTB 3.0.16.
+-   matlab 2015b or octave 4.2.2 and PTB 3.0.14.
 
-## Code guidestyle
+##  2. <a name='Codeguidestyle'></a>Code guidestyle
 
 We use the `camelCase` to more easily differentiates our functions from the ones from PTB that use a `PascalCase`.
 We use the following regular expression for function names: `[a-z]+(([A-Z]|[0-9]){1}[a-z]+)*`.
 
 We keep the McCabe complexity as reported by the [check_my_code function](https://github.com/Remi-Gau/check_my_code) below 15.
 
-We use the [MISS_HIT linter](https://florianschanda.github.io/miss_hit/style_checker.html) to automatically fix some linting issues.
+We use the [MISS_HIT linter](https://florianschanda.github.io/miss_hit/style_checker.html) to automatically fix some linting issues. The code style and quality is also checked during the continuous integration.
 
-## How to install
+##  3. <a name='Howtoinstall'></a>How to install
 
-### Download with git
+###  3.1. <a name='Downloadwithgit'></a>Download with git
 
 ``` bash
 cd fullpath_to_directory_where_to_install
@@ -59,7 +85,7 @@ To work with a specific version, create a branch at a specific version tag numbe
 git checkout -b version1 v0.0.1
 ```
 
-### Add as a submodule
+###  3.2. <a name='Addasasubmodule'></a>Add as a submodule
 
 Add it as a submodule in the repo you are working on.
 
@@ -81,7 +107,7 @@ git submodule update --remote --merge
 
 Remember that updates to submodules need to be committed as well.
 
-#### Example for submodule usage
+####  3.2.1. <a name='Exampleforsubmoduleusage'></a>Example for submodule usage
 
 So say you want to clone a repo that has some nested submodules, then you would type this to get the content of all the submodules at once (here with my experiment repo):
 ``` bash
@@ -104,12 +130,8 @@ git submodule update
 git submodule foreach --recursive 'git submodule init'
 git submodule foreach --recursive 'git submodule update'
 ```
-**TO DO**
-<!-- Submodules
-pros: in principle, downloading the experiment you have the whole package plus the benefit to stay updated and use version control of this dependency. Can probably handle a use case in which one uses different version on different projects (e.g. older and newer projects).
-cons: for pro users and not super clear how to use it at the moment. -->
 
-### Direct download
+###  3.3. <a name='Directdownload'></a>Direct download
 
 Download the code. Unzip. And add to the matlab path.
 
@@ -121,12 +143,7 @@ Or take the latest commit (NOT RECOMMENDED):
 
 https://github.com/cpp-lln-lab/CPP_PTB/archive/master.zip
 
-**TO DO**
-<!-- Download a specific version and c/p it in a subfun folder
-pros: the easiest solution to share the code and 'installing' it on the stimulation computer (usually not the one used to develop the code).
-cons: extreme solution useful only at the very latest stage (i.e. one minute before acquiring your data); prone to be customized/modified (is it what we want?) -->
-
-## Setting up keyboards
+##  4. <a name='Settingupkeyboards'></a>Setting up keyboards
 
 To select a specific keyboard to be used by the experimenter or the participant, you need to know
 the value assigned by PTB to each keyboard device.
@@ -151,7 +168,11 @@ press the keys necessary to start or abort the experiment.
 
 Using empty vectors (ie `[]`) or a negative value for those means that you will let PTB find and use the default device.
 
-## Structure
+##  5. <a name='Structure'></a>Structure
+
+The `cfg` structure is where most of the information about your experiment will be defined.
+
+Below we try to outline what it contains.
 
 ```matlab
 
@@ -209,101 +230,11 @@ cfg.mri.triggerNb
 cfg.mri.triggerKey
 ```
 
-## function details
+##  6. <a name='Annexes'></a>Annexes
 
+###  6.1. <a name='ExperimenttemplateWIP'></a>Experiment template [ WIP ]
 
-### initPTB
-
-This will initialize PsychToolBox
-
--   screen
--   the windon opened takes the whole screen by default
--   set in debug mode with window transparency if necessary
--   can skip synch test if you ask for it (nicely)
--   gets the flip interval
--   computes the pixel per degree of visual angle
--   set font details
--   keyboard
--   sound
-
-### testKeyboards
-
-Checks that the keyboards asked for properly connected.
-
-If no key is pressed on the correct keyboard after the timeOut time this exits with an error.
-
-### cleanUp
-
-A wrapper function to close all windows, ports, show mouse cursor, close keyboard queues
-and give access back to the keyboards.
-
-### getExperimentStart
-
-Wrapper function that will show a fixation cross and collect a start timestamp in `cfg.experimentStart`
-
-### getExperimentEnd
-
-Wrapper function that will show a fixation cross and display in the console the whole experiment's duration in minutes and seconds  
-
-### getResponse
-
-It is wrapper function to use `KbQueue` which is definitely what you should use to collect responses.
-
-You can easily collect responses while running some other code at the same time.
-
-It will only take responses from one device which can simply be the "main keyboard"
-(the default device that PTB will find) or another keyboard connected to the computer
-or the response box that the participant is using.
-
-You can use it in a way so that it only takes responses from certain keys and ignore others (like
-the triggers from an MRI scanner).
-
-If you want to know more on how to use it check its help section and the `CPP_getResponseDemo.m`.
-
-In brief, there are several actions you can execute with this function.
-
--   init: initialize the buffer for key presses on a given device (you can also specify the keys of interest that should be listened to).
--   start: start listening to the key presses (carefully insert into your script - where do you want to start buffering the responses).
--   check: till that point, it will check the buffer for all key presses.
-    -   It only reports presses on the keys of interest mentioned at initialization.
-    -   It **can** also check for presses on the escape key and abort if the escape key is part of the keys of interest.
--   flush: Empties the buffer of key presses in case you want to discard any previous key presses.
--   stop: Stops buffering key presses. You can still restart by calling "start" again.
--   release: Closes the buffer for good.
-
-### deg2Pix
-
-For a given field value in degrees of visual angle in the input `structure`,
-this computes its value in pixel using the pixel per degree value of the `cfg` structure
-and returns a structure with an additional field with Pix suffix holding that new value.
-
-### drawFixationCross
-
-Define the parameters of the fixation cross in `cfg` and `expParameters` and this does the rest.
-
-### eyeTracker
-
-This will handle the Eye Tracker (EyeLink set up) and can be called to initialize the connection and start the calibration, start/stop eye(s) movement recordings and save the `*.edf` file (named with BIDS specification from cpp-lln-lab/CPP_BIDS).  
-
-### pressSpace4me
-
-Use that to stop your script and only restart when the space bar is pressed.
-
-### standByScreen
-
-It shows a basic one-page instruction stored in `cfg.task.instruction` and wait for `space` stroke.
-
-### waitForTrigger
-
-Counts a certain number of triggers coming from the mri/scanner before returning.
-Requires number of triggers to wait for.
-
-
-## Annexes
-
-### Experiment template [ WIP ]
-
-### devSandbox (stand-alone)
+###  6.2. <a name='devSandboxstand-alone'></a>devSandbox (stand-alone)
 
 This script is a stand-alone function that can be useful as a sandbox to develop the PTB audio/visual stimulation of your experiment. No input/output required.
 
@@ -317,7 +248,7 @@ It is composed of two parts:
 
  When you are happy with it, ideally you will move the vars in `setParameters.m` and the stimulation code in a separate function in `my-experiment-folder/subfun`. The code style and variable names are the same used in `cpp-lln-lab/CPP_PTB` github repo, therefore it should be easy to move everything in your experiment scripts (see the template that is annexed in `cpp-lln-lab/CPP_PTB`).
 
-## Contributors ✨
+##  7. <a name='Contributors'></a>Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
