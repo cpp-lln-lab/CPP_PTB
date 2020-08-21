@@ -63,45 +63,44 @@ function [el, cfg] = eyeTracker(input, cfg)
 
                 % Get EyeLink setup information.
                 [el.v, el.vs] = Eyelink('GetTrackerVersion');
-
+                fprintf('Running experiment on a ''%s'' tracker.\n', el.vs);
+                
                 % Save EL setup version in cfg
                 cfg.eyeTracker.eyeLinkVersionString = el.vs;
 
-                fprintf('Running experiment on a ''%s'' tracker.\n', el.vs);
-
                 % Make sure that we get gaze data from the Eyelink.
                 Eyelink('Command', 'link_sample_data = LEFT,RIGHT,GAZE,AREA');
-                Eyelink('command', 'link_event_data = GAZE,GAZERES,HREF,AREA,VELOCITY');
-                Eyelink('command', 'link_event_filter = LEFT,RIGHT,FIXATION,BLINK,SACCADE,BUTTON');
+                Eyelink('Command', 'link_event_data = GAZE,GAZERES,HREF,AREA,VELOCITY');
+                Eyelink('Command', 'link_event_filter = LEFT,RIGHT,FIXATION,BLINK,SACCADE,BUTTON');
 
                 %% Calibration
 
                 % This command is crucial to map the gaze positions from the tracker to
                 %  screen pixel positions to determine fixation.
-                Eyelink('command', 'screen_pixel_coords = %ld %ld %ld %ld', 0, 0, 0, 0);
-                Eyelink('message', 'DISPLAY_COORDS %ld %ld %ld %ld', 0, 0, 0, 0);
+                Eyelink('Command', 'screen_pixel_coords = %ld %ld %ld %ld', 0, 0, 0, 0);
+                Eyelink('Message', 'DISPLAY_COORDS %ld %ld %ld %ld', 0, 0, 0, 0);
 
                 % Set calibration type.
-                Eyelink('command', 'calibration_type = HV5');
-
+                Eyelink('Command', 'calibration_type = HV5');                    
+                    
                 if cfg.eyeTracker.defaultCalibration
 
                     % Set default calibration parameters.
-                    Eyelink('command', 'generate_default_targets = YES');
+                    Eyelink('Command', 'generate_default_targets = YES');
 
                 else
 
                     % Set custom calibration parameters.
-                    Eyelink('command', 'generate_default_targets = NO');
+                    Eyelink('Command', 'generate_default_targets = NO');
 
                     % Calibration target locations, set manually the dots
                     %  coordinates, here for 6 dots.
 
                     % [width, height]=Screen('WindowSize', screenNumber);
 
-                    Eyelink('command', 'calibration_samples = 6');
-                    Eyelink('command', 'calibration_sequence = 0,1,2,3,4,5');
-                    Eyelink('command', 'calibration_targets = %d,%d %d,%d %d,%d %d,%d %d,%d', ...
+                    Eyelink('Command', 'calibration_samples = 6');
+                    Eyelink('Command', 'calibration_sequence = 0,1,2,3,4,5');
+                    Eyelink('Command', 'calibration_targets = %d,%d %d,%d %d,%d %d,%d %d,%d', ...
                         640, 512, ... % width/2,height/2
                         640, 102, ... % width/2,height*0.1
                         640, 614, ... % width/2,height*0.6
@@ -109,9 +108,9 @@ function [el, cfg] = eyeTracker(input, cfg)
                         1152, 341);  % width-width*0.1,height*1/3
 
                     % Validation target locations
-                    Eyelink('command', 'validation_samples = 5');
-                    Eyelink('command', 'validation_sequence = 0,1,2,3,4,5');
-                    Eyelink('command', 'validation_targets = %d,%d %d,%d %d,%d %d,%d %d,%d', ...
+                    Eyelink('Command', 'validation_samples = 5');
+                    Eyelink('Command', 'validation_sequence = 0,1,2,3,4,5');
+                    Eyelink('Command', 'validation_targets = %d,%d %d,%d %d,%d %d,%d %d,%d', ...
                         640, 512, ... % width/2,height/2
                         640, 102, ... % width/2,height*0.1
                         640, 614, ... % width/2,height*0.6
@@ -123,6 +122,8 @@ function [el, cfg] = eyeTracker(input, cfg)
                 % Set EDF file contents (not clear what this lines are used for).
                 el.vsn = regexp(el.vs, '\d', 'match'); % won't work on EL
 
+                fprintf('Waiting for calibration \n')
+                
                 % Enter Eyetracker camera setup mode, calibration and validation.
                 EyelinkDoTrackerSetup(el);
 
@@ -226,15 +227,22 @@ function eyetrackerCheckConnection
     % Initialize EL and make sure it worked: returns 0 if OK, -1 if error.
     %  Exit program if this fails.
     elInit  = Eyelink('Initialize');
-    if ELinit ~= 0
-      error('Eyelink is not initialized, aborted.\n');
+    if elInit ~= 0
+      error([newline 'Eyelink is not initialized, aborted.']);
     end
 
     % Make sure EL is still connected: returns 1 if connected, -1 if dummy-connected,
     %  2 if broadcast-connected and 0 if not connected. Exit program if this fails.
     elConnection = Eyelink('IsConnected');
-    if ELconnection ~= 1
-      error('Eyelink is not connected, aborted.\n');
+    if elConnection ~= 1
+      error([newline 'Eyelink is not connected, aborted.']);
+    end
+    
+    % Initialize Eyelink system and connection: returns 1 when succesful, 0
+    % otherwise
+    if ~EyelinkInit(0, 1)
+        fprintf('Eyelink Init aborted.\n');
+        return
     end
 
 end
