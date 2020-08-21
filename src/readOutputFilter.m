@@ -1,4 +1,4 @@
-function outputFiltered = readOutputFilter(cfg, filterHeader, filterContent)
+function outputFiltered = readOutputFilter(varargin, filterHeader, filterContent)
     % outputFiltered = readOutputFilter(cfg, filterHeader, filterContent)
     %
     % It will display in the command window the content of the `output.tsv' filtered by one element
@@ -22,11 +22,18 @@ function outputFiltered = readOutputFilter(cfg, filterHeader, filterContent)
     %  - outputFiltered: dataset with only the specified content, to see it in the command window
     %  use display(outputFiltered)
 
+    if isstring(varargin{1})
+       tsvFile = varargin{1}
+    elseif isstruct(varargin{1})
+       tsvFile = fullfile(varargin{1}.dir.outputSubject, ...
+            varargin{1}.fileName.modality, ...
+            varargin{1}.fileName.events);
+    end
 
-    % Get the outputfile path
-    tsvFile = fullfile(cfg.dir.outputSubject, ...
-        cfg.fileName.modality, ...
-        cfg.fileName.events);
+    % % Get the outputfile path
+    % tsvFile = fullfile(cfg.dir.outputSubject, ...
+    %     cfg.fileName.modality, ...
+    %     cfg.fileName.events);
 
     % Read the the tsv file and store each column in a field of `output` structure
     output = bids.util.tsvread(tsvFile);
