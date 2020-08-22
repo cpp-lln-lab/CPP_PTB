@@ -18,7 +18,7 @@ function cleanUp()
 
     % Shut down connection with Eyelink
     try
-        Eyelink('shutdown');
+%         Eyelink('shutdown');
     catch
     end
 

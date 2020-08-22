@@ -47,6 +47,9 @@ function cfg = setDefaultsPTB(cfg)
         fieldsToSet.audio.channels = 2;
         fieldsToSet.audio.initVolume = 1;
         fieldsToSet.audio.requestedLatency = 3;
+        
+        fieldsToSet.audio.devIdx = [];
+        fieldsToSet.audio.playbackMode = 1;
 
         % playing parameters
         % sound repetition

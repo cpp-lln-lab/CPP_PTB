@@ -151,9 +151,6 @@ function cfg = initAudio(cfg)
 
         InitializePsychSound(1);
 
-        cfg.audio.devIdx = [];
-        cfg.audio.playbackMode = 1;
-
         if isfield(cfg.audio, 'useDevice')
 
             % get audio device list
