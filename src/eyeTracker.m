@@ -154,7 +154,7 @@ function [el, cfg] = eyeTracker(input, cfg)
                 WaitSecs(0.1);
 
                 % Mark the beginning of the trial, here start the stimulation of the experiment.
-                Eyelink('Message', 'SYNCTIME');
+                Eyelink('Message', 'start_recording');
 
             case 'StopRecordings'
 
