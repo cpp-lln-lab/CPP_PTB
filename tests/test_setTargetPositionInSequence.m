@@ -34,7 +34,7 @@ function initEnv
     octaveVersion = '4.0.3';
     matlabVersion = '8.6.0';
     
-    installlist = {'statistics', 'image'};
+    installlist = {'io', 'statistics', 'image'};
 
     if isOctave
 
