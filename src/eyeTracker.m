@@ -161,7 +161,7 @@ function [el, cfg] = eyeTracker(input, cfg)
                 %% Stop recording of eye-movements
 
                 % EyeLink Stop recording the block.
-                Eyelink('Message', 'BLANK_SCREEN');
+                Eyelink('Message', 'stop_recording');
 
                 % Add 100 msec of data to catch final events.
                 WaitSecs(0.1);
