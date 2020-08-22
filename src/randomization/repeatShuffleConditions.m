@@ -2,7 +2,7 @@ function shuffledRepeats = repeatShuffleConditions(baseConditionVector, nbRepeat
     % shuffledRepeats = repeatShuffleConditions(baseConditionVector, nbRepeats)
     %
     % given baseConditionVector, a vector of conditions (coded as numbers), this will
-    % create a longer vector made of nbRepeats of this base vector and makesure
+    % create a longer vector made of nbRepeats of this base vector and make sure
     % that a given condition is not repeated one after the other
 
     % TODO
