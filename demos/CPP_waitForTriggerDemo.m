@@ -1,6 +1,5 @@
 addpath(genpath(fullfile(pwd, '..', 'src')));
 
-
 %%
 cfg.testingDevice = 'mri';
 
@@ -16,7 +15,6 @@ KbName('UnifyKeyNames');
 %%
 quietMode = true;
 % waitForTrigger(cfg, [], quietMode);
-
 
 %%
 nbTriggersToWait = 1;
