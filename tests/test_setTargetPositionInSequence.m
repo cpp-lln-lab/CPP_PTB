@@ -1,7 +1,7 @@
 function test_suite = test_setTargetPositionInSequence %#ok<*STOUT>
-    
-    initEnv()
-    
+
+    initEnv();
+
     try % assignment of 'localfunctions' is necessary in Matlab >= 2016
         test_functions = localfunctions(); %#ok<*NASGU>
     catch % no problem; early Matlab versions can use initTestSuite fine
@@ -33,7 +33,7 @@ function initEnv
 
     octaveVersion = '4.0.3';
     matlabVersion = '8.6.0';
-    
+
     installlist = {'io', 'statistics', 'image'};
 
     if isOctave
