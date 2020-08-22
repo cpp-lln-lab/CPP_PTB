@@ -143,7 +143,7 @@ function [el, cfg] = eyeTracker(input, cfg)
                 % Check recording status, stop display if error.
                 checkrec = Eyelink('checkrecording');
                 if checkrec ~= 0
-                    fprintf('\nEyelink is not recording.\n\n');
+                    warning('\nEyelink is not recording.\n\n');
                     Eyelink('Shutdown');
                     Screen('CloseAll');
                     return
