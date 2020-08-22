@@ -1,5 +1,5 @@
-function waitForTrigger(cfg, deviceNumber)
-    % waitForTrigger(cfg, deviceNumber)
+function waitForTrigger(varargin)
+    % waitForTrigger(cfg, deviceNumber, quietMode, nbTriggersToWait)
     %
     % Counts a certain number of triggers coming from the scanner before returning.
     %
@@ -13,73 +13,115 @@ function waitForTrigger(cfg, deviceNumber)
     % When no deviceNumber is set then it will check the default device: this is
     % probably only useful in debug as you will want to make sure you get the
     % triggers coming from the scanner in a real case scenario.
-
-    if nargin < 1 || isempty(cfg)
-        error('I need at least one input.');
-    end
-
-    if nargin < 2 || isempty(deviceNumber)
-        deviceNumber = -1;
-        fprintf('Will wait for triggers on the main keyboard device.\n');
-    end
-
+    %
+    % INPUTS
+    %  - varargin{1} = cfg
+    %
+    % - varargin{2} = deviceNumber
+    %
+    % - varargin{3} = quietMode: a boolean to make sure nothing is printed on the screen or
+    % the prompt
+    %
+    % - nbTriggersToWait
+    
+    [cfg, nbTriggersToWait, deviceNumber, quietMode] = checkInputs(varargin);
+    
     triggerCounter = 0;
-
+    
     if strcmpi(cfg.testingDevice, 'mri')
-
+        
         msg = ['Experiment starting in ', ...
-            num2str(cfg.mri.triggerNb - triggerCounter), '...'];
-        talkToMe(cfg, msg);
-
-        while triggerCounter < cfg.mri.triggerNb
-
+            num2str(nbTriggersToWait - triggerCounter), '...'];
+        
+        talkToMe(cfg, msg, quietMode);
+        
+        while triggerCounter < nbTriggersToWait
+            
             keyCode = []; %#ok<NASGU>
-
+            
             [~, keyCode] = KbPressWait(deviceNumber);
-
+            
             if strcmp(KbName(keyCode), cfg.mri.triggerKey)
-
+                
                 triggerCounter = triggerCounter + 1 ;
-
+                
                 msg = sprintf(' Trigger %i', triggerCounter);
-                talkToMe(cfg, msg);
-
+                
+                talkToMe(cfg, msg, quietMode);
+                
                 % we only wait if this is not the last trigger
-                if triggerCounter < cfg.mri.triggerNb
+                if triggerCounter < nbTriggersToWait
                     pauseBetweenTriggers(cfg);
                 end
-
+                
             end
         end
     end
 end
 
-function talkToMe(cfg, msg)
-
-    fprintf([msg, ' \n']);
-
-    if isfield(cfg, 'screen') && isfield(cfg.screen, 'win')
-
-        DrawFormattedText(cfg.screen.win, msg, ...
-            'center', 'center', cfg.text.color);
-
-        Screen('Flip', cfg.screen.win);
-
+function [cfg, nbTriggersToWait, deviceNumber, quietMode] = checkInputs(varargin)
+    
+    varargin = varargin{1};
+    
+    if numel(varargin) < 1 || isempty(varargin{1}) || ~isstruct(varargin{1})
+        error('First input must be a cfg structure.');
+    elseif isstruct(varargin{1})  
+        cfg = varargin{1};
     end
+    
+    if numel(varargin) < 3 || isempty(varargin{3})
+        quietMode = false;
+    else
+        quietMode = varargin{3};
+    end
+    
+    if numel(varargin) < 2 || isempty(varargin{2})
+        deviceNumber = -1;
+        if ~quietMode
+            fprintf('Will wait for triggers on the main keyboard device.\n');
+        end
+    else
+        deviceNumber = varargin{2};
+    end
+    
+    if numel(varargin) < 4 || isempty(varargin{4})
+        nbTriggersToWait = cfg.mri.triggerNb;
+    else
+        nbTriggersToWait = varargin{4};
+    end
+    
+end
 
+function talkToMe(cfg, msg, quietMode)
+    
+    if ~quietMode
+        
+        fprintf([msg, ' \n']);
+        
+        if isfield(cfg, 'screen') && isfield(cfg.screen, 'win')
+            
+            DrawFormattedText(cfg.screen.win, msg, ...
+                'center', 'center', cfg.text.color);
+            
+            Screen('Flip', cfg.screen.win);
+            
+        end
+        
+    end
+    
 end
 
 function pauseBetweenTriggers(cfg)
     % we pause between triggers otherwise KbWait and KbPressWait might be too fast and could
     % catch several triggers in one go.
-
+    
     waitTime = 0.5;
     if isfield(cfg, 'mri') && isfield(cfg.mri, 'repetitionTime') && ~isempty(cfg.mri.repetitionTime)
         waitTime = cfg.mri.repetitionTime / 2;
     end
-
+    
     WaitSecs(waitTime);
-
+    
 end
 
 % function [MyPort] = WaitForScanTrigger(Parameters)
