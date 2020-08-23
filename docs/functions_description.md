@@ -10,7 +10,7 @@
 	* 1.6. [eyeTracker](#eyeTracker)
 	* 1.7. [standByScreen](#standByScreen)
 	* 1.8. [waitForTrigger](#waitForTrigger)
-	* 1.9  [readAndFilterLogfile](#readAndFilterLogfile)
+	* 1.9. [readAndFilterLogfile](#readAndFilterLogfile)
 * 2. [Keyboard functions: response collection and aborting experiment](#Keyboardfunctions:responsecollectionandabortingexperiment)
 	* 2.1. [testKeyboards](#testKeyboards)
 	* 2.2. [getResponse](#getResponse)
@@ -19,6 +19,10 @@
 	* 3.1. [drawFixationCross](#drawFixationCross)
 * 4. [Drawing dots](#Drawingdots)
 * 5. [Drawing apertures](#Drawingapertures)
+* 6. [Randomization](#Randomization)
+	* 6.1. [shuffle](#shuffle)
+	* 6.2. [setTargetPositionInSequence](#setTargetPositionInSequence)
+	* 6.3. [repeatShuffleConditions](#repeatShuffleConditions)
 
 <!-- vscode-markdown-toc-config
 	numbering=true
@@ -65,6 +69,15 @@ and returns a structure with an additional field with Pix suffix holding that ne
 
 This will handle the Eye Tracker (EyeLink set up) and can be called to initialize the connection and start the calibration, start/stop eye(s) movement recordings and save the `*.edf` file (named with BIDS specification from cpp-lln-lab/CPP_BIDS).  
 
+There are several actions to perform:
+
+- Calibration: to initialize EyeLink and run calibration
+  - 'default calibration' (default) will run a calibration with 6 points
+  - 'custom calibration'  (cfg.eyeTracker.defaultCalibration = 'false') will run a calibration with 6 points but the experimenter can choose their position on the screen
+- StartRecording: to start eye movements recording
+- StopRecordings: to stop eye movements recornding
+- Shutdown: to save the `.edf` file with BIDS compliant name, from cpp-lln-lab/CPP_BIDS, in the output folder and shut the connection between the stimulation computer and the EyeLink computer
+
 ###  1.7. <a name='standByScreen'></a>standByScreen
 
 It shows a basic one-page instruction stored in `cfg.task.instruction` and wait for `space` stroke.
@@ -74,7 +87,7 @@ It shows a basic one-page instruction stored in `cfg.task.instruction` and wait 
 Counts a certain number of triggers coming from the mri/scanner before returning.
 Requires number of triggers to wait for.
 
-### 1.9 <a name='readAndFilterLogfile'></a>readAndFilterLogfile
+###  1.9. <a name='readAndFilterLogfile'></a>readAndFilterLogfile
 
 Displays in the command window part of the `*events.tsv` file filterd by an element (e.g. 'trigger'). It can take the last output produced (through `cfg`) or any output BIDS compatible (through file path).
 
@@ -125,3 +138,19 @@ Define the parameters of the fixation cross in `cfg` and `expParameters` and thi
 ##  4. <a name='Drawingdots'></a>Drawing dots
 
 ##  5. <a name='Drawingapertures'></a>Drawing apertures
+
+##  6. <a name='Randomization'></a>Randomization
+
+Functions that can be used to create random stimuli sequences.
+
+###  6.1. <a name='shuffle'></a>shuffle
+
+Is just there to replace the Shuffle function from PTB in case it is not in the path. Can be useful for testing or for continuous integration.
+
+###  6.2. <a name='setTargetPositionInSequence'></a>setTargetPositionInSequence
+
+For a sequence of length `seqLength` where we want to insert `nbTarget` targets, this will return `nbTarget` random position in that sequence and make sure that they are not in consecutive positions.
+
+###  6.3. <a name='repeatShuffleConditions'></a>repeatShuffleConditions
+
+Given `baseConditionVector`, a vector of conditions (coded as numbers), this will create a longer vector made of `nbRepeats` of this base vector and make sure that a given condition is not repeated one after the other.

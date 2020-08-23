@@ -1,7 +1,9 @@
 [![](https://img.shields.io/badge/Octave-CI-blue?logo=Octave&logoColor=white)](https://github.com/cpp-lln-lab/CPP_PTB/actions)
 ![](https://github.com/cpp-lln-lab/CPP_PTB/workflows/CI/badge.svg) 
 
-[![Build Status](https://travis-ci.com/cpp-lln-lab/CPP_BIDS.svg?branch=master)](https://travis-ci.com/cpp-lln-lab/CPP_PTB)
+[![Build Status](https://travis-ci.com/cpp-lln-lab/CPP_PTB.svg?branch=master)](https://travis-ci.com/cpp-lln-lab/CPP_PTB)
+
+[![codecov](https://codecov.io/gh/cpp-lln-lab/CPP_PTB/branch/master/graph/badge.svg)](https://codecov.io/gh/cpp-lln-lab/CPP_PTB)
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
