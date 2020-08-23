@@ -69,6 +69,15 @@ and returns a structure with an additional field with Pix suffix holding that ne
 
 This will handle the Eye Tracker (EyeLink set up) and can be called to initialize the connection and start the calibration, start/stop eye(s) movement recordings and save the `*.edf` file (named with BIDS specification from cpp-lln-lab/CPP_BIDS).  
 
+There are several actions to perform:
+
+- Calibration: to initialize EyeLink and run calibration
+  - 'default calibration' (default) will run a calibration with 6 points
+  - 'custom calibration'  (cfg.eyeTracker.defaultCalibration = 'false') will run a calibration with 6 points but the experimenter can choose their position on the screen
+- StartRecording: to start eye movements recording
+- StopRecordings: to stop eye movements recornding
+- Shutdown: to save the `.edf` file with BIDS compliant name, from cpp-lln-lab/CPP_BIDS, in the output folder and shut the connection between the stimulation computer and the EyeLink computer
+
 ###  1.7. <a name='standByScreen'></a>standByScreen
 
 It shows a basic one-page instruction stored in `cfg.task.instruction` and wait for `space` stroke.

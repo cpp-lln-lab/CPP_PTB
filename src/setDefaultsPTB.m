@@ -60,6 +60,19 @@ function cfg = setDefaultsPTB(cfg)
 
     end
 
+    if isfield(cfg, 'eyeTracker')
+
+        % Calibration environment
+        fieldsToSet.eyeTracker.defaultCalibration = true;
+        fieldsToSet.eyeTracker.backgroundColor = [192 192 192];
+        fieldsToSet.eyeTracker.fontColor = [0 0 0];
+        fieldsToSet.eyeTracker.calibrationTargetColor = [0 0 0];
+        fieldsToSet.eyeTracker.calibrationTargetSize = 1;
+        fieldsToSet.eyeTracker.calibrationTargetWidth = 0.5;
+        fieldsToSet.eyeTracker.displayCalResults = 1;
+
+    end
+
     if isfield(cfg, 'testingDevice') && strcmpi(cfg.testingDevice, 'mri')
         fieldsToSet.bids.mri.RepetitionTime = [];
     end

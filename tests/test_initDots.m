@@ -28,7 +28,7 @@ function test_initDotsBasic()
     cfg.dot.lifeTime = 0.250; % in seconds
     cfg.dot.matrixWidth = 50; % in pixels
     cfg.screen.winWidth = 2000; % in pixels
-    cfg.eventDuration = 1; % in seconds
+    cfg.timing.eventDuration = 1; % in seconds
     cfg.screen.ifi = 0.01; % in seconds
 
     thisEvent.direction = 0;
@@ -64,7 +64,7 @@ function test_initDotsStatic()
     cfg.dot.lifeTime = 0.250; % in seconds
     cfg.dot.matrixWidth = 50; % in pixels
     cfg.screen.winWidth = 2000; % in pixels
-    cfg.eventDuration = 1; % in seconds
+    cfg.timing.eventDuration = 1; % in seconds
     cfg.screen.ifi = 0.01; % in seconds
 
     thisEvent.direction = -1;
@@ -94,7 +94,7 @@ function test_initDotsRadial()
     cfg.dot.lifeTime = 0.250; % in seconds
     cfg.dot.matrixWidth = 50; % in pixels
     cfg.screen.winWidth = 2000; % in pixels
-    cfg.eventDuration = 1; % in seconds
+    cfg.timing.eventDuration = 1; % in seconds
     cfg.screen.ifi = 0.01; % in seconds
 
     thisEvent.direction = 666; % outward motion
