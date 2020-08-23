@@ -64,7 +64,7 @@ function [el, cfg] = eyeTracker(input, cfg)
                 % Get EyeLink setup information.
                 [el.v, el.vs] = Eyelink('GetTrackerVersion');
                 fprintf('Running experiment on a ''%s'' tracker.\n', el.vs);
-                
+
                 % Save EL setup version in cfg
                 cfg.eyeTracker.eyeLinkVersionString = el.vs;
 
@@ -81,8 +81,8 @@ function [el, cfg] = eyeTracker(input, cfg)
                 Eyelink('Message', 'DISPLAY_COORDS %ld %ld %ld %ld', 0, 0, 0, 0);
 
                 % Set calibration type.
-                Eyelink('Command', 'calibration_type = HV5');                    
-                    
+                Eyelink('Command', 'calibration_type = HV5');
+
                 if cfg.eyeTracker.defaultCalibration
 
                     % Set default calibration parameters.
@@ -122,8 +122,8 @@ function [el, cfg] = eyeTracker(input, cfg)
                 % Set EDF file contents (not clear what this lines are used for).
                 el.vsn = regexp(el.vs, '\d', 'match'); % won't work on EL
 
-                fprintf('Waiting for calibration \n')
-                
+                fprintf('Waiting for calibration \n');
+
                 % Enter Eyetracker camera setup mode, calibration and validation.
                 EyelinkDoTrackerSetup(el);
 
@@ -228,16 +228,16 @@ function eyetrackerCheckConnection
     %  Exit program if this fails.
     elInit  = Eyelink('Initialize');
     if elInit ~= 0
-      error([newline 'Eyelink is not initialized, aborted.']);
+        error([newline 'Eyelink is not initialized, aborted.']);
     end
 
     % Make sure EL is still connected: returns 1 if connected, -1 if dummy-connected,
     %  2 if broadcast-connected and 0 if not connected. Exit program if this fails.
     elConnection = Eyelink('IsConnected');
     if elConnection ~= 1
-      error([newline 'Eyelink is not connected, aborted.']);
+        error([newline 'Eyelink is not connected, aborted.']);
     end
-    
+
     % Initialize Eyelink system and connection: returns 1 when succesful, 0
     % otherwise
     if ~EyelinkInit(0, 1)
@@ -246,7 +246,6 @@ function eyetrackerCheckConnection
     end
 
 end
-
 
 %% subfunctions for iView
 
