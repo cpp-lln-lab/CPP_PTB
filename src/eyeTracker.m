@@ -228,6 +228,7 @@ function eyetrackerCheckConnection
     %  Exit program if this fails.
     elInit  = Eyelink('Initialize');
     if elInit ~= 0
+        Eyelink('shutdown');
         error([newline 'Eyelink is not initialized, aborted.']);
     end
 
@@ -235,12 +236,14 @@ function eyetrackerCheckConnection
     %  2 if broadcast-connected and 0 if not connected. Exit program if this fails.
     elConnection = Eyelink('IsConnected');
     if elConnection ~= 1
+        Eyelink('shutdown');
         error([newline 'Eyelink is not connected, aborted.']);
     end
 
     % Initialize Eyelink system and connection: returns 1 when succesful, 0
     % otherwise
     if ~EyelinkInit(0, 1)
+        Eyelink('shutdown');
         fprintf('Eyelink Init aborted.\n');
         return
     end
