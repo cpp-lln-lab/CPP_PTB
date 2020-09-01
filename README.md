@@ -19,12 +19,9 @@
 	* 3.2. [Add as a submodule](#Addasasubmodule)
 		* 3.2.1. [Example for submodule usage](#Exampleforsubmoduleusage)
 	* 3.3. [Direct download](#Directdownload)
-* 4. [Setting up keyboards](#Settingupkeyboards)
-* 5. [Structure](#Structure)
-* 6. [Annexes](#Annexes)
-	* 6.1. [Experiment template [ WIP ]](#ExperimenttemplateWIP)
-	* 6.2. [devSandbox (stand-alone)](#devSandboxstand-alone)
-* 7. [Contributors ✨](#Contributors)
+* 4. [Documentation](#Documentation)
+* 5. [Content](#Content)
+* 6. [Contributors ✨](#Contributors)
 
 <!-- vscode-markdown-toc-config
 	numbering=true
@@ -35,7 +32,7 @@
 
 This is the Crossmodal Perception and Plasticity lab (CPP) PsychToolBox (PTB) toolbox.
 
-Those functions are mostly wrappers around some PTB functions to facilitate their use and to have a codebase to facilitate their reuse.
+Those functions are mostly wrappers around some PTB functions to facilitate their use and their reuse (#DontRepeatYourself)
 
 ##  1. <a name='Requirements'></a>Requirements
 
@@ -49,17 +46,20 @@ For instructions see the following links:
 | [Matlab](https://www.mathworks.com/products/matlab.html) | >=2015b      |
 | or [octave](https://www.gnu.org/software/octave/)        | 4.?          |
 
-The exact version required for this to work but it is known to work with:
+Tested:
 -   matlab 2015b or octave 4.2.2 and PTB 3.0.14.
 
 ##  2. <a name='Codeguidestyle'></a>Code guidestyle
 
 We use the `camelCase` to more easily differentiates our functions from the ones from PTB that use a `PascalCase`.
-We use the following regular expression for function names: `[a-z]+(([A-Z]|[0-9]){1}[a-z]+)*`.
 
-We keep the McCabe complexity as reported by the [check_my_code function](https://github.com/Remi-Gau/check_my_code) below 15.
+In practice, we use the following regular expression for function names: `[a-z]+(([A-Z]|[0-9]){1}[a-z]+)*`.
 
-We use the [MISS_HIT linter](https://florianschanda.github.io/miss_hit/style_checker.html) to automatically fix some linting issues. The code style and quality is also checked during the continuous integration.
+We keep the McCabe complexity as reported by the [check_my_code function](https://github.com/Remi-Gau/check_my_code) below 15 or the [MISS_HIT code checker](https://florianschanda.github.io/miss_hit)
+
+We use the [MISS_HIT linter](https://florianschanda.github.io/miss_hit/style_checker.html) to automatically fix some linting issues. 
+
+The code style and quality is also checked during the [continuous integration](./.travis.yml).
 
 ##  3. <a name='Howtoinstall'></a>How to install
 
@@ -84,7 +84,7 @@ git pull origin master
 To work with a specific version, create a branch at a specific version tag number
 ```bash
 # creating and checking out a branch that will be calle version1 at the version tag v0.0.1
-git checkout -b version1 v0.0.1
+git checkout -b version1 v1.0.0
 ```
 
 ###  3.2. <a name='Addasasubmodule'></a>Add as a submodule
@@ -145,112 +145,30 @@ Or take the latest commit (NOT RECOMMENDED):
 
 https://github.com/cpp-lln-lab/CPP_PTB/archive/master.zip
 
-##  4. <a name='Settingupkeyboards'></a>Setting up keyboards
 
-To select a specific keyboard to be used by the experimenter or the participant, you need to know
-the value assigned by PTB to each keyboard device.
+##  4. <a name='Documentation'></a>Documentation
 
-To know this copy-paste this on the command window:
+All the documentation is accessible [here](./docs/00_index.md).
 
-``` matlab
-[keyboardNumbers, keyboardNames] = GetKeyboardIndices;
+##  5. <a name='Content'></a>Content
 
-disp(keyboardNumbers);
-disp(keyboardNames);
+```bash
+├── demos # quick demo of how to use some functions
+├── dev # templates for experiment (will be moved out soon)
+├── docs # documentation
+├── manualTests # all the tests that cannot be automated (yet)
+├── src # actual code of the CPP_PTB
+│   ├── aperture # function related to create apertur (circle, wedge, bar...)
+│   ├── dot # functions to simplify the creations of RDK
+│   ├── errors # all error functions
+│   ├── fixation # to create fixation cross, dots
+│   ├── keyboard # to collect responses, abort experiment...
+│   ├── randomization # functions to help with trial randomization
+│   └── utils # set of general functions
+└── tests # all the tests that that can be run by github actions
 ```
 
-You can then assign a specific device number to the main keyboard or the response box in the `cfg` structure
-
--   `cfg.keyboard.responseBox` would be the device number of the device used by the participant to give his/her
-response: like the button box in the scanner or a separate keyboard for a behavioral experiment
--   `cfg.keyboard.keyboard` would be the device number of the keyboard on which the experimenter will type or
-press the keys necessary to start or abort the experiment.
-
-`cfg.keyboard.responseBox` and `cfg.keyboard.keyboard` can be different or the same.
-
-Using empty vectors (ie `[]`) or a negative value for those means that you will let PTB find and use the default device.
-
-##  5. <a name='Structure'></a>Structure
-
-The `cfg` structure is where most of the information about your experiment will be defined.
-
-Below we try to outline what it contains.
-
-```matlab
-
-cfg.testingDevice = 'pc';
-
-% cfg.color
-cfg.keyboard.keyboard = [];
-cfg.keyboard.responseBox = [];
-cfg.keyboard.responseKey = {};
-cfg.keyboard.escapeKey = 'ESCAPE';
-
-% cfg.debug
-cfg.debug.do = true;
-cfg.debug.transpWin = true;
-cfg.debug.smallWin = true;
-
-% cfg.text
-cfg.text.font
-cfg.text.size
-cfg.text.style
-
-% cfg.color
-cfg.color.background
-
-% cfg.screen
-cfg.screen.monitorWidth
-cfg.screen.monitorDistance
-cfg.screen.idx
-cfg.screen.win
-cfg.screen.winRect
-cfg.screen.winWidth
-cfg.screen.winHeight
-cfg.screen.center
-cfg.screen.FOV
-cfg.screen.ppd
-cfg.screen.ifi
-cfg.screen.monRefresh
-
-% cfg.audio
-cfg.audio.do
-cfg.audio.pahandle
-cfg.audio.devIdx
-cfg.audio.playbackMode
-cfg.audio.requestedLatency
-cfg.audio.fs
-cfg.audio.channels
-cfg.audio.initVolume
-cfg.audio.pushSize  
-cfg.audio.requestOffsetTime
-cfg.audio.reqsSampleOffset
-
-% cfg.mri
-cfg.mri.repetitionTime
-cfg.mri.triggerNb
-cfg.mri.triggerKey
-```
-
-##  6. <a name='Annexes'></a>Annexes
-
-###  6.1. <a name='ExperimenttemplateWIP'></a>Experiment template [ WIP ]
-
-###  6.2. <a name='devSandboxstand-alone'></a>devSandbox (stand-alone)
-
-This script is a stand-alone function that can be useful as a sandbox to develop the PTB audio/visual stimulation of your experiment. No input/output required.
-
-Here, a tutorial from https://peterscarfe.com/contrastgratingdemo.html is provided for illustrative purpose (notice that some variable names are updated to our code style). For your use, you will delete that part.
-
-It is composed of two parts:
- - a fixed structure that will initialize and close PTB in 'debug mode'
-    (`PsychDebugWindowConfiguration`, `SkipSyncTests`)
- - the actual sandbox where to set your dynamic variables (the stimulation
-   parameters) and the 'playground' where to develop the stimulation code
-
- When you are happy with it, ideally you will move the vars in `setParameters.m` and the stimulation code in a separate function in `my-experiment-folder/subfun`. The code style and variable names are the same used in `cpp-lln-lab/CPP_PTB` github repo, therefore it should be easy to move everything in your experiment scripts (see the template that is annexed in `cpp-lln-lab/CPP_PTB`).
-
-##  7. <a name='Contributors'></a>Contributors ✨
+##  6. <a name='Contributors'></a>Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
