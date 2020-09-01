@@ -7,15 +7,15 @@ function test_suite = test_degToPix %#ok<*STOUT>
 end
 
 function test_degToPixBasic()
-    
+
     fixation.width = 2;
     cfg.screen.ppd = 10;
-    
+
     fixation = degToPix('width', fixation, cfg);
-    
+
     expectedStruct.width = 2;
     expectedStruct.widthPix = 20;
-    
+
     assertEqual(expectedStruct, fixation);
-     
+
 end

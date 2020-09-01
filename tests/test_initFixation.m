@@ -7,16 +7,16 @@ function test_suite = test_initFixation %#ok<*STOUT>
 end
 
 function test_initFixationBasic()
-    
+
     cfg.screen.ppd = 10;
     cfg.fixation.type = 'cross';
     cfg.fixation.width  = 1;
     cfg.fixation.xDisplacement = 1;
     cfg.fixation.yDisplacement = 1;
-    
+
     cfg = initFixation(cfg);
-    
-    cfg.fixation
+
+    cfg.fixation;
 
     expectedStruct.screen.ppd = 10;
     expectedStruct.fixation.type = 'cross';
@@ -29,25 +29,23 @@ function test_initFixationBasic()
     expectedStruct.fixation.xCoords = [5 15 10 10];
     expectedStruct.fixation.yCoords = [10 10 5 15];
     expectedStruct.fixation.allCoords = [5 15 10 10; 10 10 5 15];
-    
-    assertEqual(expectedStruct, cfg)
 
-     
+    assertEqual(expectedStruct, cfg);
+
 end
 
-
 function test_initFixationBestFixation()
-    
+
     cfg.screen.ppd = 10;
     cfg.screen.center = [100 100];
     cfg.fixation.type = 'bestFixation';
     cfg.fixation.width  = 1;
     cfg.fixation.xDisplacement = 1;
     cfg.fixation.yDisplacement = 1;
-    
+
     cfg = initFixation(cfg);
-    
-    cfg.fixation
+
+    cfg.fixation;
 
     expectedStruct.screen.ppd = 10;
     expectedStruct.screen.center = [100 100];
@@ -63,8 +61,7 @@ function test_initFixationBestFixation()
     expectedStruct.fixation.allCoords = [5 15 10 10; 10 10 5 15];
     expectedStruct.fixation.outerOval = [95 95 105 105];
     expectedStruct.fixation.innerOval = [100 - 10 / 6, 100 - 10 / 6, 100 + 10 / 6, 100 + 10 / 6];
-    
-    assertEqual(expectedStruct, cfg)
 
-     
+    assertEqual(expectedStruct, cfg);
+
 end

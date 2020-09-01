@@ -13,14 +13,14 @@ function dots = setDotDirection(cfg, dots)
     directionAllDots = nan(cfg.dot.number, 1);
 
     % Coherent dots
-    
+
     if numel(dots.direction) == 1
         dots.direction = ones(sum(dots.isSignal), 1) * dots.direction;
     elseif numel(dots.direction) ~= sum(dots.isSignal)
         error(['dots.direction must have one element' ...
-               'or as many element as there are coherent dots'])
+               'or as many element as there are coherent dots']);
     end
-    
+
     directionAllDots(dots.isSignal) = dots.direction;
 
     if strcmp(cfg.design.motionType, 'radial')
@@ -29,7 +29,7 @@ function dots = setDotDirection(cfg, dots)
     end
 
     % Random direction for the non coherent dots
-    
+
     directionAllDots(~dots.isSignal) = rand(sum(~dots.isSignal), 1) * 360;
     directionAllDots = rem(directionAllDots, 360);
 

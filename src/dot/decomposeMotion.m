@@ -6,7 +6,7 @@ function [horVector, vertVector] = decomposeMotion(angleMotion)
     % - angleMotion: in degrees
     % - horVector: horizontal component of motion
     % - vertVector: vertical component of motion
-    
+
     horVector = cos(pi * angleMotion / 180);
     vertVector = -sin(pi * angleMotion / 180);
 end

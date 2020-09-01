@@ -7,14 +7,14 @@ function test_suite = test_generateNewDotPositions %#ok<*STOUT>
 end
 
 function test_generateNewDotPositionsBasic()
-    
+
     cfg.dot.matrixWidth = 400;
     dotNumber = 200;
-    
+
     newPositions = generateNewDotPositions(cfg, dotNumber);
-    
-    assertEqual([200, 2], size(newPositions))
-    
-    assertTrue(all(all([newPositions(:) <= 400, newPositions(:) >= 0])))
-     
+
+    assertEqual([200, 2], size(newPositions));
+
+    assertTrue(all(all([newPositions(:) <= 400, newPositions(:) >= 0])));
+
 end

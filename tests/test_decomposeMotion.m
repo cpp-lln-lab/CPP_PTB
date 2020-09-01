@@ -7,26 +7,25 @@ function test_suite = test_decomposeMotion %#ok<*STOUT>
 end
 
 function test_decomposeMotionBasic()
-    
+
     [horVector, vertVector] = decomposeMotion(0);
     expectedOutput = [1, 0];
     assertEqual(expectedOutput, [horVector, vertVector]);
-    
+
     [horVector, vertVector] = decomposeMotion(90);
     expectedOutput = [0, -1];
     assertElementsAlmostEqual(expectedOutput, [horVector, vertVector]);
-    
+
     [horVector, vertVector] = decomposeMotion(180);
     expectedOutput = [-1, 0];
     assertElementsAlmostEqual(expectedOutput, [horVector, vertVector]);
-    
+
     [horVector, vertVector] = decomposeMotion(270);
     expectedOutput = [0, 1];
     assertElementsAlmostEqual(expectedOutput, [horVector, vertVector]);
-    
+
     [horVector, vertVector] = decomposeMotion(360);
     expectedOutput = [1, 0];
     assertElementsAlmostEqual(expectedOutput, [horVector, vertVector]);
-    
-     
+
 end

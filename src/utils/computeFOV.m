@@ -9,7 +9,7 @@ function FOV = computeFOV(cfg)
     %  and D is the distance to the object.
     %  The result obtained is in radians.
     %
-    
+
     if cfg.screen.monitorDistance < 2
         errorDistanceToScreen(cfg);
     end
