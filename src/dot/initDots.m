@@ -14,9 +14,13 @@ function [dots] = initDots(cfg, thisEvent)
     % thisEvent.speed
     %
     %
-
-    % TODO
-    % bound direction between 0 and 360 ??
+    % dots.direction
+    % dots.isSignal : signal dots (1) and those are noise dots (0)
+    % dots.directionAllDots
+    % dots.lifeTime : in frames
+    % dots.speeds : [ndots, 2] ; horizontal and vertical speed ; in pixels per
+    %   frame
+    % dots.speedPixPerFrame
 
     dots.direction = thisEvent.direction(1);
 
