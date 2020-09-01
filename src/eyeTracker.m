@@ -1,7 +1,7 @@
 function [el, cfg] = eyeTracker(input, cfg)
     % [el] = eyeTracker(input, cfg)
     %
-    % Wrapper function that deals with all the necessery actions to implement 
+    % Wrapper function that deals with all the necessery actions to implement
     %  Eye Tracker recording with eyelink.
     %
     % INPUT
