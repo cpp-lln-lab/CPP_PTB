@@ -16,6 +16,8 @@ function cfg = initFixation(cfg)
     % "What is the best fixation target?"
     % DOI 10.1016/j.visres.2012.10.012
     %
+    % Contains a fixation cross and a dot
+    %
     
     
     % Convert some values from degrees to pixels
