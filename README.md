@@ -83,7 +83,7 @@ git pull origin master
 
 To work with a specific version, create a branch at a specific version tag number
 ```bash
-# creating and checking out a branch that will be calle version1 at the version tag v0.0.1
+# creating and checking out a branch that will be called version1 at the version tag v1.0.0
 git checkout -b version1 v1.0.0
 ```
 

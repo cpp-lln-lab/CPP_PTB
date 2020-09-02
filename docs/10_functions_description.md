@@ -154,10 +154,10 @@ where do you want to start buffering the responses).
     -   It only reports presses on the keys of interest mentioned at initialization.
     -   It **can** also check for presses on the escape key and abort if the escape 
 key is part of the keys of interest.
--   flush: Empties the buffer of key presses in case you want to discard any 
+-   flush: empties the buffer of key presses in case you want to discard any 
 previous key presses.
--   stop: Stops buffering key presses. You can still restart by calling "start" again.
--   release: Closes the buffer for good.
+-   stop: stops buffering key presses. You can still restart by calling "start" again.
+-   release: closes the buffer for good.
 
 ###  2.3. <a name='pressSpaceForme'></a>pressSpaceForme
 

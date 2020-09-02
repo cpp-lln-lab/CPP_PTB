@@ -1,7 +1,7 @@
 # CPP_PTB documentation
 
 <!-- vscode-markdown-toc -->
-* 1. [the CFG gtructure](#theCFGgtructure)
+* 1. [the CFG structure](#theCFGstructure)
 * 2. [Setting up keyboards](#Settingupkeyboards)
 * 3. [functions descriptions](#functionsdescriptions)
 * 4. [Annexes](#Annexes)
@@ -14,7 +14,7 @@
 	/vscode-markdown-toc-config -->
 <!-- /vscode-markdown-toc -->
 
-##  1. <a name='theCFGgtructure'></a>the CFG gtructure
+##  1. <a name='theCFGstructure'></a>the CFG structure
 
 The `cfg` structure is where most of the information about your experiment will be defined.
 
@@ -48,12 +48,12 @@ cfg.debug.smallWin = true; % open a small window and not a full screen window ; 
 % cfg.text
 cfg.text.font = 'Courier New';
 cfg.text.size = 18;
-cfg.text.style = 1; ???
+cfg.text.style = 1; % bold
 
 
 %% -------------------------------------------------------------------------- %%
 % cfg.color
-cfg.color.background % [r g b] each in 0-255
+cfg.color.background = [0 0 0]; % [r g b] each in 0-255
 
 
 %% -------------------------------------------------------------------------- %%
@@ -95,7 +95,7 @@ cfg.aperture.type = 'none'; % 'bar', 'wedge', 'ring', 'circle'
 % cfg.audio
 cfg.audio.do = false; % set to true if you are going to play some sounds
 cfg.audio.pahandle
-cfg.audio.devIdx = [ ];
+cfg.audio.devIdx = [];
 cfg.audio.playbackMode = 1;
 cfg.audio.requestedLatency = 3;
 cfg.audio.fs 44800; % sampling frequency 
