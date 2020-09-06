@@ -1,6 +1,11 @@
 function printCreditsCppPtb()
 
-    version = '0.0.1';
+    try
+        version = fileread(fullfile(fileparts(mfilename('fullpath')), ...
+            '..', '..', 'version.txt'));
+    catch
+        version = 'v1.0.0';
+    end
 
     contributors = { ...
         'Rémi Gau', ...
