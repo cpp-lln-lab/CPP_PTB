@@ -43,7 +43,7 @@ function waitForTrigger(varargin)
 
             if strcmp(KbName(keyCode), cfg.mri.triggerKey)
 
-                triggerCounter = triggerCounter + 1 ;
+                triggerCounter = triggerCounter + 1;
 
                 msg = sprintf(' Trigger %i', triggerCounter);
 
