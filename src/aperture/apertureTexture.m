@@ -119,7 +119,7 @@ function [cfg, thisEvent] = apertureTexture(action, cfg, thisEvent)
                 % Draw aperture and we rotate to match the required condition
                 Screen('DrawTexture', cfg.screen.win, cfg.aperture.texture, ...
                     cfg.screen.winRect, ...
-                    CenterRect(...
+                    CenterRect( ...
                     cfg.screen.winRect * cfg.magnify.scalingFactor, ...
                     cfg.screen.winRect), ...
                     thisEvent.condition - 90);
@@ -154,18 +154,18 @@ function cfg = apertureInit(cfg)
                 cfg.ring.maxEcc = ...
                     cfg.screen.FOV / 2 + ...
                     cfg.aperture.width + ...
-                    log(cfg.screen.FOV / 2 + 1) ;
+                    log(cfg.screen.FOV / 2 + 1);
                 % ring.CsFuncFact is used to expand with log increasing speed so
                 % that ring is at ring.maxEcc at end of cycle
                 cfg.ring.csFuncFact = ...
                     1 / ...
                     ((cfg.ring.maxEcc + exp(1)) * ...
                     log(cfg.ring.maxEcc + exp(1)) - ...
-                    (cfg.ring.maxEcc + exp(1))) ;
+                    (cfg.ring.maxEcc + exp(1)));
             end
 
         case 'bar'
-            
+
             extraPositons = 0;
             if cfg.magnify.do
                 % we add some extra bar positions that we remove afterwards to
@@ -175,18 +175,18 @@ function cfg = apertureInit(cfg)
 
             % Set parameters drifting bars
             cfg.aperture.barWidthPix = cfg.stimRect(3) / (cfg.volsPerCycle + extraPositons);
-            
+
             barPosPix = ...
                 [0:cfg.aperture.barWidthPix:cfg.stimRect(3) - cfg.aperture.barWidthPix] + ...
                 (cfg.screen.winRect(3) / 2 - cfg.stimRect(3) / 2) + ...
                 cfg.aperture.barWidthPix / 2; %#ok<NBRAK>
-            
+
             % Those positions are removed because they are actually outside of
             % the screen when magnification (fit to windows width) is on
             if cfg.magnify.do
-                barPosPix([1:6, end-5:end]) = [];
+                barPosPix([1:6, end - 5:end]) = [];
             end
-            
+
             cfg.aperture.barPosPix = barPosPix;
 
             % Width of bar in degrees of VA (needed for saving)

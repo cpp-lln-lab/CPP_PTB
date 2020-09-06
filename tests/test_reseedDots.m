@@ -34,7 +34,7 @@ function test_reseedDotsBasic()
 
     dots.time = [ ...
         6; ... OK
-        4 ; ... OK
+        4; ... OK
         56; ... OK
         300; ... % exceeded its life time
         50]; % OK
