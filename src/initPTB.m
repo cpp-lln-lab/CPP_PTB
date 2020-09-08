@@ -45,10 +45,15 @@ function [cfg] = initPTB(cfg)
     cfg = initAudio(cfg);
 
     %% Visual
+    
+    % Make sure we have black splash screen
+    Screen('Preference', 'VisualDebugLevel', 1);
 
     % Get the screen numbers and draw to the external screen if avaliable
     cfg.screen.idx = max(Screen('Screens'));
-
+    
+    
+    
     if isfield(cfg.screen, 'resolution')
         [newWidth, newHeight, newHz] = deal(cfg.screen.resolution{:});
         cfg.screen.oldResolution = Screen('Resolution', cfg.screen.idx, ...
@@ -123,7 +128,7 @@ function initDebug(cfg)
         Screen('Preference', 'SkipSyncTests', 2);
         Screen('Preference', 'Verbosity', 0);
         Screen('Preference', 'SuppressAllWarnings', 1);
-
+        
         fprintf('\n\n\n\n');
         fprintf('########################################\n');
         fprintf('##   DEBUG MODE. TIMING WILL BE OFF.  ##\n');
