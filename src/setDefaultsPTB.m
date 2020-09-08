@@ -29,6 +29,7 @@ function cfg = setDefaultsPTB(cfg)
 
     fieldsToSet.screen.monitorWidth = 42;
     fieldsToSet.screen.monitorDistance = 134;
+    fieldsToSet.screen.resolution = {[], [], []};
 
     % fixation cross or dot
     fieldsToSet.fixation.type = 'cross';

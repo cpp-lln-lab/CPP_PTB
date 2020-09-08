@@ -49,6 +49,12 @@ function [cfg] = initPTB(cfg)
     % Get the screen numbers and draw to the external screen if avaliable
     cfg.screen.idx = max(Screen('Screens'));
 
+    if isfield(cfg.screen, 'resolution')
+        [newWidth, newHeight, newHz] = deal(cfg.screen.resolution{:});
+        cfg.screen.oldResolution = Screen('Resolution', cfg.screen.idx, ...
+        newWidth, newHeight, newHz);
+    end
+    
     cfg = openWindow(cfg);
 
     % window size info
