@@ -94,9 +94,9 @@ function [cfg, thisEvent] = apertureTexture(action, cfg, thisEvent)
                         CenterRect([0, 0, repmat(cfg.stimRect(3), 1, 2)], cfg.screen.winRect));
 
                     % Then we add the position of the bar aperture
-                    
+
                     % which one is the right and which one is the left??
-                    
+
                     Screen('FillRect', cfg.aperture.texture, cfg.color.background, ...
                         [0, ...
                         0, ...
