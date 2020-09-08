@@ -14,7 +14,7 @@ function [cfg, thisEvent] = apertureTexture(action, cfg, thisEvent)
 
         case 'make'
 
-            transparent = [0, 0, 0, 0];
+            TRANSPARENT = [0, 0, 0, 0];
 
             xCenter = cfg.screen.center(1);
             yCenter = cfg.screen.center(2);
@@ -23,7 +23,7 @@ function [cfg, thisEvent] = apertureTexture(action, cfg, thisEvent)
 
                 case 'none'
 
-                    Screen('Fillrect', cfg.aperture.texture, transparent);
+                    Screen('Fillrect', cfg.aperture.texture, TRANSPARENT);
 
                 case 'circle'
 
@@ -36,7 +36,7 @@ function [cfg, thisEvent] = apertureTexture(action, cfg, thisEvent)
                         yCenter = cfg.screen.center(2) + cfg.aperture.yPosPix;
                     end
 
-                    Screen('FillOval', cfg.aperture.texture, transparent, ...
+                    Screen('FillOval', cfg.aperture.texture, TRANSPARENT, ...
                         CenterRectOnPoint([0, 0, repmat(diameter, 1, 2)], ...
                         xCenter, yCenter));
 
@@ -47,7 +47,7 @@ function [cfg, thisEvent] = apertureTexture(action, cfg, thisEvent)
 
                     Screen('Fillrect', cfg.aperture.texture, cfg.color.background);
 
-                    Screen('FillOval', cfg.aperture.texture, transparent, ...
+                    Screen('FillOval', cfg.aperture.texture, TRANSPARENT, ...
                         CenterRectOnPoint( ...
                         [0, 0, repmat(cfg.ring.outerRimPix, 1, 2)], ...
                         xCenter, yCenter));
@@ -77,7 +77,7 @@ function [cfg, thisEvent] = apertureTexture(action, cfg, thisEvent)
 
                     Screen('Fillrect', cfg.aperture.texture, cfg.color.background);
 
-                    Screen('FillArc', cfg.aperture.texture, transparent, ...
+                    Screen('FillArc', cfg.aperture.texture, TRANSPARENT, ...
                         CenterRect( ...
                         [0, 0, repmat(cfg.stimRect(4), 1, 2)], ...
                         cfg.screen.winRect), ...
@@ -90,10 +90,13 @@ function [cfg, thisEvent] = apertureTexture(action, cfg, thisEvent)
                     Screen('FillRect', cfg.aperture.texture, cfg.color.background);
 
                     % We let the stimulus through
-                    Screen('FillOval', cfg.aperture.texture, transparent, ...
+                    Screen('FillOval', cfg.aperture.texture, TRANSPARENT, ...
                         CenterRect([0, 0, repmat(cfg.stimRect(3), 1, 2)], cfg.screen.winRect));
 
                     % Then we add the position of the bar aperture
+                    
+                    % which one is the right and which one is the left??
+                    
                     Screen('FillRect', cfg.aperture.texture, cfg.color.background, ...
                         [0, ...
                         0, ...
@@ -166,15 +169,15 @@ function cfg = apertureInit(cfg)
 
         case 'bar'
 
-            extraPositons = 0;
+            EXTRAPOSITION = 0;
             if cfg.magnify.do
                 % we add some extra bar positions that we remove afterwards to
                 % prevent having nothing on screen for a long time
-                extraPositons = 12;
+                EXTRAPOSITION = 10;
             end
 
             % Set parameters drifting bars
-            cfg.aperture.barWidthPix = cfg.stimRect(3) / (cfg.volsPerCycle + extraPositons);
+            cfg.aperture.barWidthPix = cfg.stimRect(3) / (cfg.volsPerCycle + EXTRAPOSITION);
 
             barPosPix = ...
                 [0:cfg.aperture.barWidthPix:cfg.stimRect(3) - cfg.aperture.barWidthPix] + ...
@@ -184,7 +187,7 @@ function cfg = apertureInit(cfg)
             % Those positions are removed because they are actually outside of
             % the screen when magnification (fit to windows width) is on
             if cfg.magnify.do
-                barPosPix([1:6, end - 5:end]) = [];
+                barPosPix([1:5, end - 4:end]) = [];
             end
 
             cfg.aperture.barPosPix = barPosPix;
