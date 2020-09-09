@@ -10,7 +10,7 @@ function [cfg, thisEvent] = apertureTexture(action, cfg, thisEvent)
             cfg = apertureInit(cfg);
 
             cfg.aperture.texture = Screen('MakeTexture', cfg.screen.win, ...
-                cfg.color.background(1) * ones(cfg.screen.winRect([4 3])));
+                cfg.color.background(1) * ones(cfg.screen.winRect([3 3])));
 
         case 'make'
 
@@ -91,7 +91,9 @@ function [cfg, thisEvent] = apertureTexture(action, cfg, thisEvent)
 
                     % We let the stimulus through
                     Screen('FillOval', cfg.aperture.texture, TRANSPARENT, ...
-                        CenterRect([0, 0, repmat(cfg.stimRect(3), 1, 2)], cfg.screen.winRect));
+                        CenterRect(...
+                        [0, 0, repmat(cfg.screen.winRect(4), 1, 2)], ...
+                        cfg.screen.winRect));
 
                     % Then we add the position of the bar aperture
 
@@ -122,9 +124,7 @@ function [cfg, thisEvent] = apertureTexture(action, cfg, thisEvent)
                 % Draw aperture and we rotate to match the required condition
                 Screen('DrawTexture', cfg.screen.win, cfg.aperture.texture, ...
                     cfg.screen.winRect, ...
-                    CenterRect( ...
                     cfg.screen.winRect, ...
-                    cfg.screen.winRect), ...
                     thisEvent.condition - 90);
             else
 
