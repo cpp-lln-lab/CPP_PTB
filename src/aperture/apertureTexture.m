@@ -120,12 +120,18 @@ function [cfg, thisEvent] = apertureTexture(action, cfg, thisEvent)
         case 'draw'
 
             if strcmp(cfg.aperture.type, 'bar')
-
+                
+                scalingFactor = 1;
+                if isfield(cfg, 'scalingFactor') && ~isempty(cfg.scalingFactor) 
+                    scalingFactor = cfg.scalingFactor;
+                end
+                
                 % Draw aperture and we rotate to match the required condition
                 Screen('DrawTexture', cfg.screen.win, cfg.aperture.texture, ...
                     cfg.screen.winRect, ...
-                    cfg.screen.winRect, ...
+                    CenterRect(cfg.screen.winRect * scalingFactor, cfg.screen.winRect), ...
                     thisEvent.condition - 90);
+                
             else
 
                 Screen('DrawTexture', cfg.screen.win, cfg.aperture.texture);
