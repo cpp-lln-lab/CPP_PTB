@@ -1,4 +1,4 @@
-  function devSandbox
+function devSandbox
 
     % This script is a stand-alone function that can be useful as a sandbox to
     %  develop the PTB audio/visual stimulation of your experiment. No input/output
