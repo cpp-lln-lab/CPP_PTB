@@ -1,4 +1,4 @@
-function devSandbox
+  function devSandbox
 
     % This script is a stand-alone function that can be useful as a sandbox to
     %  develop the PTB audio/visual stimulation of your experiment. No input/output
@@ -29,7 +29,7 @@ function devSandbox
     cfg.screen.do = true;
 
     % Set the PTB window background manually
-    cfg.color.background = [127 127 27];
+    cfg.color.background = [127 127 127];
 
     % Set monitor parameters if you care about visual angle
     cfg.visualAngle.do = true;
@@ -61,7 +61,7 @@ function devSandbox
     % Set AUDIO
 
     % set to false if no auditory stimulation
-    cfg.audio.do = false;
+    cfg.audio.do = true;
 
     % Set audio freq. and nb. of channels of your audio file input
     cfg.audio.fs = 44100;
