@@ -39,7 +39,7 @@ function test_reseedDotsBasic()
         300; ... % exceeded its life time
         50]; % OK
 
-    %     dots = reseedDots(dots, cfg);
+    dots = reseedDots(dots, cfg);
 
     reseeded = [ ...
         6;
@@ -48,6 +48,6 @@ function test_reseedDotsBasic()
         1;
         1];
 
-    %     assertEqual(reseeded, dots.time);
+    assertEqual(reseeded, dots.time);
 
 end

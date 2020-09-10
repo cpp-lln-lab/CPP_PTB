@@ -10,6 +10,10 @@ function FOV = computeFOV(cfg)
     %  The result obtained is in radians.
     %
 
+    if cfg.screen.monitorDistance < 2
+        errorDistanceToScreen(cfg);
+    end
+
     FOV =  ...
         180 / pi * ...
         2 * atan(cfg.screen.monitorWidth / (2 * cfg.screen.monitorDistance));

@@ -1,7 +1,8 @@
 function [el, cfg] = eyeTracker(input, cfg)
     % [el] = eyeTracker(input, cfg)
     %
-    % Wrapper function that deals with all the necessery actions to implement Eye Tracker recording.
+    % Wrapper function that deals with all the necessery actions to implement
+    %  Eye Tracker recording with eyelink.
     %
     % INPUT
     %
@@ -250,7 +251,7 @@ function eyetrackerCheckConnection
 
 end
 
-%% subfunctions for iView
+%% subfunctions for iView in case some uses that type of eyetracker and wants to implement them
 
 % function ivx = eyeTrackInit(cfg)
 %     % initialize iView eye tracker

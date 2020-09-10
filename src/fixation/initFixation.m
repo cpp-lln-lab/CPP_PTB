@@ -1,4 +1,23 @@
 function cfg = initFixation(cfg)
+    % cfg = initFixation(cfg)
+    %
+    % prepare details for fixation "cross"
+    %
+    % the fixation has a width defined by
+    % cfg.fixation.width : in degrees of visual
+    %
+    % The horizontal and vertical offset (in degrees of visual) with respect to the center of the
+    % screen is defined by
+    % cfg.fixation.xDisplacement
+    % cfg.fixation.yDisplacement
+    %
+    % for cfg.fixation.type == 'bestFixation'
+    % Code adapted from:
+    % "What is the best fixation target?"
+    % DOI 10.1016/j.visres.2012.10.012
+    %
+    % Contains a fixation cross and a dot
+    %
 
     % Convert some values from degrees to pixels
     cfg.fixation = degToPix('width', cfg.fixation, cfg);

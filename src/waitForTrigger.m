@@ -3,6 +3,10 @@ function waitForTrigger(varargin)
     %
     % Counts a certain number of triggers coming from the scanner before returning.
     %
+    % If you are not using the quietMode, it flips and waits for half a TR before starting to
+    % check for the next trigger (unless this was the last trigger to wait for and in
+    % this case it returns immediately).
+    %
     % Will print the count down in the command line and on the PTB window if one is
     % opened.
     %
