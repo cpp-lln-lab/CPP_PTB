@@ -12,19 +12,22 @@
 # CPP_PTB
 
 <!-- vscode-markdown-toc -->
-* 1. [Requirements](#Requirements)
-* 2. [Code guidestyle](#Codeguidestyle)
-* 3. [How to install](#Howtoinstall)
-	* 3.1. [Download with git](#Downloadwithgit)
-	* 3.2. [Add as a submodule](#Addasasubmodule)
-		* 3.2.1. [Example for submodule usage](#Exampleforsubmoduleusage)
-	* 3.3. [Direct download](#Directdownload)
-* 4. [Documentation](#Documentation)
-* 5. [Content](#Content)
-* 6. [Contributors ✨](#Contributors)
+- [CPP_PTB](#cpp_ptb)
+	- [<a name='Requirements'></a>Requirements](#requirements)
+	- [<a name='Codeguidestyle'></a>Code guidestyle](#code-guidestyle)
+	- [<a name='Howtoinstall'></a>How to install](#how-to-install)
+		- [<a name='Downloadwithgit'></a>Download with git](#download-with-git)
+		- [<a name='Addasasubmodule'></a>Add as a submodule](#add-as-a-submodule)
+			- [<a name='Exampleforsubmoduleusage'></a>Example for submodule usage](#example-for-submodule-usage)
+		- [<a name='Directdownload'></a>Direct download](#direct-download)
+		- [<a name='AddCPP_PTBgloballytothematlabpath'></a>Add CPP_PTB globally to the matlab path](#add-cpp_ptb-globally-to-the-matlab-path)
+	- [<a name='Documentation'></a>Documentation](#documentation)
+	- [<a name='Content'></a>Content](#content)
+	- [<a name='Unittests'></a>Unit tests](#unit-tests)
+	- [<a name='Contributors'></a>Contributors ✨](#contributors-)
 
 <!-- vscode-markdown-toc-config
-	numbering=true
+	numbering=false
 	autoSave=true
 	/vscode-markdown-toc-config -->
 <!-- /vscode-markdown-toc -->
@@ -34,7 +37,7 @@ This is the Crossmodal Perception and Plasticity lab (CPP) PsychToolBox (PTB) to
 
 Those functions are mostly wrappers around some PTB functions to facilitate their use and their reuse (#DontRepeatYourself)
 
-##  1. <a name='Requirements'></a>Requirements
+## <a name='Requirements'></a>Requirements
 
 Make sure that the following toolboxes are installed and added to the matlab / octave path.
 
@@ -49,7 +52,7 @@ For instructions see the following links:
 Tested:
 -   matlab 2015b or octave 4.2.2 and PTB 3.0.14.
 
-##  2. <a name='Codeguidestyle'></a>Code guidestyle
+## <a name='Codeguidestyle'></a>Code guidestyle
 
 We use the `camelCase` to more easily differentiates our functions from the ones from PTB that use a `PascalCase`.
 
@@ -68,9 +71,9 @@ We use the [MISS_HIT linter](https://florianschanda.github.io/miss_hit/style_che
 
 The code style and quality is also checked during the [continuous integration](./.travis.yml).
 
-##  3. <a name='Howtoinstall'></a>How to install
+## <a name='Howtoinstall'></a>How to install
 
-###  3.1. <a name='Downloadwithgit'></a>Download with git
+### <a name='Downloadwithgit'></a>Download with git
 
 ``` bash
 cd fullpath_to_directory_where_to_install
@@ -92,7 +95,7 @@ To work with a specific version, create a branch at a specific version tag numbe
 git checkout -b version1 v1.0.0
 ```
 
-###  3.2. <a name='Addasasubmodule'></a>Add as a submodule
+### <a name='Addasasubmodule'></a>Add as a submodule
 
 Add it as a submodule in the repo you are working on.
 
@@ -110,7 +113,7 @@ git submodule update --remote --merge
 
 Remember that updates to submodules need to be committed as well.
 
-####  3.2.1. <a name='Exampleforsubmoduleusage'></a>Example for submodule usage
+#### <a name='Exampleforsubmoduleusage'></a>Example for submodule usage
 
 So say you want to clone a repo that has some nested submodules, then you would type this to get the content of all the submodules at once (here with my experiment repo):
 ``` bash
@@ -134,7 +137,7 @@ git submodule foreach --recursive 'git submodule init'
 git submodule foreach --recursive 'git submodule update'
 ```
 
-###  3.3. <a name='Directdownload'></a>Direct download
+### <a name='Directdownload'></a>Direct download
 
 Download the code. Unzip. And add to the matlab path.
 
@@ -146,7 +149,7 @@ Or take the latest commit (NOT RECOMMENDED):
 
 https://github.com/cpp-lln-lab/CPP_PTB/archive/master.zip
 
-### Add CPP_PTB globally to the matlab path
+### <a name='AddCPP_PTBgloballytothematlabpath'></a>Add CPP_PTB globally to the matlab path
 
 This is NOT RECOMMENDED as this might create conflicts if you different versions of CPP_PTB as sub-modules.
 
@@ -155,11 +158,11 @@ This is NOT RECOMMENDED as this might create conflicts if you different versions
 matlab -nojvm -nosplash -r "addpath(genpath(fullfile(pwd, 'src'))); savepath(); path(); exit();"
 ```
 
-##  4. <a name='Documentation'></a>Documentation
+## <a name='Documentation'></a>Documentation
 
 All the documentation is accessible [here](./docs/00_index.md).
 
-##  5. <a name='Content'></a>Content
+## <a name='Content'></a>Content
 
 ```bash
 ├── demos # quick demo of how to use some functions
@@ -177,11 +180,11 @@ All the documentation is accessible [here](./docs/00_index.md).
 └── tests # all the tests that that can be run by github actions
 ```
 
-## Unit tests
+## <a name='Unittests'></a>Unit tests
 
 Unit tests are run with the mox unit toolbox and automated with github action on Octave.
 
-##  6. <a name='Contributors'></a>Contributors ✨
+## <a name='Contributors'></a>Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
