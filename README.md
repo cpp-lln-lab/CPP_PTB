@@ -44,7 +44,7 @@ For instructions see the following links:
 |----------------------------------------------------------|--------------|
 | [PsychToolBox](http://psychtoolbox.org/)                 | >=3.0.14     |
 | [Matlab](https://www.mathworks.com/products/matlab.html) | >=2015b      |
-| or [octave](https://www.gnu.org/software/octave/)        | 4.?          |
+| or [Octave](https://www.gnu.org/software/octave/)        | 4.?          |
 
 Tested:
 -   matlab 2015b or octave 4.2.2 and PTB 3.0.14.
@@ -55,7 +55,14 @@ We use the `camelCase` to more easily differentiates our functions from the ones
 
 In practice, we use the following regular expression for function names: `[a-z]+(([A-Z]|[0-9]){1}[a-z]+)*`.
 
-We keep the McCabe complexity as reported by the [check_my_code function](https://github.com/Remi-Gau/check_my_code) below 15 or the [MISS_HIT code checker](https://florianschanda.github.io/miss_hit)
+> Regular expressions look scary but are SUPER useful to sort through filenames:
+> - A quick [intro to regular expression](https://www.rexegg.com/) 
+> - And many websites allow you to "design and test" your regular expression:
+>   - [regexr](https://regexr.com/)
+>   - [regexper](https://regexper.com/#%5Ba-z%5D%2B%28%28%5BA-Z%5D%7C%5B0-9%5D%29%7B1%7D%5Ba-z%5D%2B%29)
+>   - ... 
+
+We keep the McCabe complexity as reported by the [check_my_code function](https://github.com/Remi-Gau/check_my_code) below 15 or the [MISS_HIT code checker](https://florianschanda.github.io/miss_hit). A couple of code quality metrics are also checked automatically by MISS_HIT (avoiding functions with too many nested `if` blocks). 
 
 We use the [MISS_HIT linter](https://florianschanda.github.io/miss_hit/style_checker.html) to automatically fix some linting issues. 
 
@@ -71,11 +78,9 @@ cd fullpath_to_directory_where_to_install
 git clone https://github.com/cpp-lln-lab/CPP_PTB.git
 # move into the folder you have just created
 cd CPP_PTB
-# add the src folder to the matlab path and save the path
-matlab -nojvm -nosplash -r "addpath(fullfile(pwd)); savepath ();"
 ```
 
-Then get the latest commit:
+Then get the latest commit to stay up to date:
 ```bash
 # from the directory where you downloaded the code
 git pull origin master
@@ -145,6 +150,14 @@ Or take the latest commit (NOT RECOMMENDED):
 
 https://github.com/cpp-lln-lab/CPP_PTB/archive/master.zip
 
+### Add CPP_PTB globally to the matlab path
+
+This is NOT RECOMMENDED as this might create conflicts if you different versions of CPP_PTB as sub-modules.
+
+```bash
+# from within the CPP_PTB folder
+matlab -nojvm -nosplash -r "addpath(genpath(fullfile(pwd, 'src'))); savepath(); path(); exit();"
+```
 
 ##  4. <a name='Documentation'></a>Documentation
 
@@ -167,6 +180,10 @@ All the documentation is accessible [here](./docs/00_index.md).
 │   └── utils # set of general functions
 └── tests # all the tests that that can be run by github actions
 ```
+
+## Unit tests
+
+Unit tests are run with the mox unit toolbox and automated with github action on Octave.
 
 ##  6. <a name='Contributors'></a>Contributors ✨
 
