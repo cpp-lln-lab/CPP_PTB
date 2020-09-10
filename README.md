@@ -153,6 +153,8 @@ https://github.com/cpp-lln-lab/CPP_PTB/archive/master.zip
 
 This is NOT RECOMMENDED as this might create conflicts if you use different versions of CPP_PTB as sub-modules.
 
+Also note that this might not work at all if you have not set a command line alias to start Matlab from a terminal window by just typing `matlab`. :wink:
+
 ```bash
 # from within the CPP_PTB folder
 matlab -nojvm -nosplash -r "addpath(genpath(fullfile(pwd, 'src'))); savepath(); path(); exit();"
