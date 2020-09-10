@@ -65,7 +65,7 @@ function expectedCFG = returnExpectedCFG()
         'color',  struct( ...
         'background', [0 0 0]), ...
         'text', struct('font', 'Courier New', 'size', 18, 'style', 1));
-    
+
     expectedCFG.screen.monitorWidth = 42;
     expectedCFG.screen.monitorDistance = 134;
     expectedCFG.screen.resolution = {[], [], []};
