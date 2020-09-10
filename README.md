@@ -15,15 +15,15 @@
 
 - [CPP_PTB](#cpp_ptb)
 	- [Requirements](#requirements)
-	- [Code guidestyle](#code-guidestyle)
+	- [Documentation](#documentation)
+	- [Content](#content)
 	- [How to install](#how-to-install)
 		- [Download with git](#download-with-git)
 		- [Add as a submodule](#add-as-a-submodule)
 			- [Example for submodule usage](#example-for-submodule-usage)
 		- [Direct download](#direct-download)
 		- [Add CPP_PTB globally to the matlab path](#add-cpp_ptb-globally-to-the-matlab-path)
-	- [Documentation](#documentation)
-	- [Content](#content)
+	- [Code style guide](#code-style-guide)
 	- [Unit tests](#unit-tests)
 	- [Contributors ✨](#contributors-)
 
@@ -49,24 +49,27 @@ For instructions see the following links:
 Tested:
 -   matlab 2015b or octave 4.2.2 and PTB 3.0.14.
 
-## Code guidestyle
+## Documentation
 
-We use the `camelCase` to more easily differentiates our functions from the ones from PTB that use a `PascalCase`.
+All the documentation is accessible [here](./docs/00_index.md).
 
-In practice, we use the following regular expression for function names: `[a-z]+(([A-Z]|[0-9]){1}[a-z]+)*`.
+## Content
 
-> Regular expressions look scary but are SUPER useful to sort through filenames:
-> - A quick [intro to regular expression](https://www.rexegg.com/)
-> - And many websites allow you to "design and test" your regular expression:
->   - [regexr](https://regexr.com/)
->   - [regexper](https://regexper.com/#%5Ba-z%5D%2B%28%28%5BA-Z%5D%7C%5B0-9%5D%29%7B1%7D%5Ba-z%5D%2B%29)
->   - ...
-
-We keep the McCabe complexity as reported by the [check_my_code function](https://github.com/Remi-Gau/check_my_code) below 15 or the [MISS_HIT code checker](https://florianschanda.github.io/miss_hit). A couple of code quality metrics are also checked automatically by MISS_HIT (avoiding functions with too many nested `if` blocks).
-
-We use the [MISS_HIT linter](https://florianschanda.github.io/miss_hit/style_checker.html) to automatically fix some linting issues.
-
-The code style and quality is also checked during the [continuous integration](./.travis.yml).
+```bash
+├── demos # quick demo of how to use some functions
+├── dev # templates for experiment (will be moved out soon)
+├── docs # documentation
+├── manualTests # all the tests that cannot be automated (yet)
+├── src # actual code of the CPP_PTB
+│   ├── aperture # function related to create apertur (circle, wedge, bar...)
+│   ├── dot # functions to simplify the creations of RDK
+│   ├── errors # all error functions
+│   ├── fixation # to create fixation cross, dots
+│   ├── keyboard # to collect responses, abort experiment...
+│   ├── randomization # functions to help with trial randomization
+│   └── utils # set of general functions
+└── tests # all the tests that that can be run by github actions
+```
 
 ## How to install
 
@@ -155,27 +158,24 @@ This is NOT RECOMMENDED as this might create conflicts if you different versions
 matlab -nojvm -nosplash -r "addpath(genpath(fullfile(pwd, 'src'))); savepath(); path(); exit();"
 ```
 
-## Documentation
+## Code style guide
 
-All the documentation is accessible [here](./docs/00_index.md).
+We use the `camelCase` to more easily differentiates our functions from the ones from PTB that use a `PascalCase`.
 
-## Content
+In practice, we use the following regular expression for function names: `[a-z]+(([A-Z]|[0-9]){1}[a-z]+)*`.
 
-```bash
-├── demos # quick demo of how to use some functions
-├── dev # templates for experiment (will be moved out soon)
-├── docs # documentation
-├── manualTests # all the tests that cannot be automated (yet)
-├── src # actual code of the CPP_PTB
-│   ├── aperture # function related to create apertur (circle, wedge, bar...)
-│   ├── dot # functions to simplify the creations of RDK
-│   ├── errors # all error functions
-│   ├── fixation # to create fixation cross, dots
-│   ├── keyboard # to collect responses, abort experiment...
-│   ├── randomization # functions to help with trial randomization
-│   └── utils # set of general functions
-└── tests # all the tests that that can be run by github actions
-```
+> Regular expressions look scary but are SUPER useful to sort through filenames:
+> - A quick [intro to regular expression](https://www.rexegg.com/)
+> - And many websites allow you to "design and test" your regular expression:
+>   - [regexr](https://regexr.com/)
+>   - [regexper](https://regexper.com/#%5Ba-z%5D%2B%28%28%5BA-Z%5D%7C%5B0-9%5D%29%7B1%7D%5Ba-z%5D%2B%29)
+>   - ...
+
+We keep the McCabe complexity as reported by the [check_my_code function](https://github.com/Remi-Gau/check_my_code) below 15 or the [MISS_HIT code checker](https://florianschanda.github.io/miss_hit). A couple of code quality metrics are also checked automatically by MISS_HIT (avoiding functions with too many nested `if` blocks).
+
+We use the [MISS_HIT linter](https://florianschanda.github.io/miss_hit/style_checker.html) to automatically fix some linting issues.
+
+The code style and quality is also checked during the [continuous integration](./.travis.yml).
 
 ## Unit tests
 
