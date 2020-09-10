@@ -20,29 +20,40 @@ The `cfg` structure is where most of the information about your experiment will 
 
 Below we try to outline what it contains.
 
-Some of those fields you can set yourself while some others will be created and filled after running `initPTB.m`.
+Some of those fields you can set yourself while some others will be created and filled after running
+`setDefaultsPTB.m` and `initPTB.m`.
+
+- `setDefaultsPTB.m` sets some default values for things about your experiment that that do not "depend" on your system or that PTB cannot "know". For example the width of the screen in cm or the dimensions of the fixation cross you want to use... 
+- `initPTB.m` will fill in the fields that ARE system dependent like the screen refresh rate, the reference of the window that PTB opened and where to flip stimulus to.
 
 If no value is provided here, it means that there is no set default (or that the `initPTB` takes care of it).
 
 ```matlab
+%% -------------------------------------------------------------------------- %%
+							SET BY setDefaultsPTB
 %% -------------------------------------------------------------------------- %%
 cfg.testingDevice = 'pc'; % could be 'mri', 'eeg', 'meg'
 
 
 %% -------------------------------------------------------------------------- %%
 % cfg.keyboard
-cfg.keyboard.keyboard = []; % device index for the main keyboard (that of the experimenter)
+cfg.keyboard.keyboard = []; % device index for the main keyboard 
+						(that of the experimenter)
 cfg.keyboard.responseBox = []; % device index used by the participants 
 cfg.keyboard.responseKey = {}; % list the keys that PTB should "listen" to when 
-% using KbQueue to collect responses ; if empty PTB will listen to all key presses
+% using KbQueue to collect responses ; if empty PTB will listen to 
+						all key presses
 cfg.keyboard.escapeKey = 'ESCAPE'; % key to press to escape
 
 
 %% -------------------------------------------------------------------------- %%
 % cfg.debug
-cfg.debug.do = true; % if true this will make less PTB tolerant with bad synchronisation
-cfg.debug.transpWin = true; % makes the stimulus windows semi-transparent: useful when designing your experiment
-cfg.debug.smallWin = true; % open a small window and not a full screen window ; can be useful for debugging
+cfg.debug.do = true; % if true this will make less PTB tolerant with 
+						bad synchronisation
+cfg.debug.transpWin = true; % makes the stimulus windows semi-transparent: 
+						useful when designing your experiment
+cfg.debug.smallWin = true; % open a small window and not a full screen window ; 
+                    	can be useful for debugging
 
 %% -------------------------------------------------------------------------- %%
 % cfg.text
@@ -60,18 +71,7 @@ cfg.color.background = [0 0 0]; % [r g b] each in 0-255
 % cfg.screen
 cfg.screen.monitorWidth = 42;% in cm
 cfg.screen.monitorDistance = 134;% in cm
-
-% all the following will be initialised by initPTB
-cfg.screen.idx % screen index
-cfg.screen.win % window index
-cfg.screen.winRect % rectangle definition of the window 
-cfg.screen.winWidth
-cfg.screen.winHeight
-cfg.screen.center % [x y] ; pixel coordinate of the window center
-cfg.screen.FOV % width of the field of view in degrees of visual angle
-cfg.screen.ppd % pixel per degree
-cfg.screen.ifi % inter frame interval 
-cfg.screen.monRefresh % monitor refresh rate ; 1 / ifi
+cfg.screen.resolution = {[], [], []};
 
 
 %% -------------------------------------------------------------------------- %%
@@ -83,31 +83,23 @@ cfg.fixation.color = [255 255 255];
 cfg.fixation.width = 1; % in degrees of visual angle
 cfg.fixation.lineWidthPix = 5; % width of the lines in pixel
 
-
 %% -------------------------------------------------------------------------- %%
 % aperture
 % mostly relevant for retinotopy scripts but can be reused for other types of 
 %  experiments where an aperture is needed
 cfg.aperture.type = 'none'; % 'bar', 'wedge', 'ring', 'circle' 
 
-
 %% -------------------------------------------------------------------------- %%
 % cfg.audio
 cfg.audio.do = false; % set to true if you are going to play some sounds
-cfg.audio.pahandle
-cfg.audio.devIdx = [];
-cfg.audio.playbackMode = 1;
+
 cfg.audio.requestedLatency = 3;
 cfg.audio.fs 44800; % sampling frequency 
 cfg.audio.channels = 2; % number of auditory channels
 cfg.audio.initVolume = 1;
-cfg.audio.pushSize  
-cfg.audio.requestOffsetTime = 1;
-cfg.audio.reqsSampleOffset
 cfg.audio.repeat = 1;
 cfg.audio.startCue = 0;
 cfg.audio.waitForDevice = 1;
-
 
 %% -------------------------------------------------------------------------- %%
 % eyetracker
@@ -120,11 +112,36 @@ cfg.eyeTracker.calibrationTargetSize = 1;
 cfg.eyeTracker.calibrationTargetWidth = 0.5;
 cfg.eyeTracker.displayCalResults = 1;
 
-
 %% -------------------------------------------------------------------------- %%
 % cfg.mri
-cfg.mri.repetitionTime
+cfg.bids.mri.repetitionTime
 
+%% -------------------------------------------------------------------------- %%
+								SET BY initPTB
+%% -------------------------------------------------------------------------- %%
+
+%% -------------------------------------------------------------------------- %%
+% cfg.screen
+% all the following will be initialised by initPTB
+cfg.screen.idx % screen index
+cfg.screen.win % window index
+cfg.screen.winRect % rectangle definition of the window 
+cfg.screen.winWidth
+cfg.screen.winHeight
+cfg.screen.center % [x y] ; pixel coordinate of the window center
+cfg.screen.FOV % width of the field of view in degrees of visual angle
+cfg.screen.ppd % pixel per degree
+cfg.screen.ifi % inter frame interval 
+cfg.screen.monRefresh % monitor refresh rate ; 1 / ifi
+
+%% -------------------------------------------------------------------------- %%
+% cfg.audio
+cfg.audio.requestOffsetTime = 1;
+cfg.audio.reqsSampleOffset
+cfg.audio.pushSize  
+cfg.audio.playbackMode = 1;
+cfg.audio.devIdx = [];
+cfg.audio.pahandle
 
 %% -------------------------------------------------------------------------- %%
 % operating system information collected by initPTB
