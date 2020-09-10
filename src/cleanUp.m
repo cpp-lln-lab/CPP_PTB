@@ -16,12 +16,6 @@ function cleanUp()
     % Screen Close All
     sca;
 
-    % Shut down connection with Eyelink
-    try
-        Eyelink('shutdown');
-    catch
-    end
-
     % Close Psychportaudio if open
     if PsychPortAudio('GetOpenDeviceCount') ~= 0
         PsychPortAudio('Close');
