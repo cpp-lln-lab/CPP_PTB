@@ -100,10 +100,6 @@ Add it as a submodule in the repo you are working on.
 cd fullpath_to_directory_where_to_install
 # use git to download the code
 git submodule add https://github.com/cpp-lln-lab/CPP_PTB.git
-# move into the folder you have just created
-cd CPP_PTB
-# add the src folder to the matlab path and save the path
-matlab -nojvm -nosplash -r "addpath(fullfile(pwd))"
 ```
 
 To get the latest commit you then need to update the submodule with the information
