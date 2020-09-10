@@ -24,13 +24,13 @@ function devSandbox
     cfg = struct;
 
     %% Visual
-    
+
     % set to false if no visual stimulation
-    cfg.screen.do = true; 
-    
+    cfg.screen.do = true;
+
     % Set the PTB window background manually
     cfg.color.background = [127 127 27];
-    
+
     % Set monitor parameters if you care about visual angle
     cfg.visualAngle.do = true;
     cfg.screen.monitorWidth = 21.5; % cm
@@ -38,42 +38,42 @@ function devSandbox
 
     % Init PTB, see the Sub-Functions below
     cfg = devSandbox_initPTB(cfg);
-    
+
     % OUTPUT:
-    %     
+    %
     %  cfg.screen.idx % Screen number where to draw, external screen if avaliable
     %  cfg.screen.win % The onscreen window whose content should be shown at flip time
     %  cfg.screen.winRect % The onscreen window size in pixels coordinates
-    %  cfg.screen.winWidth 
+    %  cfg.screen.winWidth
     %  cfg.screen.winHeight
-    %  cfg.screen.center % Center of the screen window   
-    %  cfg.screen.ifi % Frame duration   
-    %  cfg.screen.monitorRefresh % Monitor refresh rate       
-    
+    %  cfg.screen.center % Center of the screen window
+    %  cfg.screen.ifi % Frame duration
+    %  cfg.screen.monitorRefresh % Monitor refresh rate
+
     % Compute pixels per degrees
     cfg = devSandbox_computePpd(cfg);
-    
+
     % OUTPUT:
     %
     % cfg.screen.ppd % The number of pixels per degree given the distance to screen
-    
+
     %% Auditory
     % Set AUDIO
-    
+
     % set to false if no auditory stimulation
     cfg.audio.do = false;
-    
-    % Set audio freq. and nb. of channels of your audio file input 
+
+    % Set audio freq. and nb. of channels of your audio file input
     cfg.audio.fs = 44100;
     cfg.audio.channels = 2;
-    
+
     % Init Audio, see the Sub-Functions below
     cfg = devSandbox_initAudio(cfg);
 
     % OUTPUT:
-    %     
-    % cfg.audio.pahandle   
-    
+    %
+    % cfg.audio.pahandle
+
     %%
     % -------------------------------------------------------------------------
     % -------------------------- SET YOUR VARS HERE ---------------------------
@@ -106,12 +106,12 @@ function devSandbox
         % -------------------------------------------------------------------------
         % ------------------------------ PLAYGROUND -------------------------------
         % -------------------------------------------------------------------------
-        
+
         % Define black and white
         white = WhiteIndex(cfg.screen.idx);
         grey = white / 2;
         inc = white - grey;
-        
+
         % Define Half-Size of the grating image.
         textureSize = gratingSizePix / 2;
 
@@ -212,39 +212,39 @@ end
 function cfg = devSandbox_initPTB(cfg)
 
     % Shorter version of `initPTB.m`
-    
+
     if cfg.screen.do
 
-    % Skip the PTB sync test
-    Screen('Preference', 'SkipSyncTests', 2);
+        % Skip the PTB sync test
+        Screen('Preference', 'SkipSyncTests', 2);
 
-    % Open a transparent window
-    PsychDebugWindowConfiguration;
+        % Open a transparent window
+        PsychDebugWindowConfiguration;
 
-    % Here we call some default settings for setting up Psychtoolbox
-    PsychDefaultSetup(2);
+        % Here we call some default settings for setting up Psychtoolbox
+        PsychDefaultSetup(2);
 
-    % Get the screen numbers and draw to the external screen if avaliable
-    cfg.screen.idx = max(Screen('Screens'));
+        % Get the screen numbers and draw to the external screen if avaliable
+        cfg.screen.idx = max(Screen('Screens'));
 
-    % Open an on screen window
-    [cfg.screen.win, cfg.screen.winRect] = Screen('OpenWindow', cfg.screen.idx, cfg.color.background);
+        % Open an on screen window
+        [cfg.screen.win, cfg.screen.winRect] = Screen('OpenWindow', cfg.screen.idx, cfg.color.background);
 
-    % Get the size of the on screen window
-    [cfg.screen.winWidth, cfg.screen.winHeight] = WindowSize(cfg.screen.win);
-    
-    % Get the Center of the Screen
-    cfg.screen.center = [cfg.screen.winRect(3), cfg.screen.winRect(4)] / 2;
+        % Get the size of the on screen window
+        [cfg.screen.winWidth, cfg.screen.winHeight] = WindowSize(cfg.screen.win);
 
-    % Query the frame duration
-    cfg.screen.ifi = Screen('GetFlipInterval', cfg.screen.win);
-    
-    % Get monitor refresh rate
-    cfg.screen.monitorRefresh = 1 / cfg.screen.ifi;
+        % Get the Center of the Screen
+        cfg.screen.center = [cfg.screen.winRect(3), cfg.screen.winRect(4)] / 2;
 
-    % Set up alpha-blending for smooth (anti-aliased) lines
-    Screen('BlendFunction', cfg.screen.win, 'GL_SRC_ALPHA', 'GL_ONE_MINUS_SRC_ALPHA');
-    
+        % Query the frame duration
+        cfg.screen.ifi = Screen('GetFlipInterval', cfg.screen.win);
+
+        % Get monitor refresh rate
+        cfg.screen.monitorRefresh = 1 / cfg.screen.ifi;
+
+        % Set up alpha-blending for smooth (anti-aliased) lines
+        Screen('BlendFunction', cfg.screen.win, 'GL_SRC_ALPHA', 'GL_ONE_MINUS_SRC_ALPHA');
+
     end
 
 end
@@ -261,7 +261,7 @@ function cfg = devSandbox_initAudio(cfg)
             [], ...
             cfg.audio.fs, ...
             cfg.audio.channels);
-        
+
     end
 end
 
@@ -269,12 +269,11 @@ function cfg = devSandbox_computePpd (cfg)
 
     % Computes the number of pixels per degree given the distance to screen and
     % monitor width. This assumes that the window fills the whole screen
-    
+
     cfg.screen.FOV = 180 / pi * 2 * atan(cfg.screen.monitorWidth / (2 * cfg.screen.monitorDistance));
     cfg.screen.ppd = cfg.screen.winWidth / cfg.screen.FOV;
-    
-end
 
+end
 
 function devSandbox_cleanUp
 
