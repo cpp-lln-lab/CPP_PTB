@@ -1,5 +1,5 @@
 [![](https://img.shields.io/badge/Octave-CI-blue?logo=Octave&logoColor=white)](https://github.com/cpp-lln-lab/CPP_PTB/actions)
-![](https://github.com/cpp-lln-lab/CPP_PTB/workflows/CI/badge.svg) 
+![](https://github.com/cpp-lln-lab/CPP_PTB/workflows/CI/badge.svg)
 
 [![Build Status](https://travis-ci.com/cpp-lln-lab/CPP_PTB.svg?branch=master)](https://travis-ci.com/cpp-lln-lab/CPP_PTB)
 
@@ -11,33 +11,30 @@
 
 # CPP_PTB
 
-<!-- vscode-markdown-toc -->
-- [CPP_PTB](#cpp_ptb)
-	- [<a name='Requirements'></a>Requirements](#requirements)
-	- [<a name='Codeguidestyle'></a>Code guidestyle](#code-guidestyle)
-	- [<a name='Howtoinstall'></a>How to install](#how-to-install)
-		- [<a name='Downloadwithgit'></a>Download with git](#download-with-git)
-		- [<a name='Addasasubmodule'></a>Add as a submodule](#add-as-a-submodule)
-			- [<a name='Exampleforsubmoduleusage'></a>Example for submodule usage](#example-for-submodule-usage)
-		- [<a name='Directdownload'></a>Direct download](#direct-download)
-		- [<a name='AddCPP_PTBgloballytothematlabpath'></a>Add CPP_PTB globally to the matlab path](#add-cpp_ptb-globally-to-the-matlab-path)
-	- [<a name='Documentation'></a>Documentation](#documentation)
-	- [<a name='Content'></a>Content](#content)
-	- [<a name='Unittests'></a>Unit tests](#unit-tests)
-	- [<a name='Contributors'></a>Contributors ✨](#contributors-)
+<!-- TOC -->
 
-<!-- vscode-markdown-toc-config
-	numbering=false
-	autoSave=true
-	/vscode-markdown-toc-config -->
-<!-- /vscode-markdown-toc -->
+- [CPP_PTB](#cpp_ptb)
+	- [Requirements](#requirements)
+	- [Code guidestyle](#code-guidestyle)
+	- [How to install](#how-to-install)
+		- [Download with git](#download-with-git)
+		- [Add as a submodule](#add-as-a-submodule)
+			- [Example for submodule usage](#example-for-submodule-usage)
+		- [Direct download](#direct-download)
+		- [Add CPP_PTB globally to the matlab path](#add-cpp_ptb-globally-to-the-matlab-path)
+	- [Documentation](#documentation)
+	- [Content](#content)
+	- [Unit tests](#unit-tests)
+	- [Contributors ✨](#contributors-)
+
+<!-- /TOC -->
 
 
 This is the Crossmodal Perception and Plasticity lab (CPP) PsychToolBox (PTB) toolbox.
 
 Those functions are mostly wrappers around some PTB functions to facilitate their use and their reuse (#DontRepeatYourself)
 
-## <a name='Requirements'></a>Requirements
+## Requirements
 
 Make sure that the following toolboxes are installed and added to the matlab / octave path.
 
@@ -52,28 +49,28 @@ For instructions see the following links:
 Tested:
 -   matlab 2015b or octave 4.2.2 and PTB 3.0.14.
 
-## <a name='Codeguidestyle'></a>Code guidestyle
+## Code guidestyle
 
 We use the `camelCase` to more easily differentiates our functions from the ones from PTB that use a `PascalCase`.
 
 In practice, we use the following regular expression for function names: `[a-z]+(([A-Z]|[0-9]){1}[a-z]+)*`.
 
 > Regular expressions look scary but are SUPER useful to sort through filenames:
-> - A quick [intro to regular expression](https://www.rexegg.com/) 
+> - A quick [intro to regular expression](https://www.rexegg.com/)
 > - And many websites allow you to "design and test" your regular expression:
 >   - [regexr](https://regexr.com/)
 >   - [regexper](https://regexper.com/#%5Ba-z%5D%2B%28%28%5BA-Z%5D%7C%5B0-9%5D%29%7B1%7D%5Ba-z%5D%2B%29)
->   - ... 
+>   - ...
 
-We keep the McCabe complexity as reported by the [check_my_code function](https://github.com/Remi-Gau/check_my_code) below 15 or the [MISS_HIT code checker](https://florianschanda.github.io/miss_hit). A couple of code quality metrics are also checked automatically by MISS_HIT (avoiding functions with too many nested `if` blocks). 
+We keep the McCabe complexity as reported by the [check_my_code function](https://github.com/Remi-Gau/check_my_code) below 15 or the [MISS_HIT code checker](https://florianschanda.github.io/miss_hit). A couple of code quality metrics are also checked automatically by MISS_HIT (avoiding functions with too many nested `if` blocks).
 
-We use the [MISS_HIT linter](https://florianschanda.github.io/miss_hit/style_checker.html) to automatically fix some linting issues. 
+We use the [MISS_HIT linter](https://florianschanda.github.io/miss_hit/style_checker.html) to automatically fix some linting issues.
 
 The code style and quality is also checked during the [continuous integration](./.travis.yml).
 
-## <a name='Howtoinstall'></a>How to install
+## How to install
 
-### <a name='Downloadwithgit'></a>Download with git
+### Download with git
 
 ``` bash
 cd fullpath_to_directory_where_to_install
@@ -95,7 +92,7 @@ To work with a specific version, create a branch at a specific version tag numbe
 git checkout -b version1 v1.0.0
 ```
 
-### <a name='Addasasubmodule'></a>Add as a submodule
+### Add as a submodule
 
 Add it as a submodule in the repo you are working on.
 
@@ -113,7 +110,7 @@ git submodule update --remote --merge
 
 Remember that updates to submodules need to be committed as well.
 
-#### <a name='Exampleforsubmoduleusage'></a>Example for submodule usage
+#### Example for submodule usage
 
 So say you want to clone a repo that has some nested submodules, then you would type this to get the content of all the submodules at once (here with my experiment repo):
 ``` bash
@@ -137,7 +134,7 @@ git submodule foreach --recursive 'git submodule init'
 git submodule foreach --recursive 'git submodule update'
 ```
 
-### <a name='Directdownload'></a>Direct download
+### Direct download
 
 Download the code. Unzip. And add to the matlab path.
 
@@ -149,7 +146,7 @@ Or take the latest commit (NOT RECOMMENDED):
 
 https://github.com/cpp-lln-lab/CPP_PTB/archive/master.zip
 
-### <a name='AddCPP_PTBgloballytothematlabpath'></a>Add CPP_PTB globally to the matlab path
+### Add CPP_PTB globally to the matlab path
 
 This is NOT RECOMMENDED as this might create conflicts if you different versions of CPP_PTB as sub-modules.
 
@@ -158,11 +155,11 @@ This is NOT RECOMMENDED as this might create conflicts if you different versions
 matlab -nojvm -nosplash -r "addpath(genpath(fullfile(pwd, 'src'))); savepath(); path(); exit();"
 ```
 
-## <a name='Documentation'></a>Documentation
+## Documentation
 
 All the documentation is accessible [here](./docs/00_index.md).
 
-## <a name='Content'></a>Content
+## Content
 
 ```bash
 ├── demos # quick demo of how to use some functions
@@ -180,11 +177,11 @@ All the documentation is accessible [here](./docs/00_index.md).
 └── tests # all the tests that that can be run by github actions
 ```
 
-## <a name='Unittests'></a>Unit tests
+## Unit tests
 
 Unit tests are run with the mox unit toolbox and automated with github action on Octave.
 
-## <a name='Contributors'></a>Contributors ✨
+## Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
