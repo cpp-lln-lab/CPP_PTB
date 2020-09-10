@@ -151,7 +151,7 @@ https://github.com/cpp-lln-lab/CPP_PTB/archive/master.zip
 
 ### Add CPP_PTB globally to the matlab path
 
-This is NOT RECOMMENDED as this might create conflicts if you different versions of CPP_PTB as sub-modules.
+This is NOT RECOMMENDED as this might create conflicts if you use different versions of CPP_PTB as sub-modules.
 
 ```bash
 # from within the CPP_PTB folder
@@ -171,7 +171,7 @@ In practice, we use the following regular expression for function names: `[a-z]+
 >   - [regexper](https://regexper.com/#%5Ba-z%5D%2B%28%28%5BA-Z%5D%7C%5B0-9%5D%29%7B1%7D%5Ba-z%5D%2B%29)
 >   - ...
 
-We keep the McCabe complexity as reported by the [check_my_code function](https://github.com/Remi-Gau/check_my_code) below 15 or the [MISS_HIT code checker](https://florianschanda.github.io/miss_hit). A couple of code quality metrics are also checked automatically by MISS_HIT (avoiding functions with too many nested `if` blocks).
+We keep the McCabe complexity below 15 as reported by the [check_my_code function](https://github.com/Remi-Gau/check_my_code) or the [MISS_HIT code checker](https://florianschanda.github.io/miss_hit). A couple of code quality metrics are also checked automatically by MISS_HIT (avoiding functions with too many nested `if` blocks).
 
 We use the [MISS_HIT linter](https://florianschanda.github.io/miss_hit/style_checker.html) to automatically fix some linting issues.
 
