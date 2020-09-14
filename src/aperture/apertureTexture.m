@@ -91,7 +91,7 @@ function [cfg, thisEvent] = apertureTexture(action, cfg, thisEvent)
 
                     % We let the stimulus through
                     Screen('FillOval', cfg.aperture.texture, TRANSPARENT, ...
-                        CenterRect(...
+                        CenterRect( ...
                         [0, 0, repmat(cfg.screen.winRect(4), 1, 2)], ...
                         cfg.screen.winRect));
 
@@ -120,18 +120,18 @@ function [cfg, thisEvent] = apertureTexture(action, cfg, thisEvent)
         case 'draw'
 
             if strcmp(cfg.aperture.type, 'bar')
-                
+
                 scalingFactor = 1;
-                if isfield(cfg, 'scalingFactor') && ~isempty(cfg.scalingFactor) 
+                if isfield(cfg, 'scalingFactor') && ~isempty(cfg.scalingFactor)
                     scalingFactor = cfg.scalingFactor;
                 end
-                
+
                 % Draw aperture and we rotate to match the required condition
                 Screen('DrawTexture', cfg.screen.win, cfg.aperture.texture, ...
                     cfg.screen.winRect, ...
                     CenterRect(cfg.screen.winRect * scalingFactor, cfg.screen.winRect), ...
                     thisEvent.condition - 90);
-                
+
             else
 
                 Screen('DrawTexture', cfg.screen.win, cfg.aperture.texture);
