@@ -9,6 +9,8 @@ function cfg = setDefaultsPTB(cfg)
 
     %% list the default values
     fieldsToSet.testingDevice = 'pc';
+    
+    fieldsToSet.skipSyncTests = 0;
 
     % keyboard defaults
     fieldsToSet.keyboard.keyboard = [];

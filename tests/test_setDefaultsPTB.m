@@ -69,6 +69,8 @@ function expectedCFG = returnExpectedCFG()
     expectedCFG.screen.monitorWidth = 42;
     expectedCFG.screen.monitorDistance = 134;
     expectedCFG.screen.resolution = {[], [], []};
+    
+    expectedCFG.skipSyncTests = 0;
 
     % fixation cross or dot
     expectedCFG.fixation.type = 'cross';

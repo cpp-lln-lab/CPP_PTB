@@ -34,6 +34,8 @@ function [cfg] = initPTB(cfg)
     AssertOpenGL;
 
     cfg = setDefaultsPTB(cfg);
+    
+    Screen('Preference', 'SkipSyncTests', cfg.skipSyncTests);
 
     initKeyboard;
     initDebug(cfg);
@@ -120,10 +122,11 @@ end
 function initDebug(cfg)
 
     % init PTB with different options in concordance to the debug Parameters
-    Screen('Preference', 'SkipSyncTests', 0);
+    
     if cfg.debug.do
-
-        Screen('Preference', 'SkipSyncTests', 2);
+        
+        cfg.skipSyncTests = 2;
+        Screen('Preference', 'SkipSyncTests', cfg.skipSyncTests);
         Screen('Preference', 'Verbosity', 0);
         Screen('Preference', 'SuppressAllWarnings', 1);
 
