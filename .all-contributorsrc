@@ -38,7 +38,9 @@
         "doc",
         "review",
         "test",
-        "bug"
+        "bug",
+        "userTesting",
+        "ideas"
       ]
     }
   ],
