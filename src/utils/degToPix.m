@@ -1,3 +1,5 @@
+% (C) Copyright 2020 CPP_PTB developers
+
 function structure = degToPix(fieldName, structure, cfg)
     % structure = degToPix(fieldName, structure, cfg)
     %

@@ -1,3 +1,5 @@
+% (C) Copyright 2020 CPP_PTB developers
+
 function dots = reseedDots(dots, cfg)
 
     fixationWidthPix = 0;

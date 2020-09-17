@@ -1,3 +1,5 @@
+% (C) Copyright 2020 CPP_PTB developers
+
 function checkAbortGetResponse(responseEvents, cfg)
 
     if isfield(responseEvents, 'keyName') > 0 && ...

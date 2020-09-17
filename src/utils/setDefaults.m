@@ -1,3 +1,5 @@
+% (C) Copyright 2020 CPP_PTB developers
+
 function structure = setDefaults(structure, fieldsToSet)
     % structure = setDefaults(structure, fieldsToSet)
     %

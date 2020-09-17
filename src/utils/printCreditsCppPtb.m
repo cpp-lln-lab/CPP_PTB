@@ -1,3 +1,5 @@
+% (C) Copyright 2020 CPP_PTB developers
+
 function printCreditsCppPtb()
 
     try

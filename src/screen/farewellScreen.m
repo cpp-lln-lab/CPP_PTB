@@ -1,3 +1,5 @@
+% (C) Copyright 2020 CPP_PTB developers
+
 function farewellScreen(cfg)
 
     Screen('FillRect', cfg.screen.win, cfg.color.background, cfg.screen.winRect);

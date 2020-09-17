@@ -1,3 +1,5 @@
+% (C) Copyright 2020 CPP_PTB developers
+
 function [cfg] = eccenLogSpeed(cfg, time)
     % vary CurrScale so that expansion speed is log over eccentricity
     % cf. Tootell 1997; Swisher 2007; Warnking 2002 etc

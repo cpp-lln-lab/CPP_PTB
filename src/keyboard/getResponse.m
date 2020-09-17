@@ -1,3 +1,5 @@
+% (C) Copyright 2020 CPP_PTB developers
+
 function responseEvents = getResponse(action, deviceNumber, cfg, getOnlyPress)
     % responseEvents = getResponse(action, deviceNumber, cfg, getOnlyPress)
     %
