@@ -1,5 +1,5 @@
-function [el, cfg] = eyeTracker(input, cfg)
-    % [el] = eyeTracker(input, cfg)
+function [el, cfg] = eyeTracker(input, cfg, varargin)
+    % [el] = eyeTracker(input, cfg, varargin)
     %
     % Wrapper function that deals with all the necessery actions to implement
     %  Eye Tracker recording with eyelink.
@@ -12,6 +12,8 @@ function [el, cfg] = eyeTracker(input, cfg)
     %    -- 'custom calibration'  (cfg.eyeTracker.defaultCalibration = 'false') will run a
     %        calibration with 6 points but the experimenter can choose their position on the screen
     %  - StartRecording: to start eye movements recording
+    %  - Message: will add a tag (e.g. 'Block_n1') in the ET output file, the tag is a string and it
+    %        is input from `varargin`
     %  - StopRecordings: to stop eye movements recornding
     %  - Shutdown: to save the `.edf` file with BIDS compliant name, from cpp-lln-lab/CPP_BIDS, in
     %    the output folder and shut the connection between the stimulation computer and the EyeLink
@@ -102,21 +104,21 @@ function [el, cfg] = eyeTracker(input, cfg)
                     Eyelink('Command', 'calibration_samples = 6');
                     Eyelink('Command', 'calibration_sequence = 0,1,2,3,4,5');
                     Eyelink('Command', 'calibration_targets = %d,%d %d,%d %d,%d %d,%d %d,%d', ...
-                        640, 512, ... % width/2,height/2
-                        640, 102, ... % width/2,height*0.1
-                        640, 614, ... % width/2,height*0.6
-                        128, 341, ... % width*0.1,height*1/3
-                        1152, 341);  % width-width*0.1,height*1/3
+                            640, 512, ... % width/2,height/2
+                            640, 102, ... % width/2,height*0.1
+                            640, 614, ... % width/2,height*0.6
+                            128, 341, ... % width*0.1,height*1/3
+                            1152, 341);  % width-width*0.1,height*1/3
 
                     % Validation target locations
                     Eyelink('Command', 'validation_samples = 5');
                     Eyelink('Command', 'validation_sequence = 0,1,2,3,4,5');
                     Eyelink('Command', 'validation_targets = %d,%d %d,%d %d,%d %d,%d %d,%d', ...
-                        640, 512, ... % width/2,height/2
-                        640, 102, ... % width/2,height*0.1
-                        640, 614, ... % width/2,height*0.6
-                        128, 341, ... % width*0.1,height*1/3
-                        1152, 341);  % width-width*0.1,height*1/3
+                            640, 512, ... % width/2,height/2
+                            640, 102, ... % width/2,height*0.1
+                            640, 614, ... % width/2,height*0.6
+                            128, 341, ... % width*0.1,height*1/3
+                            1152, 341);  % width-width*0.1,height*1/3
 
                 end
 
@@ -157,6 +159,15 @@ function [el, cfg] = eyeTracker(input, cfg)
                 % Mark the beginning of the trial, here start the stimulation of the experiment.
                 Eyelink('Message', 'start_recording');
 
+            case 'Message'
+
+                %% Add tag during the recording (e.g. trial_type)
+
+                message = varargin;
+
+                % EyeLink Stop recording the block.
+                Eyelink('Message', message);
+
             case 'StopRecordings'
 
                 %% Stop recording of eye-movements
@@ -177,9 +188,9 @@ function [el, cfg] = eyeTracker(input, cfg)
 
                 % Set the edf file path + name.
                 edfFileName = fullfile( ...
-                    cfg.dir.outputSubject, ...
-                    cfg.fileName.modality, ...
-                    cfg.fileName.eyetracker);
+                                       cfg.dir.outputSubject, ...
+                                       cfg.fileName.modality, ...
+                                       cfg.fileName.eyetracker);
 
                 Eyelink('Command', 'set_idle_mode');
 
@@ -203,8 +214,8 @@ function [el, cfg] = eyeTracker(input, cfg)
                     if exist(edfFileName, 'file') == 2
 
                         fprintf('Data file ''%s'' can be found in ''%s''\n', ...
-                            cfg.fileName.eyetracker, ...
-                            fullfile(cfg.dir.outputSubject, 'eyetracker'));
+                                cfg.fileName.eyetracker, ...
+                                fullfile(cfg.dir.outputSubject, 'eyetracker'));
 
                     end
 
