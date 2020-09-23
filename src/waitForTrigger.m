@@ -35,7 +35,7 @@ function waitForTrigger(varargin)
     if strcmpi(cfg.testingDevice, 'mri')
 
         msg = ['Experiment starting in ', ...
-            num2str(nbTriggersToWait - triggerCounter), '...'];
+               num2str(nbTriggersToWait - triggerCounter), '...'];
 
         talkToMe(cfg, msg, quietMode);
 
@@ -105,7 +105,7 @@ function talkToMe(cfg, msg, quietMode)
         if isfield(cfg, 'screen') && isfield(cfg.screen, 'win')
 
             DrawFormattedText(cfg.screen.win, msg, ...
-                'center', 'center', cfg.text.color);
+                              'center', 'center', cfg.text.color);
 
             Screen('Flip', cfg.screen.win);
 
