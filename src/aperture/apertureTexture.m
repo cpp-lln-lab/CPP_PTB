@@ -10,7 +10,8 @@ function [cfg, thisEvent] = apertureTexture(action, cfg, thisEvent)
             cfg = apertureInit(cfg);
 
             cfg.aperture.texture = Screen('MakeTexture', cfg.screen.win, ...
-                                          cfg.color.background(1) * ones(cfg.screen.winRect([3 3])));
+                                          cfg.color.background(1) * ...
+                                          ones(cfg.screen.winRect([3 3])));
 
         case 'make'
 
