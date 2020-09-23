@@ -157,6 +157,15 @@ function [el, cfg] = eyeTracker(input, cfg, varargin)
                 % Mark the beginning of the trial, here start the stimulation of the experiment.
                 Eyelink('Message', 'start_recording');
 
+            case 'Message'
+
+                %% Add tag during the recording (e.g. trial_type)
+
+                message = varargin;
+
+                % EyeLink Stop recording the block.
+                Eyelink('Message', message);
+
             case 'StopRecordings'
 
                 %% Stop recording of eye-movements
@@ -169,15 +178,6 @@ function [el, cfg] = eyeTracker(input, cfg, varargin)
 
                 % Stop recoding.
                 Eyelink('StopRecording');
-
-            case 'Message'
-
-                %% Add tag during the recording (e.g. trial_type)
-
-                message = varargin;
-
-                % EyeLink Stop recording the block.
-                Eyelink('Message', message);
 
             case 'Shutdown'
 
