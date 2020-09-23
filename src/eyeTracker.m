@@ -1,4 +1,4 @@
-function [el, cfg] = eyeTracker(input, cfg)
+function [el, cfg] = eyeTracker(input, cfg, varargin)
     % [el] = eyeTracker(input, cfg)
     %
     % Wrapper function that deals with all the necessery actions to implement
@@ -169,6 +169,15 @@ function [el, cfg] = eyeTracker(input, cfg)
 
                 % Stop recoding.
                 Eyelink('StopRecording');
+
+            case 'Message'
+
+                %% Add tag during the recording (e.g. trial_type)
+
+                message = varargin;
+
+                % EyeLink Stop recording the block.
+                Eyelink('Message', message);
 
             case 'Shutdown'
 
