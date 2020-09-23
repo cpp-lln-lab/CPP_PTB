@@ -12,6 +12,8 @@ function [el, cfg] = eyeTracker(input, cfg, varargin)
     %    -- 'custom calibration'  (cfg.eyeTracker.defaultCalibration = 'false') will run a
     %        calibration with 6 points but the experimenter can choose their position on the screen
     %  - StartRecording: to start eye movements recording
+    %  - Message: will add a tag (e.g. 'Block_n1') in the ET output file, the tag is a string and it
+    %        is input from `varargin`
     %  - StopRecordings: to stop eye movements recornding
     %  - Shutdown: to save the `.edf` file with BIDS compliant name, from cpp-lln-lab/CPP_BIDS, in
     %    the output folder and shut the connection between the stimulation computer and the EyeLink
