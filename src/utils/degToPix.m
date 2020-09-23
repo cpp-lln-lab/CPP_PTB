@@ -10,11 +10,11 @@ function structure = degToPix(fieldName, structure, cfg)
     % ------
     % fixation.width = 2;
     % cfg.screen.ppd = 10;
-    % 
+    %
     % fixation = degToPix('width', fixation, cfg);
     %
     % Returns:
-    % ------- 
+    % -------
     % fixation.widthPix = 20;
     %
 
