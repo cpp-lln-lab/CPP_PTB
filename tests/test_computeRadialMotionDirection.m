@@ -17,22 +17,22 @@ function test_computeRadialMotionDirectionBasic()
 
     dots.direction = 666;
     dots.positions = [
-        100, 100 / 2; ... % middle of right side
-        100, 100; ... % top right corner
-        100 / 2, 100; ...
-        0, 100 / 2; ...
-        0, 0; ...
-        100 / 2, 0];
+                      100, 100 / 2; ... % middle of right side
+                      100, 100; ... % top right corner
+                      100 / 2, 100; ...
+                      0, 100 / 2; ...
+                      0, 0; ...
+                      100 / 2, 0];
 
     %     direction = computeRadialMotionDirection(cfg, positions, direction);
 
     expectedDirection = [
-        0; ... right
-        45; ... up-right
-        90; ... up
-        180; ... left
-        -135; ... down left
-        -90]; % down
+                         0; ... right
+                         45; ... up-right
+                         90; ... up
+                         180; ... left
+                         -135; ... down left
+                         -90]; % down
 
     %% test
 

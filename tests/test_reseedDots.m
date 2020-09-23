@@ -25,28 +25,28 @@ function test_reseedDotsBasic()
     dots.isSignal = true(5, 1);
 
     dots.positions = [ ...
-        49, 1; % OK
-        490, 2043; % out of frame
-        -104, 392; % out of frame
-        492, 402; % OK
-        1000, 1000; % on the fixation cross
-        ];
+                      49, 1  % OK
+                      490, 2043  % out of frame
+                      -104, 392  % out of frame
+                      492, 402  % OK
+                      1000, 1000  % on the fixation cross
+                     ];
 
     dots.time = [ ...
-        6; ... OK
-        4; ... OK
-        56; ... OK
-        300; ... % exceeded its life time
-        50]; % OK
+                 6; ... OK
+                 4; ... OK
+                 56; ... OK
+                 300; ... % exceeded its life time
+                 50]; % OK
 
     dots = reseedDots(dots, cfg);
 
     reseeded = [ ...
-        6;
-        1;
-        1;
-        1;
-        1];
+                6
+                1
+                1
+                1
+                1];
 
     assertEqual(reseeded, dots.time);
 

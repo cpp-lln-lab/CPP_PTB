@@ -60,8 +60,8 @@ function responseEvents = getResponse(action, deviceNumber, cfg, getOnlyPress)
 
     if nargin < 3
         cfg = struct( ...
-            'keyboard', struct('responseKey', {}) ...
-            );
+                     'keyboard', struct('responseKey', {}) ...
+                    );
     end
 
     if nargin < 4
