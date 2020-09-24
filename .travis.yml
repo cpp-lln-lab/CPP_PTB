@@ -20,17 +20,9 @@ branches:
   - master
   - dev
 
-# Install the miss_hit linter
-before_install:
-  - pip3 install miss_hit
-
 # Lists all the tasks we will do 
 jobs:
   include:
-    - name: "miss_hit: checking code quality"
-      script: mh_metric . --ci
-    - name: "miss_hit: checking code style"
-      script: mh_style .
     - name: "Check markdown"
       language: node_js
       node_js:
