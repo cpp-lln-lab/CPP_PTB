@@ -6,9 +6,9 @@
 dist: bionic
 
 # Language and version
-language: python
-python:
-  - "3.6" # current default Python on Travis CI
+language: node_js
+node_js:
+  - "10"
 
 cache:
   apt: true # only works with Pro version
@@ -24,9 +24,6 @@ branches:
 jobs:
   include:
     - name: "Check markdown"
-      language: node_js
-      node_js:
-        - "10"
       before_script:
         - npm install `cat npm-requirements.txt`
       script:
