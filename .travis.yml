@@ -12,6 +12,13 @@ python:
 
 cache:
   apt: true # only works with Pro version
+  directories:
+  - node_modules # NPM packages for the remark markdown linter
+
+branches:
+  only:  # only run the CI for those branches 
+  - master
+  - dev
 
 # Install the miss_hit linter
 before_install:
@@ -24,4 +31,12 @@ jobs:
       script: mh_metric . --ci
     - name: "miss_hit: checking code style"
       script: mh_style .
+    - name: "Check markdown"
+      language: node_js
+      node_js:
+        - "10"
+      before_script:
+        - npm install `cat npm-requirements.txt`
+      script:
+        - remark . --frail
       
