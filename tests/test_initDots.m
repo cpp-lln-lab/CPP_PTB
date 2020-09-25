@@ -27,7 +27,6 @@ function test_initDotsBasic()
     cfg.dot.coherence = 1; % proportion
     cfg.dot.lifeTime = 0.250; % in seconds
     cfg.dot.matrixWidth = 50; % in pixels
-    cfg.screen.winWidth = 2000; % in pixels
     cfg.timing.eventDuration = 1; % in seconds
     cfg.screen.ifi = 0.01; % in seconds
 
