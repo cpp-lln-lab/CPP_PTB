@@ -10,9 +10,7 @@ function test_computeRadialMotionDirectionBasic()
 
     %% set up
 
-    cfg.design.motionType = 'radial';
-    cfg.dot.matrixWidth = 50; % in pixels
-    cfg.screen.winWidth = 100; % in pixels
+    cfg.dot.matrixWidth = 100; % in pixels
     cfg.timing.eventDuration = 2;
 
     dots.direction = 666;
@@ -23,8 +21,8 @@ function test_computeRadialMotionDirectionBasic()
                       0, 100 / 2; ...
                       0, 0; ...
                       100 / 2, 0];
-
-    %     direction = computeRadialMotionDirection(cfg, positions, direction);
+    
+    angleMotion = computeRadialMotionDirection(dots.positions, cfg.dot.matrixWidth, dots);
 
     expectedDirection = [
                          0; ... right
@@ -36,6 +34,6 @@ function test_computeRadialMotionDirectionBasic()
 
     %% test
 
-    %     assertEqual(expectedDirection, direction);
+    assertEqual(angleMotion, expectedDirection);
 
 end
