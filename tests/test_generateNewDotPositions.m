@@ -8,10 +8,10 @@ end
 
 function test_generateNewDotPositionsBasic()
 
-    cfg.dot.matrixWidth = 400;
+    dotMatrixWidth = 400;
     dotNumber = 200;
 
-    newPositions = generateNewDotPositions(cfg, dotNumber);
+    newPositions = generateNewDotPositions(dotMatrixWidth, dotNumber);
 
     assertEqual([200, 2], size(newPositions));
 

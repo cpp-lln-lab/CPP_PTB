@@ -4,7 +4,8 @@ function cfg = dotTexture(action, cfg, thisEvent)
 
         case 'init'
             cfg.dot.texture = Screen('MakeTexture', cfg.screen.win, ...
-                                     cfg.color.background(1) * ones(cfg.screen.winRect([4 3])));
+                                     cfg.color.background(1) * ...
+                                     ones(cfg.screen.winRect([4 3])));
 
         case 'make'
 

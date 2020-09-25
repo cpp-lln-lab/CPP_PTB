@@ -1,6 +1,6 @@
-function angleMotion = computeRadialMotionDirection(cfg, dots)
+function angleMotion = computeRadialMotionDirection(positions, dotMatrixWidth, dots)
 
-    cartesianCoordinates = computeCartCoord(dots.positions, cfg);
+    cartesianCoordinates = computeCartCoord(positions, dotMatrixWidth);
 
     [angleMotion, ~] = cart2pol(cartesianCoordinates(:, 1), cartesianCoordinates(:, 2));
     angleMotion = angleMotion / pi * 180;
