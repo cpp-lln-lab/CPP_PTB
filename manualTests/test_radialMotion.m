@@ -1,4 +1,3 @@
-
 % ensure that dog homogenity is not too low when we kill dots often enough
 
 nbEvents = 1;
@@ -17,8 +16,4 @@ cfg.dot.number = 10;
 
 cfg.timing.eventDuration = 100; % in seconds
 
-
 relativeDensityContrast = dotMotionSimulation(cfg, thisEvent, nbEvents, doPlot);
-
-
-

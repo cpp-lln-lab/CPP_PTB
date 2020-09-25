@@ -42,7 +42,6 @@ function relativeDensityContrast = dotMotionSimulation(cfg, thisEvent, nbEvents,
     % dot size
     cfg.dot.sizePix = 1;
 
-    
     if ~isfield(cfg.dot, 'number')
         % We fill 25% of the screen with dots
         cfg.dot.number = round(cfg.dot.matrixWidth^2 * 25 / 100);
@@ -81,7 +80,7 @@ function relativeDensityContrast = dotMotionSimulation(cfg, thisEvent, nbEvents,
         axis square;
         title('dot density');
     end
-    
+
     fprintf(1, '\n');
 
 end

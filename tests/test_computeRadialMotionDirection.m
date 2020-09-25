@@ -21,7 +21,7 @@ function test_computeRadialMotionDirectionBasic()
                       0, 100 / 2; ...
                       0, 0; ...
                       100 / 2, 0];
-    
+
     angleMotion = computeRadialMotionDirection(dots.positions, cfg.dot.matrixWidth, dots);
 
     expectedDirection = [
