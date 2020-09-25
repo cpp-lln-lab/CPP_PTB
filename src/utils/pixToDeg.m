@@ -24,6 +24,6 @@ function structure = pixToDeg(fieldName, structure, cfg)
     pix = getfield(structure, fieldName); %#ok<GFLD>
 
     structure = setfield(structure, [strrep(fieldName, 'Pix', '') 'DegVA'], ...
-        floor(pix / cfg.screen.ppd)); %#ok<SFLD>
+                         floor(pix / cfg.screen.ppd)); %#ok<SFLD>
 
 end

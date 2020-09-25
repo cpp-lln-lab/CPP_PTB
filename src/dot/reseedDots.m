@@ -26,9 +26,9 @@ function dots = reseedDots(dots, cfg)
     % If there is any such dot we relocate it to a new random position
     % and change its lifetime to 1
     if any(N)
-        
+
         isSignal = dots.isSignal(N);
-        
+
         [positions, speeds, time] = seedDots(dots, cfg, isSignal);
 
         dots.positions(N, :) = positions;

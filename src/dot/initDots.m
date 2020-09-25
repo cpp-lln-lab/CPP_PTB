@@ -26,7 +26,7 @@ function [dots] = initDots(cfg, thisEvent)
 
     % decide which dots are signal dots (1) and those are noise dots (0)
     dots.isSignal = rand(cfg.dot.number, 1) < cfg.dot.coherence;
-    
+
     dots.speedPixPerFrame = thisEvent.speed(1);
     lifeTime = cfg.dot.lifeTime;
 
@@ -44,6 +44,5 @@ function [dots] = initDots(cfg, thisEvent)
     %% Convert from seconds to frames
     lifeTime = ceil(lifeTime / cfg.screen.ifi);
     dots.lifeTime = lifeTime;
-    
- 
+
 end

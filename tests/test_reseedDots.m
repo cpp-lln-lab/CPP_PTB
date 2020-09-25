@@ -7,7 +7,7 @@ function test_suite = test_reseedDots %#ok<*STOUT>
 end
 
 function test_reseedDotsBasic()
-    
+
     dotNb = 5;
 
     cfg.design.motionType = 'translation';
@@ -36,11 +36,11 @@ function test_reseedDotsBasic()
                      ];
 
     originalTime = [ ...
-                 6; ... OK
-                 4; ... OK
-                 56; ... OK
-                 300; ... % exceeded its life time
-                 50]; % OK
+                    6; ... OK
+                    4; ... OK
+                    56; ... OK
+                    300; ... % exceeded its life time
+                    50]; % OK
     dots.time = originalTime;
 
     dots = reseedDots(dots, cfg);
