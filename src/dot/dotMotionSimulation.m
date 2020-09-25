@@ -1,20 +1,20 @@
-function relativeDensityContrast = dotMotionSimulation(cfg, thisEvent, doPlot)
+function relativeDensityContrast = dotMotionSimulation(cfg, thisEvent, nbEvents, doPlot)
     % to simulate where the dots are more dense on the screen
     % relativeDensityContrast : hard to get it below 0.10
 
     close all;
 
-    if nargin < 3
-
+    if nargin < 4
         doPlot = 1;
+    end
 
+    if nargin < 3
+        nbEvents = 100;
     end
 
     if nargin < 2
-
         thisEvent.direction = 0; % degrees
         thisEvent.speed = 1; % pix per frame
-
     end
 
     if nargin < 1
@@ -23,13 +23,13 @@ function relativeDensityContrast = dotMotionSimulation(cfg, thisEvent, doPlot)
 
         cfg.dot.coherence = 1; % proportion
 
-        cfg.dot.lifeTime = 10; % in seconds
+        cfg.dot.lifeTime = .1; % in seconds
 
         cfg.dot.matrixWidth = 250; % in pixels
 
         cfg.dot.proportionKilledPerFrame = 0;
 
-        cfg.timing.eventDuration = 500; % in seconds
+        cfg.timing.eventDuration = 1.8; % in seconds
 
     end
 
@@ -48,23 +48,27 @@ function relativeDensityContrast = dotMotionSimulation(cfg, thisEvent, doPlot)
     fprintf(1, '\n\nDot motion simulation:');
 
     nbFrames = ceil(cfg.timing.eventDuration / cfg.screen.ifi);
-    frameToReport = round(linspace(1, nbFrames, 20));
+    %     frameToReport = round(linspace(1, nbFrames, 20));
 
     % to keep track of where the dots have been
     dotDensity = zeros(cfg.dot.matrixWidth);
 
-    [dots] = initDots(cfg, thisEvent);
-    dotDensity = updateDotDensity(dotDensity, dots);
+    for iEvent = 1:nbEvents
 
-    for iFrame = 1:nbFrames
-
-        if any(frameToReport == iFrame)
-            fprintf(1, '.');
-        end
-
-        [dots] = updateDots(dots, cfg);
-
+        [dots] = initDots(cfg, thisEvent);
         dotDensity = updateDotDensity(dotDensity, dots);
+
+        for iFrame = 1:nbFrames
+
+            %         if any(frameToReport == iFrame)
+            %             fprintf(1, '.');
+            %         end
+
+            [dots] = updateDots(dots, cfg);
+
+            dotDensity = updateDotDensity(dotDensity, dots);
+
+        end
 
     end
 
