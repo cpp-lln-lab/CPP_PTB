@@ -14,6 +14,9 @@ function [positions, speeds, time] = seedDots(varargin)
     directionAllDots = setDotDirection(positions, cfg, dots, isSignal);
     [horVector, vertVector] = decomposeMotion(directionAllDots);
 
+    if strcmp(cfg.design.motionType, 'radial')
+        vertVector = vertVector * -1;
+    end
     % we were working with unit vectors. we now switch to pixels
     speeds = [horVector, vertVector] * dots.speedPixPerFrame;
 

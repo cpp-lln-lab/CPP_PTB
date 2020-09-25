@@ -13,7 +13,7 @@ function relativeDensityContrast = dotMotionSimulation(cfg, thisEvent, nbEvents,
     end
 
     if nargin < 2
-        thisEvent.direction = 0; % degrees
+        thisEvent.direction = 90; % degrees
         thisEvent.speed = 1; % pix per frame
     end
 
@@ -23,7 +23,7 @@ function relativeDensityContrast = dotMotionSimulation(cfg, thisEvent, nbEvents,
 
         cfg.dot.coherence = 1; % proportion
 
-        cfg.dot.lifeTime = .1; % in seconds
+        cfg.dot.lifeTime = Inf; % in seconds
 
         cfg.dot.matrixWidth = 250; % in pixels
 
@@ -42,13 +42,15 @@ function relativeDensityContrast = dotMotionSimulation(cfg, thisEvent, nbEvents,
     % dot size
     cfg.dot.sizePix = 1;
 
-    % We fill 25% of the screen with dots
-    cfg.dot.number = round(cfg.dot.matrixWidth^2 * 25 / 100);
+    
+    if ~isfield(cfg.dot, 'number')
+        % We fill 25% of the screen with dots
+        cfg.dot.number = round(cfg.dot.matrixWidth^2 * 25 / 100);
+    end
 
     fprintf(1, '\n\nDot motion simulation:');
 
     nbFrames = ceil(cfg.timing.eventDuration / cfg.screen.ifi);
-    %     frameToReport = round(linspace(1, nbFrames, 20));
 
     % to keep track of where the dots have been
     dotDensity = zeros(cfg.dot.matrixWidth);
@@ -59,10 +61,6 @@ function relativeDensityContrast = dotMotionSimulation(cfg, thisEvent, nbEvents,
         dotDensity = updateDotDensity(dotDensity, dots);
 
         for iFrame = 1:nbFrames
-
-            %         if any(frameToReport == iFrame)
-            %             fprintf(1, '.');
-            %         end
 
             [dots] = updateDots(dots, cfg);
 
@@ -83,6 +81,8 @@ function relativeDensityContrast = dotMotionSimulation(cfg, thisEvent, nbEvents,
         axis square;
         title('dot density');
     end
+    
+    fprintf(1, '\n');
 
 end
 
