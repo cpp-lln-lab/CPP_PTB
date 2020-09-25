@@ -154,13 +154,9 @@ git submodule foreach --recursive 'git submodule update'
 
 Download the code. Unzip. And add to the matlab path.
 
-Pick a specific version:
+Pick a specific version from [here](https://github.com/cpp-lln-lab/CPP_PTB/releases).
 
-https://github.com/cpp-lln-lab/CPP_PTB/releases
-
-Or take the latest commit (NOT RECOMMENDED):
-
-https://github.com/cpp-lln-lab/CPP_PTB/archive/master.zip
+Or take [the latest commit](https://github.com/cpp-lln-lab/CPP_PTB/archive/master.zip) - NOT RECOMMENDED.
 
 ### Add CPP_PTB globally to the matlab path
 
