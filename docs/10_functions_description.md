@@ -26,6 +26,7 @@
     -   6.1. [shuffle](#shuffle)
     -   6.2. [setTargetPositionInSequence](#setTargetPositionInSequence)
     -   6.3. [repeatShuffleConditions](#repeatShuffleConditions)
+    -   6.4. [setUpRand](#setUprand)
 
 <!-- vscode-markdown-toc-config
 	numbering=true
@@ -214,3 +215,7 @@ they are not in consecutive positions.
 Given `baseConditionVector`, a vector of conditions (coded as numbers), this
 will create a longer vector made of `nbRepeats` of this base vector and make
 sure that a given condition is not repeated one after the other.
+
+### 6.4. <a name='setUpRand'></a>setUpRand
+
+Set up the randomizers for uniform and normal distributions. It is of great importance to do this before anything else!
