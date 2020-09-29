@@ -218,4 +218,5 @@ sure that a given condition is not repeated one after the other.
 
 ### 6.4. <a name='setUpRand'></a>setUpRand
 
-Set up the randomizers for uniform and normal distributions. It is of great importance to do this before anything else!
+Resets the seed of the random number generator. Will "adapt" depending on the matlab/octave version.
+ It is of great importance to do this before anything else!
