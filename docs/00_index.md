@@ -193,7 +193,7 @@ let PTB find and use the default device.
 ## 3. <a name='functionsdescriptions'></a>functions descriptions
 
 The main functions of the toolbox are described
-[here](./10_functions_descriptions.md).
+[here](./10_functions_description.md).
 
 ## 4. <a name='Annexes'></a>Annexes
 
