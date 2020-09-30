@@ -1,9 +1,8 @@
+% add parent/src directory to the path (to make sure we can access the CPP_PTB functions)
+
 addpath(genpath(fullfile(pwd, '..', 'src')));
 
-%%
-cfg.testingDevice = 'mri';
-
-cfg.mri.triggerNb = 2;
+cfg.mri.triggerNb = 5;
 
 cfg.mri.triggerKey = 't';
 
@@ -17,5 +16,4 @@ quietMode = false;
 % waitForTrigger(cfg, [], quietMode);
 
 %%
-nbTriggersToWait = 5;
-waitForTrigger(cfg, [], quietMode, nbTriggersToWait);
+waitForTrigger(cfg, [], quietMode, cfg.mri.triggerNb);
