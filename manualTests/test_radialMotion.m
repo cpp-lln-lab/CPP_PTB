@@ -18,6 +18,4 @@ cfg.dot.proportionKilledPerFrame = 0;
 
 cfg.timing.eventDuration = 1.8; % in seconds
 
-relativeDensityContrast = dotMotionSimulation(cfg, thisEvent, nbEvents, doPlot)
-
-
+relativeDensityContrast = dotMotionSimulation(cfg, thisEvent, nbEvents, doPlot);
