@@ -13,7 +13,7 @@ function relativeDensityContrast = dotMotionSimulation(cfg, thisEvent, nbEvents,
     end
 
     if nargin < 2
-        thisEvent.direction = 90; % degrees
+        thisEvent.direction = 0; % degrees
         thisEvent.speed = 1; % pix per frame
     end
 
@@ -73,6 +73,8 @@ function relativeDensityContrast = dotMotionSimulation(cfg, thisEvent, nbEvents,
     % trim the edges (to avoid super high/low values
     dotDensity = dotDensity(2:end - 1, 2:end - 1);
 
+    % computes the maximum difference in dot density over the all screen
+    % to be used for unit test
     relativeDensityContrast = (max(dotDensity(:)) - min(dotDensity(:))) / max(dotDensity(:));
 
     if doPlot
