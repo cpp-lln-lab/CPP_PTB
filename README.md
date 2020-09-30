@@ -183,7 +183,6 @@ In practice, we use the following regular expression for function names:
 >
 > -   A quick [intro to regular expression](https://www.rexegg.com/)
 > -   And many websites allow you to "design and test" your regular expression:
->     -   [regexr](https://regexr.com/)
 >     -   [regexper](https://regexper.com/#%5Ba-z%5D%2B%28%28%5BA-Z%5D%7C%5B0-9%5D%29%7B1%7D%5Ba-z%5D%2B%29)
 >     -   ...
 
