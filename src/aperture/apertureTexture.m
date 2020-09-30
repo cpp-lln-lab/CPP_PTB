@@ -106,6 +106,8 @@ function cfg = apertureTextureMake(cfg, thisEvent)
 
         case 'circle'
 
+            Screen('Fillrect', cfg.aperture.texture, cfg.color.background);
+
             diameter = cfg.aperture.widthPix;
 
             if isfield(cfg.aperture, 'xPosPix')

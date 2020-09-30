@@ -1,7 +1,7 @@
-function cartesianCoordinates = computeCartCoord(positions, cfg)
-    cartesianCoordinates = ...
-        [positions(:, 1) - cfg.dot.matrixWidth / 2, ... % x coordinate
-         positions(:, 2) - cfg.dot.matrixWidth / 2]; % y coordinate
+function cartesianCoordinates = computeCartCoord(positions, dotMatrixWidth)
 
-    %         cartesianCoordinates = positions;
+    cartesianCoordinates = ...
+        [positions(:, 1) - dotMatrixWidth / 2, ... % x coordinate
+         positions(:, 2) - dotMatrixWidth / 2]; % y coordinate
+
 end

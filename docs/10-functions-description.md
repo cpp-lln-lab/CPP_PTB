@@ -1,42 +1,39 @@
 # functions description
 
-<!-- vscode-markdown-toc -->
+<!-- TOC -->
 
--   1. [ General functions](#Generalfunctions)
-    -   1.1. [initPTB](#initPTB)
-    -   1.2. [cleanUp](#cleanUp)
-    -   1.3. [getExperimentStart](#getExperimentStart)
-    -   1.4. [getExperimentEnd](#getExperimentEnd)
-    -   1.5. [degToPix](#degToPix)
-    -   1.6. [computeFOV](#computeFOV)
-    -   1.7. [eyeTracker](#eyeTracker)
-    -   1.8. [standByScreen](#standByScreen)
-    -   1.9. [waitForTrigger](#waitForTrigger)
-    -   1.10. [waitFor](#waitFor)
-    -   1.11. [readAndFilterLogfile](#readAndFilterLogfile)
--   2. [Keyboard functions: response collection and aborting experiment](#Keyboardfunctions:responsecollectionandabortingexperiment)
-    -   2.1. [testKeyboards](#testKeyboards)
-    -   2.2. [getResponse](#getResponse)
-    -   2.3. [pressSpaceForme](#pressSpaceForme)
--   3. [Fixations](#Fixations)
-    -   3.1. [drawFixationCross](#drawFixationCross)
--   4. [Drawing dots](#Drawingdots)
--   5. [Drawing apertures](#Drawingapertures)
--   6. [Randomization](#Randomization)
-    -   6.1. [shuffle](#shuffle)
-    -   6.2. [setTargetPositionInSequence](#setTargetPositionInSequence)
-    -   6.3. [repeatShuffleConditions](#repeatShuffleConditions)
-    -   6.4. [setUpRand](#setUprand)
+-   [functions description](#functions-description)
+    -   [General functions](#general-functions)
+        -   [initPTB](#initptb)
+        -   [cleanUp](#cleanup)
+        -   [getExperimentStart](#getexperimentstart)
+        -   [getExperimentEnd](#getexperimentend)
+        -   [degToPix](#degtopix)
+        -   [computeFOV](#computefov)
+        -   [eyeTracker](#eyetracker)
+        -   [standByScreen](#standbyscreen)
+        -   [waitForTrigger](#waitfortrigger)
+        -   [waitFor](#waitfor)
+        -   [readAndFilterLogfile](#readandfilterlogfile)
+    -   [Keyboard functions: response collection and aborting experiment](#keyboard-functions-response-collection-and-aborting-experiment)
+        -   [testKeyboards](#testkeyboards)
+        -   [getResponse](#getresponse)
+        -   [pressSpaceForme](#pressspaceforme)
+        -   [checkAbort](#checkabort)
+    -   [Fixations](#fixations)
+        -   [drawFixationCross](#drawfixationcross)
+    -   [Drawing dots](#drawing-dots)
+    -   [Drawing apertures](#drawing-apertures)
+    -   [Randomization](#randomization)
+        -   [shuffle](#shuffle)
+        -   [setTargetPositionInSequence](#settargetpositioninsequence)
+        -   [repeatShuffleConditions](#repeatshuffleconditions)
 
-<!-- vscode-markdown-toc-config
-	numbering=true
-	autoSave=true
-	/vscode-markdown-toc-config -->
-<!-- /vscode-markdown-toc -->
+<!-- /TOC -->
 
-## 1. <a name='Generalfunctions'></a> General functions
+## General functions
 
-### 1.1. <a name='initPTB'></a>initPTB
+### initPTB
 
 This will initialize PsychToolBox.
 
@@ -57,34 +54,34 @@ any other functions of CPP_PTB.
 -   hides cursor
 -   sound
 
-### 1.2. <a name='cleanUp'></a>cleanUp
+### cleanUp
 
 A wrapper function to close all windows, ports, show mouse cursor, close
 keyboard queues and give you back access to the keyboards.
 
-### 1.3. <a name='getExperimentStart'></a>getExperimentStart
+### getExperimentStart
 
 Wrapper function that will show a fixation cross and collect a start timestamp
 in `cfg.experimentStart`
 
-### 1.4. <a name='getExperimentEnd'></a>getExperimentEnd
+### getExperimentEnd
 
 Wrapper function that will show a fixation cross and display in the console the
 whole experiment's duration in minutes and seconds
 
-### 1.5. <a name='degToPix'></a>degToPix
+### degToPix
 
 For a given field value in degrees of visual angle in the input `structure`,
 this computes its value in pixel using the pixel per degree value of the `cfg`
 structure and returns a structure with an additional field with Pix suffix
 holding that new value.
 
-### 1.6. <a name='computeFOV'></a>computeFOV
+### computeFOV
 
 Gives you the width of the field on view in degress of visual angle based on the
 screen width and distance to the screen in cm (taken from the `cfg`)
 
-### 1.7. <a name='eyeTracker'></a>eyeTracker
+### eyeTracker
 
 This will handle the Eye Tracker (EyeLink set up) and can be called to
 initialize the connection and start the calibration, start/stop eye(s) movement
@@ -106,12 +103,12 @@ There are several actions to perform:
     cpp-lln-lab/CPP_BIDS, in the output folder and shut the connection between
     the stimulation computer and the EyeLink computer
 
-### 1.8. <a name='standByScreen'></a>standByScreen
+### standByScreen
 
 It shows a basic one-page instruction stored in `cfg.task.instruction` and wait
 for `space` stroke.
 
-### 1.9. <a name='waitForTrigger'></a>waitForTrigger
+### waitForTrigger
 
 Counts a certain number of triggers coming from the mri/scanner before
 returning. Requires number of triggers to wait for.
@@ -119,27 +116,27 @@ returning. Requires number of triggers to wait for.
 This can also be used if you want to let the scanner pace the experiment and you
 want to synch stimulus presentation to the scanner trigger.
 
-### 1.10. <a name='waitFor'></a>waitFor
+### waitFor
 
 A generic function that you can use to for a certain amount of time or a number
 of triggers
 
-### 1.11. <a name='readAndFilterLogfile'></a>readAndFilterLogfile
+### readAndFilterLogfile
 
 Displays in the command window part of the `*events.tsv` file filtered by an
 element (e.g. 'trigger'). It can take the last output produced (through `cfg`)
 or any output BIDS compatible (through file path).
 
-## 2. <a name='Keyboardfunctions:responsecollectionandabortingexperiment'></a>Keyboard functions: response collection and aborting experiment
+## Keyboard functions: response collection and aborting experiment
 
-### 2.1. <a name='testKeyboards'></a>testKeyboards
+### testKeyboards
 
 Checks that the keyboards asked for are properly connected.
 
 If no key is pressed on the correct keyboard after the timeOut time this exits
 with an error.
 
-### 2.2. <a name='getResponse'></a>getResponse
+### getResponse
 
 It is wrapper function to use `KbQueue` which is definitely what you should use
 to collect responses.
@@ -172,7 +169,7 @@ In brief, there are several actions you can execute with this function.
     again.
 -   release: closes the buffer for good.
 
-### 2.3. <a name='pressSpaceForme'></a>pressSpaceForme
+### pressSpaceForme
 
 Use that to stop your script and only restart when the space bar is pressed.
 
@@ -184,39 +181,39 @@ some set up before giving the green light.
 A simple function that will quit your experiment if you press the key you have
 defined in `cfg.keyboard.escapeKey`.
 
-## 3. <a name='Fixations'></a>Fixations
+## Fixations
 
-### 3.1. <a name='drawFixationCross'></a>drawFixationCross
+### drawFixationCross
 
 Define the parameters of the fixation cross in `cfg` and `expParameters` and
 this does the rest.
 
-## 4. <a name='Drawingdots'></a>Drawing dots
+## Drawing dots
 
-## 5. <a name='Drawingapertures'></a>Drawing apertures
+## Drawing apertures
 
-## 6. <a name='Randomization'></a>Randomization
+## Randomization
 
 Functions that can be used to create random stimuli sequences.
 
-### 6.1. <a name='shuffle'></a>shuffle
+### shuffle
 
 Is just there to replace the Shuffle function from PTB in case it is not in the
 path. Can be useful for testing or for continuous integration.
 
-### 6.2. <a name='setTargetPositionInSequence'></a>setTargetPositionInSequence
+### setTargetPositionInSequence
 
 For a sequence of length `seqLength` where we want to insert `nbTarget` targets,
 this will return `nbTarget` random position in that sequence and make sure that
 they are not in consecutive positions.
 
-### 6.3. <a name='repeatShuffleConditions'></a>repeatShuffleConditions
+### repeatShuffleConditions
 
 Given `baseConditionVector`, a vector of conditions (coded as numbers), this
 will create a longer vector made of `nbRepeats` of this base vector and make
 sure that a given condition is not repeated one after the other.
 
-### 6.4. <a name='setUpRand'></a>setUpRand
+### 6.4. setUpRand
 
-Resets the seed of the random number generator. Will "adapt" depending on the matlab/octave version.
- It is of great importance to do this before anything else!
+Set up the randomizers for uniform and normal distributions. It is of great
+importance to do this before anything else!

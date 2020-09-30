@@ -8,46 +8,44 @@ end
 
 function test_reseedDotsBasic()
 
-    cfg.screen.winWidth = 2000;
+    dotNb = 5;
 
-    cfg.design.motionType = 'radial';
+    cfg.design.motionType = 'translation';
+    cfg.timing.eventDuration = 1; % in seconds
+    cfg.screen.ifi = 0.01; % in seconds
 
-    cfg.dot.matrixWidth = 50; % in pixels
-    cfg.dot.number = 5;
+    cfg.dot.matrixWidth = 1000; % in pixels
+    cfg.dot.number = dotNb;
     cfg.dot.sizePix = 20;
     cfg.dot.proportionKilledPerFrame = 0;
 
-    cfg.fixation.widthPix = 20;
+    cfg.fixation.widthPix = 5;
 
     dots.lifeTime = 100;
     dots.speedPixPerFrame = 3;
     dots.direction = 90;
-    dots.isSignal = true(5, 1);
+    dots.isSignal = true(dotNb, 1);
+    dots.speeds = ones(dotNb, 2);
 
     dots.positions = [ ...
-                      49, 1  % OK
-                      490, 2043  % out of frame
-                      -104, 392  % out of frame
-                      492, 402  % OK
-                      1000, 1000  % on the fixation cross
+                      300, 10  % OK
+                      750, 1010  % out of frame
+                      -1040, 50  % out of frame
+                      300, 300  % OK
+                      500, 500  % on the fixation cross
                      ];
 
-    dots.time = [ ...
-                 6; ... OK
-                 4; ... OK
-                 56; ... OK
-                 300; ... % exceeded its life time
-                 50]; % OK
+    originalTime = [ ...
+                    6; ... OK
+                    4; ... OK
+                    56; ... OK
+                    300; ... % exceeded its life time
+                    50]; % OK
+    dots.time = originalTime;
 
     dots = reseedDots(dots, cfg);
 
-    reseeded = [ ...
-                6
-                1
-                1
-                1
-                1];
-
-    assertEqual(reseeded, dots.time);
+    assertEqual(dots.time(1), originalTime(1));
+    assertTrue(all(dots.time(2:end) ~= originalTime(2:end)));
 
 end

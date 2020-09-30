@@ -27,7 +27,6 @@ function test_initDotsBasic()
     cfg.dot.coherence = 1; % proportion
     cfg.dot.lifeTime = 0.250; % in seconds
     cfg.dot.matrixWidth = 50; % in pixels
-    cfg.screen.winWidth = 2000; % in pixels
     cfg.timing.eventDuration = 1; % in seconds
     cfg.screen.ifi = 0.01; % in seconds
 
@@ -47,8 +46,7 @@ function test_initDotsBasic()
     expectedStructure.isSignal = ones(10, 1);
     expectedStructure.speeds = repmat([1 0], 10, 1) * 10;
     expectedStructure.speedPixPerFrame = 10;
-    expectedStructure.direction = zeros(10, 1);
-    expectedStructure.directionAllDots = zeros(10, 1);
+    expectedStructure.direction = 0;
 
     % remove undeterministic output
     dots = rmfield(dots, 'time');
@@ -84,8 +82,7 @@ function test_initDotsStatic()
     expectedStructure.isSignal = ones(10, 1);
     expectedStructure.speeds = zeros(10, 2);
     expectedStructure.speedPixPerFrame = 0;
-    expectedStructure.direction = -1 * ones(10, 1);
-    expectedStructure.directionAllDots = -1 * ones(10, 1);
+    expectedStructure.direction = -1;
 
     %% test
     assertEqual(expectedStructure, dots);

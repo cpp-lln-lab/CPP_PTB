@@ -154,13 +154,9 @@ git submodule foreach --recursive 'git submodule update'
 
 Download the code. Unzip. And add to the matlab path.
 
-Pick a specific version:
+Pick a specific version from [here](https://github.com/cpp-lln-lab/CPP_PTB/releases).
 
-https://github.com/cpp-lln-lab/CPP_PTB/releases
-
-Or take the latest commit (NOT RECOMMENDED):
-
-https://github.com/cpp-lln-lab/CPP_PTB/archive/master.zip
+Or take [the latest commit](https://github.com/cpp-lln-lab/CPP_PTB/archive/master.zip) - NOT RECOMMENDED.
 
 ### Add CPP_PTB globally to the matlab path
 
@@ -187,7 +183,6 @@ In practice, we use the following regular expression for function names:
 >
 > -   A quick [intro to regular expression](https://www.rexegg.com/)
 > -   And many websites allow you to "design and test" your regular expression:
->     -   [regexr](https://regexr.com/)
 >     -   [regexper](https://regexper.com/#%5Ba-z%5D%2B%28%28%5BA-Z%5D%7C%5B0-9%5D%29%7B1%7D%5Ba-z%5D%2B%29)
 >     -   ...
 

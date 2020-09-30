@@ -5,7 +5,7 @@ function dots = reseedDots(dots, cfg)
         fixationWidthPix = cfg.fixation.widthPix;
     end
 
-    cartesianCoordinates = computeCartCoord(dots.positions, cfg);
+    cartesianCoordinates = computeCartCoord(dots.positions, cfg.dot.matrixWidth);
     [~, radius] = cart2pol(cartesianCoordinates(:, 1), cartesianCoordinates(:, 2));
 
     % Create a logical vector to detect any dot that has:
@@ -27,14 +27,13 @@ function dots = reseedDots(dots, cfg)
     % and change its lifetime to 1
     if any(N)
 
-        dots.positions(N, :) = generateNewDotPositions(cfg, sum(N));
+        isSignal = dots.isSignal(N);
 
-        dots = setDotDirection(cfg, dots);
+        [positions, speeds, time] = seedDots(dots, cfg, isSignal);
 
-        [horVector, vertVector] = decomposeMotion(dots.directionAllDots);
-        dots.speeds = [horVector, vertVector] * dots.speedPixPerFrame;
-
-        dots.time(N, 1) = 1;
+        dots.positions(N, :) = positions;
+        dots.speeds(N, :) = speeds;
+        dots.time(N, 1) = time;
 
     end
 
