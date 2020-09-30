@@ -5,7 +5,7 @@ cfg.testingDevice = 'mri';
 
 cfg.mri.triggerNb = 2;
 
-cfg.mri.triggerKey = 'space';
+cfg.mri.triggerKey = 't';
 
 KbName('UnifyKeyNames');
 
@@ -13,9 +13,9 @@ KbName('UnifyKeyNames');
 % waitForTrigger(cfg);
 
 %%
-quietMode = true;
+quietMode = false;
 % waitForTrigger(cfg, [], quietMode);
 
 %%
-nbTriggersToWait = 1;
+nbTriggersToWait = 5;
 waitForTrigger(cfg, [], quietMode, nbTriggersToWait);
