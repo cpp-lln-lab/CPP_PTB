@@ -43,12 +43,6 @@ function waitForTrigger(varargin)
 
             keyCode = []; %#ok<NASGU>
 
-            % Check that all buuton are released
-            % isDown = KbCheck;
-            % while isDown
-            %   isDown = KbCheck;
-            % end
-
             [~, ~, keyCode] = KbCheck(deviceNumber);
 
             if strcmp(KbName(keyCode), cfg.mri.triggerKey)
