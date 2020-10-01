@@ -163,7 +163,7 @@ function [el, cfg] = eyeTracker(input, cfg, varargin)
 
                 %% Add tag during the recording (e.g. trial_type)
 
-                message = varargin;
+                message = varargin{1};
 
                 % EyeLink Stop recording the block.
                 Eyelink('Message', message);
