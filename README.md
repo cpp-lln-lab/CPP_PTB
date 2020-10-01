@@ -56,7 +56,7 @@ Tested:
 
 ## Documentation
 
-All the documentation is accessible [here](./docs/00_index.md).
+All the documentation is accessible [here](./docs/00-index.md).
 
 ## Content
 
