@@ -201,7 +201,7 @@ function talkToMe(action, cfg)
 
     end
 
-    if verbose>2
+    if verbose > 2
         fprintf('\n %s\n\n', msg);
 
     end
