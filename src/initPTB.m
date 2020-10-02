@@ -31,7 +31,7 @@ function [cfg] = initPTB(cfg)
     more off;
 
     % Resets the seed of the random number generator
-    setUpRand()
+    setUpRand();
 
     % check for OpenGL compatibility, abort otherwise:
     AssertOpenGL;
