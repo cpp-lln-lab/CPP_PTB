@@ -16,7 +16,7 @@ function directionAllDots = setDotDirection(positions, cfg, dots, isSignal)
     % after that dots.direction will be a vector
     if numel(directionAllDots) == 1
 
-        directionAllDots(isSignal) = ones(sum(isSignal), 1) * dots.direction;
+        directionAllDots = ones(sum(isSignal), 1) * dots.direction;
 
     end
 
@@ -25,12 +25,12 @@ function directionAllDots = setDotDirection(positions, cfg, dots, isSignal)
 
         angleMotion = computeRadialMotionDirection(positions, cfg.dot.matrixWidth, dots);
 
-        directionAllDots(isSignal) = angleMotion;
+        directionAllDots(isSignal == 1) = angleMotion;
 
     end
 
     %% Random direction for the non coherent dots
-    directionAllDots(~isSignal) = rand(sum(~isSignal), 1) * 360;
+    directionAllDots(isSignal ~= 1) = rand(sum(isSignal ~= 1), 1) * 360;
 
     %% Express the direction in the 0 to 360 range
     directionAllDots = mod(directionAllDots, 360);

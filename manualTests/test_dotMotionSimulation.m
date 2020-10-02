@@ -12,7 +12,7 @@ function test_dotMotionSimulationStatic()
     doPlot = false;
 
     thisEvent.direction = -1; % degrees
-    thisEvent.speed = 1; % pix per frame
+    thisEvent.speedPix = 1; % pix per frame
 
     cfg.design.motionType = 'translation';
     cfg.dot.coherence = 1; % proportion
@@ -32,7 +32,7 @@ function test_dotMotionSimulationTranslation()
     doPlot = false;
 
     thisEvent.direction = 0; % degrees
-    thisEvent.speed = 1; % pix per frame
+    thisEvent.speedPix = 1; % pix per frame
 
     cfg.design.motionType = 'translation';
     cfg.dot.coherence = 1; % proportion
