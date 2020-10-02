@@ -30,6 +30,9 @@ function [cfg] = initPTB(cfg)
     % For octave: to avoid displaying messenging one screen at a time
     more off;
 
+    % Resets the seed of the random number generator
+    setUpRand()
+
     % check for OpenGL compatibility, abort otherwise:
     AssertOpenGL;
 
