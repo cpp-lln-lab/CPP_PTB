@@ -26,7 +26,7 @@ function waitForTrigger(varargin)
     % - varargin{3} = quietMode: a boolean to make sure nothing is printed on the screen or
     % the prompt
     %
-    % - nvarargin{3} = bTriggersToWait
+    % - nvarargin{3} = nbTriggersToWait
 
     [cfg, nbTriggersToWait, deviceNumber, quietMode] = checkInputs(varargin);
 
