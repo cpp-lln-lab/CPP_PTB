@@ -1,11 +1,10 @@
+% add parent/src directory to the path (to make sure we can access the CPP_PTB functions)
+
 addpath(genpath(fullfile(pwd, '..', 'src')));
 
-%%
-cfg.testingDevice = 'mri';
+cfg.mri.triggerNb = 5;
 
-cfg.mri.triggerNb = 2;
-
-cfg.mri.triggerKey = 'space';
+cfg.mri.triggerKey = 't';
 
 KbName('UnifyKeyNames');
 
@@ -13,9 +12,8 @@ KbName('UnifyKeyNames');
 % waitForTrigger(cfg);
 
 %%
-quietMode = true;
+quietMode = false;
 % waitForTrigger(cfg, [], quietMode);
 
 %%
-nbTriggersToWait = 1;
-waitForTrigger(cfg, [], quietMode, nbTriggersToWait);
+waitForTrigger(cfg, [], quietMode, cfg.mri.triggerNb);
