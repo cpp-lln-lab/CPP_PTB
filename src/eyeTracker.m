@@ -100,6 +100,10 @@ function [el, cfg] = eyeTracker(input, cfg, varargin)
                     %  coordinates, here for 6 dots.
 
                     % [width, height]=Screen('WindowSize', screenNumber);
+                    
+                    % TODO - update those values with the content set up by
+                    % CPP_PTB in the cfg
+                    % fieldsToSet.eyeTracker.CalibrationPosition = '';
 
                     Eyelink('Command', 'calibration_samples = 6');
                     Eyelink('Command', 'calibration_sequence = 0,1,2,3,4,5');
@@ -129,7 +133,16 @@ function [el, cfg] = eyeTracker(input, cfg, varargin)
 
                 % Enter Eyetracker camera setup mode, calibration and validation.
                 EyelinkDoTrackerSetup(el);
-
+                
+                % TODO - update content of cfg after initializing and
+                % calibration
+                % fieldsToSet.eyeTracker.SamplingFrequency = [];
+                % fieldsToSet.eyeTracker.Manufacturer = '';
+                % fieldsToSet.eyeTracker.ManufacturersModelName = '';
+                % fieldsToSet.eyeTracker.SoftwareVersions = '';
+                % fieldsToSet.eyeTracker.MaximalCalibrationError = [];
+                % fieldsToSet.eyeTracker.AverageCalibrationError = [];
+                
                 % Go back to default screen background color.
                 Screen('FillRect', cfg.screen.win, cfg.color.background);
                 Screen('Flip', cfg.screen.win);
