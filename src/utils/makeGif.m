@@ -7,10 +7,10 @@ clc;
 output_folder = fullfile(pwd, 'ouputs');
 screen_capture_folder = fullfile(output_folder, 'screen_capture');
 screen_capture_filename = fullfile(screen_capture_folder, ...
-    'EMCL_kaks_frame-');
+                                   'EMCL_kaks_frame-');
 
 gif_file = fullfile(screen_capture_folder, ...
-    'EMCL_kaks_frame.gif');
+                    'EMCL_kaks_frame.gif');
 
 FigDim = [100, 100, 1000, 1500];
 Visibility = 'on';
@@ -20,8 +20,8 @@ for tif_img = 6:26 % 128
     filename = fullfile([screen_capture_filename sprintf('%04.0f', tif_img) '.tif']);
 
     h = figure('name', 'test', ...
-        'Position', FigDim, 'Color', [1 1 1], ...
-        'Visible', Visibility);
+               'Position', FigDim, 'Color', [1 1 1], ...
+               'Visible', Visibility);
 
     imshow(imread(filename));
 

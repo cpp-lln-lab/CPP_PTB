@@ -18,7 +18,7 @@ if SaveAps == 1 && PrevVolume ~= CurrVolume
     CurApImg = rgb2gray(CurApImg);
     CurApImg = imresize(CurApImg, [Rect(4) Rect(3)]);
     Fxy = round(CenterRect(FrameRect, Rect) + ...
-        [Parameters.Image_Position Parameters.Image_Position]);
+                [Parameters.Image_Position Parameters.Image_Position]);
     CurApImg = CurApImg(Fxy(2):Fxy(4), Fxy(1):Fxy(3));
     CurApImg = double(abs(double(CurApImg) - 127) > 1);
     CurApImg = imresize(CurApImg, [100 100]);

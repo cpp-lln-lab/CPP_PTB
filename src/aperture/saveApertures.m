@@ -6,8 +6,8 @@ function saveApertures(saveAps, cfg, apertures)
     if saveAps
 
         matFile = fullfile( ...
-            cfg.outputDir, ...
-            strrep(cfg.fileName.events, '.tsv', '_AperturesPRF.mat'));
+                           cfg.outputDir, ...
+                           strrep(cfg.fileName.events, '.tsv', '_AperturesPRF.mat'));
         if IsOctave
             save(matFile, '-mat7-binary');
         else
@@ -34,8 +34,8 @@ function saveApertures(saveAps, cfg, apertures)
                 apertureName = getApertureName(cfg, apertures, iApert);
 
                 print(gcf, ...
-                    fullfile(cfg.aperture.outputDir, [ApertureName '.tif']), ...
-                    '-dtiff');
+                      fullfile(cfg.aperture.outputDir, [ApertureName '.tif']), ...
+                      '-dtiff');
             end
 
         end

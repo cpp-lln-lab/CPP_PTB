@@ -1,3 +1,5 @@
+% (C) Copyright 2020 CPP_PTB developers
+
 function [positions, speeds, time] = seedDots(varargin)
 
     [dots, cfg, isSignal] = deal(varargin{:});
@@ -22,7 +24,7 @@ function [positions, speeds, time] = seedDots(varargin)
 
     %% Create a vector to update to dotlife time of each dot
     % Not all set to 1 so the dots will die at different times
-    % The maximum value is the duraion of the event in frames
+    % The maximum value is the duration of the event in frames
     time = floor(rand(nbDots, 1) * cfg.timing.eventDuration / cfg.screen.ifi);
 
 end

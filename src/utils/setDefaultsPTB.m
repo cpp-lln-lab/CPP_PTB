@@ -66,7 +66,7 @@ function cfg = setDefaultsPTB(cfg)
     end
 
     if isfield(cfg, 'eyeTracker') && cfg.eyeTracker.do
- 
+
         % Calibration environment
         fieldsToSet.eyeTracker.defaultCalibration = true;
         fieldsToSet.eyeTracker.backgroundColor = [192 192 192];
