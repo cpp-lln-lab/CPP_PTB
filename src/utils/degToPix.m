@@ -23,6 +23,6 @@ function structure = degToPix(fieldName, structure, cfg)
     deg = getfield(structure, fieldName); %#ok<GFLD>
 
     structure = setfield(structure, [fieldName 'Pix'], ...
-                         floor(deg * cfg.screen.ppd)); %#ok<SFLD>
+                         deg * cfg.screen.ppd); %#ok<SFLD>
 
 end
