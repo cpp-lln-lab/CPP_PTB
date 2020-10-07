@@ -1,3 +1,5 @@
+% (C) Copyright 2020 CPP_PTB developers
+
 %% Demo showing how to use the getResponse function
 
 % This small script shows how to use the getReponse function

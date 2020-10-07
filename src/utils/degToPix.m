@@ -1,3 +1,5 @@
+% (C) Copyright 2020 CPP_PTB developers
+
 function structure = degToPix(fieldName, structure, cfg)
     % structure = degToPix(fieldName, structure, cfg)
     %
@@ -21,6 +23,6 @@ function structure = degToPix(fieldName, structure, cfg)
     deg = getfield(structure, fieldName); %#ok<GFLD>
 
     structure = setfield(structure, [fieldName 'Pix'], ...
-                         floor(deg * cfg.screen.ppd)); %#ok<SFLD>
+                         deg * cfg.screen.ppd); %#ok<SFLD>
 
 end

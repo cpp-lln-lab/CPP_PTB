@@ -1,5 +1,6 @@
-% add parent/src directory to the path (to make sure we can access the CPP_PTB functions)
+% (C) Copyright 2020 CPP_PTB developers
 
+% add parent/src directory to the path (to make sure we can access the CPP_PTB functions)
 addpath(genpath(fullfile(pwd, '..', 'src')));
 
 cfg.mri.triggerNb = 5;

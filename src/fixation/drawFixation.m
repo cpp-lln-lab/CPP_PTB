@@ -1,3 +1,5 @@
+% (C) Copyright 2020 CPP_PTB developers
+
 function drawFixation(cfg)
     % Define the parameters of the fixation cross in `cfg` and `expParameters`
 

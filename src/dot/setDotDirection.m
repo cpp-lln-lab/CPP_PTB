@@ -1,5 +1,7 @@
+% (C) Copyright 2020 CPP_PTB developers
+
 function directionAllDots = setDotDirection(positions, cfg, dots, isSignal)
-    % dots = setDotDirection(cfg, dots)
+    % directionAllDots = setDotDirection(positions, cfg, dots, isSignal)
     %
     % creates some new direction for the dots
     %

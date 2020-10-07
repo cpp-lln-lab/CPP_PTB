@@ -1,4 +1,4 @@
-% 2020 CPP BIDS SPM-pipeline developpers
+% (C) Copyright 2020 CPP_PTB developers
 
 function structure = pixToDeg(fieldName, structure, cfg)
     % structure = pixToDeg(fieldName, structure, cfg)

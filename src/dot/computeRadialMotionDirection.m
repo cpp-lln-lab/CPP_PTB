@@ -1,3 +1,5 @@
+% (C) Copyright 2020 CPP_PTB developers
+
 function angleMotion = computeRadialMotionDirection(positions, dotMatrixWidth, dots)
 
     positions = computeCartCoord(positions, dotMatrixWidth);
