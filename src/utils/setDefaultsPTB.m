@@ -48,6 +48,9 @@ function cfg = setDefaultsPTB(cfg)
 
     if isfield(cfg, 'audio') && cfg.audio.do
 
+        fieldsToSet.audio.devIdx = [];
+        fieldsToSet.audio.playbackMode = 1;
+
         fieldsToSet.audio.fs = 44800;
         fieldsToSet.audio.channels = 2;
         fieldsToSet.audio.initVolume = 1;
