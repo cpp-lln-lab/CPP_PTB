@@ -12,8 +12,8 @@ KbName('UnifyKeyNames');
 
 quietMode = false;
 
-fprintf(1, 'Press the letter %s %i times, please.\n', cfg.mri.triggerKey, cfg.mri.triggerNb); 
+fprintf(1, 'Press the letter %s %i times, please.\n', cfg.mri.triggerKey, cfg.mri.triggerNb);
 
 lastTriggerTimeStamp = waitForTrigger(cfg, [], quietMode, cfg.mri.triggerNb);
 
-fprintf(1, 'Thank you. The time stamp of the last trigger was %f.\n', lastTriggerTimeStamp) 
+fprintf(1, 'Thank you. The time stamp of the last trigger was %f.\n', lastTriggerTimeStamp);
