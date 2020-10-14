@@ -1,3 +1,5 @@
+% (C) Copyright 2020 CPP_PTB developers
+
 function cfg = setDefaultsPTB(cfg)
     % cfg = setDefaultsPTB(cfg)
     %
@@ -46,6 +48,9 @@ function cfg = setDefaultsPTB(cfg)
 
     if isfield(cfg, 'audio') && cfg.audio.do
 
+        fieldsToSet.audio.devIdx = [];
+        fieldsToSet.audio.playbackMode = 1;
+
         fieldsToSet.audio.fs = 44800;
         fieldsToSet.audio.channels = 2;
         fieldsToSet.audio.initVolume = 1;
@@ -63,7 +68,7 @@ function cfg = setDefaultsPTB(cfg)
 
     end
 
-    if isfield(cfg, 'eyeTracker')
+    if isfield(cfg, 'eyeTracker') && cfg.eyeTracker.do
 
         % Calibration environment
         fieldsToSet.eyeTracker.defaultCalibration = true;

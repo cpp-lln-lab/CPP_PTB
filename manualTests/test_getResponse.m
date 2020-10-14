@@ -54,7 +54,7 @@ try
 
         for iEvent = 1:size(responseEvents, 1)
             fprintf(' %s was pressed\n ', ...
-                responseEvents(iEvent).keyName);
+                    responseEvents(iEvent).keyName);
 
             if ~any(strcmp({responseEvents(iEvent).keyName}, cfg.keyboard.responseKey))
                 errorRestrictedKeysGetReponse();

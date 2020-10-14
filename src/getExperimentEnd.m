@@ -1,3 +1,5 @@
+% (C) Copyright 2020 CPP_PTB developers
+
 function cfg = getExperimentEnd(cfg)
 
     drawFixation(cfg);
@@ -8,8 +10,8 @@ function cfg = getExperimentEnd(cfg)
     ExpmtDurMin = floor(ExpmtDur / 60);
     ExpmtDurSec = mod(ExpmtDur, 60);
     disp(['Experiment lasted ', ...
-        num2str(ExpmtDurMin), ' minutes ', ...
-        num2str(ExpmtDurSec), ' seconds']);
+          num2str(ExpmtDurMin), ' minutes ', ...
+          num2str(ExpmtDurSec), ' seconds']);
     disp(' ');
 
 end

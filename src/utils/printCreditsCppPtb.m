@@ -1,16 +1,18 @@
+% (C) Copyright 2020 CPP_PTB developers
+
 function printCreditsCppPtb()
 
     try
         version = fileread(fullfile(fileparts(mfilename('fullpath')), ...
-            '..', '..', 'version.txt'));
+                                    '..', '..', 'version.txt'));
     catch
         version = 'v1.0.0';
     end
 
     contributors = { ...
-        'Rémi Gau', ...
-        'Marco Barilari', ...
-        'Ceren Battal'};
+                    'Rémi Gau', ...
+                    'Marco Barilari', ...
+                    'Ceren Battal'};
 
     % DOI_URL = 'https://doi.org/10.5281/zenodo.3554331.';
 

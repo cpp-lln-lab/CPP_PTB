@@ -1,3 +1,5 @@
+% (C) Copyright 2020 CPP_PTB developers
+
 function cfg = getExperimentStart(cfg)
     % cfg = getExperimentStart(cfg)
     %

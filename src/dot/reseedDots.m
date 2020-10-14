@@ -1,3 +1,5 @@
+% (C) Copyright 2020 CPP_PTB developers
+
 function dots = reseedDots(dots, cfg)
 
     fixationWidthPix = 0;
@@ -5,7 +7,7 @@ function dots = reseedDots(dots, cfg)
         fixationWidthPix = cfg.fixation.widthPix;
     end
 
-    cartesianCoordinates = computeCartCoord(dots.positions, cfg);
+    cartesianCoordinates = computeCartCoord(dots.positions, cfg.dot.matrixWidth);
     [~, radius] = cart2pol(cartesianCoordinates(:, 1), cartesianCoordinates(:, 2));
 
     % Create a logical vector to detect any dot that has:
@@ -16,25 +18,24 @@ function dots = reseedDots(dots, cfg)
     % - has been been picked to be killed
 
     N = any([ ...
-        dots.positions > cfg.dot.matrixWidth, ...
-        dots.positions < 0, ...
-        dots.time > dots.lifeTime, ...
-        radius - cfg.dot.sizePix < fixationWidthPix / 2, ...
-        rand(cfg.dot.number, 1) < cfg.dot.proportionKilledPerFrame ...
-        ], 2);
+             dots.positions > cfg.dot.matrixWidth, ...
+             dots.positions < 0, ...
+             dots.time > dots.lifeTime, ...
+             radius - cfg.dot.sizePix < fixationWidthPix / 2, ...
+             rand(cfg.dot.number, 1) < cfg.dot.proportionKilledPerFrame ...
+            ], 2);
 
     % If there is any such dot we relocate it to a new random position
     % and change its lifetime to 1
     if any(N)
 
-        dots.positions(N, :) = generateNewDotPositions(cfg, sum(N));
+        isSignal = dots.isSignal(N);
 
-        dots = setDotDirection(cfg, dots);
+        [positions, speeds, time] = seedDots(dots, cfg, isSignal);
 
-        [horVector, vertVector] = decomposeMotion(dots.directionAllDots);
-        dots.speeds = [horVector, vertVector] * dots.speedPixPerFrame;
-
-        dots.time(N, 1) = 1;
+        dots.positions(N, :) = positions;
+        dots.speeds(N, :) = speeds;
+        dots.time(N, 1) = time;
 
     end
 

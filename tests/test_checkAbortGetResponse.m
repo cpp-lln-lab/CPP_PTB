@@ -15,6 +15,6 @@ function test_checkAbortGetResponseBasic()
     cfg.keyboard.escapeKey = 'ESCAPE';
 
     assertExceptionThrown(@()checkAbortGetResponse(responseEvents, cfg), ...
-        'getResponse:abortRequested');
+                          'getResponse:abortRequested');
 
 end

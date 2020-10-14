@@ -6,22 +6,26 @@
 dist: bionic
 
 # Language and version
-language: python
-python:
-  - "3.6" # current default Python on Travis CI
+language: node_js
+node_js:
+  - "10"
 
 cache:
   apt: true # only works with Pro version
+  directories:
+  - node_modules # NPM packages for the remark markdown linter
 
-# Install the miss_hit linter
-before_install:
-  - pip3 install miss_hit
+branches:
+  only:  # only run the CI for those branches 
+  - master
+  - dev
 
 # Lists all the tasks we will do 
 jobs:
   include:
-    - name: "miss_hit: checking code quality"
-      script: mh_metric . --ci
-    - name: "miss_hit: checking code style"
-      script: mh_style .
+    - name: "Check markdown"
+      before_script:
+        - npm install `cat npm-requirements.txt`
+      script:
+        - remark . --frail
       

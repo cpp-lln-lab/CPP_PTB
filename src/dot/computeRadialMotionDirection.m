@@ -1,8 +1,10 @@
-function angleMotion = computeRadialMotionDirection(cfg, dots)
+% (C) Copyright 2020 CPP_PTB developers
 
-    cartesianCoordinates = computeCartCoord(dots.positions, cfg);
+function angleMotion = computeRadialMotionDirection(positions, dotMatrixWidth, dots)
 
-    [angleMotion, ~] = cart2pol(cartesianCoordinates(:, 1), cartesianCoordinates(:, 2));
+    positions = computeCartCoord(positions, dotMatrixWidth);
+
+    [angleMotion, ~] = cart2pol(positions(:, 1), positions(:, 2));
     angleMotion = angleMotion / pi * 180;
 
     if dots.direction == -666

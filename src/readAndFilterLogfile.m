@@ -1,3 +1,5 @@
+% (C) Copyright 2020 CPP_PTB developers
+
 function outputFiltered = readAndFilterLogfile(columnName, filterBy, varargin)
     % outputFiltered = readOutputFilter(filterHeader, filterContent, varargin)
     %
@@ -26,8 +28,8 @@ function outputFiltered = readAndFilterLogfile(columnName, filterBy, varargin)
         tsvFile = varargin{1};
     elseif isstruct(varargin{1})
         tsvFile = fullfile(varargin{1}.dir.outputSubject, ...
-             varargin{1}.fileName.modality, ...
-             varargin{1}.fileName.events);
+                           varargin{1}.fileName.modality, ...
+                           varargin{1}.fileName.events);
     end
 
     % Check if the file exists

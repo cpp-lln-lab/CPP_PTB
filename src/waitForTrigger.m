@@ -1,4 +1,6 @@
-function waitForTrigger(varargin)
+% (C) Copyright 2020 CPP_PTB developers
+
+function lastTriggerTimeStamp = waitForTrigger(varargin)
     % waitForTrigger(cfg, deviceNumber, quietMode, nbTriggersToWait)
     %
     % Counts a certain number of triggers coming from the scanner before returning.
@@ -19,14 +21,14 @@ function waitForTrigger(varargin)
     % triggers coming from the scanner in a real case scenario.
     %
     % INPUTS
-    %  - varargin{1} = cfg
+    % - varargin{1} = cfg
     %
     % - varargin{2} = deviceNumber
     %
     % - varargin{3} = quietMode: a boolean to make sure nothing is printed on the screen or
     % the prompt
     %
-    % - nbTriggersToWait
+    % - nvarargin{4} = nbTriggersToWait
 
     [cfg, nbTriggersToWait, deviceNumber, quietMode] = checkInputs(varargin);
 
@@ -35,7 +37,7 @@ function waitForTrigger(varargin)
     if strcmpi(cfg.testingDevice, 'mri')
 
         msg = ['Experiment starting in ', ...
-            num2str(nbTriggersToWait - triggerCounter), '...'];
+               num2str(nbTriggersToWait - triggerCounter), '...'];
 
         talkToMe(cfg, msg, quietMode);
 
@@ -43,7 +45,7 @@ function waitForTrigger(varargin)
 
             keyCode = []; %#ok<NASGU>
 
-            [~, keyCode] = KbPressWait(deviceNumber);
+            [~, lastTriggerTimeStamp, keyCode] = KbCheck(deviceNumber);
 
             if strcmp(KbName(keyCode), cfg.mri.triggerKey)
 
@@ -105,7 +107,7 @@ function talkToMe(cfg, msg, quietMode)
         if isfield(cfg, 'screen') && isfield(cfg.screen, 'win')
 
             DrawFormattedText(cfg.screen.win, msg, ...
-                'center', 'center', cfg.text.color);
+                              'center', 'center', cfg.text.color);
 
             Screen('Flip', cfg.screen.win);
 

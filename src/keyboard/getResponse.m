@@ -1,3 +1,5 @@
+% (C) Copyright 2020 CPP_PTB developers
+
 function responseEvents = getResponse(action, deviceNumber, cfg, getOnlyPress)
     % responseEvents = getResponse(action, deviceNumber, cfg, getOnlyPress)
     %
@@ -60,8 +62,8 @@ function responseEvents = getResponse(action, deviceNumber, cfg, getOnlyPress)
 
     if nargin < 3
         cfg = struct( ...
-            'keyboard', struct('responseKey', {}) ...
-            );
+                     'keyboard', struct('responseKey', {}) ...
+                    );
     end
 
     if nargin < 4
@@ -201,7 +203,7 @@ function talkToMe(action, cfg)
 
     end
 
-    if verbose
+    if verbose > 2
         fprintf('\n %s\n\n', msg);
 
     end

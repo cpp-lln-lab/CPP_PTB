@@ -1,3 +1,5 @@
+% (C) Copyright 2020 CPP_PTB developers
+
 function [cfg] = eccenLogSpeed(cfg, time)
     % vary CurrScale so that expansion speed is log over eccentricity
     % cf. Tootell 1997; Swisher 2007; Warnking 2002 etc
@@ -30,7 +32,7 @@ function [cfg] = eccenLogSpeed(cfg, time)
 
         % near-exp visual angle
         newOuterRimVA = ((outerRimVA + exp(1)) * log(outerRimVA + exp(1)) - ...
-            (outerRimVA + exp(1))) * maxEcc * csFuncFact;
+                         (outerRimVA + exp(1))) * maxEcc * csFuncFact;
         outerRimPix = newOuterRimVA * cfg.screen.ppd; % in pixel
 
         % width of apperture changes logarithmically with eccentricity of inner ring

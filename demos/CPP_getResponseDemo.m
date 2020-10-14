@@ -1,3 +1,5 @@
+% (C) Copyright 2020 CPP_PTB developers
+
 %% Demo showing how to use the getResponse function
 
 % This small script shows how to use the getReponse function
@@ -103,9 +105,9 @@ try
         end
 
         fprintf('\n %s was %s at time %.3f seconds\n', ...
-            responseEvents(iEvent).keyName, ...
-            eventType, ...
-            responseEvents(iEvent).onset - startSecs);
+                responseEvents(iEvent).keyName, ...
+                eventType, ...
+                responseEvents(iEvent).onset - startSecs);
 
     end
 

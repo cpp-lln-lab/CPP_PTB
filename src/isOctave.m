@@ -1,3 +1,6 @@
+% (C) Copyright 2010-2020 Agah Karakuzu
+% (C) Copyright 2020 CPP_PTB developers
+
 function retval = isOctave
     % Return: true if the environment is Octave.
     % mostly used to testing when PTB is not in the path

@@ -1,9 +1,11 @@
+% (C) Copyright 2020 CPP_PTB developers
+
 function errorDistanceToScreen(cfg)
 
     errorStruct.message = sprintf([
-        'Distance to monitor seems too small.\n' ...
-        'It should be in centimeters.\n' ...
-        'cfg.screen.monitorDistance = %f'], cfg.screen.monitorDistance);
+                                   'Distance to monitor seems too small.\n' ...
+                                   'It should be in centimeters.\n' ...
+                                   'cfg.screen.monitorDistance = %f'], cfg.screen.monitorDistance);
 
     errorStruct.identifier = 'computeFOV:wrongDistanceToScreen';
 

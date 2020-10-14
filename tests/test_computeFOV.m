@@ -24,6 +24,6 @@ function test_computeFOVError()
     cfg.screen.monitorDistance = 1.2; % error as distance is most likely in meter
 
     assertExceptionThrown(@()computeFOV(cfg), ...
-        'computeFOV:wrongDistanceToScreen');
+                          'computeFOV:wrongDistanceToScreen');
 
 end

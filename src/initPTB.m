@@ -1,3 +1,5 @@
+% (C) Copyright 2020 CPP_PTB developers
+
 function [cfg] = initPTB(cfg)
     % [cfg] = initPTB(cfg)
     %
@@ -30,6 +32,9 @@ function [cfg] = initPTB(cfg)
     % For octave: to avoid displaying messenging one screen at a time
     more off;
 
+    % Resets the seed of the random number generator
+    setUpRand();
+
     % check for OpenGL compatibility, abort otherwise:
     AssertOpenGL;
 
@@ -57,7 +62,7 @@ function [cfg] = initPTB(cfg)
     if isfield(cfg.screen, 'resolution')
         [newWidth, newHeight, newHz] = deal(cfg.screen.resolution{:});
         cfg.screen.oldResolution = Screen('Resolution', cfg.screen.idx, ...
-          newWidth, newHeight, newHz);
+                                          newWidth, newHeight, newHz);
     end
 
     cfg = openWindow(cfg);
@@ -107,9 +112,9 @@ function cfg = getOsInfo(cfg)
     [~, versionStruc] = PsychtoolboxVersion;
 
     cfg.software.version = sprintf('%i.%i.%i', ...
-            versionStruc.major, ...
-            versionStruc.minor, ...
-            versionStruc.point);
+                                   versionStruc.major, ...
+                                   versionStruc.minor, ...
+                                   versionStruc.point);
 
     runsOn = 'Matlab - ';
     if IsOctave
@@ -163,9 +168,6 @@ function cfg = initAudio(cfg)
 
         InitializePsychSound(1);
 
-        cfg.audio.devIdx = [];
-        cfg.audio.playbackMode = 1;
-
         if isfield(cfg.audio, 'useDevice')
 
             % get audio device list
@@ -173,9 +175,10 @@ function cfg = initAudio(cfg)
 
             % find output device to use
             idx = find( ...
-                audioDev.NrInputChannels == cfg.audio.inputChannels && ...
-                audioDev.NrOutputChannels == cfg.audio.channels && ...
-                ~cellfun(@isempty, regexp({audioDev.HostAudioAPIName}, cfg.audio.deviceName)));
+                       audioDev.NrInputChannels == cfg.audio.inputChannels && ...
+                       audioDev.NrOutputChannels == cfg.audio.channels && ...
+                       ~cellfun(@isempty, regexp({audioDev.HostAudioAPIName}, ...
+                                                 cfg.audio.deviceName)));
 
             % save device ID
             cfg.audio.devIdx = audioDev(idx).DeviceIndex;
@@ -186,11 +189,11 @@ function cfg = initAudio(cfg)
         end
 
         cfg.audio.pahandle = PsychPortAudio('Open', ...
-            cfg.audio.devIdx, ...
-            cfg.audio.playbackMode, ...
-            cfg.audio.requestedLatency, ...
-            cfg.audio.fs, ...
-            cfg.audio.channels);
+                                            cfg.audio.devIdx, ...
+                                            cfg.audio.playbackMode, ...
+                                            cfg.audio.requestedLatency, ...
+                                            cfg.audio.fs, ...
+                                            cfg.audio.channels);
 
         % set initial PTB volume for safety (participants can adjust this manually
         % at the begining of the experiment)
@@ -209,7 +212,7 @@ function cfg = openWindow(cfg)
     if cfg.debug.smallWin
         [cfg.screen.win, cfg.screen.winRect] = ...
             Screen('OpenWindow', cfg.screen.idx, cfg.color.background, ...
-            [0, 0, 480, 270]);
+                   [0, 0, 480, 270]);
     else
         [cfg.screen.win, cfg.screen.winRect] = ...
             Screen('OpenWindow', cfg.screen.idx, cfg.color.background);
