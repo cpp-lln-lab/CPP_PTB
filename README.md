@@ -13,6 +13,8 @@
 
 # CPP_PTB
 
+<!-- lint disable -->
+
 <!-- TOC -->
 
 -   [CPP_PTB](#cpp_ptb)
@@ -31,6 +33,8 @@
 
 <!-- /TOC -->
 
+<!-- lint enable -->
+
 This is the Crossmodal Perception and Plasticity lab (CPP) PsychToolBox (PTB)
 toolbox.
 
@@ -44,11 +48,15 @@ octave path.
 
 For instructions see the following links:
 
+<!-- lint disable -->
+
 | Requirements                                             | Used version |
 | -------------------------------------------------------- | ------------ |
 | [PsychToolBox](http://psychtoolbox.org/)                 | >=3.0.14     |
 | [Matlab](https://www.mathworks.com/products/matlab.html) | >=2015b      |
 | or [Octave](https://www.gnu.org/software/octave/)        | 4.?          |
+
+<!-- lint enable -->
 
 Tested:
 
@@ -154,9 +162,12 @@ git submodule foreach --recursive 'git submodule update'
 
 Download the code. Unzip. And add to the matlab path.
 
-Pick a specific version from [here](https://github.com/cpp-lln-lab/CPP_PTB/releases).
+Pick a specific version from
+[here](https://github.com/cpp-lln-lab/CPP_PTB/releases).
 
-Or take [the latest commit](https://github.com/cpp-lln-lab/CPP_PTB/archive/master.zip) - NOT RECOMMENDED.
+Or take
+[the latest commit](https://github.com/cpp-lln-lab/CPP_PTB/archive/master.zip) -
+NOT RECOMMENDED.
 
 ### Add CPP_PTB globally to the matlab path
 
@@ -182,6 +193,7 @@ In practice, we use the following regular expression for function names:
 > Regular expressions look scary but are SUPER useful to sort through filenames:
 >
 > -   A quick [intro to regular expression](https://www.rexegg.com/)
+>
 > -   And many websites allow you to "design and test" your regular expression:
 >     -   [regexper](https://regexper.com/#%5Ba-z%5D%2B%28%28%5BA-Z%5D%7C%5B0-9%5D%29%7B1%7D%5Ba-z%5D%2B%29)
 >     -   ...
@@ -210,8 +222,11 @@ Thanks goes to these wonderful people
 ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+
 <!-- prettier-ignore-start -->
+
 <!-- markdownlint-disable -->
+
 <table>
   <tr>
     <td align="center"><a href="https://remi-gau.github.io/"><img src="https://avatars3.githubusercontent.com/u/6961185?v=4" width="100px;" alt=""/><br /><sub><b>Remi Gau</b></sub></a><br /><a href="https://github.com/cpp-lln-lab/CPP_PTB/commits?author=Remi-Gau" title="Code">💻</a> <a href="#design-Remi-Gau" title="Design">🎨</a> <a href="https://github.com/cpp-lln-lab/CPP_PTB/commits?author=Remi-Gau" title="Documentation">📖</a> <a href="https://github.com/cpp-lln-lab/CPP_PTB/issues?q=author%3ARemi-Gau" title="Bug reports">🐛</a> <a href="#userTesting-Remi-Gau" title="User Testing">📓</a> <a href="#ideas-Remi-Gau" title="Ideas, Planning, & Feedback">🤔</a> <a href="#infra-Remi-Gau" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#maintenance-Remi-Gau" title="Maintenance">🚧</a> <a href="https://github.com/cpp-lln-lab/CPP_PTB/commits?author=Remi-Gau" title="Tests">⚠️</a> <a href="#question-Remi-Gau" title="Answering Questions">💬</a></td>
@@ -221,6 +236,7 @@ Thanks goes to these wonderful people
 </table>
 
 <!-- markdownlint-enable -->
+
 <!-- prettier-ignore-end -->
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->

@@ -1,5 +1,7 @@
 # functions description
 
+<!-- lint disable -->
+
 <!-- TOC -->
 
 -   [functions description](#functions-description)
@@ -31,6 +33,8 @@
 
 <!-- /TOC -->
 
+<!-- lint enable -->
+
 ## General functions
 
 ### initPTB
@@ -41,17 +45,24 @@ It is pretty much necessary to use this function to set up the stage for using
 any other functions of CPP_PTB.
 
 -   checks OS and PTB version
+
 -   set some defaults
+
 -   set the screen details
     -   the window opened takes the whole screen by default
     -   set in debug mode with window transparency if necessary
     -   can skip synch test if you ask for it (nicely)
     -   gets the flip interval
     -   computes the pixel per degree of visual angle
+
 -   set fixation cross details
+
 -   set font details
+
 -   keyboard
+
 -   hides cursor
+
 -   sound
 
 ### cleanUp
@@ -91,14 +102,20 @@ cpp-lln-lab/CPP_BIDS).
 There are several actions to perform:
 
 -   Calibration: to initialize EyeLink and run calibration
+
     -   'default calibration' (default) will run a calibration with 6 points
+
     -   'custom calibration' (cfg.eyeTracker.defaultCalibration = 'false') will
         run a calibration with 6 points but the experimenter can choose their
         position on the screen
+
 -   StartRecording: to start eye movements recording
+
 -   Message: will add a tag (e.g. 'Block_n1') in the ET output file, the tag is
     a string and it is input from `varargin`
+
 -   StopRecordings: to stop eye movements recornding
+
 -   Shutdown: to save the `.edf` file with BIDS compliant name, from
     cpp-lln-lab/CPP_BIDS, in the output folder and shut the connection between
     the stimulation computer and the EyeLink computer
@@ -157,16 +174,21 @@ In brief, there are several actions you can execute with this function.
 
 -   init: initialize the buffer for key presses on a given device (you can also
     specify the keys of interest that should be listened to).
+
 -   start: start listening to the key presses (carefully insert into your
     script - where do you want to start buffering the responses).
+
 -   check: till that point, it will check the buffer for all key presses. - It
     only reports presses on the keys of interest mentioned at initialization. -
     It **can** also check for presses on the escape key and abort if the escape
     key is part of the keys of interest.
+
 -   flush: empties the buffer of key presses in case you want to discard any
     previous key presses.
+
 -   stop: stops buffering key presses. You can still restart by calling "start"
     again.
+
 -   release: closes the buffer for good.
 
 ### pressSpaceForme
