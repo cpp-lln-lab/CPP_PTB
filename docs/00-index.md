@@ -1,21 +1,22 @@
 # CPP_PTB documentation
 
-<!-- vscode-markdown-toc -->
+<!-- lint disable -->
 
--   1. [the CFG structure](#theCFGstructure)
--   2. [Setting up keyboards](#Settingupkeyboards)
--   3. [functions descriptions](#functionsdescriptions)
--   4. [Annexes](#Annexes)
-    -   4.1. [Experiment template [ WIP ]](#ExperimenttemplateWIP)
-    -   4.2. [devSandbox (stand-alone)](#devSandboxstand-alone)
+<!-- TOC -->
 
-<!-- vscode-markdown-toc-config
-	numbering=true
-	autoSave=true
-	/vscode-markdown-toc-config -->
-<!-- /vscode-markdown-toc -->
+-   [CPP_PTB documentation](#cpp_ptb-documentation)
+    -   [the CFG structure](#the-cfg-structure)
+    -   [Setting up keyboards](#setting-up-keyboards)
+    -   [functions descriptions](#functions-descriptions)
+    -   [Annexes](#annexes)
+        -   [Experiment template [ WIP ]](#experiment-template--wip-)
+        -   [devSandbox (stand-alone)](#devsandbox-stand-alone)
 
-## 1. <a name='theCFGstructure'></a>the CFG structure
+<!-- /TOC -->
+
+<!-- lint enable -->
+
+## the CFG structure
 
 The `cfg` structure is where most of the information about your experiment will
 be defined.
@@ -29,6 +30,7 @@ filled after running `setDefaultsPTB.m` and `initPTB.m`.
     that that do not "depend" on your system or that PTB cannot "know". For
     example the width of the screen in cm or the dimensions of the fixation
     cross you want to use...
+
 -   `initPTB.m` will fill in the fields that ARE system dependent like the
     screen refresh rate, the reference of the window that PTB opened and where
     to flip stimulus to.
@@ -160,7 +162,7 @@ cfg.software.version % psychtoolbox version
 cfg.software.runsOn % matlab or octave and version number
 ```
 
-## 2. <a name='Settingupkeyboards'></a>Setting up keyboards
+## Setting up keyboards
 
 To select a specific keyboard to be used by the experimenter or the participant,
 you need to know the value assigned by PTB to each keyboard device.
@@ -180,6 +182,7 @@ response box in the `cfg` structure
 -   `cfg.keyboard.responseBox` would be the device number of the device used by
     the participant to give his/her response: like the button box in the scanner
     or a separate keyboard for a behavioral experiment
+
 -   `cfg.keyboard.keyboard` would be the device number of the keyboard on which
     the experimenter will type or press the keys necessary to start or abort the
     experiment.
@@ -190,25 +193,25 @@ same.
 Using empty vectors (ie `[]`) or a negative value for those means that you will
 let PTB find and use the default device.
 
-## 3. <a name='functionsdescriptions'></a>functions descriptions
+## functions descriptions
 
 The main functions of the toolbox are described
 [here](./10-functions-description.md).
 
-## 4. <a name='Annexes'></a>Annexes
+## Annexes
 
-### 4.1. <a name='ExperimenttemplateWIP'></a>Experiment template [ WIP ]
-
-Will be moved to a different repository
-
-### 4.2. <a name='devSandboxstand-alone'></a>devSandbox (stand-alone)
+### Experiment template  {WIP}
 
 Will be moved to a different repository
+
+### devSandbox (stand-alone)
+
+Will be moved to a different repository.
 
 This script is a stand-alone function that can be useful as a sandbox to develop
 the PTB audio/visual stimulation of your experiment. No input/output required.
 
-Here, a tutorial from https://peterscarfe.com/contrastgratingdemo.html is
+Here, [a tutorial](https://peterscarfe.com/contrastgratingdemo.html) is
 provided for illustrative purpose (notice that some variable names are updated
 to our code style). For your use, you will delete that part.
 
@@ -216,6 +219,7 @@ It is composed of two parts:
 
 -   a fixed structure that will initialize and close PTB in 'debug mode'
     (`PsychDebugWindowConfiguration`, `SkipSyncTests`)
+
 -   the actual sandbox where to set your dynamic variables (the stimulation
     parameters) and the 'playground' where to develop the stimulation code
 
