@@ -83,6 +83,7 @@ function cfg = setDefaultsPTB(cfg)
 
     if isfield(cfg, 'testingDevice') && strcmpi(cfg.testingDevice, 'mri')
         fieldsToSet.bids.mri.RepetitionTime = [];
+        fieldsToSet.pacedByTriggers.do = false;
     end
 
     cfg = setDefaults(cfg, fieldsToSet);

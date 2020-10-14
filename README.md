@@ -1,3 +1,5 @@
+<!-- lint disable -->
+
 **Cite it**
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4007672.svg)](https://doi.org/10.5281/zenodo.4007672)
@@ -20,8 +22,6 @@
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 # CPP_PTB
-
-<!-- lint disable -->
 
 <!-- TOC -->
 

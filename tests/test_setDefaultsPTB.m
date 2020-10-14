@@ -59,6 +59,23 @@ function test_setDefaultsPtbAudio()
 
 end
 
+function test_setDefaultsPtbMRI()
+
+    % set up
+    cfg.testingDevice = 'mri';
+    cfg = setDefaultsPTB(cfg);
+
+    % test data
+    expectedCfg = returnExpectedCFG();
+    expectedCfg.testingDevice = 'mri';
+    expectedCfg.bids.mri.RepetitionTime = [];
+    expectedCfg.pacedByTriggers.do = false;
+
+    % test
+    assertEqual(expectedCfg, cfg);
+
+end
+
 function expectedCFG = returnExpectedCFG()
 
     expectedCFG =  struct( ...
