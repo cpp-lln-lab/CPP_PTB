@@ -1,6 +1,6 @@
 % (C) Copyright 2020 CPP_PTB developers
 
-function waitForTrigger(varargin)
+function lastTriggerTimeStamp = waitForTrigger(varargin)
     % waitForTrigger(cfg, deviceNumber, quietMode, nbTriggersToWait)
     %
     % Counts a certain number of triggers coming from the scanner before returning.
@@ -45,7 +45,7 @@ function waitForTrigger(varargin)
 
             keyCode = []; %#ok<NASGU>
 
-            [~, ~, keyCode] = KbCheck(deviceNumber);
+            [~, lastTriggerTimeStamp, keyCode] = KbCheck(deviceNumber);
 
             if strcmp(KbName(keyCode), cfg.mri.triggerKey)
 
