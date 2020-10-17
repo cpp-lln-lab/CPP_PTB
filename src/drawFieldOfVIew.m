@@ -1,6 +1,6 @@
 % (C) Copyright 2020 CPP_PTB developers
 
-function drawFieldOfVIew(cfg)
+function fov = drawFieldOfVIew(cfg, centerOnScreen)
     % drawFieldOfVIew(cfg)
     %
     % draws a red rectangle on the screen to materialize the field of view of
@@ -8,17 +8,25 @@ function drawFieldOfVIew(cfg)
     % stimuli if you know the FOV of the participant will be obstructed by
     % something
 
+    if nargin < 2
+        centerOnScreen = true;
+    end
+
+    fov = [];
+
     if isfield(cfg.screen, 'effectiveFieldOfView') && ...
-        numel(cfg.screen.effectiveFieldOfView) == 2
+        numel(cfg.screen.effectiveFieldOfView) == 4
 
         RED = [255 0 0];
         penWidth = 2;
 
         fov = cfg.screen.effectiveFieldOfView;
 
-        fov = CenterRect( ...
-                         [0, 0, fov(1), fov(2)], ...
-                         cfg.screen.winRect);
+        if centerOnScreen
+            fov = CenterRect( ...
+                             fov, ...
+                             cfg.screen.winRect);
+        end
 
         Screen('FrameRect', ...
                cfg.screen.win, ...
