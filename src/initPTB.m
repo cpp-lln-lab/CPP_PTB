@@ -21,7 +21,7 @@ function [cfg] = initPTB(cfg)
     %
     %
     %
-    
+
     % for octave: make sure information is not presented on prompt one screen at
     % a time
     more off;

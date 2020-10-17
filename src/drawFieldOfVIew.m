@@ -7,11 +7,11 @@ function fov = drawFieldOfVIew(cfg, centerOnScreen)
     % the participant. This can be used during debugging to help design the
     % stimuli if you know the FOV of the participant will be obstructed by
     % something
-    
+
     if nargin < 2
         centerOnScreen = true;
     end
-    
+
     fov = [];
 
     if isfield(cfg.screen, 'effectiveFieldOfView') && ...
@@ -21,13 +21,12 @@ function fov = drawFieldOfVIew(cfg, centerOnScreen)
         penWidth = 2;
 
         fov = cfg.screen.effectiveFieldOfView;
-        
+
         if centerOnScreen
             fov = CenterRect( ...
-                fov, ...
-                cfg.screen.winRect);
+                             fov, ...
+                             cfg.screen.winRect);
         end
-            
 
         Screen('FrameRect', ...
                cfg.screen.win, ...
