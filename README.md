@@ -78,7 +78,6 @@ All the documentation is accessible [here](./docs/00-index.md).
 
 ```bash
 ├── demos # quick demo of how to use some functions
-├── dev # templates for experiment (will be moved out soon)
 ├── docs # documentation
 ├── manualTests # all the tests that cannot be automated (yet)
 ├── src # actual code of the CPP_PTB
@@ -93,6 +92,13 @@ All the documentation is accessible [here](./docs/00-index.md).
 ```
 
 ## How to install
+
+The easiest way to use this repository is to create a new repository by using
+the
+[template PTB experiment repository](https://github.com/cpp-lln-lab/template_PTB_experiment):
+this creates a new repository on your github account with all the basic folders,
+files and submodules already set up. You only have to then clone the repository
+and you are good to go.
 
 ### Download with git
 
