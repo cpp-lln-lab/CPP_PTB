@@ -127,7 +127,7 @@ The doc can be built from any branch of a repo.
 
 <!-- TODO -->
 
-## Other matlab projects that use:
+## Other matlab projects that use
 
 ### Sphinx
 
@@ -136,4 +136,4 @@ Some are listed
 
 ### Read the docs
 
- - [qMRLab](https://github.com/qMRLab/qMRLab/wiki/Guideline:-Generating-Documentation)
+- [qMRLab](https://github.com/qMRLab/qMRLab/wiki/Guideline:-Generating-Documentation)
