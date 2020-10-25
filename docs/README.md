@@ -118,8 +118,8 @@ Add a [`.readthedocs.yml`](../.readthedocs.yml) file in the root of your repo.
 See [HERE](https://docs.readthedocs.io/en/stable/config-file/v2.html) for
 details.
 
-You can then trigger the build of the doc by going to the [read the docs]
-website: https://readthedocs.org.
+You can then trigger the build of the doc by going to the [read the docs](https://readthedocs.org)
+website.
 
 You might need to be added as a maintainer of the doc.
 
@@ -127,13 +127,13 @@ The doc can be built from any branch of a repo.
 
 <!-- TODO -->
 
-## Other matlab projects that use...
+## Other matlab projects that use:
 
 ### Sphinx
 
 Some are listed
-https://github.com/sphinx-contrib/matlabdomain#users
+[sphinx-contrib/matlabdomain#users](https://github.com/sphinx-contrib/matlabdomain#users)
 
 ### Read the docs
 
-- [qMRLab](https://github.com/qMRLab/qMRLab/wiki/Guideline:-Generating-Documentation)
+ - [qMRLab](https://github.com/qMRLab/qMRLab/wiki/Guideline:-Generating-Documentation)
