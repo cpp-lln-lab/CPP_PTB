@@ -136,4 +136,4 @@ Some are listed
 
 ### Read the docs
 
-- [qMRLab](https://github.com/qMRLab/qMRLab/wiki/Guideline:-Generating-Documentation)
+  - [qMRLab](https://github.com/qMRLab/qMRLab/wiki/Guideline:-Generating-Documentation)
