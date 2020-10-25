@@ -8,5 +8,8 @@
 *.mat
 check_my_code_report.txt
 
+# exclude content of files for virtual env (mostly for the doc)
+cpp_ptb
+
 # ignore file created by sphynx
 /docs/build
