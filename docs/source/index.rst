@@ -7,7 +7,7 @@ Welcome to CPP_PTB's documentation!
 ===================================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 4
    :caption: Contents:
 
    function_description

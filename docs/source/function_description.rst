@@ -5,8 +5,18 @@ The functions of our pipeline
 
 ----
 
-.. automodule:: src
+.. module:: src
 
-.. autofunction:: setDerivativesDir
+.. autofunction:: initPTB()
 
-.. autofunction:: getData
+:func:`initPTB`
+
+.. autofunction:: getExperimentStart
+
+----
+
+.. module:: src.keyboard
+
+.. autofunction:: getResponse()
+
+.. autofunction:: checkAbort()
