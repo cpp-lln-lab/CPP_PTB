@@ -7,3 +7,6 @@
 *.tsv
 *.mat
 check_my_code_report.txt
+
+# ignore file created by sphynx
+/docs/build
