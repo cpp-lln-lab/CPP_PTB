@@ -10,7 +10,7 @@ Welcome to CPP_PTB's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-    function_description
+   function_description
 
 Indices and tables
 ==================
