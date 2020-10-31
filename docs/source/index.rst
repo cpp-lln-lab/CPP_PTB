@@ -13,11 +13,11 @@ Those functions are mostly wrappers around some PTB functions to facilitate
 their use and their reuse (#DontRepeatYourself)
 
 .. toctree::
-   :maxdepth: 4
+   :maxdepth: 2
    :caption: Contents:
 
-   function_description
    installation
+   function_description
 
 Indices and tables
 ==================
