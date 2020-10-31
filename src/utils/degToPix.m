@@ -15,7 +15,8 @@ function structure = degToPix(fieldName, structure, cfg)
     % fixation = degToPix('width', fixation, cfg);
     %
     % - Returns:
-    % fixation.widthPix = 20;
+    %   fixation.widthPix = 20;
+    %
 
     deg = getfield(structure, fieldName); %#ok<GFLD>
 
