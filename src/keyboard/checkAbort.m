@@ -19,11 +19,11 @@ function checkAbort(cfg, deviceNumber)
     %   catch ME % when something goes wrong
     %
     %       switch ME.identifier
-    %         
+    %
     %         case 'checkAbort:abortRequested'
-    %         
+    %
     %         % stuff to do when an abort is requested (save data...)
-    %          
+    %
     %         otherwise
     %
     %          % stuff to do otherwise

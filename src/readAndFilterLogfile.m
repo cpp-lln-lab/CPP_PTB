@@ -2,7 +2,7 @@
 
 function [outputFiltered] = readAndFilterLogfile(columnName, filterBy, varargin)
     %
-    % It will display in the command window the content of the `output.tsv` filtered 
+    % It will display in the command window the content of the `output.tsv` filtered
     % by one element of a target column. Dependecies: bids_matlab (from CPP_BIDS)
     %
     % USAGE:
@@ -22,7 +22,6 @@ function [outputFiltered] = readAndFilterLogfile(columnName, filterBy, varargin)
     % :returns: - :outputFiltered: dataset with only the specified content to see it in the command window use display(outputFiltered)
     %
     %
-    
 
     % Checke if input is cfg or the file path
     if ischar(varargin{1})
