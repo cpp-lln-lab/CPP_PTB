@@ -107,13 +107,14 @@ List of functions in the ``src/screen`` folder.
 
 List of functions in the ``src/utils`` folder.
 
+(to add makeGif)
+
 .. module:: src.utils
 
 .. autofunction:: checkPtbVersion
 .. autofunction:: cleanUp
 .. autofunction:: computeFOV
 .. autofunction:: degToPix
-.. autofunction:: makeGif
 .. autofunction:: pixToDeg
 .. autofunction:: printCreditsCppPtb
 .. autofunction:: printScreen
