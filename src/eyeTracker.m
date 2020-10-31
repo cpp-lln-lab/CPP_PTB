@@ -1,37 +1,37 @@
 % (C) Copyright 2020 CPP_PTB developers
 
 function [el, cfg] = eyeTracker(input, cfg, varargin)
-    %
-    % Wrapper function that deals with all the necessery actions to implement
-    % Eye Tracker recording with eyelink.
-    %
-    % USAGE:
-    %
-    %   function [el, cfg] = eyeTracker(input, cfg, [message])
-    %
-    % :param input: action: Defines what we want the function to do:
-    %               - Calibration: to initialize EyeLink and run calibration
-    %                 - 'default calibration' (default) will run a calibration with 6 points
-    %                 - 'custom calibration'  (cfg.eyeTracker.defaultCalibration = 'false') will run
-    %                   a calibration with 6 points but the experimenter can choose their position
-    %                   on the screen
-    %
-    %               - StartRecording: to start eye movements recording
-    %               - Message: will add a tag (e.g. 'Block_n1') in the ET output file, the tag is a
-    %                 string and it is input from `varargin`
-    %               - StopRecordings: to stop eye movements recornding
-    %               - Shutdown: to save the `.edf` file with BIDS compliant name, from
-    %                 cpp-lln-lab/CPP_BIDS, in the output folder and shut the connection between the
-    %                 stimulation computer and the EyeLink computer
-    % :type input: string
-    % :param cfg: structure that stores any info regarding the experiment
-    % :type cfg: struct
-    % :param message: optional argument to pass in when you want to tag the output in a specific
-    %                 moment of the experiment (for example ``Experiment-start``)
-    % :type message: string
-    %
-    % :returns: - :el: (struct) stores info related to the Eye Tracker
-    %           - :cfg: (struct)
+  %
+  % Wrapper function that deals with all the necessery actions to implement
+  % Eye Tracker recording with eyelink.
+  %
+  % USAGE:
+  %
+  %   function [el, cfg] = eyeTracker(input, cfg, [message])
+  %
+  % :param input: Defines what we want the function to do
+  % :type input: string
+  % :param cfg: structure that stores any info regarding the experiment
+  % :type cfg: struct
+  % :param message: optional argument to pass in when you want to tag the output in a specific
+  %                 moment of the experiment (for example ``Experiment-start``)
+  % :type message: string
+  %
+  % :returns: - :el: (struct) stores info related to the Eye Tracker
+  %           - :cfg: (struct)
+  %
+  % - ``Calibration`` to initialize EyeLink and run calibration
+  % - ``default calibration`` (default) will run a calibration with 6 points
+  % - ``custom calibration`` (``cfg.eyeTracker.defaultCalibration = 'false'``) will run
+  %   a calibration with 6 points but the experimenter can choose their position
+  %   on the screen
+  % - ``StartRecording``: to start eye movements recording
+  % - ``Message``: will add a tag (e.g. ``Block_n1``) in the ET output file, the tag is a
+  %   string and it is input from `varargin`
+  % - ``StopRecordings``: to stop eye movements recording
+  % - ``Shutdown``: to save the ``.edf`` file with BIDS compliant name, from
+  %   cpp-lln-lab/CPP_BIDS, in the output folder and shut the connection between the
+  %   stimulation computer and the EyeLink computer
 
     if ~cfg.eyeTracker.do
 
