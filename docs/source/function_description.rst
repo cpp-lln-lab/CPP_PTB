@@ -13,15 +13,11 @@ List of functions in the ``src`` folder.
 .. autofunction:: drawFieldOfVIew
 .. autofunction:: eyeTracker
 .. autofunction:: getExperimentEnd
+.. autofunction:: getExperimentStart
 .. autofunction:: isOctave
 .. autofunction:: readAndFilterLogfile
 .. autofunction:: waitForTrigger
 .. autofunction:: waitFor
-
-
-:func:`initPTB`
-
-.. autofunction:: getExperimentStart
 
 ----
 
