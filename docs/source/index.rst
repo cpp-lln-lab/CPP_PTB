@@ -6,11 +6,18 @@
 Welcome to CPP_PTB's documentation!
 ===================================
 
+This is the Crossmodal Perception and Plasticity lab (CPP) PsychToolBox (PTB)
+toolbox.
+
+Those functions are mostly wrappers around some PTB functions to facilitate
+their use and their reuse (#DontRepeatYourself)
+
 .. toctree::
    :maxdepth: 4
    :caption: Contents:
 
    function_description
+   installation
 
 Indices and tables
 ==================
