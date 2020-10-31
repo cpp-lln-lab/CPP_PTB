@@ -23,12 +23,13 @@ List of functions in the ``src`` folder.
 
 List of functions in the ``src/aperture`` folder.
 
+(to add saveAperture)
+
 .. module:: src.aperture
 
 .. autofunction:: apertureTexture
 .. autofunction:: eccenLogSpeed
 .. autofunction:: getApertureName
-.. autofunction:: saveAperture
 .. autofunction:: saveApertures
 .. autofunction:: smoothOval
 .. autofunction:: smoothRect

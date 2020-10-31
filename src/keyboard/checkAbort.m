@@ -1,12 +1,14 @@
 % (C) Copyright 2020 CPP_PTB developers
 
 function checkAbort(cfg, deviceNumber)
-    % checkAbort(cfg, deviceNumber)
     %
-    % Check for experiment abortion from operator
-    % When no deviceNumber is set then it will check the default device
-    % When an abort key s detected this will set a global variable and throw a
+    % Check for experiment abortion from operator. When no deviceNumber is set then it will check
+    % the default device. When an abort key is detected this will set a global variable and throw a
     % specific error that can then be catched.
+    %
+    % USAGE:
+    %
+    %   function checkAbort(cfg, deviceNumber)
     %
     % Maint script
     % try

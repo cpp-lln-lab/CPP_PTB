@@ -20,8 +20,7 @@ function [dots] = initDots(cfg, thisEvent)
     % dots.isSignal : signal dots (1) and those are noise dots (0)
     % dots.directionAllDots
     % dots.lifeTime : in frames
-    % dots.speeds : [ndots, 2] ; horizontal and vertical speed ; in pixels per
-    %   frame
+    % dots.speeds : [ndots, 2] ; horizontal and vertical speed ; in pixels per frame
     % dots.speedPixPerFrame
 
     dots.direction = thisEvent.direction(1);

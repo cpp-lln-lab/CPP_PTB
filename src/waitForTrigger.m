@@ -1,9 +1,22 @@
 % (C) Copyright 2020 CPP_PTB developers
 
-function lastTriggerTimeStamp = waitForTrigger(varargin)
-    % waitForTrigger(cfg, deviceNumber, quietMode, nbTriggersToWait)
-    %
+function [lastTriggerTimeStamp] = waitForTrigger(varargin)
     % Counts a certain number of triggers coming from the scanner before returning.
+    %
+    % USAGE:
+    %
+    %   [lastTriggerTimeStamp] = waitForTrigger([cfg,] [deviceNumber,] [quietMode,] [nbTriggersToWait])
+    %
+    % :param cfg:
+    % :type cfg: struct
+    % :param deviceNumber: device number of the keyboard or trigger box in MRI
+    % :type deviceNumber: integer
+    % :param quietMode: a boolean to make sure nothing is printed on the screen or the prompt
+    % :type quietMode: boolean
+    % :param nbTriggersToWait: number of triggers to wait
+    % :type nbTriggersToWait: integer
+    %
+    % :returns: - :lastTriggerTimeStamp: (optional) it can be used as experimentStart timestamp (``cfg.experimentStart``)
     %
     % If you are not using the quietMode, it flips and waits for half a TR before starting to
     % check for the next trigger (unless this was the last trigger to wait for and in
@@ -12,23 +25,13 @@ function lastTriggerTimeStamp = waitForTrigger(varargin)
     % Will print the count down in the command line and on the PTB window if one is
     % opened.
     %
-    % If the fMRI sequence RT is provided (cgf.MRI.repetitionTime) then it will wait
+    % If the fMRI sequence RT is provided (``cgf.MRI.repetitionTime``) then it will wait
     % for half a RT before starting to check for next trigger, otherwise it will
     % wait 500 ms.
     %
     % When no deviceNumber is set then it will check the default device: this is
     % probably only useful in debug as you will want to make sure you get the
     % triggers coming from the scanner in a real case scenario.
-    %
-    % INPUTS
-    % - varargin{1} = cfg
-    %
-    % - varargin{2} = deviceNumber
-    %
-    % - varargin{3} = quietMode: a boolean to make sure nothing is printed on the screen or
-    % the prompt
-    %
-    % - nvarargin{4} = nbTriggersToWait
 
     [cfg, nbTriggersToWait, deviceNumber, quietMode] = checkInputs(varargin);
 
