@@ -10,14 +10,14 @@ function structure = pixToDeg(fieldName, structure, cfg)
     % 'Pix' suffix removed and replaced with the 'DegVA' suffix .
     %
     % USAGE:
-    % ------
+    % 
     % fixation.widthPix = 20;
     % cfg.screen.ppd = 10;
     %
     % fixation = degToPix('widthPix', fixation, cfg);
     %
     % Returns:
-    % -------
+    %  
     % fixation.widthDegVA = 2;
     %
 
