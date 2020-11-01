@@ -5,7 +5,10 @@ function [lastTriggerTimeStamp] = waitForTrigger(varargin)
     %
     % USAGE:
     %
-    %   [lastTriggerTimeStamp] = waitForTrigger([cfg,] [deviceNumber,] [quietMode,] [nbTriggersToWait])
+    %   [lastTriggerTimeStamp] = waitForTrigger([cfg,] ...
+    %                                           [deviceNumber,] ...
+    %                                           [quietMode,] ...
+    %                                           [nbTriggersToWait])
     %
     % :param cfg:
     % :type cfg: struct
@@ -16,7 +19,10 @@ function [lastTriggerTimeStamp] = waitForTrigger(varargin)
     % :param nbTriggersToWait: number of triggers to wait
     % :type nbTriggersToWait: integer
     %
-    % :returns: - :lastTriggerTimeStamp: (optional) it can be used as experimentStart timestamp (``cfg.experimentStart``)
+    % :returns:
+    %
+    % - :lastTriggerTimeStamp: (optional) it can be used as experimentStart
+    %                          timestamp (``cfg.experimentStart``)
     %
     % If you are not using the quietMode, it flips and waits for half a TR before starting to
     % check for the next trigger (unless this was the last trigger to wait for and in

@@ -19,7 +19,10 @@ function [outputFiltered] = readAndFilterLogfile(columnName, filterBy, varargin)
     % :type filterBy: string
     % :param varargin: either ``cfg`` (to display the last run output) or the file path as string
     %
-    % :returns: - :outputFiltered: dataset with only the specified content to see it in the command window use display(outputFiltered)
+    % :returns: 
+    %
+    % - :outputFiltered: dataset with only the specified content to see it in the 
+    %                    command window use display(outputFiltered)
     %
     %
 
