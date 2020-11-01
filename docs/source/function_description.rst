@@ -1,5 +1,5 @@
 Function description
-====================
+********************
 
 The functions of our pipeline
 
@@ -21,6 +21,9 @@ List of functions in the ``src`` folder.
 
 ----
 
+Aperture
+========
+
 List of functions in the ``src/aperture`` folder.
 
 (to add saveAperture)
@@ -35,6 +38,9 @@ List of functions in the ``src/aperture`` folder.
 .. autofunction:: smoothRect
 
 ----
+
+Dot
+===
 
 List of functions in the ``src/dot`` folder.
 
@@ -54,6 +60,9 @@ List of functions in the ``src/dot`` folder.
 
 ----
 
+Errors
+======
+
 List of functions in the ``src/errors`` folder.
 
 .. module:: src.errors
@@ -65,6 +74,9 @@ List of functions in the ``src/errors`` folder.
 
 ----
 
+Fixation
+========
+
 List of functions in the ``src/fixation`` folder.
 
 .. module:: src.fixation
@@ -73,6 +85,9 @@ List of functions in the ``src/fixation`` folder.
 .. autofunction:: initFixation
 
 ----
+
+Keyboard
+========
 
 List of functions in the ``src/keyboard`` folder.
 
@@ -87,6 +102,9 @@ List of functions in the ``src/keyboard`` folder.
 
 ----
 
+Randomization
+=============
+
 List of functions in the ``src/randomization`` folder.
 
 .. module:: src.randomization
@@ -97,6 +115,9 @@ List of functions in the ``src/randomization`` folder.
 
 ----
 
+Screen
+======
+
 List of functions in the ``src/screen`` folder.
 
 .. module:: src.screen
@@ -105,6 +126,9 @@ List of functions in the ``src/screen`` folder.
 .. autofunction:: standByScreen
 
 ----
+
+Utilities
+=========
 
 List of functions in the ``src/utils`` folder.
 
