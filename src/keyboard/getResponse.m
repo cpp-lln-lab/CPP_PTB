@@ -2,12 +2,13 @@
 
 function responseEvents = getResponse(action, deviceNumber, cfg, getOnlyPress)
     %
-    % Wrapper function to use KbQueue. The queue will be listening to key presses on a keyboard device:
-    % ``cfg.keyboard.responseBox`` or ``cfg.keyboard.keyboard`` are 2 main examples. When no deviceNumber
-    % is set then it will listen to the default device. Check the ``CPP_getResponseDemo`` for a quick
-    % script on how to use it.
+    % Wrapper function to use KbQueue. The queue will be listening to key presses
+    % on a keyboard device:
+    % ``cfg.keyboard.responseBox`` or ``cfg.keyboard.keyboard`` are 2 main examples.
+    % When no ``deviceNumber`` is set then it will listen to the default device.
+    % Check the ``CPP_getResponseDemo`` for a quick script on how to use it.
     %
-    % USAGE:
+    % USAGE::
     %
     %   responseEvents = getResponse(action, deviceNumber, cfg, getOnlyPress)
     %
@@ -19,20 +20,25 @@ function responseEvents = getResponse(action, deviceNumber, cfg, getOnlyPress)
     %                      return when the keys were released (default=true). See the section on
     %                      `Returns` below for more info
     %
-    % :returns: - :responseEvents: returns all the keypresses and return them as a structure with field names that make it easier to save the output of in a BIDS format
+    % :returns:
     %
-    % - ``responseEvents.onset`` this is an absolute value and you should substract the "experiment start time" to get a value relative to when the experiment was started.
+    % - :responseEvents: returns all the keypresses and return them
+    %                    as a structure with field names that make it easier
+    %                    to save the output of in a BIDS format
     %
-    % - ``responseEvents.trial_type = response``
+    %   - ``responseEvents.onset`` this is an absolute value and you should substract
+    %     the "experiment start time" to get a value relative to when the experiment was started.
     %
-    % - ``responseEvents.duration = 0``
+    %   - ``responseEvents.trial_type = response``
     %
-    % - ``responseEvents.keyName`` the name of the key pressed
+    %   - ``responseEvents.duration = 0``
     %
-    % - ``responseEvents(iEvent,1).pressed`` if
+    %   - ``responseEvents.keyName`` the name of the key pressed
     %
-    %  - pressed == 1  --> the key was pressed
-    %  - pressed == 0  --> the key was released
+    %   - ``responseEvents(iEvent,1).pressed`` if
+    %
+    %      - ``pressed == 1``  --> the key was pressed
+    %      - ``pressed == 0``  --> the key was released
     %
     % ---
     %
@@ -42,11 +48,16 @@ function responseEvents = getResponse(action, deviceNumber, cfg, getOnlyPress)
     %
     % - ``start`` to start listening to keypresses
     %
-    % - ``check`` checks all the key presses events since 'start', or since last 'check' or 'flush' (whichever was the most recent)
+    % - ``check`` checks all the key presses events since 'start', or since last 'check'
+    %   or 'flush' (whichever was the most recent)
     %
-    %  - can check for demand to abort if the ``escapeKey`` is listed in the Keys of interest
-    %  - can only check for demands to abort when ``getResponse('check')`` is called so there will be a delay between the key press and the experiment stopping
-    %  - abort errors send specific signals that allow the catch to get them and allows us to "close" nicely
+    %   - can check for demand to abort if the ``escapeKey`` is listed in the Keys of interest
+    %
+    %   - can only check for demands to abort when ``getResponse('check')`` is called
+    %     so there will be a delay between the key press and the experiment stopping
+    %
+    %   - abort errors send specific signals that allow the catch to get them and allows us
+    %     to "close" nicely
     %
     % - ``flush`` empties the queue of events in case you want to restart from a clean queue
     %
