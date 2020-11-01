@@ -1,27 +1,30 @@
 % (C) Copyright 2020 CPP_PTB developers
 
-function outputFiltered = readAndFilterLogfile(columnName, filterBy, varargin)
-    % outputFiltered = readOutputFilter(filterHeader, filterContent, varargin)
+function [outputFiltered] = readAndFilterLogfile(columnName, filterBy, varargin)
     %
-    % It will display in the command window the content of the `output.tsv' filtered by one element
-    % of a target column.
+    % It will display in the command window the content of the `output.tsv` filtered
+    % by one element of a target column. Dependecies: bids_matlab (from CPP_BIDS)
     %
-    % DEPENDENCIES:
-    %  - bids_matlab (from CPP_BIDS)
+    % USAGE:
     %
-    % INPUT:
+    %   [outputFiltered] = readOutputFilter(filterHeader, filterContent, varargin)
     %
-    %  - columnName: string, the header of the column where the content of insterest is stored
-    %    (e.g., for 'trigger' will be 'trial type')
-    %  - filterBy: string, the content of the column you want to filter out. It can take just
-    %    part of the content name (e.g., you want to display the triggers and you have
-    %    'trigger_motion' and 'trigger_static', 'trigger' as input will do)
-    %  - varargin: either cfg (to display the last run output) or the file path as string
+    % :param columnName: the header of the column where the content of insterest is stored
+    %                    (e.g., for 'trigger' will be 'trial type')
+    % :type columnName: string
+    % :param filterBy: the content of the column you want to filter out. It can take just
+    %                  part of the content name (for example, you want to display the triggers and
+    %                  you have ``trigger_motion`` and ``trigger_static``, ``trigger`` as input
+    %                  will do)
+    % :type filterBy: string
+    % :param varargin: either ``cfg`` (to display the last run output) or the file path as string
     %
-    % OUTPUT:
+    % :returns:
     %
-    %  - outputFiltered: dataset with only the specified content, to see it in the command window
-    %    use display(outputFiltered)
+    % - :outputFiltered: dataset with only the specified content to see it in the
+    %                    command window use display(outputFiltered)
+    %
+    %
 
     % Checke if input is cfg or the file path
     if ischar(varargin{1})
