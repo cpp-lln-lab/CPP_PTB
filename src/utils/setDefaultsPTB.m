@@ -51,7 +51,7 @@ function cfg = setDefaultsPTB(cfg)
         fieldsToSet.audio.devIdx = [];
         fieldsToSet.audio.playbackMode = 1;
 
-        fieldsToSet.audio.fs = 44800;
+        fieldsToSet.audio.fs = 44100;
         fieldsToSet.audio.channels = 2;
         fieldsToSet.audio.initVolume = 1;
         fieldsToSet.audio.requestedLatency = 3;
