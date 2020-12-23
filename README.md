@@ -1,5 +1,9 @@
 <!-- lint disable -->
 
+**Documentation**
+
+[![Documentation Status: stable](https://readthedocs.org/projects/cpp-ptb/badge/?version=stable)](https://cpp-ptb.readthedocs.io/en/stable/?badge=stable)
+
 **Cite it**
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4007672.svg)](https://doi.org/10.5281/zenodo.4007672)
