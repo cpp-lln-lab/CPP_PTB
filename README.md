@@ -227,7 +227,7 @@ We use the
 to automatically fix some linting issues.
 
 The code style and quality is also checked during the
-[continuous integration](./.travis.yml).
+[continuous integration](.github/workflows/miss_hit.yml).
 
 ## Unit tests
 
