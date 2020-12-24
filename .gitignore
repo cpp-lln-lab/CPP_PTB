@@ -13,3 +13,7 @@ cpp_ptb
 
 # ignore file created by sphynx
 /docs/build
+
+# exclude node js stuff
+node_modules/*
+package-lock.json

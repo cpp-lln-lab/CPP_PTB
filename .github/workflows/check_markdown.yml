@@ -23,9 +23,9 @@ jobs:
       with:
         node-version: '10'
 
-    - name: Install dependencies and checkmarkdown
+    - name: Install dependencies and check markdown
       run: |
         npm install `cat npm-requirements.txt`
-        remark . --frail
+        npx remark . --frail  
 
 
