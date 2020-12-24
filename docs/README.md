@@ -38,8 +38,8 @@ extensions = [
     'sphinx.ext.autodoc']
 ```
 
-`matlab_src_dir` in `docs/source/conf.py` should have the path (relative to `conf.py`)
-to the folder containing your matlab code:
+`matlab_src_dir` in `docs/source/conf.py` should have the path (relative to
+`conf.py`) to the folder containing your matlab code:
 
 ```python
 matlab_src_dir = os.path.dirname(os.path.abspath('../../src'))
@@ -118,8 +118,8 @@ Add a [`.readthedocs.yml`](../.readthedocs.yml) file in the root of your repo.
 See [HERE](https://docs.readthedocs.io/en/stable/config-file/v2.html) for
 details.
 
-You can then trigger the build of the doc by going to the [read the docs](https://readthedocs.org)
-website.
+You can then trigger the build of the doc by going to the
+[read the docs](https://readthedocs.org) website.
 
 You might need to be added as a maintainer of the doc.
 
@@ -136,4 +136,4 @@ Some are listed
 
 ### Read the docs
 
-  - [qMRLab](https://github.com/qMRLab/qMRLab/wiki/Guideline:-Generating-Documentation)
+-   [qMRLab](https://github.com/qMRLab/qMRLab/wiki/Guideline:-Generating-Documentation)
