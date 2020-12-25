@@ -49,6 +49,7 @@ any other functions of CPP_PTB.
 -   set some defaults
 
 -   set the screen details
+
     -   the window opened takes the whole screen by default
     -   set in debug mode with window transparency if necessary
     -   can skip synch test if you ask for it (nicely)

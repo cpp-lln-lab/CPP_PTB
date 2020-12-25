@@ -1,13 +1,24 @@
 % (C) Copyright 2020 CPP_PTB developers
 
 function fov = drawFieldOfVIew(cfg, centerOnScreen)
-    % drawFieldOfVIew(cfg)
-    %
-    % draws a red rectangle on the screen to materialize the field of view of
+    % 
+    % Draws a red rectangle on the screen to materialize the field of view of
     % the participant. This can be used during debugging to help design the
     % stimuli if you know the FOV of the participant will be obstructed by
     % something
-
+    %
+    % USAGE::
+    %
+    %   fov = drawFieldOfVIew(cfg, centerOnScreen)
+    %
+    % :param cfg: 
+    % :type cfg: structure
+    % :param centerOnScreen: 
+    % :type centerOnScreen: boolean
+    %
+    % :returns: - :fov: (array) PTB rectangle
+    %
+    
     if nargin < 2
         centerOnScreen = true;
     end

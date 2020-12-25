@@ -3,6 +3,8 @@
 *.m~
 *octave-workspace
 
+.vscode/*
+
 # exclude content of logfiles folders
 *.tsv
 *.mat

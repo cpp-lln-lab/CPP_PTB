@@ -110,23 +110,15 @@ cfg.audio.initVolume = 1;
 cfg.audio.repeat = 1;
 cfg.audio.startCue = 0;
 cfg.audio.waitForDevice = 1;
+# Main changes
 
-%% -------------------------------------------------------------------------- %%
-% eyetracker
-cfg.eyeTracker.do = false; % set to true if you are using an eyelink eyetracker
-cfg.eyeTracker.defaultCalibration = true;
-cfg.eyeTracker.backgroundColor = [192 192 192];
-cfg.eyeTracker.fontColor = [0 0 0];
-cfg.eyeTracker.calibrationTargetColor = [0 0 0];
-cfg.eyeTracker.calibrationTargetSize = 1;
-cfg.eyeTracker.calibrationTargetWidth = 0.5;
-cfg.eyeTracker.displayCalResults = 1;
+- update documentation using sphinx and RTD
+- change the API for creating and events.tsv and stim.tsv
+- update jupyter notebooks
 
-%% -------------------------------------------------------------------------- %%
-% cfg.mri
-cfg.bids.mri.repetitionTime
+# Minor changes
 
-%% -------------------------------------------------------------------------- %%
+- refactor and add tests-------------- %%
 								SET BY initPTB
 %% -------------------------------------------------------------------------- %%
 
@@ -200,9 +192,6 @@ The main functions of the toolbox are described
 
 ## Annexes
 
-### Experiment template  {WIP}
-
-Will be moved to a different repository
 
 ### devSandbox (stand-alone)
 
