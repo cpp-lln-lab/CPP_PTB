@@ -5,6 +5,7 @@ function cfg = initPTB(cfg)
     % This will initialize PsychToolBox:
     %
     %   - screen
+    %
     %     - the windon opened takes the whole screen unless
     %       ``cfg.screen.smallWin`` is set to ``true``
     %     - can skip synch test if you ask for it (nicely)
@@ -12,6 +13,7 @@ function cfg = initPTB(cfg)
     %     - gets the flip interval
     %     - computes the pixel per degree of visual angle:
     %       the computation for ppd assumes the windows takes the whole screen width
+    %
     %   - set font details
     %   - keyboard
     %   - hides cursor
