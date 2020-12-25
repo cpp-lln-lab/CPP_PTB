@@ -2,15 +2,17 @@
 
 function checkAbort(cfg, deviceNumber)
     %
-    % Check for experiment abortion from operator. When no deviceNumber is set then it will check
-    % the default device. When an abort key is detected this will set a global variable and throw a
+    % Will quit your experiment if you press the key you have defined in
+    % ``cfg.keyboard.escapeKey``.
+    % When no deviceNumber is set then it will check the default device.
+    % When an abort key is detected this will throw a
     % specific error that can then be catched.
     %
     % USAGE::
     %
     %   checkAbort(cfg, deviceNumber)
     %
-    % Examples::
+    % EXAMPLE::
     %
     %   try
     %

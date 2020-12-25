@@ -15,7 +15,6 @@ List of functions in the ``src`` folder.
 .. autofunction:: getExperimentEnd
 .. autofunction:: getExperimentStart
 .. autofunction:: isOctave
-.. autofunction:: readAndFilterLogfile
 .. autofunction:: waitForTrigger
 .. autofunction:: waitFor
 

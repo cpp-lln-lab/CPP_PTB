@@ -1,16 +1,30 @@
 % (C) Copyright 2020 CPP_PTB developers
 
 function directionAllDots = setDotDirection(positions, cfg, dots, isSignal)
-    % directionAllDots = setDotDirection(positions, cfg, dots, isSignal)
     %
-    % creates some new direction for the dots
+    % Creates some new direction for the dots.
     %
-    % coherent dots have a true value in the vector dots.isSignal and get
-    % assigned a value equals to the one in dots.direction
+    % USAGE::
     %
-    % all the other dots get a random value between 0 and 360.
+    %   directionAllDots = setDotDirection(positions, cfg, dots, isSignal)
     %
-    % all directions are in end expressed between 0 and 360
+    % :param positions:
+    % :type positions:
+    % :param cfg:
+    % :type cfg:
+    % :param dots:
+    % :type dots:
+    % :param isSignal:
+    % :type isSignal:
+    %
+    % :returns: - :directionAllDots:
+    %
+    % Coherent dots have a true value in the vector ``isSignal``
+    % and get assigned a value equals to the one in ``dots.direction``.
+    %
+    % All the other dots get a random value between 0 and 360.
+    %
+    % All directions are in end expressed between 0 and 360.
 
     directionAllDots = dots.direction;
 

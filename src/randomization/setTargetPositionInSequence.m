@@ -1,11 +1,23 @@
 % (C) Copyright 2020 CPP_PTB developers
 
 function chosenPositions = setTargetPositionInSequence(seqLength, nbTarget, forbiddenPos)
-    % chosenPositions = setTargetPositionInSequence(seqLength, nbTarget, forbiddenPos)
     %
-    % For a sequence of length seqLength where we want to insert nbTarget targets, this
-    % will return nbTarget random position in that sequence and make sure that,
+    % For a sequence of length ``seqLength`` where we want to insert ``nbTarget`` targets, this
+    % will return ``nbTarget`` random position in that sequence and make sure that,
     % they are not consecutive positions.
+    %
+    % USAGE::
+    %
+    %   chosenPositions = setTargetPositionInSequence(seqLength, nbTarget, forbiddenPos)
+    %
+    % :param seqLength:
+    % :type seqLength: integer
+    % :param nbTarget:
+    % :type nbTarget: integer
+    % :param forbiddenPos:
+    % :type forbiddenPos:  vector of integers
+    %
+    % :returns: - :chosenPositions:
 
     REPLACE = false;
 
