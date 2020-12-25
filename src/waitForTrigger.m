@@ -1,6 +1,7 @@
 % (C) Copyright 2020 CPP_PTB developers
 
 function [lastTriggerTimeStamp] = waitForTrigger(varargin)
+    %
     % Counts a certain number of triggers coming from the scanner before returning.
     %
     % USAGE:
@@ -38,6 +39,7 @@ function [lastTriggerTimeStamp] = waitForTrigger(varargin)
     % When no deviceNumber is set then it will check the default device: this is
     % probably only useful in debug as you will want to make sure you get the
     % triggers coming from the scanner in a real case scenario.
+    %
 
     [cfg, nbTriggersToWait, deviceNumber, quietMode] = checkInputs(varargin);
 

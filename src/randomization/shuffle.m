@@ -1,8 +1,14 @@
 % (C) Copyright 2020 CPP_PTB developers
 
 function shuffled = shuffle(unshuffled)
-    % in case PTB is not in the path
-    % mostly for unit test
+    %
+    % Is just there to replace the ``Shuffle`` function from PTB in case it is not in the
+    % path. Can be useful for testing or for continuous integration.
+    %
+    %
+    % USAGE::
+    %
+    %   shuffled = shuffle(unshuffled)
     %
 
     try

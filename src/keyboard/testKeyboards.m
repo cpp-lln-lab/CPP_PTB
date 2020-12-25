@@ -1,10 +1,16 @@
 % (C) Copyright 2020 CPP_PTB developers
 
 function testKeyboards(cfg)
-    % testKeyboards(cfg)
     %
     % Checks that the keyboards asked for properly connected.
-    % If no key is pressed on the correct keyboard after the timeOut time this exits with an error.
+    %
+    % If no key is pressed on the correct keyboard after the ``timeOut`` time,
+    % this exits with an error.
+    %
+    % USAGE::
+    %
+    %   testKeyboards(cfg)
+    %
 
     timeOut = 5;
 
