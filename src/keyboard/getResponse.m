@@ -2,10 +2,18 @@
 
 function responseEvents = getResponse(action, deviceNumber, cfg, getOnlyPress)
     %
-    % Wrapper function to use KbQueue. The queue will be listening to key presses
-    % on a keyboard device:
+    % Wrapper function to use ``KbQueue`` which is definitely what you should use
+    % to collect responses. You can easily collect responses while running some
+    % other code at the same time.
+    %
+    % The queue will be listening to key presses on a keyboard device:
     % ``cfg.keyboard.responseBox`` or ``cfg.keyboard.keyboard`` are 2 main examples.
+    %
     % When no ``deviceNumber`` is set then it will listen to the default device.
+    %
+    % You can use it in a way so that it only takes responses from certain keys and
+    % ignore others (like the triggers from an MRI scanner).
+    %
     % Check the ``CPP_getResponseDemo`` for a quick script on how to use it.
     %
     % USAGE::
@@ -44,9 +52,12 @@ function responseEvents = getResponse(action, deviceNumber, cfg, getOnlyPress)
     %
     % ``action`` options:
     %
-    % - ``init`` to initialise the queue
+    % - ``init`` to initialise the queue.
+    %   Initialize the buffer for key presses on a given device (you can also
+    %   specify the keys of interest that should be listened to).
     %
-    % - ``start`` to start listening to keypresses
+    % - ``start`` to start listening to the key presses (carefully insert into your
+    %   script - where do you want to start buffering the responses).
     %
     % - ``check`` checks all the key presses events since 'start', or since last 'check'
     %   or 'flush' (whichever was the most recent)

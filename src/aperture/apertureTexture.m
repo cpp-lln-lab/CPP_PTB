@@ -2,7 +2,10 @@
 % (C) Copyright 2020 CPP_PTB developers
 
 function [cfg, thisEvent] = apertureTexture(action, cfg, thisEvent)
-    % [cfg, thisEvent] = apertureTexture(action, cfg, thisEvent)
+    %
+    % USAGE::
+    %
+    %   [cfg, thisEvent] = apertureTexture(action, cfg, thisEvent)
     %
     %
 

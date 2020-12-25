@@ -2,9 +2,12 @@
 % (C) Copyright 2020 CPP_PTB developers
 
 function smoothRect(win, color, rect, fringe)
-    % SmoothRect(WindowPtr, Color, Rect, Fringe)
     %
     % Draws a filled rect (using the PTB parameters) with a transparent fringe.
+    %
+    % USAGE::
+    %
+    %   SmoothRect(WindowPtr, Color, Rect, Fringe)
     %
 
     alphas = linspace(0, 255, fringe);

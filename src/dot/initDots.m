@@ -1,31 +1,38 @@
 % (C) Copyright 2020 CPP_PTB developers
 
-function [dots] = initDots(cfg, thisEvent)
-    % [dots] = initDots(cfg, thisEvent)
+function dots = initDots(cfg, thisEvent)
     %
-    % % Dot life time in seconds
-    % cfg.dot.lifeTime
-    % % Number of dots
-    % cfg.dot.number
-    % Proportion of coherent dots.
-    % cfg.dot.coherence
+    % Initialize dots for RDK
     %
-    % % Direction (an angle in degrees)
-    % thisEvent.direction
-    % % Speed expressed in pixels per frame
-    % thisEvent.speed
+    % USAGE::
+    %
+    %   dots = initDots(cfg, thisEvent)
+    %
+    % :param cfg:
+    % :type cfg: structure
+    % :param thisEvent:
+    % :type thisEvent: structure
+    %
+    % :returns: - :dots: (structure)
     %
     %
-    % dots.direction
-    % dots.isSignal : signal dots (1) and those are noise dots (0)
-    % dots.directionAllDots
-    % dots.lifeTime : in frames
-    % dots.speeds : [ndots, 2] ; horizontal and vertical speed ; in pixels per frame
-    % dots.speedPixPerFrame
+    % - ``cfg.dot.lifeTime``: dot life time in seconds
+    % - ``cfg.dot.number``: number of dots
+    % - ``cfg.dot.coherence``: proportion of coherent dots.
+    %
+    % - ``thisEvent.direction``: direction (an angle in degrees)
+    % - ``thisEvent.speed``: speed expressed in pixels per frame
+    %
+    % - ``dots.direction``
+    % - ``dots.isSignal``: signal dots (1) and those are noise dots (0)
+    % - ``dots.directionAllDots``
+    % - ``dots.lifeTime``: in frames
+    % - ``dots.speeds``: ``[ndots, 2]`` ; horizontal and vertical speed ; in pixels per frame
+    % - ``dots.speedPixPerFrame``
+    %
 
     dots.direction = thisEvent.direction(1);
 
-    % decide which dots are signal dots (1) and those are noise dots (0)
     dots.isSignal = rand(cfg.dot.number, 1) < cfg.dot.coherence;
 
     dots.speedPixPerFrame = thisEvent.speedPix(1);
@@ -38,7 +45,7 @@ function [dots] = initDots(cfg, thisEvent)
         lifeTime = Inf;
     end
 
-    % set position and directions fo the dots
+    % set position and directions of the dots
     [dots.positions, dots.speeds, dots.time] = ...
         seedDots(dots, cfg, dots.isSignal);
 
