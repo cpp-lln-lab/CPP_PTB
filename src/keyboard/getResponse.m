@@ -1,60 +1,79 @@
 % (C) Copyright 2020 CPP_PTB developers
 
 function responseEvents = getResponse(action, deviceNumber, cfg, getOnlyPress)
-    % responseEvents = getResponse(action, deviceNumber, cfg, getOnlyPress)
     %
-    % Wrapper function to use KbQueue
+    % Wrapper function to use ``KbQueue`` which is definitely what you should use
+    % to collect responses. You can easily collect responses while running some
+    % other code at the same time.
     %
     % The queue will be listening to key presses on a keyboard device:
-    % cfg.keyboard.responseBox or cfg.keyboard.keyboard are 2 main examples.
+    % ``cfg.keyboard.responseBox`` or ``cfg.keyboard.keyboard`` are 2 main examples.
     %
-    % When no deviceNumber is set then it will listen to the default device.
+    % When no ``deviceNumber`` is set then it will listen to the default device.
     %
-    % Check the CPP_getResponseDemo for a quick script on how to use it.
+    % You can use it in a way so that it only takes responses from certain keys and
+    % ignore others (like the triggers from an MRI scanner).
     %
+    % Check the ``CPP_getResponseDemo`` for a quick script on how to use it.
     %
-    % INPUT
+    % USAGE::
     %
-    % - action: Defines what we want the function to do
-    %  - init: to initialise the queue
-    %  - start: to start listening to keypresses
-    %  - check: checks all the key presses events since 'start', or since last
-    %    'check' or 'flush' (whichever was the most recent)
-    %    -- can check for demand to abort if the escapeKey is listed in the
-    %       Keys of interest.
-    %    -- can only check for demands to abort when getResponse('check') is called:
-    %       so there will be a delay between the key press and the experiment stopping
-    %    -- abort errors send specific signals that allow the catch to get
-    %       them and allows us to "close" nicely
-    %  - flush: empties the queue of events in case you want to restart from a clean
-    %    queue
-    %  - stop: stops listening to key presses
+    %   responseEvents = getResponse(action, deviceNumber, cfg, getOnlyPress)
     %
-    % - getOnlyPress: if set to true the function will only return the key presses and
-    %    will not return when the keys were released (default=true)
-    %    See the section on OUTPUT below for more info
+    % :param action: Defines what we want the function to do
+    % :param deviceNumber: device number of the keyboard or trigger box in MRI
+    % :type deviceNumber: integer
+    % :param cfg:
+    % :param getOnlyPress: if set to true the function will only return the key presses and will not
+    %                      return when the keys were released (default=true). See the section on
+    %                      `Returns` below for more info
     %
+    % :returns:
     %
+    % - :responseEvents: returns all the keypresses and return them
+    %                    as a structure with field names that make it easier
+    %                    to save the output of in a BIDS format
     %
-    % OUTPUT
+    %   - ``responseEvents.onset`` this is an absolute value and you should substract
+    %     the "experiment start time" to get a value relative to when the experiment was started.
     %
-    % responseEvents: returns all the keypresses and return them as a structure
-    % with field names that make it easier to save the output of in a BIDS
-    % format
+    %   - ``responseEvents.trial_type = response``
     %
-    % responseEvents.onset : this is an absolute value and you should
-    %   substract the "experiment start time" to get a value relative to when the
-    %   experiment was started.
+    %   - ``responseEvents.duration = 0``
     %
-    % responseEvents.trial_type = 'response';
+    %   - ``responseEvents.keyName`` the name of the key pressed
     %
-    % responseEvents.duration = 0;
+    %   - ``responseEvents(iEvent,1).pressed`` if
     %
-    % responseEvents.keyName : the name of the key pressed
+    %      - ``pressed == 1``  --> the key was pressed
+    %      - ``pressed == 0``  --> the key was released
     %
-    % responseEvents(iEvent,1).pressed : if
-    %   pressed == 1  --> the key was pressed
-    %   pressed == 0  --> the key was released
+    % ---
+    %
+    % ``action`` options:
+    %
+    % - ``init`` to initialise the queue.
+    %   Initialize the buffer for key presses on a given device (you can also
+    %   specify the keys of interest that should be listened to).
+    %
+    % - ``start`` to start listening to the key presses (carefully insert into your
+    %   script - where do you want to start buffering the responses).
+    %
+    % - ``check`` checks all the key presses events since 'start', or since last 'check'
+    %   or 'flush' (whichever was the most recent)
+    %
+    %   - can check for demand to abort if the ``escapeKey`` is listed in the Keys of interest
+    %
+    %   - can only check for demands to abort when ``getResponse('check')`` is called
+    %     so there will be a delay between the key press and the experiment stopping
+    %
+    %   - abort errors send specific signals that allow the catch to get them and allows us
+    %     to "close" nicely
+    %
+    % - ``flush`` empties the queue of events in case you want to restart from a clean queue
+    %
+    % - ``stop`` stops listening to key presses
+    %
 
     if nargin < 2 || isempty(deviceNumber)
         deviceNumber = -1;

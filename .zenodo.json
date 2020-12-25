@@ -1,0 +1,29 @@
+{
+  "title": "CPP_PTB",
+  "description": "A lightweight toolbox to facilitate setting up experiments with PsychToolBox.",
+  "creators": [
+    {
+      "affiliation": "Université Catholique de Louvain",
+      "name": "Gau, Rémi",
+      "orcid": "0000-0002-1535-9767"
+    },
+    {
+      "affiliation": "Université Catholique de Louvain",
+      "name": "Barilari, Marco",
+      "orcid": "0000-0002-3313-3120"
+    },
+    {
+      "affiliation": "Université Catholique de Louvain",
+      "name": "Battal, Ceren",
+      "orcid": "0000-0002-9844-7630"
+    }
+  ],
+  "keywords": [
+    "PsychToolBox",
+    "neuroscience",
+    "MATLAB",
+    "Octave"
+  ],
+  "license": "MIT license",
+  "upload_type": "software"
+}

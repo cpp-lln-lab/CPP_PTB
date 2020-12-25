@@ -1,7 +1,21 @@
 % (C) Copyright 2020 CPP_PTB developers
 
 function drawFixation(cfg)
-    % Define the parameters of the fixation cross in `cfg` and `expParameters`
+    %
+    % Define the parameters of the fixation cross in `cfg`.
+    %
+    % USAGE::
+    %
+    %  drawFixation(cfg)
+    %
+    % There are 3 types of fixations:
+    %
+    % - ``cross``
+    % - ``dot``
+    % - ``bestFixation``
+    %
+    % See initFixation for more info.
+    %
 
     switch cfg.fixation.type
         case 'cross'
@@ -34,10 +48,6 @@ function drawFixation(cfg)
                               cfg.screen.winRect));
 
         case 'bestFixation'
-
-            % Code adapted from:
-            % What is the best fixation target?
-            % DOI 10.1016/j.visres.2012.10.012
 
             % Draw gap around fixation of 20% the size
             Screen('FillOval', ...

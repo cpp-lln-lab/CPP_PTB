@@ -1,26 +1,35 @@
 % (C) Copyright 2020 CPP_PTB developers
 
-function [cfg] = initPTB(cfg)
-    % [cfg] = initPTB(cfg)
+function cfg = initPTB(cfg)
     %
-    % This will initialize PsychToolBox
-    % - screen
-    % - the windon opened takes the whole screen unless
-    % cfg.screen.smallWin is set to true
-    % - debug mode : skips synch test and warnings
-    % - window transparency enabled by cfg.testingTranspScreen set to true
-    % - gets the flip interval
-    % - computes the pixel per degree of visual angle:
-    % the computation for ppd assumes the windows takes the whole screenDistance
-    % - set font details
-    % - keyboard
-    % - hides cursor
-    % - sound
+    % This will initialize PsychToolBox:
     %
-    % See the Readme for more details on the content of cfg
+    %   - screen
+    %
+    %     - the windon opened takes the whole screen unless
+    %       ``cfg.screen.smallWin`` is set to ``true``
+    %     - can skip synch test if you ask for it (nicely)
+    %     - window transparency enabled by ``cfg.testingTranspScreen`` set to ``true``
+    %     - gets the flip interval
+    %     - computes the pixel per degree of visual angle:
+    %       the computation for ppd assumes the windows takes the whole screen width
+    %
+    %   - set font details
+    %   - keyboard
+    %   - hides cursor
+    %   - sound
+    %
+    % USAGE::
+    %
+    %   cfg = initPTB(cfg)
+    %
+    % See the set up page of the documentation for more details on the content of cfg
     %
     %
-    %
+
+    % for octave: make sure information is not presented on prompt one screen at
+    % a time
+    more off;
 
     checkPtbVersion();
 

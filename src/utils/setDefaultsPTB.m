@@ -1,9 +1,17 @@
 % (C) Copyright 2020 CPP_PTB developers
 
 function cfg = setDefaultsPTB(cfg)
-    % cfg = setDefaultsPTB(cfg)
-    %
     % Set some defaults values if none have been set before.
+    %
+    % USAGE::
+    %
+    %   cfg = setDefaultsPTB(cfg)
+    %
+    % :param cfg:
+    % :type cfg: structure
+    %
+    % :returns: - :cfg: (structure)
+    %
 
     if nargin < 1
         cfg = struct;
@@ -51,7 +59,7 @@ function cfg = setDefaultsPTB(cfg)
         fieldsToSet.audio.devIdx = [];
         fieldsToSet.audio.playbackMode = 1;
 
-        fieldsToSet.audio.fs = 44800;
+        fieldsToSet.audio.fs = 44100;
         fieldsToSet.audio.channels = 2;
         fieldsToSet.audio.initVolume = 1;
         fieldsToSet.audio.requestedLatency = 3;
@@ -83,6 +91,7 @@ function cfg = setDefaultsPTB(cfg)
 
     if isfield(cfg, 'testingDevice') && strcmpi(cfg.testingDevice, 'mri')
         fieldsToSet.bids.mri.RepetitionTime = [];
+        fieldsToSet.pacedByTriggers.do = false;
     end
 
     cfg = setDefaults(cfg, fieldsToSet);

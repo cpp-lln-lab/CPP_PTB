@@ -1,21 +1,25 @@
 % (C) Copyright 2020 CPP_PTB developers
 
 function cfg = initFixation(cfg)
-    % cfg = initFixation(cfg)
     %
-    % prepare details for fixation "cross"
+    % Prepare the details for fixation "cross".
+    %
+    % USAGE::
+    %
+    %   cfg = initFixation(cfg)
     %
     % the fixation has a width defined by
-    % cfg.fixation.width : in degrees of visual
+    % ``cfg.fixation.width`` : in degrees of visual
     %
     % The horizontal and vertical offset (in degrees of visual) with respect to the center of the
-    % screen is defined by
-    % cfg.fixation.xDisplacement
-    % cfg.fixation.yDisplacement
+    % screen is defined by:
     %
-    % for cfg.fixation.type == 'bestFixation'
-    % Code adapted from:
-    % "What is the best fixation target?"
+    % - cfg.fixation.xDisplacement
+    % - cfg.fixation.yDisplacement
+    %
+    % For cfg.fixation.type == 'bestFixation'
+    %
+    % Code adapted from: "What is the best fixation target?"
     % DOI 10.1016/j.visres.2012.10.012
     %
     % Contains a fixation cross and a dot
@@ -38,10 +42,6 @@ function cfg = initFixation(cfg)
     switch cfg.fixation.type
 
         case 'bestFixation'
-
-            % Code adapted from:
-            % What is the best fixation target?
-            % DOI 10.1016/j.visres.2012.10.012
 
             cfg.fixation.outerOval = [ ...
                                       cfg.screen.center(1) - cfg.fixation.widthPix / 2, ...

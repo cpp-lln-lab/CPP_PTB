@@ -1,11 +1,22 @@
 % (C) Copyright 2020 CPP_PTB developers
 
 function shuffledRepeats = repeatShuffleConditions(baseConditionVector, nbRepeats)
-    % shuffledRepeats = repeatShuffleConditions(baseConditionVector, nbRepeats)
     %
-    % given baseConditionVector, a vector of conditions (coded as numbers), this will
-    % create a longer vector made of nbRepeats of this base vector and make sure
-    % that a given condition is not repeated one after the other
+    % Given ``baseConditionVector``, a vector of conditions (coded as numbers),
+    % this will create a longer vector made of ``nbRepeats`` of this base vector
+    % and make sure that a given condition is not repeated one after the other.
+    %
+    % USAGE::
+    %
+    %   shuffledRepeats = repeatShuffleConditions(baseConditionVector, nbRepeats)
+    %
+    % :param baseConditionVector:
+    % :type baseConditionVector: vector
+    % :param nbRepeats:
+    % :type nbRepeats: integer
+    %
+    % :returns: - :shuffledRepeats: (vector) (dimension)
+    %
 
     % TODO
     % - needs some input checks to make sure that there is actually a solution
