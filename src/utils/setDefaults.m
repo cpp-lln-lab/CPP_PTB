@@ -8,12 +8,12 @@ function structure = setDefaults(structure, fieldsToSet)
     %
     %   structure = setDefaults(structure, fieldsToSet)
     %
-    % :param structure: 
+    % :param structure:
     % :type structure: structure
-    % :param fieldsToSet: 
-    % :type fieldsToSet: structure      
+    % :param fieldsToSet:
+    % :type fieldsToSet: structure
     %
-    % :returns: - :structure: (structure)  
+    % :returns: - :structure: (structure)
 
     fieldsToSet = orderfields(fieldsToSet);
 

@@ -9,11 +9,11 @@ function structure = degToPix(fieldName, structure, cfg)
     %
     %   structure = degToPix(fieldName, structure, cfg)
     %
-    % :param fieldName: 
+    % :param fieldName:
     % :type fieldName: string
-    % :param structure: 
+    % :param structure:
     % :type structure: structure
-    % :param cfg: 
+    % :param cfg:
     % :type cfg: structure
     %
     % :returns: - :structure: (structure)

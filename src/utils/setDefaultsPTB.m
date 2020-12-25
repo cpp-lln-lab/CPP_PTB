@@ -7,11 +7,11 @@ function cfg = setDefaultsPTB(cfg)
     %
     %   cfg = setDefaultsPTB(cfg)
     %
-    % :param cfg: 
+    % :param cfg:
     % :type cfg: structure
     %
     % :returns: - :cfg: (structure)
-    %    
+    %
 
     if nargin < 1
         cfg = struct;

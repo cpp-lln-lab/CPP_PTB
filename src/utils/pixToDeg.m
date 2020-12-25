@@ -1,7 +1,7 @@
 % (C) Copyright 2020 CPP_PTB developers
 
 function structure = pixToDeg(fieldName, structure, cfg)
-    % 
+    %
     % For a given field value in pixel in the structure,
     % this computes its value in degrees of viual angle using the pixel per
     % degree value of the cfg structure and returns a structure with an
@@ -12,11 +12,11 @@ function structure = pixToDeg(fieldName, structure, cfg)
     %
     %   structure = pixToDeg(fieldName, structure, cfg)
     %
-    % :param fieldName: 
+    % :param fieldName:
     % :type fieldName: string
-    % :param structure: 
+    % :param structure:
     % :type structure: structure
-    % :param cfg: 
+    % :param cfg:
     % :type cfg: structure
     %
     % :returns: - :structure: (structure)
