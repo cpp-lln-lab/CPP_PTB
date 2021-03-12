@@ -11,8 +11,6 @@ addpath(fullfile(pwd, '..'));
 clear;
 clc;
 
-% use the default set up (use main keyboard and use the ESCAPE key to abort)
-
 
 %% initialize PTB % This can def be improved by using other CPP_PTB functions%
 
