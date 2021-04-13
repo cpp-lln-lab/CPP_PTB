@@ -50,7 +50,13 @@ clc;
 
     % The frame rate at which you want to present your video
     video.frame.rate = 29.97;
-
+    
+    % Where to present the video on your screen %
+    % enter the x y coordinates of the top left corner of where you want your video presented e.g. [10 5] %
+    % consider that PTB uses a coordinates system where [0 0] is the top left corner of your screen %
+    % leave empty for center
+    video.corner = [];
+    
     % Time bw videos in s
     video.isi = 1;
 
