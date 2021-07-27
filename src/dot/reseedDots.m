@@ -35,7 +35,7 @@ function dots = reseedDots(dots, cfg)
 
         dots.positions(N, :) = positions;
         dots.speeds(N, :) = speeds;
-        dots.time(N, 1) = time;
+        dots.time(N, 1) = 0;
 
     end
 
