@@ -1,14 +1,24 @@
 % (C) Copyright 2020 CPP_PTB developers
 
 function FOV = computeFOV(cfg)
-    % FOV = computeFOV(cfg)
     %
-    % computes the number of degrees of visual angle in the whole field of view
+    % Computes the number of degrees of visual angle in the whole field of view.
     %
-    % δ = 2 arctan ( d / 2D )
+    % USAGE::
     %
-    %  δ is the angular diameter, and d is the actual diameter of the object,
-    %  and D is the distance to the object.
+    %   FOV = computeFOV(cfg)
+    %
+    % :param cfg:
+    % :type cfg: structure
+    %
+    % :returns: - :FOV: (scalar)
+    %
+    % ``delta = 2 arctan ( d / 2D )``
+    %
+    %   - delta is the angular diameter
+    %   - d is the actual diameter of the object
+    %   - D is the distance to the object
+    %
     %  The result obtained is in radians.
     %
 

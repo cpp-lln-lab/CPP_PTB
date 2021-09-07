@@ -1,7 +1,13 @@
 % (C) Copyright 2020 CPP_PTB developers
 
 function checkPtbVersion()
+    %
     % Checks that the right dependencies are installed.
+    %
+    % USAGE::
+    %
+    %   checkPtbVersion()
+    %
 
     printCreditsCppPtb();
 

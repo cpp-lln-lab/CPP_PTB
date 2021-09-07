@@ -17,6 +17,7 @@ their use and their reuse (#DontRepeatYourself)
    :caption: Contents:
 
    installation
+   set_up
    function_description
 
 Indices and tables

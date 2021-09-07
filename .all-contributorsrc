@@ -52,6 +52,17 @@
         "userTesting",
         "ideas"
       ]
+    },
+    {
+      "login": "fedefalag",
+      "name": "Fede F.",
+      "avatar_url": "https://avatars.githubusercontent.com/u/50373329?v=4",
+      "profile": "https://github.com/fedefalag",
+      "contributions": [
+        "ideas",
+        "code",
+        "content"
+      ]
     }
   ],
   "contributorsPerLine": 7,

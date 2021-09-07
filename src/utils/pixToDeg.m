@@ -1,7 +1,6 @@
 % (C) Copyright 2020 CPP_PTB developers
 
 function structure = pixToDeg(fieldName, structure, cfg)
-    % structure = pixToDeg(fieldName, structure, cfg)
     %
     % For a given field value in pixel in the structure,
     % this computes its value in degrees of viual angle using the pixel per
@@ -9,16 +8,25 @@ function structure = pixToDeg(fieldName, structure, cfg)
     % additional field holding that new value and with a fieldname with any
     % 'Pix' suffix removed and replaced with the 'DegVA' suffix .
     %
-    % USAGE:
+    % USAGE::
     %
-    % fixation.widthPix = 20;
-    % cfg.screen.ppd = 10;
+    %   structure = pixToDeg(fieldName, structure, cfg)
     %
-    % fixation = degToPix('widthPix', fixation, cfg);
+    % :param fieldName:
+    % :type fieldName: string
+    % :param structure:
+    % :type structure: structure
+    % :param cfg:
+    % :type cfg: structure
     %
-    % Returns:
+    % :returns: - :structure: (structure)
     %
-    % fixation.widthDegVA = 2;
+    % EXAMPLE::
+    %
+    %   fixation.widthPix = 20;
+    %   cfg.screen.ppd = 10;
+    %
+    %   fixation = degToPix('widthPix', fixation, cfg);
     %
 
     pix = getfield(structure, fieldName); %#ok<GFLD>

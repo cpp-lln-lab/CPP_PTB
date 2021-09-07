@@ -2,13 +2,17 @@
 % (C) Copyright 2020 CPP_PTB developers
 
 function setUpRand()
-    % setUpRand()
     %
-    % Resets the seed of the random number generator. Will "adapt" depending on the matlab/octave
-    % version.
-    % It is of great importance to do this before anything else!
+    % Resets the seed of the random number generator.
+    % Will "adapt" depending on the Matlab / Otave version.
     %
-    % For an alternative from PTB see `ClockRandSeed`
+    % USAGE::
+    %
+    %   setUpRand()
+    %
+    % For an alternative from PTB see ``ClockRandSeed()``
+    %
+    %
 
     seed = sum(100 * clock);
 

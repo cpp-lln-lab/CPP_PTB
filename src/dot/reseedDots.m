@@ -31,11 +31,11 @@ function dots = reseedDots(dots, cfg)
 
         isSignal = dots.isSignal(N);
 
-        [positions, speeds, time] = seedDots(dots, cfg, isSignal);
+        [positions, speeds] = seedDots(dots, cfg, isSignal);
 
         dots.positions(N, :) = positions;
         dots.speeds(N, :) = speeds;
-        dots.time(N, 1) = time;
+        dots.time(N, 1) = 0;
 
     end
 
