@@ -1,11 +1,11 @@
-name: MOxUnit
+name: tests and coverage
 
 on:
   push:
     branches:
       - master
   pull_request:
-    branches: '*'
+    branches: ['*']
 
 jobs:
   build:
