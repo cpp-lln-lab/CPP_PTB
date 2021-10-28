@@ -1,3 +1,6 @@
+%
+% (C) Copyright 2020 CPP_PTB developers
+
 addpath(fullfile(pwd, '..'));
 
 clear;

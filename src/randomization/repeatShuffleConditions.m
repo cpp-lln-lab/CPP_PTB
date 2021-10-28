@@ -1,5 +1,3 @@
-% (C) Copyright 2020 CPP_PTB developers
-
 function shuffledRepeats = repeatShuffleConditions(baseConditionVector, nbRepeats)
     %
     % Given ``baseConditionVector``, a vector of conditions (coded as numbers),
@@ -17,6 +15,7 @@ function shuffledRepeats = repeatShuffleConditions(baseConditionVector, nbRepeat
     %
     % :returns: - :shuffledRepeats: (vector) (dimension)
     %
+    % (C) Copyright 2020 CPP_PTB developers
 
     % TODO
     % - needs some input checks to make sure that there is actually a solution

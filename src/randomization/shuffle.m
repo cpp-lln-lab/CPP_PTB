@@ -1,5 +1,3 @@
-% (C) Copyright 2020 CPP_PTB developers
-
 function shuffled = shuffle(unshuffled)
     %
     % Is just there to replace the ``Shuffle`` function from PTB in case it is not in the
@@ -10,6 +8,7 @@ function shuffled = shuffle(unshuffled)
     %
     %   shuffled = shuffle(unshuffled)
     %
+    % (C) Copyright 2020 CPP_PTB developers
 
     try
         shuffled = Shuffle(unshuffled);

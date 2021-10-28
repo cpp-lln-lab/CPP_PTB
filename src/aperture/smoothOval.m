@@ -1,6 +1,3 @@
-% (C) Copyright 2010-2020 Sam Schwarzkopf
-% (C) Copyright 2020 CPP_PTB developers
-
 function smoothOval(win, color, rect, fringe)
     % Draws a filled oval (using the PTB parameters) with a transparent fringe.
     %
@@ -9,6 +6,8 @@ function smoothOval(win, color, rect, fringe)
     %   SmoothOval(WindowPtr, Color, Rect, Fringe)
     %
     %
+    % (C) Copyright 2010-2020 Sam Schwarzkopf
+    % (C) Copyright 2020 CPP_PTB developers
 
     alphas = linspace(0, 255, fringe);
 

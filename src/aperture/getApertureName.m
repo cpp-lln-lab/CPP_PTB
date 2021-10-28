@@ -1,7 +1,6 @@
-% (C) Copyright 2020 CPP_PTB developers
-
 function apertureName = getApertureName(cfg, apertures, iApert)
-
+    %
+    % (C) Copyright 2020 CPP_PTB developers
     switch cfg.aperture
         case 'Bar'
             apertureName = sprintf('bar_angle-%i_position-%02.2f.tif', ...

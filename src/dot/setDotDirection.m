@@ -1,5 +1,3 @@
-% (C) Copyright 2020 CPP_PTB developers
-
 function directionAllDots = setDotDirection(positions, cfg, dots, isSignal)
     %
     % Creates some new direction for the dots.
@@ -25,6 +23,8 @@ function directionAllDots = setDotDirection(positions, cfg, dots, isSignal)
     % All the other dots get a random value between 0 and 360.
     %
     % All directions are in end expressed between 0 and 360.
+    %
+    % (C) Copyright 2020 CPP_PTB developers
 
     directionAllDots = dots.direction;
 

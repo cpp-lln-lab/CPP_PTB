@@ -1,5 +1,3 @@
-% (C) Copyright 2020 CPP_PTB developers
-
 function structure = degToPix(fieldName, structure, cfg)
     % For a given field value in degrees of visual angle in the structure, this computes its value
     % in pixel using the pixel per degree value of the cfg structure and returns a structure with
@@ -26,6 +24,7 @@ function structure = degToPix(fieldName, structure, cfg)
     %   fixation = degToPix('width', fixation, cfg);
     %
     %
+    % (C) Copyright 2020 CPP_PTB developers
 
     deg = getfield(structure, fieldName); %#ok<GFLD>
 

@@ -1,5 +1,3 @@
-% (C) Copyright 2020 CPP_PTB developers
-
 function drawFixation(cfg)
     %
     % Define the parameters of the fixation cross in `cfg`.
@@ -16,6 +14,7 @@ function drawFixation(cfg)
     %
     % See initFixation for more info.
     %
+    % (C) Copyright 2020 CPP_PTB developers
 
     switch cfg.fixation.type
         case 'cross'

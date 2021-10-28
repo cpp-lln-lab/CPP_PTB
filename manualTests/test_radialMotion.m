@@ -1,3 +1,6 @@
+%
+% (C) Copyright 2020 CPP_PTB developers
+
 % ensure that dot density contrast is not too low when we kill dots often enough
 
 % There is an actual official unit test in the tests folder so this here is more

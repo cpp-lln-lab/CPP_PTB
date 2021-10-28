@@ -1,5 +1,3 @@
-% (C) Copyright 2020 CPP_PTB developers
-
 function waitFor(cfg, timeToWait)
     %
     % Will either wait for a certain amount of time or a number of triggers.
@@ -8,6 +6,7 @@ function waitFor(cfg, timeToWait)
     %
     %   waitFor(cfg, timeToWait)
     %
+    % (C) Copyright 2020 CPP_PTB developers
     if cfg.pacedByTriggers.do
         waitForTrigger( ...
                        cfg, ...

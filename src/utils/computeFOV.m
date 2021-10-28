@@ -1,5 +1,3 @@
-% (C) Copyright 2020 CPP_PTB developers
-
 function FOV = computeFOV(cfg)
     %
     % Computes the number of degrees of visual angle in the whole field of view.
@@ -21,6 +19,7 @@ function FOV = computeFOV(cfg)
     %
     %  The result obtained is in radians.
     %
+    % (C) Copyright 2020 CPP_PTB developers
 
     if cfg.screen.monitorDistance < 2
         errorDistanceToScreen(cfg);

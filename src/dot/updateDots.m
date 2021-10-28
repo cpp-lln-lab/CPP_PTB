@@ -1,6 +1,6 @@
-% (C) Copyright 2020 CPP_PTB developers
-
 function [dots] = updateDots(dots, cfg)
+    %
+    % (C) Copyright 2020 CPP_PTB developers
 
     % Move the selected dots
     dots.positions = dots.positions + dots.speeds;

@@ -1,5 +1,3 @@
-% (C) Copyright 2020 CPP_PTB developers
-
 function relativeDensityContrast = dotMotionSimulation(cfg, thisEvent, nbEvents, doPlot)
     %
     % To simulate where the dots are more dense on the screen
@@ -9,6 +7,7 @@ function relativeDensityContrast = dotMotionSimulation(cfg, thisEvent, nbEvents,
     %
     %   relativeDensityContrast = dotMotionSimulation(cfg, thisEvent, nbEvents, doPlot)
     %
+    % (C) Copyright 2020 CPP_PTB developers
 
     close all;
 

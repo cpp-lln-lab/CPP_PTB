@@ -1,5 +1,3 @@
-% (C) Copyright 2020 CPP_PTB developers
-
 function structure = pixToDeg(fieldName, structure, cfg)
     %
     % For a given field value in pixel in the structure,
@@ -28,6 +26,7 @@ function structure = pixToDeg(fieldName, structure, cfg)
     %
     %   fixation = degToPix('widthPix', fixation, cfg);
     %
+    % (C) Copyright 2020 CPP_PTB developers
 
     pix = getfield(structure, fieldName); %#ok<GFLD>
 

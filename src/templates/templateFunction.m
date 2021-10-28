@@ -1,5 +1,3 @@
-% (C) Copyright 2020 CPP_PTB developers
-
 function [argout1, argout2] = templateFunction(argin1, argin2, argin3)
     %
     % Short description of what the function does goes here.
@@ -22,6 +20,8 @@ function [argout1, argout2] = templateFunction(argin1, argin2, argin3)
     %
     %    - item 1
     %    - item 2
+    %
+    % (C) Copyright 2020 CPP_PTB developers
 
     % The code goes below
 

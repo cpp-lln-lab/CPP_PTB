@@ -1,5 +1,3 @@
-% (C) Copyright 2020 CPP_PTB developers
-
 function responseEvents = getResponse(action, deviceNumber, cfg, getOnlyPress)
     %
     % Wrapper function to use ``KbQueue`` which is definitely what you should use
@@ -74,6 +72,7 @@ function responseEvents = getResponse(action, deviceNumber, cfg, getOnlyPress)
     %
     % - ``stop`` stops listening to key presses
     %
+    % (C) Copyright 2020 CPP_PTB developers
 
     if nargin < 2 || isempty(deviceNumber)
         deviceNumber = -1;

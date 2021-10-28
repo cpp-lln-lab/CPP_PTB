@@ -1,6 +1,6 @@
-% (C) Copyright 2020 CPP_PTB developers
-
 function errorDistanceToScreen(cfg)
+    %
+    % (C) Copyright 2020 CPP_PTB developers
 
     errorStruct.message = sprintf([
                                    'Distance to monitor seems too small.\n' ...

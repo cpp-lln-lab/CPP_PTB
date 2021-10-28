@@ -1,5 +1,3 @@
-% (C) Copyright 2020 CPP_PTB developers
-
 function chosenPositions = setTargetPositionInSequence(seqLength, nbTarget, forbiddenPos)
     %
     % For a sequence of length ``seqLength`` where we want to insert ``nbTarget`` targets, this
@@ -18,6 +16,8 @@ function chosenPositions = setTargetPositionInSequence(seqLength, nbTarget, forb
     % :type forbiddenPos:  vector of integers
     %
     % :returns: - :chosenPositions:
+    %
+    % (C) Copyright 2020 CPP_PTB developers
 
     REPLACE = false;
 

@@ -1,5 +1,3 @@
-% (C) Copyright 2020 CPP_PTB developers
-
 function standByScreen(cfg)
     %
     % It shows a basic one-page instruction stored in `cfg.task.instruction` and wait
@@ -9,6 +7,7 @@ function standByScreen(cfg)
     %
     %  standByScreen(cfg)
     %
+    % (C) Copyright 2020 CPP_PTB developers
 
     Screen('FillRect', cfg.screen.win, cfg.color.background, cfg.screen.winRect);
 
