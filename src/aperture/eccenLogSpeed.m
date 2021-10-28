@@ -1,11 +1,10 @@
-% (C) Copyright 2020 CPP_PTB developers
-
 function [cfg] = eccenLogSpeed(cfg, time)
     %
     % Vary CurrScale so that expansion speed is log over eccentricity
     % cf. Tootell 1997; Swisher 2007; Warnking 2002 etc
     %
     %
+    % (C) Copyright 2020 CPP_PTB developers
 
     TR = cfg.mri.repetitionTime;
     cycleDuration = TR * cfg.volsPerCycle;

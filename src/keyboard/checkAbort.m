@@ -1,5 +1,3 @@
-% (C) Copyright 2020 CPP_PTB developers
-
 function checkAbort(cfg, deviceNumber)
     %
     % Will quit your experiment if you press the key you have defined in
@@ -34,6 +32,7 @@ function checkAbort(cfg, deviceNumber)
     %       end
     %   end
     %
+    % (C) Copyright 2020 CPP_PTB developers
 
     if nargin < 1 || isempty(cfg)
         error('I need at least one input.');

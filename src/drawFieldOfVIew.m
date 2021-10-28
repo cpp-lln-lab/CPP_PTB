@@ -1,5 +1,3 @@
-% (C) Copyright 2020 CPP_PTB developers
-
 function fov = drawFieldOfVIew(cfg, centerOnScreen)
     %
     % Draws a red rectangle on the screen to materialize the field of view of
@@ -18,6 +16,7 @@ function fov = drawFieldOfVIew(cfg, centerOnScreen)
     %
     % :returns: - :fov: (array) PTB rectangle
     %
+    % (C) Copyright 2020 CPP_PTB developers
 
     if nargin < 2
         centerOnScreen = true;

@@ -1,5 +1,3 @@
-% (C) Copyright 2020 CPP_PTB developers
-
 function testKeyboards(cfg)
     %
     % Checks that the keyboards asked for properly connected.
@@ -11,6 +9,7 @@ function testKeyboards(cfg)
     %
     %   testKeyboards(cfg)
     %
+    % (C) Copyright 2020 CPP_PTB developers
 
     timeOut = 5;
 

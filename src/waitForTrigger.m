@@ -1,5 +1,3 @@
-% (C) Copyright 2020 CPP_PTB developers
-
 function [lastTriggerTimeStamp] = waitForTrigger(varargin)
     %
     % Counts a certain number of triggers coming from the scanner before returning.
@@ -40,6 +38,7 @@ function [lastTriggerTimeStamp] = waitForTrigger(varargin)
     % probably only useful in debug as you will want to make sure you get the
     % triggers coming from the scanner in a real case scenario.
     %
+    % (C) Copyright 2020 CPP_PTB developers
 
     [cfg, nbTriggersToWait, deviceNumber, quietMode] = checkInputs(varargin);
 

@@ -1,5 +1,3 @@
-% (C) Copyright 2020 CPP_PTB developers
-
 function cfg = setDefaultsPTB(cfg)
     % Set some defaults values if none have been set before.
     %
@@ -12,6 +10,7 @@ function cfg = setDefaultsPTB(cfg)
     %
     % :returns: - :cfg: (structure)
     %
+    % (C) Copyright 2020 CPP_PTB developers
 
     if nargin < 1
         cfg = struct;

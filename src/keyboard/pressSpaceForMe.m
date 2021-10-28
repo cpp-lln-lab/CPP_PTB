@@ -1,5 +1,3 @@
-% (C) Copyright 2020 CPP_PTB developers
-
 function pressSpaceForMe()
     %
     % Use that to stop your script and only restart when the space bar is pressed.
@@ -10,6 +8,7 @@ function pressSpaceForMe()
     %
     %   pressSpaceForMe()
     %
+    % (C) Copyright 2020 CPP_PTB developers
 
     fprintf('\nPress space to continue.\n');
 

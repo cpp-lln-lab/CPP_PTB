@@ -1,5 +1,3 @@
-% (C) Copyright 2020 CPP_PTB developers
-
 function structure = setDefaults(structure, fieldsToSet)
     %
     % Recursively loop through the fields of a structure and sets a value if they don't exist.
@@ -14,6 +12,8 @@ function structure = setDefaults(structure, fieldsToSet)
     % :type fieldsToSet: structure
     %
     % :returns: - :structure: (structure)
+    %
+    % (C) Copyright 2020 CPP_PTB developers
 
     fieldsToSet = orderfields(fieldsToSet);
 

@@ -1,5 +1,3 @@
-% (C) Copyright 2020 CPP_PTB developers
-
 function cleanUp()
     %
     % A wrapper function to close all windows, ports, show mouse cursor, close keyboard queues
@@ -9,6 +7,7 @@ function cleanUp()
     %
     %   cleanUp()
     %
+    % (C) Copyright 2020 CPP_PTB developers
 
     WaitSecs(0.5);
 

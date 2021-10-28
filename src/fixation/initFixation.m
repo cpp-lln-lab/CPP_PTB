@@ -1,5 +1,3 @@
-% (C) Copyright 2020 CPP_PTB developers
-
 function cfg = initFixation(cfg)
     %
     % Prepare the details for fixation "cross".
@@ -24,6 +22,7 @@ function cfg = initFixation(cfg)
     %
     % Contains a fixation cross and a dot
     %
+    % (C) Copyright 2020 CPP_PTB developers
 
     % Convert some values from degrees to pixels
     cfg.fixation = degToPix('width', cfg.fixation, cfg);

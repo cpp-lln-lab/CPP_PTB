@@ -47,7 +47,7 @@ cfg.keyboard
                                           % (that of the experimenter)
     cfg.keyboard.responseBox = [];      % device index used by the participants
     cfg.keyboard.responseKey = {};      % list the keys that PTB should "listen" to when
-                                          % using KbQueue to collect responses ; 
+                                          % using KbQueue to collect responses ;
                                           % if empty PTB will listen to all key presses
     cfg.keyboard.escapeKey = 'ESCAPE';  % key to press to escape
 

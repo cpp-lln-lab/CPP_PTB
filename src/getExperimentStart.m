@@ -1,5 +1,3 @@
-% (C) Copyright 2020 CPP_PTB developers
-
 function cfg = getExperimentStart(cfg)
     %
     % Wrapper function that will show a fixation cross and collect a start timestamp
@@ -9,6 +7,7 @@ function cfg = getExperimentStart(cfg)
     %
     %   cfg = getExperimentStart(cfg)
     %
+    % (C) Copyright 2020 CPP_PTB developers
 
     drawFixation(cfg);
     vbl = Screen('Flip', cfg.screen.win);

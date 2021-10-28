@@ -1,5 +1,3 @@
-% (C) Copyright 2020 CPP_PTB developers
-
 function dots = initDots(cfg, thisEvent)
     %
     % Initialize dots for RDK
@@ -30,6 +28,7 @@ function dots = initDots(cfg, thisEvent)
     % - ``dots.speeds``: ``[ndots, 2]`` ; horizontal and vertical speed ; in pixels per frame
     % - ``dots.speedPixPerFrame``
     %
+    % (C) Copyright 2020 CPP_PTB developers
 
     dots.direction = thisEvent.direction(1);
 

@@ -1,6 +1,6 @@
-% (C) Copyright 2020 CPP_PTB developers
-
 function dots = reseedDots(dots, cfg)
+    %
+    % (C) Copyright 2020 CPP_PTB developers
 
     fixationWidthPix = 0;
     if isfield(cfg.fixation, 'widthPix')

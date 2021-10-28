@@ -76,7 +76,7 @@ Add it as a submodule in the repo you are working on.
    :linenos:
 
    cd fullpath_to_directory_where_to_install
-   
+
    # use git to download the code
    git submodule add https://github.com/cpp-lln-lab/CPP_PTB.git
 

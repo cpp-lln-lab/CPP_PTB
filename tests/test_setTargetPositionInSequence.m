@@ -1,4 +1,6 @@
 function test_suite = test_setTargetPositionInSequence %#ok<*STOUT>
+    %
+    % (C) Copyright 2020 CPP_PTB developers
 
     initEnv();
 
@@ -7,6 +9,7 @@ function test_suite = test_setTargetPositionInSequence %#ok<*STOUT>
     catch % no problem; early Matlab versions can use initTestSuite fine
     end
     initTestSuite;
+
 end
 
 function test_setTargetPositionInSequenceBasic()

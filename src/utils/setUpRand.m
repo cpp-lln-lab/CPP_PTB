@@ -1,6 +1,3 @@
-% (C) Copyright 2010-2020 Sam Schwarzkopf
-% (C) Copyright 2020 CPP_PTB developers
-
 function setUpRand()
     %
     % Resets the seed of the random number generator.
@@ -13,6 +10,8 @@ function setUpRand()
     % For an alternative from PTB see ``ClockRandSeed()``
     %
     %
+    % (C) Copyright 2010-2020 Sam Schwarzkopf
+    % (C) Copyright 2020 CPP_PTB developers
 
     seed = sum(100 * clock);
 
