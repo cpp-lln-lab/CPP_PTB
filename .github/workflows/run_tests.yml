@@ -16,7 +16,7 @@ jobs:
         submodules: true
         fetch-depth: 1
     - name: MOxUnit Action
-      uses: joergbrech/moxunit-action@v1.2
+      uses: joergbrech/moxunit-action@v1.2.0
       with:
         tests: tests
         src: src
