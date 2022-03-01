@@ -42,7 +42,7 @@ function cfg = initPTB(cfg)
     % check for OpenGL compatibility, abort otherwise:
     AssertOpenGL;
 
-    cfg = setDefaultsPTB(cfg);
+    cfg = checkCppPtbCfg(cfg);
 
     Screen('Preference', 'SkipSyncTests', cfg.skipSyncTests);
 

@@ -1,4 +1,4 @@
-function cfg = checkDefaultsPTB(cfg)
+function cfg = checkCppPtbCfg(cfg)
     % Set some defaults values if none have been set before.
     %
     % USAGE::
@@ -19,35 +19,10 @@ function cfg = checkDefaultsPTB(cfg)
     fieldsToSet = cppPtbDefaults('all');
 
     if isfield(cfg, 'audio') && cfg.audio.do
-
-        fieldsToSet.audio.devIdx = [];
-        fieldsToSet.audio.playbackMode = 1;
-
-        fieldsToSet.audio.fs = 44100;
-        fieldsToSet.audio.channels = 2;
-        fieldsToSet.audio.initVolume = 1;
-        fieldsToSet.audio.requestedLatency = 3;
-
-        % playing parameters
-        % sound repetition
-        fieldsToSet.audio.repeat = 1;
-
-        % Start immediately (0 = immediately)
-        fieldsToSet.audio.startCue = 0;
-
-        % Should we wait for the device to really start?
-        fieldsToSet.audio.waitForDevice = 1;
-
-        fieldsToSet.audio.pushSize  = fieldsToSet.audio.fs * 0.010; % ! push N ms only
-
-        fieldsToSet.audio.requestOffsetTime = 1; % offset 1 sec
-        fieldsToSet.audio.reqsSampleOffset = fieldsToSet.audio.requestOffsetTime * ...
-                                             fieldsToSet.audio.fs;
-
+      fieldsToSet.audio = cppPtbDefaults('audio');
     end
 
     if isfield(cfg, 'eyeTracker') && cfg.eyeTracker.do
-        % Calibration environment
         fieldsToSet.eyeTracker = cppPtbDefaults('eyeTracker');
     end
 
@@ -69,7 +44,7 @@ function cfg = checkDefaultsPTB(cfg)
     elseif cfg.skipSyncTests == true
         cfg.skipSyncTests = 1;
     end
-    
+
     if ~ismember(cfg.fixation.type, {'cross', 'dot', 'bestFixation'})
       error('cfg.fixation.type must be one of ''cross'', ''dot'', ''bestFixation''');
     end
