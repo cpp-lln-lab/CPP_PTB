@@ -1,10 +1,6 @@
 Function description
 ********************
 
-The functions of our pipeline
-
-----
-
 List of functions in the ``src`` folder.
 
 .. module:: src
@@ -19,6 +15,18 @@ List of functions in the ``src`` folder.
 .. autofunction:: waitFor
 
 ----
+
+Defaults
+========
+
+List of functions in the ``src/defaults`` folder.
+
+.. module:: src.defaults
+
+.. autofunction:: checkCppPtbCfg
+.. autofunction:: cppPtbDefaults
+.. autofunction:: setDefaultFields
+
 
 Aperture
 ========
@@ -142,6 +150,4 @@ List of functions in the ``src/utils`` folder.
 .. autofunction:: pixToDeg
 .. autofunction:: printCreditsCppPtb
 .. autofunction:: printScreen
-.. autofunction:: setDefaults
-.. autofunction:: setDefaultsPTB
 .. autofunction:: setUpRand
