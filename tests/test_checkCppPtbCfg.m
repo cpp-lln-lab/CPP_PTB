@@ -1,4 +1,4 @@
-function test_suite = test_setDefaultsPTB %#ok<*STOUT>
+function test_suite = test_checkCppPtbCfg %#ok<*STOUT>
     %
     % (C) Copyright 2020 CPP_PTB developers
     try % assignment of 'localfunctions' is necessary in Matlab >= 2016
@@ -8,10 +8,10 @@ function test_suite = test_setDefaultsPTB %#ok<*STOUT>
     initTestSuite;
 end
 
-function test_setDefaultsPtb_basic()
+function test_checkCppPtbCfg_basic()
 
     % set up
-    cfg = checkDefaultsPTB();
+    cfg = checkCppPtbCfg();
 
     % test data
     expectedCfg = cppPtbDefaults('all');
@@ -26,7 +26,7 @@ end
 function test_setDefaultsPtb_no_debug()
 
     % set up
-    cfg = checkDefaultsPTB();
+    cfg = checkCppPtbCfg();
 
     % test data
     expectedCfg = cppPtbDefaults('all');
@@ -42,7 +42,7 @@ function test_setDefaultsPtb_overwrite()
 
     % set up
     cfg.screen.monitorWidth = 36;
-    cfg = checkDefaultsPTB(cfg);
+    cfg = checkCppPtbCfg(cfg);
 
     % test data
     expectedCfg = cppPtbDefaults('all');
@@ -59,7 +59,7 @@ function test_setDefaultsPtb_audio()
 
     % set up
     cfg.audio.do = 1;
-    cfg = checkDefaultsPTB(cfg);
+    cfg = checkCppPtbCfg(cfg);
 
     % test data
     expectedCfg = cppPtbDefaults('all');
@@ -92,7 +92,7 @@ function test_setDefaultsPtb_mri()
 
     % set up
     cfg.testingDevice = 'mri';
-    cfg = checkDefaultsPTB(cfg);
+    cfg = checkCppPtbCfg(cfg);
 
     % test data
     expectedCfg = cppPtbDefaults('all');
