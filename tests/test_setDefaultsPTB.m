@@ -11,10 +11,10 @@ end
 function test_setDefaultsPtb_basic()
 
     % set up
-    cfg = setDefaultsPTB;
+    cfg = checkDefaultsPTB();
 
     % test data
-    expectedCfg = defaultCFG();
+    expectedCfg = cppPtbDefaults('all');
     expectedCfg.eyeTracker.do = false;
     expectedCfg.skipSyncTests = 2;
 
@@ -26,10 +26,10 @@ end
 function test_setDefaultsPtb_no_debug()
 
     % set up
-    cfg = setDefaultsPTB;
+    cfg = checkDefaultsPTB();
 
     % test data
-    expectedCfg = defaultCFG();
+    expectedCfg = cppPtbDefaults('all');
     expectedCfg.eyeTracker.do = false;
     expectedCfg.skipSyncTests = 2;
 
@@ -42,10 +42,10 @@ function test_setDefaultsPtb_overwrite()
 
     % set up
     cfg.screen.monitorWidth = 36;
-    cfg = setDefaultsPTB(cfg);
+    cfg = checkDefaultsPTB(cfg);
 
     % test data
-    expectedCfg = defaultCFG();
+    expectedCfg = cppPtbDefaults('all');
     expectedCfg.screen.monitorWidth = 36;
     expectedCfg.eyeTracker.do = false;
     expectedCfg.skipSyncTests = 2;
@@ -59,10 +59,10 @@ function test_setDefaultsPtb_audio()
 
     % set up
     cfg.audio.do = 1;
-    cfg = setDefaultsPTB(cfg);
+    cfg = checkDefaultsPTB(cfg);
 
     % test data
-    expectedCfg = defaultCFG();
+    expectedCfg = cppPtbDefaults('all');
     expectedCfg.audio = struct('do', true, ...
                                'devIdx', [], ...
                                'playbackMode', 1, ...
@@ -92,10 +92,10 @@ function test_setDefaultsPtb_mri()
 
     % set up
     cfg.testingDevice = 'mri';
-    cfg = setDefaultsPTB(cfg);
+    cfg = checkDefaultsPTB(cfg);
 
     % test data
-    expectedCfg = defaultCFG();
+    expectedCfg = cppPtbDefaults('all');
     expectedCfg.testingDevice = 'mri';
     expectedCfg.bids.mri.RepetitionTime = [];
     expectedCfg.pacedByTriggers.do = false;
