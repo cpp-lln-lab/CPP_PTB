@@ -19,7 +19,7 @@ function cfg = checkCppPtbCfg(cfg)
     fieldsToSet = cppPtbDefaults('all');
 
     if isfield(cfg, 'audio') && cfg.audio.do
-      fieldsToSet.audio = cppPtbDefaults('audio');
+        fieldsToSet.audio = cppPtbDefaults('audio');
     end
 
     if isfield(cfg, 'eyeTracker') && cfg.eyeTracker.do
@@ -46,7 +46,7 @@ function cfg = checkCppPtbCfg(cfg)
     end
 
     if ~ismember(cfg.fixation.type, {'cross', 'dot', 'bestFixation'})
-      error('cfg.fixation.type must be one of ''cross'', ''dot'', ''bestFixation''');
+        error('cfg.fixation.type must be one of ''cross'', ''dot'', ''bestFixation''');
     end
 
     % sort fields alphabetically
