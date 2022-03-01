@@ -16,42 +16,7 @@ function cfg = setDefaultsPTB(cfg)
         cfg = struct;
     end
 
-    %% list the default values
-    fieldsToSet.testingDevice = 'pc';
-
-    fieldsToSet.skipSyncTests = 0;
-
-    % keyboard defaults
-    fieldsToSet.keyboard.keyboard = [];
-    fieldsToSet.keyboard.responseBox = [];
-    fieldsToSet.keyboard.responseKey = {};
-    fieldsToSet.keyboard.escapeKey = 'ESCAPE';
-
-    fieldsToSet.debug.do = true;
-    fieldsToSet.debug.transpWin = true;
-    fieldsToSet.debug.smallWin = true;
-
-    fieldsToSet.color.background = [0 0 0];
-
-    % text defaults
-    fieldsToSet.text.font = 'Courier New';
-    fieldsToSet.text.size = 18;
-    fieldsToSet.text.style = 1;
-
-    fieldsToSet.screen.monitorWidth = 42;
-    fieldsToSet.screen.monitorDistance = 134;
-    fieldsToSet.screen.resolution = {[], [], []};
-
-    % fixation cross or dot
-    fieldsToSet.fixation.type = 'cross';
-    fieldsToSet.fixation.xDisplacement = 0;
-    fieldsToSet.fixation.yDisplacement = 0;
-    fieldsToSet.fixation.color = [255 255 255];
-    fieldsToSet.fixation.width = 1; % degrees of visual angle
-    fieldsToSet.fixation.lineWidthPix = 5;
-
-    % define visual apperture field
-    fieldsToSet.aperture.type = 'none';
+    fieldsToSet = defaultCFG();
 
     if isfield(cfg, 'audio') && cfg.audio.do
 
@@ -72,6 +37,12 @@ function cfg = setDefaultsPTB(cfg)
 
         % Should we wait for the device to really start?
         fieldsToSet.audio.waitForDevice = 1;
+
+        fieldsToSet.audio.pushSize  = fieldsToSet.audio.fs * 0.010; % ! push N ms only
+
+        fieldsToSet.audio.requestOffsetTime = 1; % offset 1 sec
+        fieldsToSet.audio.reqsSampleOffset = fieldsToSet.audio.requestOffsetTime * ...
+                                             fieldsToSet.audio.fs;
 
     end
 
@@ -94,6 +65,18 @@ function cfg = setDefaultsPTB(cfg)
     end
 
     cfg = setDefaults(cfg, fieldsToSet);
+
+    %% checks
+    if cfg.debug.do
+        cfg.eyeTracker.do = false;
+        cfg.skipSyncTests = 2;
+    end
+
+    if cfg.skipSyncTests == false
+        cfg.skipSyncTests = 0;
+    elseif cfg.skipSyncTests == true
+        cfg.skipSyncTests = 1;
+    end
 
     % sort fields alphabetically
     cfg = orderfields(cfg);
