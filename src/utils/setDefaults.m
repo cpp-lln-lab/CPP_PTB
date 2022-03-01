@@ -8,6 +8,7 @@ function structure = setDefaults(structure, fieldsToSet)
     %
     % :param structure:
     % :type structure: structure
+    %
     % :param fieldsToSet:
     % :type fieldsToSet: structure
     %

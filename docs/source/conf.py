@@ -21,7 +21,7 @@ copyright = '2020, CPP_PTB developers'
 author = 'CPP_PTB developers'
 
 # The full version, including alpha/beta/rc tags
-release = 'v1.2.1'
+release = 'v1.2.1dev'
 
 
 # -- General configuration ---------------------------------------------------

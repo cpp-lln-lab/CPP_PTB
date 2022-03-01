@@ -26,10 +26,6 @@ function cfg = initPTB(cfg)
     %
     % (C) Copyright 2020 CPP_PTB developers
 
-    % for octave: make sure information is not presented on prompt one screen at
-    % a time
-    more off;
-
     checkPtbVersion();
 
     cfg = getOsInfo(cfg);
@@ -102,9 +98,8 @@ function cfg = initPTB(cfg)
     Priority(MaxPriority(cfg.screen.win));
 
     %% Warm up some functions
-    % Do dummy calls to GetSecs, WaitSecs, KbCheck to make sure
-    % they are loaded and ready when we need them - without delays
-    % in the wrong moment:
+    % Do dummy calls to GetSecs, WaitSecs, KbCheck
+    % to make sure they are loaded and ready when we need them
     KbCheck;
     WaitSecs(0.1);
     GetSecs;
@@ -113,22 +108,24 @@ end
 
 function cfg = getOsInfo(cfg)
 
-    cfg.software.os = computer();
-    cfg.software.name = 'Psychtoolbox';
-    cfg.software.RRID = 'SCR_002881';
+    cfg.StimulusPresentation.OperatingSystem = computer();
+
+    cfg.StimulusPresentation.SoftwareRRID = 'SCR_002881';
+    cfg.StimulusPresentation.Code = '';
 
     [~, versionStruc] = PsychtoolboxVersion;
 
-    cfg.software.version = sprintf('%i.%i.%i', ...
-                                   versionStruc.major, ...
-                                   versionStruc.minor, ...
-                                   versionStruc.point);
+    cfg.StimulusPresentation.SoftwareVersion = sprintf('%i.%i.%i', ...
+                                                       versionStruc.major, ...
+                                                       versionStruc.minor, ...
+                                                       versionStruc.point);
 
     runsOn = 'Matlab - ';
     if IsOctave
         runsOn = 'Octave - ';
     end
-    cfg.software.runsOn = [runsOn version()];
+    runsOn = [runsOn version()];
+    cfg.StimulusPresentation.SoftwareName = ['Psychtoolbox on ' runsOn];
 
 end
 
@@ -138,7 +135,6 @@ function initDebug(cfg)
 
     if cfg.debug.do
 
-        cfg.skipSyncTests = 2;
         Screen('Preference', 'SkipSyncTests', cfg.skipSyncTests);
         Screen('Preference', 'Verbosity', 0);
         Screen('Preference', 'SuppressAllWarnings', 1);
@@ -182,8 +178,7 @@ function cfg = initAudio(cfg)
             audioDev = PsychPortAudio('GetDevices');
 
             % find output device to use
-            idx = find( ...
-                       audioDev.NrInputChannels == cfg.audio.inputChannels && ...
+            idx = find(audioDev.NrInputChannels == cfg.audio.inputChannels && ...
                        audioDev.NrOutputChannels == cfg.audio.channels && ...
                        ~cellfun(@isempty, regexp({audioDev.HostAudioAPIName}, ...
                                                  cfg.audio.deviceName)));
@@ -206,11 +201,6 @@ function cfg = initAudio(cfg)
         % set initial PTB volume for safety (participants can adjust this manually
         % at the begining of the experiment)
         PsychPortAudio('Volume', cfg.audio.pahandle, cfg.audio.initVolume);
-
-        cfg.audio.pushSize  = cfg.audio.fs * 0.010; % ! push N ms only
-
-        cfg.audio.requestOffsetTime = 1; % offset 1 sec
-        cfg.audio.reqsSampleOffset = cfg.audio.requestOffsetTime * cfg.audio.fs;
 
     end
 end
