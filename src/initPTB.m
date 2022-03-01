@@ -108,22 +108,24 @@ end
 
 function cfg = getOsInfo(cfg)
 
-    cfg.software.os = computer();
-    cfg.software.name = 'Psychtoolbox';
-    cfg.software.RRID = 'SCR_002881';
+    cfg.StimulusPresentation.OperatingSystem = computer();
+
+    cfg.StimulusPresentation.SoftwareRRID = 'SCR_002881';
+    cfg.StimulusPresentation.Code = '';
 
     [~, versionStruc] = PsychtoolboxVersion;
 
-    cfg.software.version = sprintf('%i.%i.%i', ...
-                                   versionStruc.major, ...
-                                   versionStruc.minor, ...
-                                   versionStruc.point);
+    cfg.StimulusPresentation.SoftwareVersion = sprintf('%i.%i.%i', ...
+                                                       versionStruc.major, ...
+                                                       versionStruc.minor, ...
+                                                       versionStruc.point);
 
     runsOn = 'Matlab - ';
     if IsOctave
         runsOn = 'Octave - ';
     end
-    cfg.software.runsOn = [runsOn version()];
+    runsOn = [runsOn version()];
+    cfg.StimulusPresentation.SoftwareName = ['Psychtoolbox on ' runsOn];
 
 end
 
