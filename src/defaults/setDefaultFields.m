@@ -1,10 +1,10 @@
-function structure = setDefaults(structure, fieldsToSet)
+function structure = setDefaultFields(structure, fieldsToSet)
     %
     % Recursively loop through the fields of a structure and sets a value if they don't exist.
     %
     % USAGE::
     %
-    %   structure = setDefaults(structure, fieldsToSet)
+    %   structure = setDefaultFields(structure, fieldsToSet)
     %
     % :param structure:
     % :type structure: structure
@@ -27,7 +27,7 @@ function structure = setDefaults(structure, fieldsToSet)
         if isfield(structure, names{i}) && isstruct(structure.(names{i}))
 
             structure.(names{i}) = ...
-                setDefaults( ...
+                setDefaultFields( ...
                             structure.(names{i}), ...
                             fieldsToSet.(names{i}) ...
                            );

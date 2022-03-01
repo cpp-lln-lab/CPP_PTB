@@ -1,9 +1,9 @@
-function cfg = setDefaultsPTB(cfg)
+function cfg = checkDefaultsPTB(cfg)
     % Set some defaults values if none have been set before.
     %
     % USAGE::
     %
-    %   cfg = setDefaultsPTB(cfg)
+    %   cfg = checkDefaultsPTB(cfg)
     %
     % :param cfg:
     % :type cfg: structure
@@ -16,7 +16,7 @@ function cfg = setDefaultsPTB(cfg)
         cfg = struct;
     end
 
-    fieldsToSet = defaultCFG();
+    fieldsToSet = cppPtbDefaults('all');
 
     if isfield(cfg, 'audio') && cfg.audio.do
 
@@ -47,16 +47,8 @@ function cfg = setDefaultsPTB(cfg)
     end
 
     if isfield(cfg, 'eyeTracker') && cfg.eyeTracker.do
-
         % Calibration environment
-        fieldsToSet.eyeTracker.defaultCalibration = true;
-        fieldsToSet.eyeTracker.backgroundColor = [192 192 192];
-        fieldsToSet.eyeTracker.fontColor = [0 0 0];
-        fieldsToSet.eyeTracker.calibrationTargetColor = [0 0 0];
-        fieldsToSet.eyeTracker.calibrationTargetSize = 1;
-        fieldsToSet.eyeTracker.calibrationTargetWidth = 0.5;
-        fieldsToSet.eyeTracker.displayCalResults = 1;
-
+        fieldsToSet.eyeTracker = cppPtbDefaults('eyeTracker');
     end
 
     if isfield(cfg, 'testingDevice') && strcmpi(cfg.testingDevice, 'mri')
@@ -64,7 +56,7 @@ function cfg = setDefaultsPTB(cfg)
         fieldsToSet.pacedByTriggers.do = false;
     end
 
-    cfg = setDefaults(cfg, fieldsToSet);
+    cfg = setDefaultFields(cfg, fieldsToSet);
 
     %% checks
     if cfg.debug.do
@@ -76,6 +68,10 @@ function cfg = setDefaultsPTB(cfg)
         cfg.skipSyncTests = 0;
     elseif cfg.skipSyncTests == true
         cfg.skipSyncTests = 1;
+    end
+    
+    if ~ismember(cfg.fixation.type, {'cross', 'dot', 'bestFixation'})
+      error('cfg.fixation.type must be one of ''cross'', ''dot'', ''bestFixation''');
     end
 
     % sort fields alphabetically
