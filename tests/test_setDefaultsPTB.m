@@ -8,44 +8,62 @@ function test_suite = test_setDefaultsPTB %#ok<*STOUT>
     initTestSuite;
 end
 
-function test_setDefaultsPtbBasic()
+function test_setDefaultsPtb_basic()
 
     % set up
     cfg = setDefaultsPTB;
 
     % test data
-    expectedCfg = returnExpectedCFG();
+    expectedCfg = defaultCFG();
+    expectedCfg.eyeTracker.do = false;
+    expectedCfg.skipSyncTests = 2;
 
     % test
     assertEqual(expectedCfg, cfg);
 
 end
 
-function test_setDefaultsPtbOverwrite()
+function test_setDefaultsPtb_no_debug()
+
+    % set up
+    cfg = setDefaultsPTB;
+
+    % test data
+    expectedCfg = defaultCFG();
+    expectedCfg.eyeTracker.do = false;
+    expectedCfg.skipSyncTests = 2;
+
+    % test
+    assertEqual(expectedCfg, cfg);
+
+end
+
+function test_setDefaultsPtb_overwrite()
 
     % set up
     cfg.screen.monitorWidth = 36;
     cfg = setDefaultsPTB(cfg);
 
     % test data
-    expectedCfg = returnExpectedCFG();
+    expectedCfg = defaultCFG();
     expectedCfg.screen.monitorWidth = 36;
+    expectedCfg.eyeTracker.do = false;
+    expectedCfg.skipSyncTests = 2;
 
     % test
     assertEqual(expectedCfg, cfg);
 
 end
 
-function test_setDefaultsPtbAudio()
+function test_setDefaultsPtb_audio()
 
     % set up
     cfg.audio.do = 1;
     cfg = setDefaultsPTB(cfg);
 
     % test data
-    expectedCfg = returnExpectedCFG();
-    expectedCfg.audio = struct( ...
-                               'do', true, ...
+    expectedCfg = defaultCFG();
+    expectedCfg.audio = struct('do', true, ...
                                'devIdx', [], ...
                                'playbackMode', 1, ...
                                'fs', 44100, ...
@@ -56,57 +74,35 @@ function test_setDefaultsPtbAudio()
                                'startCue', 0, ...
                                'waitForDevice', 1);
 
+    expectedCfg.audio.pushSize  = expectedCfg.audio.fs * 0.010;
+
+    expectedCfg.audio.requestOffsetTime = 1;
+    expectedCfg.audio.reqsSampleOffset = expectedCfg.audio.requestOffsetTime * ...
+                                         expectedCfg.audio.fs;
+
+    expectedCfg.eyeTracker.do = false;
+    expectedCfg.skipSyncTests = 2;
+
     % test
     assertEqual(expectedCfg, cfg);
 
 end
 
-function test_setDefaultsPtbMRI()
+function test_setDefaultsPtb_mri()
 
     % set up
     cfg.testingDevice = 'mri';
     cfg = setDefaultsPTB(cfg);
 
     % test data
-    expectedCfg = returnExpectedCFG();
+    expectedCfg = defaultCFG();
     expectedCfg.testingDevice = 'mri';
     expectedCfg.bids.mri.RepetitionTime = [];
     expectedCfg.pacedByTriggers.do = false;
+    expectedCfg.eyeTracker.do = false;
+    expectedCfg.skipSyncTests = 2;
 
     % test
     assertEqual(expectedCfg, cfg);
-
-end
-
-function expectedCFG = returnExpectedCFG()
-
-    expectedCFG =  struct( ...
-                          'testingDevice', 'pc', ...
-                          'debug',  struct('do', true, 'transpWin',  true, 'smallWin',  true), ...
-                          'color',  struct( ...
-                                           'background', [0 0 0]), ...
-                          'text', struct('font', 'Courier New', 'size', 18, 'style', 1));
-
-    expectedCFG.screen.monitorWidth = 42;
-    expectedCFG.screen.monitorDistance = 134;
-    expectedCFG.screen.resolution = {[], [], []};
-
-    expectedCFG.skipSyncTests = 0;
-
-    % fixation cross or dot
-    expectedCFG.fixation.type = 'cross';
-    expectedCFG.fixation.xDisplacement = 0;
-    expectedCFG.fixation.yDisplacement = 0;
-    expectedCFG.fixation.color = [255 255 255];
-    expectedCFG.fixation.width = 1;
-    expectedCFG.fixation.lineWidthPix = 5;
-
-    % define visual apperture field
-    expectedCFG.aperture.type = 'none';
-
-    expectedCFG.keyboard.keyboard = [];
-    expectedCFG.keyboard.responseBox = [];
-    expectedCFG.keyboard.responseKey = {};
-    expectedCFG.keyboard.escapeKey = 'ESCAPE';
 
 end
