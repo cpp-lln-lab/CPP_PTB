@@ -83,6 +83,34 @@ function value = cppPtbDefaults(type)
             value.calibrationTargetWidth = 0.5;
             value.displayCalResults = 1;
 
+        case 'color'
+
+            value.white = [255 255 255];
+            value.black = [0 0 0];
+            value.grey = mean([value.black; value.white]);
+            value.red = [255 0 0];
+            value.blue = [0 255 0];
+            value.green = [0 0 255];
+
+        case 'dot'
+            % Speed in visual angles / second
+            value.speed = 15;
+            % Coherence Level (0-1)
+            value.coherence = 1;
+            % Number of dots per visual angle square.
+            value.density = 1;
+            % Dot life time in seconds
+            value.lifeTime = 0.4;
+            % proportion of dots killed per frame
+            value.proportionKilledPerFrame = 0;
+            % Dot Size (dot width) in visual angles.
+            value.size = 0.2;
+            % Static dots should change position at each event or not
+            value.staticReSeed = true;
+
+        otherwise
+            error('unknown action');
+
     end
 
 end
