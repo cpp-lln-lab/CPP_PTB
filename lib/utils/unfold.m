@@ -155,6 +155,7 @@ end
 
 function printValueToScreen(input)
   base_string = ' =\t';
+  msg = '';
   if ischar(input)
     msg = sprintf('%s''%s''  ', base_string, input);
   elseif isinteger(input) || islogical(input)
