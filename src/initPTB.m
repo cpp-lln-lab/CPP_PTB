@@ -47,10 +47,11 @@ function cfg = initPTB(cfg)
     Screen('Preference', 'SkipSyncTests', cfg.skipSyncTests);
 
     initKeyboard;
-    initDebug(cfg);
 
     % Mouse
     HideCursor;
+
+    initDebug(cfg);
 
     %% Audio
     cfg = initAudio(cfg);
@@ -146,6 +147,8 @@ function initDebug(cfg)
         fprintf('\n\n\n\n');
 
         testKeyboards(cfg);
+
+        ShowCursor();
 
     end
 
