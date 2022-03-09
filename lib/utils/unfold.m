@@ -147,6 +147,13 @@ function unfold(input, varargin)
 
   end
 
+  callStack = dbstack();
+  if numel(callStack) > 1 && ~strcmp(callStack(2).name, mfilename())
+    fprintf('\n');
+  elseif numel(callStack) == 1 && strcmp(callStack(1).name, mfilename())
+    fprintf('\n');
+  end
+
 end
 
 function printKeyToScreen(input)

@@ -13,7 +13,8 @@ function value = cppPtbDefaults(type)
         case 'all'
             value =  struct('testingDevice', 'pc', ...
                             'color',  struct('background', [0 0 0]), ...
-                            'skipSyncTests', 0);
+                            'skipSyncTests', 0, ...
+                            'verbose', 1);
 
             value.aperture.type = 'none';
 

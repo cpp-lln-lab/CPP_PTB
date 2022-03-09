@@ -36,7 +36,7 @@ function cfg = checkCppPtbCfg(cfg)
     %% checks
     if cfg.debug.do
         cfg.eyeTracker.do = false;
-        cfg.skipSyncTests = 2;
+        cfg.skipSyncTests = 1;
     end
 
     if cfg.skipSyncTests == false

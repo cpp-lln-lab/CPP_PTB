@@ -16,7 +16,7 @@ function test_checkCppPtbCfg_basic()
     % test data
     expectedCfg = cppPtbDefaults('all');
     expectedCfg.eyeTracker.do = false;
-    expectedCfg.skipSyncTests = 2;
+    expectedCfg.skipSyncTests = 1;
 
     % test
     assertEqual(expectedCfg, cfg);
@@ -26,12 +26,13 @@ end
 function test_setDefaultsPtb_no_debug()
 
     % set up
-    cfg = checkCppPtbCfg();
+    cfg.debug.do = false;
+    cfg = checkCppPtbCfg(cfg);
 
     % test data
     expectedCfg = cppPtbDefaults('all');
-    expectedCfg.eyeTracker.do = false;
-    expectedCfg.skipSyncTests = 2;
+    expectedCfg.debug.do = 0;
+    expectedCfg.skipSyncTests = 0;
 
     % test
     assertEqual(expectedCfg, cfg);
@@ -48,7 +49,7 @@ function test_setDefaultsPtb_overwrite()
     expectedCfg = cppPtbDefaults('all');
     expectedCfg.screen.monitorWidth = 36;
     expectedCfg.eyeTracker.do = false;
-    expectedCfg.skipSyncTests = 2;
+    expectedCfg.skipSyncTests = 1;
 
     % test
     assertEqual(expectedCfg, cfg);
@@ -81,7 +82,7 @@ function test_setDefaultsPtb_audio()
                                          expectedCfg.audio.fs;
 
     expectedCfg.eyeTracker.do = false;
-    expectedCfg.skipSyncTests = 2;
+    expectedCfg.skipSyncTests = 1;
 
     % test
     assertEqual(expectedCfg, cfg);
@@ -100,7 +101,7 @@ function test_setDefaultsPtb_mri()
     expectedCfg.bids.mri.RepetitionTime = [];
     expectedCfg.pacedByTriggers.do = false;
     expectedCfg.eyeTracker.do = false;
-    expectedCfg.skipSyncTests = 2;
+    expectedCfg.skipSyncTests = 1;
 
     % test
     assertEqual(expectedCfg, cfg);
