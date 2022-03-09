@@ -79,9 +79,7 @@ function responseEvents = getResponse(action, deviceNumber, cfg, getOnlyPress)
     end
 
     if nargin < 3
-        cfg = struct( ...
-                     'keyboard', struct('responseKey', {}) ...
-                    );
+        cfg = struct('keyboard', struct('responseKey', {}));
     end
 
     if nargin < 4
@@ -221,7 +219,7 @@ function talkToMe(action, cfg)
 
     end
 
-    if verbose > 2
+    if verbose > 1
         fprintf('\n %s\n\n', msg);
 
     end

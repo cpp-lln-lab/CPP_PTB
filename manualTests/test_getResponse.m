@@ -1,7 +1,7 @@
 %
 % (C) Copyright 2020 CPP_PTB developers
 
-addpath(fullfile(pwd, '..'));
+addpath(genpath(fullfile(pwd, '..', 'src')));
 
 clear;
 clc;
@@ -10,7 +10,8 @@ if IsOctave
     more off; % for a better display experience
 end
 
-cfg = setDefaultsPTB;
+cfg = cppPtbDefaults('all');
+cfg.verbose = 2;
 
 %% Set parameters
 
@@ -42,13 +43,13 @@ try
 
     getResponse('init', deviceNumber, cfg);
 
-    getResponse('start', deviceNumber);
+    getResponse('start', deviceNumber, cfg);
 
     WaitSecs(5);
 
     responseEvents = getResponse('check', deviceNumber, cfg, getOnlyPress);
 
-    getResponse('release', deviceNumber);
+    getResponse('release', deviceNumber, cfg);
 
     % if some keys were pressed and that we are supposed to listen to only some
     % keys, we make sure that only those keys were listened to
