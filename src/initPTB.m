@@ -135,7 +135,7 @@ function initDebug(cfg)
 
     if cfg.debug.do
 
-        Screen('Preference', 'SkipSyncTests', cfg.skipSyncTests);
+        Screen('Preference', 'SkipSyncTests', 1);
         Screen('Preference', 'Verbosity', 0);
         Screen('Preference', 'SuppressAllWarnings', 1);
 
