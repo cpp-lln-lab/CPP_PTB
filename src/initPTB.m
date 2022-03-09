@@ -137,6 +137,9 @@ function initDebug(cfg)
 
         Screen('Preference', 'SkipSyncTests', cfg.skipSyncTests);
         Screen('Preference', 'Verbosity', 0);
+        % disable all visual alerts
+        Screen('Preference','VisualDebugLevel', 0);
+        % disable all output to the command window
         Screen('Preference', 'SuppressAllWarnings', 1);
 
         fprintf('\n\n\n\n');
