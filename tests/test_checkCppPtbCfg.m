@@ -18,7 +18,7 @@ function test_checkCppPtbCfg_basic()
     expected.eyeTracker.do = false;
     expected.debug.do = 1;
     expected.skipSyncTests = 1;
-    expected.hideCursor= false;
+    expected.hideCursor = false;
 
     % test
     checkAllFields(cfg, expected);
@@ -35,7 +35,7 @@ function test_setDefaultsPtb_no_debug()
     expected = cppPtbDefaults('all');
     expected.debug.do = 0;
     expected.skipSyncTests = 0;
-    expected.hideCursor= true;
+    expected.hideCursor = true;
 
     % test
     checkAllFields(cfg, expected);
@@ -53,7 +53,7 @@ function test_setDefaultsPtb_overwrite()
     expected.screen.monitorWidth = 36;
     expected.eyeTracker.do = false;
     expected.skipSyncTests = 1;
-    expected.hideCursor= false;
+    expected.hideCursor = false;
 
     % test
     checkAllFields(cfg, expected);
@@ -69,15 +69,15 @@ function test_setDefaultsPtb_audio()
     % test data
     expected = cppPtbDefaults('all');
     expected.audio = struct('do', true, ...
-                               'devIdx', [], ...
-                               'playbackMode', 1, ...
-                               'fs', 44100, ...
-                               'channels', 2, ...
-                               'initVolume', 1, ...
-                               'requestedLatency', 3, ...
-                               'repeat', 1, ...
-                               'startCue', 0, ...
-                               'waitForDevice', 1);
+                            'devIdx', [], ...
+                            'playbackMode', 1, ...
+                            'fs', 44100, ...
+                            'channels', 2, ...
+                            'initVolume', 1, ...
+                            'requestedLatency', 3, ...
+                            'repeat', 1, ...
+                            'startCue', 0, ...
+                            'waitForDevice', 1);
 
     expected.audio.pushSize  = expected.audio.fs * 0.010;
 
@@ -87,7 +87,7 @@ function test_setDefaultsPtb_audio()
 
     expected.eyeTracker.do = false;
     expected.skipSyncTests = 1;
-    expected.hideCursor= false;
+    expected.hideCursor = false;
 
     % test
     checkAllFields(cfg, expected);
@@ -107,7 +107,7 @@ function test_setDefaultsPtb_mri()
     expected.pacedByTriggers.do = false;
     expected.eyeTracker.do = false;
     expected.skipSyncTests = 1;
-    expected.hideCursor= false;
+    expected.hideCursor = false;
 
     % test
     checkAllFields(cfg, expected);
@@ -117,7 +117,7 @@ end
 function checkAllFields(cfg, expected)
     fields = fieldnames(expected);
     for i = 1:numel(fields)
-%         fields{i}
+        %         fields{i}
         assertEqual(cfg.(fields{i}), expected.(fields{i}));
     end
 end
