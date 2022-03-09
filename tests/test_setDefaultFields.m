@@ -1,4 +1,4 @@
-function test_suite = test_setDefaults %#ok<*STOUT>
+function test_suite = test_setDefaultFields %#ok<*STOUT>
     %
     % (C) Copyright 2020 CPP_PTB developers
     try % assignment of 'localfunctions' is necessary in Matlab >= 2016
@@ -15,7 +15,7 @@ function test_setDefaultsWrite()
 
     fieldsToSet.field = 1;
 
-    structure = setDefaults(structure, fieldsToSet);
+    structure = setDefaultFields(structure, fieldsToSet);
 
     %% data to test against
     expectedStructure.field = 1;
@@ -33,7 +33,7 @@ function test_setDefaultsNoOverwrite()
     fieldsToSet.field.subfield_1 = 1;
     fieldsToSet.field.subfield_2 = 1;
 
-    structure = setDefaults(structure, fieldsToSet);
+    structure = setDefaultFields(structure, fieldsToSet);
 
     % data to test against
     expectedStructure.field.subfield_1 = 3;

@@ -1,14 +1,10 @@
 *DS_Store
 
-*.m~
-*octave-workspace
-
 .vscode/*
 
-# exclude content of logfiles folders
 *.tsv
+
 *.mat
-check_my_code_report.txt
 
 # exclude content of files for virtual env (mostly for the doc)
 cpp_ptb
@@ -18,13 +14,8 @@ env
 /docs/build
 
 # exclude temp files from tests and coverage
-*test_code_report.txt
 test_report.log
 *coverage*
-
-# exclude node js stuff
-node_modules/*
-package-lock.json
 
 ## MATLAB / OCTAVE gitignore template
 

@@ -5,9 +5,9 @@ function cfg = initPTB(cfg)
     %   - screen
     %
     %     - the windon opened takes the whole screen unless
-    %       ``cfg.screen.smallWin`` is set to ``true``
+    %       ``cfg.debug.smallWin`` is set to ``true``
     %     - can skip synch test if you ask for it (nicely)
-    %     - window transparency enabled by ``cfg.testingTranspScreen`` set to ``true``
+    %     - window transparency enabled by ``cfg.debug.transpWin`` set to ``true``
     %     - gets the flip interval
     %     - computes the pixel per degree of visual angle:
     %       the computation for ppd assumes the windows takes the whole screen width
@@ -42,7 +42,7 @@ function cfg = initPTB(cfg)
     % check for OpenGL compatibility, abort otherwise:
     AssertOpenGL;
 
-    cfg = setDefaultsPTB(cfg);
+    cfg = checkCppPtbCfg(cfg);
 
     Screen('Preference', 'SkipSyncTests', cfg.skipSyncTests);
 
@@ -50,7 +50,10 @@ function cfg = initPTB(cfg)
     initDebug(cfg);
 
     % Mouse
-    HideCursor;
+    if cfg.hideCursor
+        % TODO does not work on Linux: WTF???
+        HideCursor;
+    end
 
     %% Audio
     cfg = initAudio(cfg);
@@ -137,6 +140,9 @@ function initDebug(cfg)
 
         Screen('Preference', 'SkipSyncTests', cfg.skipSyncTests);
         Screen('Preference', 'Verbosity', 0);
+        % disable all visual alerts
+        Screen('Preference', 'VisualDebugLevel', 0);
+        % disable all output to the command window
         Screen('Preference', 'SuppressAllWarnings', 1);
 
         fprintf('\n\n\n\n');
