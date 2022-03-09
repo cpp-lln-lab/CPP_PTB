@@ -50,7 +50,9 @@ function cfg = initPTB(cfg)
     initDebug(cfg);
 
     % Mouse
-    HideCursor;
+    if cfg.hideCursor
+        HideCursor;
+    end
 
     %% Audio
     cfg = initAudio(cfg);
