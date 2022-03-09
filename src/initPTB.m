@@ -51,7 +51,8 @@ function cfg = initPTB(cfg)
 
     % Mouse
     if cfg.hideCursor
-        HideCursor;
+      % TODO does not work on Linux: WTF???
+      HideCursor;
     end
 
     %% Audio
