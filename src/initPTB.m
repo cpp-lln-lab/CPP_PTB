@@ -5,9 +5,9 @@ function cfg = initPTB(cfg)
     %   - screen
     %
     %     - the windon opened takes the whole screen unless
-    %       ``cfg.screen.smallWin`` is set to ``true``
+    %       ``cfg.debug.smallWin`` is set to ``true``
     %     - can skip synch test if you ask for it (nicely)
-    %     - window transparency enabled by ``cfg.testingTranspScreen`` set to ``true``
+    %     - window transparency enabled by ``cfg.debug.transpWin`` set to ``true``
     %     - gets the flip interval
     %     - computes the pixel per degree of visual angle:
     %       the computation for ppd assumes the windows takes the whole screen width
@@ -51,8 +51,8 @@ function cfg = initPTB(cfg)
 
     % Mouse
     if cfg.hideCursor
-      % TODO does not work on Linux: WTF???
-      HideCursor;
+        % TODO does not work on Linux: WTF???
+        HideCursor;
     end
 
     %% Audio
