@@ -14,12 +14,14 @@ function test_checkCppPtbCfg_basic()
     cfg = checkCppPtbCfg();
 
     % test data
-    expectedCfg = cppPtbDefaults('all');
-    expectedCfg.eyeTracker.do = false;
-    expectedCfg.skipSyncTests = 1;
+    expected = cppPtbDefaults('all');
+    expected.eyeTracker.do = false;
+    expected.debug.do = 1;
+    expected.skipSyncTests = 1;
+    expected.hideCursor= false;
 
     % test
-    assertEqual(expectedCfg, cfg);
+    checkAllFields(cfg, expected);
 
 end
 
@@ -30,12 +32,13 @@ function test_setDefaultsPtb_no_debug()
     cfg = checkCppPtbCfg(cfg);
 
     % test data
-    expectedCfg = cppPtbDefaults('all');
-    expectedCfg.debug.do = 0;
-    expectedCfg.skipSyncTests = 0;
+    expected = cppPtbDefaults('all');
+    expected.debug.do = 0;
+    expected.skipSyncTests = 0;
+    expected.hideCursor= true;
 
     % test
-    assertEqual(expectedCfg, cfg);
+    checkAllFields(cfg, expected);
 
 end
 
@@ -46,13 +49,14 @@ function test_setDefaultsPtb_overwrite()
     cfg = checkCppPtbCfg(cfg);
 
     % test data
-    expectedCfg = cppPtbDefaults('all');
-    expectedCfg.screen.monitorWidth = 36;
-    expectedCfg.eyeTracker.do = false;
-    expectedCfg.skipSyncTests = 1;
+    expected = cppPtbDefaults('all');
+    expected.screen.monitorWidth = 36;
+    expected.eyeTracker.do = false;
+    expected.skipSyncTests = 1;
+    expected.hideCursor= false;
 
     % test
-    assertEqual(expectedCfg, cfg);
+    checkAllFields(cfg, expected);
 
 end
 
@@ -63,8 +67,8 @@ function test_setDefaultsPtb_audio()
     cfg = checkCppPtbCfg(cfg);
 
     % test data
-    expectedCfg = cppPtbDefaults('all');
-    expectedCfg.audio = struct('do', true, ...
+    expected = cppPtbDefaults('all');
+    expected.audio = struct('do', true, ...
                                'devIdx', [], ...
                                'playbackMode', 1, ...
                                'fs', 44100, ...
@@ -75,17 +79,18 @@ function test_setDefaultsPtb_audio()
                                'startCue', 0, ...
                                'waitForDevice', 1);
 
-    expectedCfg.audio.pushSize  = expectedCfg.audio.fs * 0.010;
+    expected.audio.pushSize  = expected.audio.fs * 0.010;
 
-    expectedCfg.audio.requestOffsetTime = 1;
-    expectedCfg.audio.reqsSampleOffset = expectedCfg.audio.requestOffsetTime * ...
-                                         expectedCfg.audio.fs;
+    expected.audio.requestOffsetTime = 1;
+    expected.audio.reqsSampleOffset = expected.audio.requestOffsetTime * ...
+                                         expected.audio.fs;
 
-    expectedCfg.eyeTracker.do = false;
-    expectedCfg.skipSyncTests = 1;
+    expected.eyeTracker.do = false;
+    expected.skipSyncTests = 1;
+    expected.hideCursor= false;
 
     % test
-    assertEqual(expectedCfg, cfg);
+    checkAllFields(cfg, expected);
 
 end
 
@@ -96,14 +101,23 @@ function test_setDefaultsPtb_mri()
     cfg = checkCppPtbCfg(cfg);
 
     % test data
-    expectedCfg = cppPtbDefaults('all');
-    expectedCfg.testingDevice = 'mri';
-    expectedCfg.bids.mri.RepetitionTime = [];
-    expectedCfg.pacedByTriggers.do = false;
-    expectedCfg.eyeTracker.do = false;
-    expectedCfg.skipSyncTests = 1;
+    expected = cppPtbDefaults('all');
+    expected.testingDevice = 'mri';
+    expected.bids.mri.RepetitionTime = [];
+    expected.pacedByTriggers.do = false;
+    expected.eyeTracker.do = false;
+    expected.skipSyncTests = 1;
+    expected.hideCursor= false;
 
     % test
-    assertEqual(expectedCfg, cfg);
+    checkAllFields(cfg, expected);
 
+end
+
+function checkAllFields(cfg, expected)
+    fields = fieldnames(expected);
+    for i = 1:numel(fields)
+%         fields{i}
+        assertEqual(cfg.(fields{i}), expected.(fields{i}));
+    end
 end
