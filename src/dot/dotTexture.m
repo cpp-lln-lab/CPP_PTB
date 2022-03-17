@@ -15,6 +15,10 @@ function cfg = dotTexture(action, cfg, thisEvent)
             xCenter = cfg.screen.center(1) + thisEvent.dotCenterXPosPix;
             yCenter = cfg.screen.center(2);
 
+            if isfield(thisEvent, 'dotCenterYPosPix')
+                yCenter = cfg.screen.center(2) + thisEvent.dotCenterYPosPix;
+            end
+
             Screen('FillRect', cfg.dot.texture, cfg.color.background);
             Screen('DrawDots', cfg.dot.texture, ...
                    thisEvent.dot.positions, ...
