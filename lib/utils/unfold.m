@@ -25,7 +25,8 @@ function unfold(input, varargin)
     % R.F. Tap
     % 15-6-2005, 7-12-2005, 5-1-2006, 3-4-2006
 
-    % taken and adapted from shorturl.at/dqwN7
+    % taken and adapted from
+    %  https://nl.mathworks.com/matlabcentral/answers/94122-is-there-a-function-that-will-display-all-the-fields-of-a-nested-structure-in-matlab#answer_103473
 
     % check input
     switch nargin
