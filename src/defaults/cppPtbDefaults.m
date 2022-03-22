@@ -107,8 +107,6 @@ function value = cppPtbDefaults(type)
             value.proportionKilledPerFrame = 0;
             % Dot Size (dot width) in visual angles.
             value.size = 0.2;
-            % Static dots should change position at each event or not
-            value.staticReSeed = true;
 
         otherwise
             error('unknown action');
