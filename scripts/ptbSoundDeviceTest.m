@@ -9,7 +9,7 @@ clear;
 clc;
 
 % init CPP PTB
-rootDir = cd(fullfile(fileparts(mfilename('fullpath')), '..', '..'));
+rootDir = cd(fullfile(fileparts(mfilename('fullpath')), '..'));
 cpp_ptb;
 
 % PsychPortAudio('Close');
