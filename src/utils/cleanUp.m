@@ -21,9 +21,12 @@ function cleanUp()
     % Screen Close All
     sca;
 
-    % Close Psychportaudio if open
-    if PsychPortAudio('GetOpenDeviceCount') ~= 0
-        PsychPortAudio('Close');
+    try
+        % Close Psychportaudio if open
+        if PsychPortAudio('GetOpenDeviceCount') ~= 0
+            PsychPortAudio('Close');
+        end
+    catch
     end
 
     if ~ismac
