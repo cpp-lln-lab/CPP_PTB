@@ -124,6 +124,9 @@ Other options include:
 cfg.audio
 +++++++++
 
+Check the ``scripts/ptbSoundDeviceTest.m`` to help you figure out what devices are connected
+to the computer and which one you can use.
+
 .. code-block:: matlab
 
     cfg.audio.do = false;            % set to true if you are going to play some sounds
