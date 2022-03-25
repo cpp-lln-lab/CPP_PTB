@@ -103,7 +103,7 @@ function cfg = initPTB(cfg)
 
     % Mouse
     if cfg.hideCursor
-        HideCursor(cfg.screen.win));
+        HideCursor(cfg.screen.win);
     end
 
 end
