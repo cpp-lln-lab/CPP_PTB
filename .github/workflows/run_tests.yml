@@ -9,13 +9,17 @@ on:
     branches: ['*']
 
 jobs:
+
   build:
     runs-on: ubuntu-latest
+
     steps:
+
     - uses: actions/checkout@v2
       with:
         submodules: true
         fetch-depth: 1
+
     - name: MOxUnit Action
       uses: joergbrech/moxunit-action@v1.2.0
       with:
@@ -23,6 +27,7 @@ jobs:
         src: src
         with_coverage: true
         cover_xml_file: coverage.xml
+
     - name: Code coverage
       uses: codecov/codecov-action@v1
       with:

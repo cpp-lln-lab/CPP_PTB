@@ -49,12 +49,6 @@ function cfg = initPTB(cfg)
     initKeyboard;
     initDebug(cfg);
 
-    % Mouse
-    if cfg.hideCursor
-        % TODO does not work on Linux: WTF???
-        HideCursor;
-    end
-
     %% Audio
     cfg = initAudio(cfg);
 
@@ -106,6 +100,11 @@ function cfg = initPTB(cfg)
     KbCheck;
     WaitSecs(0.1);
     GetSecs;
+
+    % Mouse
+    if cfg.hideCursor
+        HideCursor(cfg.screen.win);
+    end
 
 end
 
