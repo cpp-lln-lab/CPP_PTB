@@ -113,7 +113,7 @@ function cfg = getOsInfo(cfg)
     cfg.StimulusPresentation.OperatingSystem = computer();
 
     cfg.StimulusPresentation.SoftwareRRID = 'SCR_002881';
-    cfg.StimulusPresentation.Code = '';
+    cfg.StimulusPresentation.Code = 'https://github.com/TODO';
 
     [~, versionStruc] = PsychtoolboxVersion;
 
