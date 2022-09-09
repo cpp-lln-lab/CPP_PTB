@@ -86,6 +86,7 @@ cfg.screen
 
 .. code-block:: matlab
 
+    cfg.screen.idx = [];
     cfg.screen.monitorWidth = 42;       % in cm
     cfg.screen.monitorDistance = 134;   % in cm
     cfg.screen.resolution = {[], [], []};

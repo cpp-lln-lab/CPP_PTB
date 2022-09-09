@@ -58,7 +58,9 @@ function cfg = initPTB(cfg)
     Screen('Preference', 'VisualDebugLevel', 1);
 
     % Get the screen numbers and draw to the external screen if avaliable
-    cfg.screen.idx = max(Screen('Screens'));
+    if isempty(cfg.screen.idx)
+        cfg.screen.idx = max(Screen('Screens'));
+    end
 
     if isfield(cfg.screen, 'resolution') && ...
         ~isempty(cfg.screen.resolution) && ...
@@ -198,12 +200,18 @@ function cfg = initAudio(cfg)
 
         end
 
-        cfg.audio.pahandle = PsychPortAudio('Open', ...
-                                            cfg.audio.devIdx, ...
-                                            cfg.audio.playbackMode, ...
-                                            cfg.audio.requestedLatency, ...
-                                            cfg.audio.fs, ...
-                                            cfg.audio.channels);
+        try
+
+            cfg.audio.pahandle = PsychPortAudio('Open', ...
+                                                cfg.audio.devIdx, ...
+                                                cfg.audio.playbackMode, ...
+                                                cfg.audio.requestedLatency, ...
+                                                cfg.audio.fs, ...
+                                                cfg.audio.channels);
+
+        catch
+
+        end
 
         % set initial PTB volume for safety (participants can adjust this manually
         % at the begining of the experiment)
@@ -214,13 +222,23 @@ end
 
 function cfg = openWindow(cfg)
 
-    if cfg.debug.smallWin
-        [cfg.screen.win, cfg.screen.winRect] = ...
-            Screen('OpenWindow', cfg.screen.idx, cfg.color.background, ...
-                   [0, 0, 480, 270]);
-    else
-        [cfg.screen.win, cfg.screen.winRect] = ...
-            Screen('OpenWindow', cfg.screen.idx, cfg.color.background);
+    try
+
+        if cfg.debug.smallWin
+            [cfg.screen.win, cfg.screen.winRect] = ...
+                Screen('OpenWindow', cfg.screen.idx, cfg.color.background, ...
+                       [0, 0, 480, 270]);
+        else
+            [cfg.screen.win, cfg.screen.winRect] = ...
+                Screen('OpenWindow', cfg.screen.idx, cfg.color.background);
+        end
+
+    catch ME
+
+        fprintf(1, '\n\nAvailable screen deive indices: %i\n\n', Screen('Screens'));
+
+        rethrow(ME);
+
     end
 
     % Enable alpha-blending, set it to a blend equation useable for linear

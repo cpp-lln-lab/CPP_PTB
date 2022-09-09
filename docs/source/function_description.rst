@@ -28,6 +28,16 @@ List of functions in the ``src/defaults`` folder.
 .. autofunction:: setDefaultFields
 
 
+Audio
+=====
+
+List of functions in the ``src/audio`` folder.
+
+.. module:: src.audio
+
+.. autofunction:: listAudioDevices
+.. autofunction:: testAudioDevices
+
 Aperture
 ========
 
