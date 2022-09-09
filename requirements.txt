@@ -2,5 +2,8 @@ Sphinx
 sphinxcontrib-matlabdomain
 sphinxcontrib-napoleon
 sphinx_rtd_theme
+myst-parser
+sphinx-copybutton
+
 miss_hit==0.9.29
 pre-commit

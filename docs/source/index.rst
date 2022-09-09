@@ -19,6 +19,7 @@ their use and their reuse (#DontRepeatYourself)
    installation
    set_up
    function_description
+   stimuli
 
 Indices and tables
 ==================

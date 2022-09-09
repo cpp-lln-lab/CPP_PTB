@@ -118,8 +118,6 @@ function uninitCppPtb()
     %
     % (C) Copyright 2021 CPP_PTB developers
 
-    thisDirectory = fileparts(mfilename('fullpath'));
-
     global CPP_PTB_INITIALIZED
     global CPP_PTB_PATHS
 

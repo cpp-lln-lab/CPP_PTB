@@ -36,6 +36,7 @@ List of functions in the ``src/audio`` folder.
 .. module:: src.audio
 
 .. autofunction:: listAudioDevices
+.. autofunction:: resampleAudio
 .. autofunction:: testAudioDevices
 
 Aperture
