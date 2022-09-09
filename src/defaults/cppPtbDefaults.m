@@ -50,6 +50,7 @@ function value = cppPtbDefaults(type)
             value.lineWidthPix = 5;
 
         case 'screen'
+            value.idx = [];
             value.monitorWidth = 42;
             value.monitorDistance = 134;
             value.resolution = {[], [], []};
