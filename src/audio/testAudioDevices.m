@@ -1,6 +1,16 @@
 function testAudioDevices(cfg, deviceIndices)
     %
-    % Loops through audio devices and tries to play 1 second white noise
+    % Loops through audio devices and tries to play 1 second white noise.
+    %
+    % USAGE::
+    %
+    %   testAudioDevices(cfg, deviceIndices)
+    %
+    % :param cfg: Optional. Structure containing the configuration.
+    % :type cfg: structure
+    %
+    % :param deviceIndices: Optional. Vector of device indices to test.
+    % :type deviceIndices: vector
     %
     % See also: listAudioDevices
     %
