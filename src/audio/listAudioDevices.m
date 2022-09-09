@@ -1,6 +1,8 @@
 function listAudioDevices()
     %
-    % USAGE: listAudioDevices()
+    % USAGE::
+    %
+    %  listAudioDevices()
     %
     % See Also: testAudioDevices
     %
