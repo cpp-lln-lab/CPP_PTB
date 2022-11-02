@@ -8,6 +8,7 @@ function pressSpaceForMe()
     %
     %   pressSpaceForMe()
     %
+
     % (C) Copyright 2020 CPP_PTB developers
 
     fprintf('\nPress space to continue.\n');

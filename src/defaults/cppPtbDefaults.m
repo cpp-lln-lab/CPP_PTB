@@ -4,6 +4,7 @@ function value = cppPtbDefaults(type)
     %
     %   value = cppPtbDefaults(type)
     %
+
     % (C) Copyright 2022 CPP_PTB developers
 
     value = [];

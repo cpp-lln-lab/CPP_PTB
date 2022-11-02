@@ -72,6 +72,7 @@ function responseEvents = getResponse(action, deviceNumber, cfg, getOnlyPress)
     %
     % - ``stop`` stops listening to key presses
     %
+
     % (C) Copyright 2020 CPP_PTB developers
 
     if nargin < 2 || isempty(deviceNumber)

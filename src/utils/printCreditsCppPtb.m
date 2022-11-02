@@ -1,5 +1,6 @@
 function printCreditsCppPtb()
     %
+
     % (C) Copyright 2020 CPP_PTB developers
     try
         version = fileread(fullfile(fileparts(mfilename('fullpath')), ...

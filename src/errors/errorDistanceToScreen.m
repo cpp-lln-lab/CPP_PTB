@@ -1,5 +1,6 @@
 function errorDistanceToScreen(cfg)
     %
+
     % (C) Copyright 2020 CPP_PTB developers
 
     errorStruct.message = sprintf([

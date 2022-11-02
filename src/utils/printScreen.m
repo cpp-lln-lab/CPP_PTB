@@ -1,5 +1,6 @@
 function frame = printScreen(win, filename, frame)
     %
+
     % (C) Copyright 2020 CPP_PTB developers
 
     image_array = Screen('GetImage', win);

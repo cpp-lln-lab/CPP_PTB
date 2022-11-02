@@ -5,6 +5,7 @@ function retval = isOctave
     % Must stay in the 'src' folder for continuous integration with github
     % action to work. Not sure why.
     %
+
     % (C) Copyright 2010-2020 Agah Karakuzu
     % (C) Copyright 2020 CPP_PTB developers
 

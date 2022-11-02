@@ -15,6 +15,7 @@ function shuffledRepeats = repeatShuffleConditions(baseConditionVector, nbRepeat
     %
     % :returns: - :shuffledRepeats: (vector) (dimension)
     %
+
     % (C) Copyright 2020 CPP_PTB developers
 
     % TODO

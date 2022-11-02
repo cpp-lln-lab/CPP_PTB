@@ -14,6 +14,7 @@ function drawFixation(cfg)
     %
     % See initFixation for more info.
     %
+
     % (C) Copyright 2020 CPP_PTB developers
 
     switch cfg.fixation.type

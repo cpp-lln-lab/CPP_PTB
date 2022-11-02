@@ -24,6 +24,7 @@ function cfg = initPTB(cfg)
     % See the set up page of the documentation for more details on the content of cfg
     %
     %
+
     % (C) Copyright 2020 CPP_PTB developers
 
     checkPtbVersion();

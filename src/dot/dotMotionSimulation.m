@@ -7,6 +7,7 @@ function relativeDensityContrast = dotMotionSimulation(cfg, thisEvent, nbEvents,
     %
     %   relativeDensityContrast = dotMotionSimulation(cfg, thisEvent, nbEvents, doPlot)
     %
+
     % (C) Copyright 2020 CPP_PTB developers
 
     close all;

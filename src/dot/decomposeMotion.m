@@ -13,6 +13,7 @@ function [horVector, vertVector] = decomposeMotion(angleMotion)
     %           - :vertVector: vertical component of motion
     %
     %
+
     % (C) Copyright 2020 CPP_PTB developers
 
     horVector = cos(pi * angleMotion / 180);

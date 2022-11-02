@@ -7,6 +7,7 @@ function cfg = getExperimentStart(cfg)
     %
     %   cfg = getExperimentStart(cfg)
     %
+
     % (C) Copyright 2020 CPP_PTB developers
 
     drawFixation(cfg);

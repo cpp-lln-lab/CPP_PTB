@@ -1,5 +1,6 @@
 function cfg = dotTexture(action, cfg, thisEvent)
     %
+
     % (C) Copyright 2020 CPP_PTB developers
     switch action
 

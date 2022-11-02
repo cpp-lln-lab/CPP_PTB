@@ -7,6 +7,7 @@ function cleanUp()
     %
     %   cleanUp()
     %
+
     % (C) Copyright 2020 CPP_PTB developers
 
     WaitSecs(0.5);

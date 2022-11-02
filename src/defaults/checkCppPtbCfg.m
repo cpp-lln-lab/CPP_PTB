@@ -10,6 +10,7 @@ function cfg = checkCppPtbCfg(cfg)
     %
     % :returns: - :cfg: (structure)
     %
+
     % (C) Copyright 2020 CPP_PTB developers
 
     if nargin < 1

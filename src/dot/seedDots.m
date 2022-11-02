@@ -1,5 +1,6 @@
 function [positions, speeds, time] = seedDots(varargin)
     %
+
     % (C) Copyright 2020 CPP_PTB developers
 
     [dots, cfg, isSignal] = deal(varargin{:});

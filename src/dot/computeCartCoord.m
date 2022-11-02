@@ -4,6 +4,7 @@ function cartesianCoordinates = computeCartCoord(positions, dotMatrixWidth)
     %
     %   cartesianCoordinates = computeCartCoord(positions, dotMatrixWidth)
     %
+
     % (C) Copyright 2020 CPP_PTB developers
 
     cartesianCoordinates = ...

@@ -14,6 +14,7 @@ function structure = setDefaultFields(structure, fieldsToSet)
     %
     % :returns: - :structure: (structure)
     %
+
     % (C) Copyright 2020 CPP_PTB developers
 
     fieldsToSet = orderfields(fieldsToSet);

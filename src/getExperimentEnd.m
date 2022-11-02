@@ -3,6 +3,7 @@ function cfg = getExperimentEnd(cfg)
     % Wrapper function that will show a fixation cross and display in the console the
     % whole experiment's duration in minutes and seconds
     %
+
     % (C) Copyright 2020 CPP_PTB developers
 
     drawFixation(cfg);

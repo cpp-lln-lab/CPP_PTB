@@ -22,6 +22,7 @@ function cfg = initFixation(cfg)
     %
     % Contains a fixation cross and a dot
     %
+
     % (C) Copyright 2020 CPP_PTB developers
 
     % Convert some values from degrees to pixels

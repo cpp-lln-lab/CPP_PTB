@@ -35,6 +35,7 @@ function templateFunctionExample()
     %
     % % tests end here because test indentation has ended
     %
+
     % (C) Copyright 2020 CPP_PTB developers
 
     % The code goes below

@@ -17,6 +17,7 @@ function chosenPositions = setTargetPositionInSequence(seqLength, nbTarget, forb
     %
     % :returns: - :chosenPositions:
     %
+
     % (C) Copyright 2020 CPP_PTB developers
 
     REPLACE = false;

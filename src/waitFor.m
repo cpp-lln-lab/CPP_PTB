@@ -6,6 +6,7 @@ function waitFor(cfg, timeToWait)
     %
     %   waitFor(cfg, timeToWait)
     %
+
     % (C) Copyright 2020 CPP_PTB developers
 
     WaitSecs(timeToWait);

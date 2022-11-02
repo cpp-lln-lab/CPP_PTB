@@ -33,6 +33,7 @@ function [el, cfg] = eyeTracker(input, cfg, varargin)
     %   cpp-lln-lab/CPP_BIDS, in the output folder and shut the connection between the
     %   stimulation computer and the EyeLink computer
     %
+
     % (C) Copyright 2020 CPP_PTB developers
     if ~cfg.eyeTracker.do
 

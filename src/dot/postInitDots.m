@@ -5,6 +5,7 @@ function cfg = postInitDots(cfg)
     % generic function to finalize dots set up after psychtoolbox initialization
     %
     %
+
     % (C) Copyright 2022 CPP_PTB developers
 
     cfg.dot.matrixWidth = cfg.screen.winWidth;
