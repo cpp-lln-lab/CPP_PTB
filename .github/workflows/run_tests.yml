@@ -4,17 +4,21 @@ on:
   push:
     branches:
       - master
+      - dev
   pull_request:
     branches: ['*']
 
 jobs:
+
   build:
     runs-on: ubuntu-latest
+
     steps:
     - uses: actions/checkout@v3
       with:
         submodules: true
-        fetch-depth: 1
+        fetch-depth: 0
+
     - name: MOxUnit Action
       uses: joergbrech/moxunit-action@v1.2.0
       with:
@@ -22,6 +26,7 @@ jobs:
         src: src
         with_coverage: true
         cover_xml_file: coverage.xml
+
     - name: Code coverage
       uses: codecov/codecov-action@v3
       with:
@@ -29,4 +34,4 @@ jobs:
        file:  coverage.xml # optional
        flags: unittests # optional
        name: codecov-umbrella # optional
-       fail_ci_if_error: true # optional (default = false)
+       fail_ci_if_error: false # optional (default = false)

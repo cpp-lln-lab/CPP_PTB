@@ -16,6 +16,7 @@ function fov = drawFieldOfVIew(cfg, centerOnScreen)
     %
     % :returns: - :fov: (array) PTB rectangle
     %
+
     % (C) Copyright 2020 CPP_PTB developers
 
     if nargin < 2

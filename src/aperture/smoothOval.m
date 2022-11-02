@@ -6,6 +6,7 @@ function smoothOval(win, color, rect, fringe)
     %   SmoothOval(WindowPtr, Color, Rect, Fringe)
     %
     %
+
     % (C) Copyright 2010-2020 Sam Schwarzkopf
     % (C) Copyright 2020 CPP_PTB developers
 

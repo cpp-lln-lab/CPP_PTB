@@ -15,6 +15,7 @@ function playVideoFrames(video, cfg)
     %                   as output of createFramesTextureStructure
     %
     %
+
     % (C) Copyright 2020 CPP_PTB developers
 
     % calculate the duration of a single frame based on the provided desired frame rate %

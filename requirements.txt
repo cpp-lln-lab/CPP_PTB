@@ -2,5 +2,5 @@ Sphinx
 sphinxcontrib-matlabdomain
 sphinxcontrib-napoleon
 sphinx_rtd_theme
-miss_hit==0.9.29
+miss_hit==0.9.35
 pre-commit

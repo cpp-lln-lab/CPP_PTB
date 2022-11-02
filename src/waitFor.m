@@ -6,15 +6,9 @@ function waitFor(cfg, timeToWait)
     %
     %   waitFor(cfg, timeToWait)
     %
+
     % (C) Copyright 2020 CPP_PTB developers
-    if cfg.pacedByTriggers.do
-        waitForTrigger( ...
-                       cfg, ...
-                       cfg.keyboard.responseBox, ...
-                       cfg.pacedByTriggers.quietMode, ...
-                       timeToWait);
-    else
-        WaitSecs(timeToWait);
-    end
+
+    WaitSecs(timeToWait);
 
 end

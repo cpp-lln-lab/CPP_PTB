@@ -4,6 +4,7 @@ function [cfg] = eccenLogSpeed(cfg, time)
     % cf. Tootell 1997; Swisher 2007; Warnking 2002 etc
     %
     %
+
     % (C) Copyright 2020 CPP_PTB developers
 
     TR = cfg.mri.repetitionTime;

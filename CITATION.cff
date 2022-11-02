@@ -1,0 +1,56 @@
+cff-version: 1.2.0
+
+title: "CPP PTB"
+
+version: 1.3.0
+
+abstract: a set of function to make it easier to create behavioral, EEG, fMRI experiment with psychtoolbox .
+
+message: "If you use this software, please cite it as below."
+
+repository-code: "https://github.com/cpp-lln-lab/CPP_PTB"
+
+identifiers:
+  - description: This is the collection of archived snapshots of all releases of CPP PTB
+    type: doi
+    value: "10.5281/zenodo.4007672"
+
+contact:
+  - affiliation: "Université catholique de Louvain"
+    email: remi.gau@uclouvain.be
+    family-names: Gau
+    given-names: Rémi
+
+authors:
+- family-names: "Gau"
+  given-names: "Rémi"
+  orcid: "https://orcid.org/0000-0002-1535-9767"
+  affiliation: "Université catholique de Louvain"
+
+- family-names: "Barilari"
+  given-names: "Marco"
+  orcid: "https://orcid.org/0000-0002-3313-3120"
+  affiliation: "Université catholique de Louvain"
+
+- family-names: "Battal"
+  given-names: "Ceren"
+  orcid: "https://orcid.org/0000-0002-9844-7630"
+  affiliation: "Université catholique de Louvain"
+
+- family-names: "Falagiarda"
+  given-names: "Federica"
+  orcid: "https://orcid.org/0000-0001-7844-1605"
+  affiliation: "Université catholique de Louvain"
+
+- family-names: "Shahzad"
+  given-names: "Iqra"
+  orcid: "https://orcid.org/0000-0002-8724-7668"
+  affiliation: "Université catholique de Louvain"
+
+license: MIT license
+
+keywords:
+  - PsychToolBox
+  - neuroscience
+  - MATLAB
+  - Octave

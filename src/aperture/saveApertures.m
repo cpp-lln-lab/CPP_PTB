@@ -1,5 +1,6 @@
 function saveApertures(saveAps, cfg, apertures)
     %
+
     % (C) Copyright 2010-2020 Sam Schwarzkopf
     % (C) Copyright 2020 CPP_PTB developers
     if saveAps

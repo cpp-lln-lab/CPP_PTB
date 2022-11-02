@@ -6,6 +6,7 @@ function checkPtbVersion()
     %
     %   checkPtbVersion()
     %
+
     % (C) Copyright 2020 CPP_PTB developers
 
     printCreditsCppPtb();

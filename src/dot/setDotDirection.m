@@ -24,6 +24,7 @@ function directionAllDots = setDotDirection(positions, cfg, dots, isSignal)
     %
     % All directions are in end expressed between 0 and 360.
     %
+
     % (C) Copyright 2020 CPP_PTB developers
 
     directionAllDots = dots.direction;

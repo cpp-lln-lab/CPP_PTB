@@ -1,5 +1,6 @@
 function apertureName = getApertureName(cfg, apertures, iApert)
     %
+
     % (C) Copyright 2020 CPP_PTB developers
     switch cfg.aperture
         case 'Bar'

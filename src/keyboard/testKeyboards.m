@@ -9,6 +9,7 @@ function testKeyboards(cfg)
     %
     %   testKeyboards(cfg)
     %
+
     % (C) Copyright 2020 CPP_PTB developers
 
     timeOut = 5;

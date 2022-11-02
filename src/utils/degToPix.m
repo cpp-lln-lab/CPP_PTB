@@ -24,6 +24,7 @@ function structure = degToPix(fieldName, structure, cfg)
     %   fixation = degToPix('width', fixation, cfg);
     %
     %
+
     % (C) Copyright 2020 CPP_PTB developers
 
     deg = getfield(structure, fieldName); %#ok<GFLD>

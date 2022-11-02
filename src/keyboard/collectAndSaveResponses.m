@@ -1,5 +1,6 @@
 function responseEvents = collectAndSaveResponses(cfg, logFile, experimentStart)
     %
+
     % (C) Copyright 2020 CPP_PTB developers
 
     responseEvents = getResponse('check', cfg.keyboard.responseBox, cfg);

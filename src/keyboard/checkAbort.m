@@ -32,6 +32,7 @@ function checkAbort(cfg, deviceNumber)
     %       end
     %   end
     %
+
     % (C) Copyright 2020 CPP_PTB developers
 
     if nargin < 1 || isempty(cfg)

@@ -19,6 +19,7 @@ function FOV = computeFOV(cfg)
     %
     %  The result obtained is in radians.
     %
+
     % (C) Copyright 2020 CPP_PTB developers
 
     if cfg.screen.monitorDistance < 2

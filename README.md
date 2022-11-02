@@ -1,40 +1,17 @@
-<!-- lint disable -->
-
-**Documentation**
-
 [![Documentation Status: stable](https://readthedocs.org/projects/cpp-ptb/badge/?version=stable)](https://cpp-ptb.readthedocs.io/en/stable/?badge=stable)
-
-**Cite it**
-
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4007672.svg)](https://doi.org/10.5281/zenodo.4007672)
-
-**Unit tests and coverage**
-
 [![](https://img.shields.io/badge/Octave-CI-blue?logo=Octave&logoColor=white)](https://github.com/cpp-lln-lab/CPP_PTB/actions)
 ![](https://github.com/cpp-lln-lab/CPP_PTB/workflows/CI/badge.svg)
-
 [![codecov](https://codecov.io/gh/cpp-lln-lab/CPP_PTB/branch/master/graph/badge.svg)](https://codecov.io/gh/cpp-lln-lab/CPP_PTB)
-
-**Contributors**
-
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 # CPP_PTB
 
-<!-- TOC -->
-
--   [CPP_PTB](#cpp_ptb)
-    -   [Documentation](#documentation)
-    -   [Content](#content)
-    -   [Code style guide](#code-style-guide)
-    -   [Unit tests](#unit-tests)
-    -   [Contributors ✨](#contributors-)
-
-<!-- /TOC -->
-
-<!-- lint enable -->
+- [CPP_PTB](#cpp_ptb)
+  - [Documentation](#documentation)
+  - [Content](#content)
+  - [Contributing](#contributing)
+  - [Contributors ✨](#contributors-)
 
 This is the Crossmodal Perception and Plasticity lab (CPP) PsychToolBox (PTB)
 toolbox.
@@ -64,39 +41,16 @@ All the documentation and installtion information is accessible
 └── tests # all the tests that that can be run by github actions
 ```
 
-## Code style guide
+## Contributing
 
-We use the `camelCase` to more easily differentiates our functions from the ones
-from PTB that use a `PascalCase`.
+Feel free to open issues to report a bug and ask for improvements.
 
-In practice, we use the following regular expression for function names:
-`[a-z]+(([A-Z]|[0-9]){1}[a-z]+)*`.
-
-> Regular expressions look scary but are SUPER useful to sort through filenames:
->
-> -   A quick [intro to regular expression](https://www.rexegg.com/)
->
-> -   And many websites allow you to "design and test" your regular expression:
->     -   [regexper](https://regexper.com/#%5Ba-z%5D%2B%28%28%5BA-Z%5D%7C%5B0-9%5D%29%7B1%7D%5Ba-z%5D%2B%29)
->     -   ...
-
-We keep the McCabe complexity below 15 as reported by the
-[check_my_code function](https://github.com/Remi-Gau/check_my_code) or the
-[MISS_HIT code checker](https://florianschanda.github.io/miss_hit). A couple of
-code quality metrics are also checked automatically by MISS_HIT (avoiding
-functions with too many nested `if` blocks).
-
-We use the
-[MISS_HIT linter](https://florianschanda.github.io/miss_hit/style_checker.html)
-to automatically fix some linting issues.
-
-The code style and quality is also checked during the
-[continuous integration](.github/workflows/miss_hit.yml).
-
-## Unit tests
-
-Unit tests are run with the mox unit toolbox and automated with github action on
-Octave.
+If you want to contribute, have a look at our
+[contributing guidelines](https://github.com/cpp-lln-lab/.github/blob/main/CONTRIBUTING.md)
+that are meant to guide you and help you get started. If something is not clear
+or you get stuck: it is more likely we did not do good enough a job at
+explaining things. So do not hesitate to open an issue, just to ask for
+clarification.
 
 ## Contributors ✨
 

@@ -17,6 +17,7 @@ function [video, cfg] = createFramesTextureStructure(video, cfg)
     % new in the output is video.frames %
     % a structure with the provided images stored as textures %
     %
+
     % (C) Copyright 2020 CPP_PTB developers
 
     % structure to store the video frames
