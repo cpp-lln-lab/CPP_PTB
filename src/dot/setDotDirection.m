@@ -29,7 +29,7 @@ function directionAllDots = setDotDirection(positions, cfg, dots, isSignal)
 
     directionAllDots = dots.direction;
 
-    % when we initialiaze the direction for all the dots
+    % when we initialize the direction for all the dots
     % after that dots.direction will be a vector
     if numel(directionAllDots) == 1
 
@@ -52,7 +52,7 @@ function directionAllDots = setDotDirection(positions, cfg, dots, isSignal)
     %% Express the direction in the 0 to 360 range
     directionAllDots = mod(directionAllDots, 360);
 
-    % ensure we return a colum vector
+    % ensure we return a column vector
     if size(directionAllDots, 1) == 1
         directionAllDots = directionAllDots';
     end

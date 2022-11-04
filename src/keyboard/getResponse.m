@@ -32,7 +32,7 @@ function responseEvents = getResponse(action, deviceNumber, cfg, getOnlyPress)
     %                    as a structure with field names that make it easier
     %                    to save the output of in a BIDS format
     %
-    %   - ``responseEvents.onset`` this is an absolute value and you should substract
+    %   - ``responseEvents.onset`` this is an absolute value and you should subtract
     %     the "experiment start time" to get a value relative to when the experiment was started.
     %
     %   - ``responseEvents.trial_type = response``
@@ -99,7 +99,7 @@ function responseEvents = getResponse(action, deviceNumber, cfg, getOnlyPress)
             % If you use ListenChar(2), this will prevent you from using KbQueue.
             ListenChar(-1);
 
-            % Clean and realease any queue that might be opened
+            % Clean and release any queue that might be opened
             KbQueueRelease(deviceNumber);
 
             keysOfInterest = setKeysOfInterest(cfg.keyboard);

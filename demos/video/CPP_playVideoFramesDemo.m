@@ -16,19 +16,19 @@ clc;
 % Skip the PTB sync test
 Screen('Preference', 'SkipSyncTests', 2);
 
-% Get the screen numbers and draw to the external screen if avaliable
+% Get the screen numbers and draw to the external screen if available
 cfg.screen.idx = max(Screen('Screens'));
 
 % Set the PTB window background manually
 cfg.color.background = [127 127 127];
 
-% Get the screen numbers and draw to the external screen if avaliable
+% Get the screen numbers and draw to the external screen if available
 cfg.screen.idx = max(Screen('Screens'));
 
 % Open an on screen window
 [cfg.screen.win, cfg.screen.winRect] = Screen('OpenWindow', cfg.screen.idx, cfg.color.background);
 
-%% Strcuture for video related info
+%% Structure for video related info
 
 % The name of your "video" and its images format
 video.names = {'coffee', 'leaves'};
@@ -39,7 +39,7 @@ video.frame.numbers = [];
 % video.frame.numbers = 30;
 % video.frame.numbers = [30,15];
 
-% The format fo the images
+% The format of the images
 video.frame.format = '.jpeg'; % can be any img format compatible with the "imread" function
 
 % the folder where the images are (from the current folder)
@@ -70,7 +70,7 @@ for trial = 1:length(video.names)
         video.frame.number = video.frame.numbers;
     end
 
-    % Read the images and create the stucture with their textures
+    % Read the images and create the structure with their textures
     [video, cfg] = createFramesTextureStructure(video, cfg);
 
     % Play the video

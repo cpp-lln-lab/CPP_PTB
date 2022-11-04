@@ -21,7 +21,7 @@ their use and their reuse (#DontRepeatYourself)
 
 ## Documentation
 
-All the documentation and installtion information is accessible
+All the documentation and installation information is accessible
 [here](https://cpp-ptb.readthedocs.io/en/stable/index.html#).
 
 ## Content

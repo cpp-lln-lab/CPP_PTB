@@ -14,7 +14,7 @@ function dots = reseedDots(dots, cfg)
     % Create a logical vector to detect any dot that has:
     % - an xy position inferior to 0
     % - an xy position superior to winWidth
-    % - has exceeded its liftime
+    % - has exceeded its lifetime
     % - is on the fixation cross
     % - has been been picked to be killed
 

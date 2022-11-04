@@ -4,7 +4,7 @@ function checkAbort(cfg, deviceNumber)
     % ``cfg.keyboard.escapeKey``.
     % When no deviceNumber is set then it will check the default device.
     % When an abort key is detected this will throw a
-    % specific error that can then be catched.
+    % specific error that can then be caught.
     %
     % USAGE::
     %

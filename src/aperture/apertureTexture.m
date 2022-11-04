@@ -148,7 +148,7 @@ function cfg = apertureTextureMake(cfg, thisEvent)
 
             cycleDuration = cfg.mri.repetitionTime * cfg.volsPerCycle;
 
-            % Update angle for rotation of background and for apperture for wedge
+            % Update angle for rotation of background and for aperture for wedge
             switch cfg.direction
 
                 case '+'

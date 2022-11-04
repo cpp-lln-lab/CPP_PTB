@@ -28,7 +28,7 @@ function test_dotMotionSimulationStatic()
 end
 
 function test_dotMotionSimulationTranslation()
-    % ensure that dog homogenity is not too low when we kill dots often enough
+    % ensure that dog homogeneity is not too low when we kill dots often enough
 
     nbEvents = 500;
     doPlot = false;

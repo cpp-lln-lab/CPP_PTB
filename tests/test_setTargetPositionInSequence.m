@@ -18,7 +18,7 @@ function test_setTargetPositionInSequenceBasic()
     nbTarget = 3;
     forbiddenPos = [1 5 10];
 
-    % Create a hundred draws of targer positiona and ensure that
+    % Create a hundred draws of target positiona and ensure that
     % - the forbidden position are never drawn
     % - the interval between target is superior to 1
     for i = 1:100

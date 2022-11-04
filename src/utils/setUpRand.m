@@ -17,7 +17,7 @@ function setUpRand()
     seed = sum(100 * clock);
 
     try
-        % Use the reccomended method in modern Matlab
+        % Use the recommended method in modern Matlab
         RandStream.setGlobalStream(RandStream('mt19937ar', 'seed', seed));
         disp('Using modern randomizer...');
     catch
