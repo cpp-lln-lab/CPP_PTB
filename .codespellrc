@@ -1,0 +1,4 @@
+[codespell]
+skip = .git,env,*build,lib
+ignore-words-list = nwe
+builtin = clear,rare

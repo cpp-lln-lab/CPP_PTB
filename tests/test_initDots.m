@@ -37,7 +37,7 @@ function test_initDotsBasic()
 
     [dots] = initDots(cfg, thisEvent);
 
-    %% Undeterministic ouput
+    %% Undeterministic output
     assertTrue(all(dots.positions(:) >= 0));
     assertTrue(all(dots.positions(:) <= 50));
     assertTrue(all(dots.time(:) >= 0));

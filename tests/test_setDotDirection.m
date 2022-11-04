@@ -11,7 +11,7 @@ end
 function test_setDotDirectionInit()
     % create 5 coherent dots with direction == 362 (that should give 2 in the
     % end)
-    % also creates additonal dots with random direction between 0 and 360
+    % also creates additional dots with random direction between 0 and 360
 
     nbDots = 10;
 
@@ -34,7 +34,7 @@ end
 function test_setDotDirectionReturn()
     % make sure that if the directions are already set it only changes that of
     % the noise dots
-    % input has 4 signal dots with set directions also has additonal noise dots
+    % input has 4 signal dots with set directions also has additional noise dots
     % with negative direction
 
     nbDots = 8;

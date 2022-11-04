@@ -1,6 +1,6 @@
 function [el, cfg] = eyeTracker(input, cfg, varargin)
     %
-    % Wrapper function that deals with all the necessery actions to implement
+    % Wrapper function that deals with all the necessary actions to implement
     % Eye Tracker recording with eyelink.
     %
     % USAGE:
@@ -69,7 +69,7 @@ function [el, cfg] = eyeTracker(input, cfg, varargin)
 
                 % Initialize EL and make sure it worked: returns 0 if OK, -1 if error.
 
-                % Check that EL is initialzed and connected, otherwise abort experiment
+                % Check that EL is initialized and connected, otherwise abort experiment
                 eyetrackerCheckConnection;
 
                 % Open the edf file to write the data.
@@ -277,7 +277,7 @@ function eyetrackerCheckConnection
         error([newline 'Eyelink is not connected, aborted.']);
     end
 
-    % Initialize Eyelink system and connection: returns 1 when succesful, 0
+    % Initialize Eyelink system and connection: returns 1 when successful, 0
     % otherwise
     if ~EyelinkInit(0, 1)
         Eyelink('shutdown');
@@ -323,7 +323,7 @@ end
 %             'Start_Ret_', ...
 %             'Subj_', cfg.Subj, '_', ...
 %             'Run', num2str(cfg.Session(end)),  '_', ...
-%             cfg.Apperture, '_', ...
+%             cfg.Aperture, '_', ...
 %             cfg.Direction]);
 %         iViewX('incrementsetnumber', ivx, 0);
 %     end
@@ -342,7 +342,7 @@ end
 %         strFile = fullfile(OutputDir, ...
 %             [cfg.Subj, ...
 %             '_run', num2str(cfg.Session(end)), '_', ...
-%             cfg.Apperture, '_', ...
+%             cfg.Aperture, '_', ...
 %             cfg.Direction, '_', ...
 %             thedatestr, '.idf"']);
 %         iViewX('datafile', ivx, strFile);

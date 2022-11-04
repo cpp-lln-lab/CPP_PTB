@@ -38,7 +38,7 @@ function [cfg] = eccenLogSpeed(cfg, time)
                          (outerRimVA + exp(1))) * maxEcc * csFuncFact;
         outerRimPix = newOuterRimVA * cfg.screen.ppd; % in pixel
 
-        % width of apperture changes logarithmically with eccentricity of inner ring
+        % width of aperture changes logarithmically with eccentricity of inner ring
         oldScaleInnerVA = outerRimVA - ringWidthVA;
         if oldScaleInnerVA < 0
             oldScaleInnerVA = 0;

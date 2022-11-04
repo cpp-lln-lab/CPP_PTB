@@ -34,7 +34,7 @@ function cfg = initPTB(cfg)
     pth = fileparts(mfilename('fullpath'));
     addpath(genpath(fullfile(pth, 'src')));
 
-    % For octave: to avoid displaying messenging one screen at a time
+    % For octave: to avoid displaying messaging one screen at a time
     more off;
 
     % Resets the seed of the random number generator
@@ -58,7 +58,7 @@ function cfg = initPTB(cfg)
     % Make sure we have black splash screen
     Screen('Preference', 'VisualDebugLevel', 1);
 
-    % Get the screen numbers and draw to the external screen if avaliable
+    % Get the screen numbers and draw to the external screen if available
     cfg.screen.idx = max(Screen('Screens'));
 
     if isfield(cfg.screen, 'resolution')
@@ -81,7 +81,7 @@ function cfg = initPTB(cfg)
     cfg.screen.FOV = computeFOV(cfg);
     cfg.screen.ppd = cfg.screen.winWidth / cfg.screen.FOV;
 
-    % Initialize visual parmaters for fixation cross or dot
+    % Initialize visual parameters for fixation cross or dot
     cfg = initFixation(cfg);
 
     %% Select specific text font, style and size
@@ -205,7 +205,7 @@ function cfg = initAudio(cfg)
                                             cfg.audio.channels);
 
         % set initial PTB volume for safety (participants can adjust this manually
-        % at the begining of the experiment)
+        % at the beginning of the experiment)
         PsychPortAudio('Volume', cfg.audio.pahandle, cfg.audio.initVolume);
 
     end
@@ -222,7 +222,7 @@ function cfg = openWindow(cfg)
             Screen('OpenWindow', cfg.screen.idx, cfg.color.background);
     end
 
-    % Enable alpha-blending, set it to a blend equation useable for linear
+    % Enable alpha-blending, set it to a blend equation usable for linear
     % superposition with alpha-weighted source.
     % Required for drwing smooth lines and screen('DrawDots')
     Screen('BlendFunction', cfg.screen.win, GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
