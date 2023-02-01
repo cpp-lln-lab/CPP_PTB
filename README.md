@@ -1,13 +1,12 @@
 [![Documentation Status: stable](https://readthedocs.org/projects/cpp-ptb/badge/?version=stable)](https://cpp-ptb.readthedocs.io/en/stable/?badge=stable)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4007672.svg)](https://doi.org/10.5281/zenodo.4007672)
-[![](https://img.shields.io/badge/Octave-CI-blue?logo=Octave&logoColor=white)](https://github.com/cpp-lln-lab/CPP_PTB/actions)
-![](https://github.com/cpp-lln-lab/CPP_PTB/workflows/CI/badge.svg)
+[![tests and coverage](https://github.com/cpp-lln-lab/CPP_PTB/actions/workflows/run_tests.yml/badge.svg)](https://github.com/cpp-lln-lab/CPP_PTB/actions/workflows/run_tests.yml)
 [![codecov](https://codecov.io/gh/cpp-lln-lab/CPP_PTB/branch/master/graph/badge.svg)](https://codecov.io/gh/cpp-lln-lab/CPP_PTB)
 [![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
 
 # CPP_PTB
 
-- [CPP_PTB](#cpp_ptb)
+- [CPP\_PTB](#cpp_ptb)
   - [Documentation](#documentation)
   - [Content](#content)
   - [Contributing](#contributing)
