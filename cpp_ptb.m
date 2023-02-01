@@ -131,9 +131,9 @@ function uninitCppPtb()
         rmpath(CPP_PTB_PATHS);
 
         if IsOctave
-            clear -g;
+            clear -g CPP_PTB_PATHS CPP_PTB_INITIALIZED;
         else
-            clearvars -GLOBAL;
+            clearvars -GLOBAL CPP_PTB_PATHS CPP_PTB_INITIALIZED;
         end
 
     end
