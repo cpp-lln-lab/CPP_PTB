@@ -27,7 +27,7 @@ jobs:
         cover_xml_file: coverage.xml
 
     - name: Code coverage
-      uses: codecov/codecov-action@v5
+      uses: codecov/codecov-action@v7
       with:
        token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
        file:  coverage.xml # optional
